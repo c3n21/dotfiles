@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "coc-tsserver": ">=1.4.5",
+    "coc-go": ">=0.6.0"
+  }
+}
