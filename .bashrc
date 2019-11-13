@@ -153,27 +153,26 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
      alias fgrep='fgrep --color=auto'
      alias egrep='egrep --color=auto'
  fi
+
+#Environment vars
 PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
 PATH="$PATH:$HOME/go/bin"
 GOPATH="$HOME/go"
-
 #alias Telegram="QT_IM_MODULE=fcitx Telegram"
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 #export VIMRUNTIME='/usr/bin/nvim'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-
-alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
-
 export JAVA_HOME="/usr/lib/jvm/java-13-openjdk"
-
 export PATH=$JAVA_HOME/bin:$PATH
+export LIBVA_DRIVER_NAME=i965
 
-alias start="startx && exit"
+alias start="startx && exit && sudo /usr/bin/prime-switch"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
+alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 source  ~/bin/tmux-completion/tmux
