@@ -168,7 +168,7 @@ export JAVA_HOME="/usr/lib/jvm/java-13-openjdk"
 export PATH=$JAVA_HOME/bin:$PATH
 export LIBVA_DRIVER_NAME=i965
 
-alias start="startx && exit && sudo /usr/bin/prime-switch"
+alias start="startx && exit"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
