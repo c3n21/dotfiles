@@ -168,11 +168,14 @@ export JAVA_HOME="/usr/lib/jvm/java-13-openjdk"
 export PATH=$JAVA_HOME/bin:$PATH
 export LIBVA_DRIVER_NAME=i965
 
+#alias start="startx -- -dpi 100 && exit"
 alias start="startx && exit"
+
+alias tmux="TERM=xterm-256color tmux"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
 alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
-source  ~/bin/tmux-completion/tmux
+#source  ~/bin/tmux-completion/tmux

@@ -1,0 +1,3 @@
+xrandr --newmode "1200x800_60.00"  78.00  1200 1264 1384 1568  800 803 813 831 -hsync +vsync
+
+xrandr --addmode eDP1 1200x800_60.00

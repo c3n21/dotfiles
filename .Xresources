@@ -1,6 +1,7 @@
 ! Use a nice truetype font and size by default... 
+Xft.dpi: 100
 xterm*faceName: DejaVu Sans Mono Book
-xterm*faceSize: 14
+xterm*faceSize: 16
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 xterm*loginshell: true
