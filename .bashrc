@@ -173,6 +173,28 @@ alias start="startx && exit"
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
-
+alias tmux="TERM=xterm-256color tmux"
 alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
-source  ~/bin/tmux-completion/tmux
+#source  ~/bin/tmux-completion/tmux
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/serverless.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/sls.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/slss.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/slss.bash
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+NODE_PATH="$HOME/.local/lib/node_modules:$NODE_PATH"
+MANPATH="$HOME/.local/share/man:$MANPATH"
+alias dcu="docker-compose up webserver php-fpm worker-serp redis"
