@@ -157,6 +157,7 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 #Environment vars
 PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
 PATH="$PATH:$HOME/go/bin"
+PATH="$PATH:$HOME/bin/phpctags"
 GOPATH="$HOME/go"
 #alias Telegram="QT_IM_MODULE=fcitx Telegram"
 export EDITOR='/usr/bin/nvim'
