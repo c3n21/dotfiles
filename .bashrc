@@ -155,9 +155,9 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
  fi
 
 #Environment vars
-PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
-PATH="$PATH:$HOME/go/bin"
-GOPATH="$HOME/go"
+export PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
+export PATH="$PATH:$HOME/go/bin"
+export GOPATH="$HOME/go"
 #alias Telegram="QT_IM_MODULE=fcitx Telegram"
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'
@@ -169,7 +169,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 export LIBVA_DRIVER_NAME=i965
 
 alias start="startx && exit"
-alias TERM="xterm-256color tmux"
+#alias TERM="xterm-256color tmux"
+#alias TERM="alacritty tmux"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
