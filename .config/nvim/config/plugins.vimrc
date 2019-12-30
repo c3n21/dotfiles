@@ -1,5 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
-	Plug 'https://github.com/alvan/vim-closetag'
+"closetag for html
+    Plug 'https://github.com/alvan/vim-closetag'
 	Plug 'MaxMEllon/vim-jsx-pretty'
 "	Plug 'pangloss/vim-javascript'
 "
@@ -7,6 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'dikiaap/minimalist'
 "	Plug 'https://github.com/dense-analysis/ale'
   	"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+"autopair for parenthesis
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'https://github.com/Valloric/MatchTagAlways'
 	Plug 'scrooloose/nerdtree'
@@ -14,7 +16,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Fuzzy search
     Plug '/usr/bin/fzf'
     Plug 'junegunn/fzf.vim'
+"Session management with tmux
     Plug 'tpope/vim-obsession'
+"Ctags
     Plug 'majutsushi/tagbar'
 call plug#end()
 
