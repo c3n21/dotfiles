@@ -25,6 +25,7 @@ call plug#end()
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
+"TagBar
 source ~/.config/nvim/config/plugins.conf.d/tagbar.vimrc
 
 "MatchTagAlways
