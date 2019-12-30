@@ -155,9 +155,10 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
  fi
 
 #Environment vars
-export PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
-export PATH="$PATH:$HOME/go/bin"
-export GOPATH="$HOME/go"
+PATH="$PATH:/opt/code:/opt/telegram:/home/c3n21/bin/:$HOME/.symfony/bin:/opt/cuda/bin"
+PATH="$PATH:$HOME/go/bin"
+PATH="$PATH:$HOME/bin/phpctags"
+GOPATH="$HOME/go"
 #alias Telegram="QT_IM_MODULE=fcitx Telegram"
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'
@@ -169,12 +170,32 @@ export PATH=$JAVA_HOME/bin:$PATH
 export LIBVA_DRIVER_NAME=i965
 
 alias start="startx && exit"
-#alias TERM="xterm-256color tmux"
-#alias TERM="alacritty tmux"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
-
+alias tmux="TERM=xterm-256color tmux"
 alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
-source  ~/bin/tmux-completion/tmux
+#source  ~/bin/tmux-completion/tmux
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/serverless.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/sls.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/slss.bash ] && . /home/zhifan/Projects/currency-project/currency-node/node_modules/tabtab/.completions/slss.bash
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+NODE_PATH="$HOME/.local/lib/node_modules:$NODE_PATH"
+MANPATH="$HOME/.local/share/man:$MANPATH"
+alias dcu="docker-compose up webserver php-fpm worker-serp redis"
