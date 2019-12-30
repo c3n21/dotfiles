@@ -1,5 +1,5 @@
 " Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
@@ -20,7 +20,7 @@ set termguicolors
 let g:quantum_italics=1
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 "dikiaap/minimalist colorscheme
 set t_Co=256
