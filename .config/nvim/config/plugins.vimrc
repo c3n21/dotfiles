@@ -20,6 +20,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-obsession'
 "Ctags
     Plug 'majutsushi/tagbar'
+    Plug 'tpope/vim-surround'
 call plug#end()
 
 """""""""""""""""""""""
