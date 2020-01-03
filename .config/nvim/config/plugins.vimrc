@@ -19,15 +19,22 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Session management with tmux
     Plug 'tpope/vim-obsession'
 "Ctags
-    Plug 'majutsushi/tagbar'
+"    Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-surround'
+    "    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+"TagBar
+    Plug 'liuchengxu/vista.vim'
+"Status line
+    Plug 'liuchengxu/eleline.vim'
+"Show diffs
+    Plug 'mhinz/vim-signify'
 call plug#end()
 
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
 "TagBar
-source ~/.config/nvim/config/plugins.conf.d/tagbar.vimrc
+"source ~/.config/nvim/config/plugins.conf.d/tagbar.vimrc
 
 "MatchTagAlways
 source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vimrc
@@ -43,3 +50,15 @@ source ~/.config/nvim/config/plugins.conf.d/fzf.vimrc
 
 "nerdtree
 source ~/.config/nvim/config/plugins.conf.d/nerdtree.vimrc
+
+"firenvim
+"source ~/.config/nvim/config/plugins.conf.d/firenvim.vimrc
+
+"vista
+source ~/.config/nvim/config/plugins.conf.d/vista.vimrc
+
+"eleline
+source ~/.config/nvim/config/plugins.conf.d/eleline.vimrc
+
+"vim-signify
+source ~/.config/nvim/config/plugins.conf.d/vim-signify.vimrc
