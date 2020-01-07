@@ -11,3 +11,5 @@ set tabstop=4 shiftwidth=4 expandtab
 set encoding=utf-8
 set fileencoding=utf-8
 
+"Create new file if not exist using gf
+map <leader>gf :e <cfile><cr>
