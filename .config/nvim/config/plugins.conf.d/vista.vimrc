@@ -11,7 +11,7 @@ set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 nmap <F8> :Vista coc<CR>
-nmap <c-f> :Vista finder<CR>
+nmap <F5> :Vista finder<CR>
 
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
@@ -44,7 +44,7 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_fzf_preview = ['right:50%']
 
 "" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#enable_icon = 0
 
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
