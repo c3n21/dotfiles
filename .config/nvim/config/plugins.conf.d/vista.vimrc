@@ -11,7 +11,7 @@ set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 nmap <F8> :Vista coc<CR>
-nmap <c-f> :Vista finder<CR>
+nmap <F5> :Vista finder<CR>
 
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
