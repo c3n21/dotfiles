@@ -1,0 +1,15 @@
+.CFUserTextEncoding
+.DS_Store
+.bash_history
+.local/
+.macports/
+.viminfo
+.zsh_history
+Desktop/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
