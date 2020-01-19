@@ -24,11 +24,12 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dim -t "Don't touch my machine!" --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -180,18 +181,20 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
+#bumblebee-status
 
-bar {
-	font pango:Inconsolata 10
-	position top
-	tray_output none
-	status_command /usr/bin/bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource redshift -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-powerline
-
-}
+#bar {
+#	font pango:Inconsolata 10
+#	position top
+#	tray_output none
+#	status_command /usr/bin/bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource redshift -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-powerline
+#
+#}
+default_border pixel 0
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
-
 exec_always $HOME/bin/autostart_i3.sh
-bindsym $mod+shift+x exec betterlockscreen -l dim 
-#bindsym --release Print exec "spectacle --region --background --clipboard"
+bindsym $mod+shift+x exec betterlockscreen -l dim -t "Don't touch my machine!" 
+bindsym $mod+Tab exec rofi -modi window -show window -hide-scrollbar -font "Termsyn 12" -padding 20 -line-padding 4 -width 40 -lines 6
+bindsym --release Print exec scrot --select ~/Pictures/Screenshots/%Y_%m_%d_%H%M%S.png
