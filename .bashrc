@@ -155,22 +155,14 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
  fi
 
 #Environment vars
-#export PATH="$PATH:$HOME/go/bin"
-#export PATH="$PATH:/var/lib/snapd/snap/bin/universal-ctags"
 export GOPATH="$HOME/go"
 #alias Telegram="QT_IM_MODULE=fcitx Telegram"
-#export JAVA_HOME="/usr/lib/jvm/java-13-openjdk"
-#export PATH=$JAVA_HOME/bin:$PATH
-#export LIBVA_DRIVER_NAME=i965
-
-alias start="startx && exit"
-#alias TERM="xterm-256color tmux"
-#alias TERM="alacritty tmux"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
-alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 source  ~/bin/tmux-completion/tmux
-SDCard/Music/2020-1
+
+alias ls=lsd
+set -o vi
