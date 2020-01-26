@@ -173,4 +173,4 @@ fi
 
 alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 source  ~/bin/tmux-completion/tmux
-SDCard/Music/2020-1
+set -o vi
