@@ -171,6 +171,6 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
-alias startkali='docker run -ti --rm --mount src=kali-root,dst=/root --mount src=kali-postgres,dst=/var/lib/postgresql my-kali'
 source  ~/bin/tmux-completion/tmux
 set -o vi
+alias ls=lsd
