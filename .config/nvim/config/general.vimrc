@@ -6,14 +6,19 @@ set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
-set tabstop=4               " number of columns occupied by a tab character
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set shiftwidth=4            " width for autoindents
+set tabstop=2 
+set softtabstop=0 
+set expandtab 
+set shiftwidth=2 
+set smarttab
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
+
+set encoding=utf-8
+set fileencoding=utf-8
 
 set background=dark
 set termguicolors
@@ -26,3 +31,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 set t_Co=256
 syntax on
 colorscheme minimalist
+
+set list
+set listchars=tab:>-

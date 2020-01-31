@@ -2,6 +2,21 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
+let g:vista#executives = ['coc', 'ctags']
+
+let g:vista#finders = ['fzf']
+
+"let g:vista#renderer#ctags = 'default'
+
+let g:vista#renderer#default#vlnum_offset = 3
+
+let g:vista#renderer#enable_icon = 1
+
+let g:vista#renderer#icons = {'subroutine': '羚', 'method': '', 'func': '', 'variables': '', 'namespace': '', 'field': '', 'interface': '', 'type': '', 'packages': '', 'property': ' ', 'implementation': '', 'default': '', 'augroup': 'פּ', 'macro': '', 'enumerator': '', 'const': '', 'macros': '', 'map': 'פּ', 'fields': '', 'functions': '', 'enum': '', 'function': '', 'target': '', 'typedef': '', 'variable': '', 'modules': '', 'constant': '', 'struct': '', 'types': '', 'module': '', 'typeParameter': '', 'package': '', 'class': '','member': '', 'var': '', 'union': '鬒'}
+let g:vista#renderer#kind_default_icon = ['╰─▸ ', '├─▸ ']
+
+let g:vista_fold_toggle_icons = ['▼', '▶']
+
 set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
@@ -10,7 +25,8 @@ set statusline+=%{NearestMethodOrFunction()}
 " you can add the following line to your vimrc 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-nmap <F8> :Vista coc<CR>
+"nmap <F8> :Vista coc<CR>
+nmap <F8> :Vista!!<CR>
 nmap <F5> :Vista finder<CR>
 
 " How each level is indented and what to prepend.
@@ -21,7 +37,7 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Executive used when opening vista sidebar without specifying it.
 " See all the avaliable executives via `:echo g:vista#executives`.
-"let g:vista_default_executive = 'coc'
+let g:vista_default_executive = 'coc'
 "
 "" Set the executive for some filetypes explicitly. Use the explicit executive
 "" instead of the default one for these filetypes when using `:Vista` without
@@ -41,10 +57,10 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
-let g:vista_fzf_preview = ['right:50%']
+let g:vista_fzf_preview = ['right:30%']
 
 "" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 0
+let g:vista#renderer#enable_icon = 1
 
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.

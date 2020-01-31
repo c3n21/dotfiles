@@ -1,3 +1,5 @@
+[ -f ~/.zsh_profile ] && source ~/.zsh_profile
+
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
@@ -7,3 +9,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 bindkey -v
 setopt noautomenu
 setopt nomenucomplete
+
+alias ls="lsd"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
