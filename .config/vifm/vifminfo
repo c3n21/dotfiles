@@ -1,0 +1,95 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/home/c3n21/
+	..
+1580752567
+'b
+	/home/c3n21/bin/
+	..
+1580752567
+'h
+	/home/c3n21/
+	..
+1580752567
+'z
+	/home/c3n21/.config/vifm
+	..
+1580752567
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/c3n21/Documents/GitHub/alacritty
+	alacritty
+1
+d/home/c3n21/Documents/GitHub/alacritty/alacritty
+	src
+1
+d/home/c3n21/Documents/GitHub/alacritty/alacritty/src
+	renderer
+2
+d/home/c3n21/Documents/GitHub/alacritty/alacritty/src/renderer
+	..
+0
+d/home/c3n21/Documents/GitHub/alacritty/alacritty/src
+	..
+0
+d/home/c3n21/Documents/GitHub/alacritty/alacritty
+	..
+0
+d/home/c3n21/Documents/GitHub/alacritty
+	alacritty_terminal
+2
+d/home/c3n21/Documents/GitHub/alacritty/alacritty_terminal
+	src
+1
+d/home/c3n21/Documents/GitHub/alacritty/alacritty_terminal/src
+	config
+1
+d/home/c3n21/Documents/GitHub/alacritty/alacritty_terminal/src/config
+	font.rs
+3
+d
+
+# Right window history (oldest to newest):
+D/home/c3n21/Documents/GitHub/alacritty
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:qa
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+
+# State:
+f
+i1
+[.1
+[F
+F
+I1
+].1
+]F
+s0

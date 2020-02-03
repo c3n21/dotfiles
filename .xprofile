@@ -1,7 +1,12 @@
+export QT_QPA_PLATFORMTHEME=qt5ct easypaint
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+setxkbmap -variant altgr-intl
+setxkbmap -option caps:swapescape
+#setxkbmap -option caps:escape
+#setxkbmap -option escape:caps
+#xmodmap -e "keycode 66 = Escape" && xmodmap -e "keycode 9 = Caps_Lock"
+
 fcitx &
-xrdb ~/.Xresources
 redshift &
-exec i3

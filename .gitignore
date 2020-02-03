@@ -70,4 +70,23 @@ Pictures/
 Music/
 Videos/
 bin/
+.config/balena-etcher/
+.config/composer/
+.config/enchant/
+.config/gtk-3.0/
+.config/libvirt/
+.config/nvim/
+.config/pavucontrol.ini
+.config/pcmanfm-qt/
+.config/qt5ct/
+.dmrc
+.gnupg/
+.gtkrc-2.0
+.icons/
+.screenlayout/
+.xsession-errors
+.xsession-errors.old
+Logisim/
+hs_err_pid3647.log
+snap/
 
