@@ -4,6 +4,5 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 setxkbmap -variant altgr-intl
 setxkbmap -option caps:swapescape
-
 fcitx &
 redshift &
