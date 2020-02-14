@@ -4,5 +4,11 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 setxkbmap -variant altgr-intl
 setxkbmap -option caps:swapescape
+
+killall -q fcitx
+while pgrep -u $UID -x fcitx >/dev/null; do sleep 1; done
 fcitx &
+
+killall -q redshift
+while pgrep -u $UID -x redshift >/dev/null; do sleep 1; done
 redshift &

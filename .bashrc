@@ -166,3 +166,5 @@ source  ~/bin/tmux-completion/tmux
 
 alias ls=lsd
 set -o vi
+
+source ~/.bashrc.conf.d/general
