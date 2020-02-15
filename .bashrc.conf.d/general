@@ -1,3 +1,5 @@
+alias n="n"
+
 n ()
 {
     # Block nesting of nnn in subshells

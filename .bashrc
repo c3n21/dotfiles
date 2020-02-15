@@ -93,5 +93,11 @@ fi
 set -o vi
 
 #Load all configurations
-source ~/.bashrc.conf.d/*
+BASHRC_CONF_D="$HOME/.bashrc.conf.d"
+if [ -d "$BASHRC_CONF_D" ]; then
+  for file in $BASHRC_CONF_D/*; do
+    source $file
+  done
+fi
+
 source  ~/bin/tmux-completion/tmux
