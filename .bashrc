@@ -62,17 +62,23 @@ complete -cf sudo
 # it regains control.  #65623
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
-
+shopt -s extglob
 shopt -s expand_aliases
 
-# export QT_SELECT=4
-
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
 
 #
 # # ex - archive extractor
 # # usage: ex <file>
+
+#Different histories
+# avoid duplicates..
+#export HISTCONTROL=ignoredups:erasedups
+
+# append history entries..
+#shopt -s histappend
+
+# After each command, save and reload history
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # enable color support of ls and also add handy aliases
  if [ -x /usr/bin/dircolors ]; then
@@ -93,5 +99,9 @@ fi
 set -o vi
 
 #Load all configurations
-source ~/.bashrc.conf.d/*
+for i in "$HOME"/.bashrc.conf.d/*; do
+        source "$i"
+done
+
+
 source  ~/bin/tmux-completion/tmux
