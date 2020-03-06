@@ -1,3 +1,2 @@
 alias ls=lsd
 alias more=less
-alias nnn=n
