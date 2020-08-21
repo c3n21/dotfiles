@@ -103,5 +103,6 @@ for i in "$HOME"/.bashrc.conf.d/*; do
         source "$i"
 done
 
-
 source  ~/bin/tmux-completion/tmux
+
+export COMPOSER_AUTH=`cat ~/.composer/auth.json`
