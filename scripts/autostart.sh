@@ -8,4 +8,10 @@ then
     latte-dock &
 fi
 
+if [[ "$DESKTOP_SESSION" == 'xfce' ]];
+then
+    echo "[autostart.sh] DETECTED xfce environment!"
+    conky -d
+fi
+
 echo "[autostart.sh] END"
