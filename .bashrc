@@ -96,11 +96,9 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
-#set -o vi
+set -o vi
 
 #Load all configurations
 for i in "$HOME"/.bashrc.conf.d/*; do
         source "$i"
 done
-
-export COMPOSER_AUTH=`cat ~/.composer/auth.json`
