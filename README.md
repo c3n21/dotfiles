@@ -1,21 +1,3 @@
-Issues:
-    >Audio is still playing after I muted (the icon on bumblebee-status is updated properly)
-
-Dependancy Arch Linux:
-    >nodejs
-    >python 3 (pip install neovim)
-
-Tweaking:
-    >ttf-inconsolata if you want to view bumblebee-status properly
-
-universal-ctags:
-    >Compile it from source if snap is not working:
-        ./autogen.sh
-        ./configure --prefix=/path/to/install
-        make -j && make install
-
-        add it to tagbar variable
-
 Tmux instructions
 
 tmux new -s [session name]
