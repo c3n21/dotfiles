@@ -266,3 +266,14 @@ env.sh
 .zoom/
 DoChat/
 install.txt
+.config/BraveSoftware/
+.config/chromium/
+.config/google-chrome-beta/
+.config/google-chrome-unstable/
+.config/gsconnect/
+.config/ibus/
+.config/nautilus/
+.config/pipewire-media-session/
+.config/pop-shell/
+.var/
+backup/
