@@ -25,7 +25,7 @@ shopt -s checkwinsize
 shopt -s extglob
 shopt -s expand_aliases
 
-set -x MANPAGER "nvim +Man!"
+export MANPAGER="nvim +Man!"
 
 #
 # # ex - archive extractor
