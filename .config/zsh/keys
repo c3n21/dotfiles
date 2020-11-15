@@ -1,0 +1,1 @@
+bindkey '^[[Z' reverse-menu-complete
