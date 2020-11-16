@@ -1,1 +1,2 @@
 bindkey '^[[Z' reverse-menu-complete
+#bindkey '^ ' autosuggest-accept
