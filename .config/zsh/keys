@@ -1,2 +1,7 @@
-bindkey '^[[Z' reverse-menu-complete
+echo "[SOURCE] keys"
+bindkey -v
+KEYTIMEOUT=1
+
+#bindkey '^[[Z' reverse-menu-complete
+
 #bindkey '^ ' autosuggest-accept
