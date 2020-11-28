@@ -1,5 +1,6 @@
 unsetopt BEEP
 
+export "$(tmux show-environment)"
 export MANPAGER="nvim +Man!"
 
 # Lines configured by zsh-newuser-install

@@ -161,7 +161,6 @@ go/
 .config/fontconfig/
 .config/incidenceeditorrc
 .config/khotkeysrc
-.config/kitty/
 .config/kmixctrlrc
 .config/kmixrc
 .config/konsolerc
