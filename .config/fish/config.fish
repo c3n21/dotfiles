@@ -1,7 +1,7 @@
 set -x theme_color_scheme nord
 
-set PATH "$PATH:$HOME/.local/bin"
-set -x MANPAGER "nvim +Man!"
+fish_add_path "~/.local/bin"
+set -gx MANPAGER "nvim +Man!"
 
 fish_vi_key_bindings
 
@@ -14,6 +14,8 @@ set fish_cursor_default block
 set fish_cursor_insert line
 # Set the replace mode cursor to an underscore
 set fish_cursor_replace_one underscore
+
+eval "export (tmux show-environment DISPLAY)"
 
 #theme
 #set -g theme_display_git no
