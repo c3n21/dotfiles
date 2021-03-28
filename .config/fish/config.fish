@@ -1,6 +1,5 @@
 set -x theme_color_scheme nord
 
-fish_add_path "~/.local/bin"
 set -gx MANPAGER "nvim +Man!"
 
 fish_vi_key_bindings
