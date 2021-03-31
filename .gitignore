@@ -320,3 +320,6 @@ backup/
 Public/
 anaconda3/
 zsh-completions/
+.config/background
+.config/glade.conf
+.surfshark/
