@@ -15,6 +15,7 @@ set fish_cursor_insert line
 set fish_cursor_replace_one underscore
 
 eval "export (tmux show-environment DISPLAY)"
+eval "export (tmux show-environment SSH_AUTH_SOCK)"
 
 #theme
 #set -g theme_display_git no
