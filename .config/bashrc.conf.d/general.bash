@@ -25,7 +25,6 @@ shopt -s checkwinsize
 shopt -s extglob
 shopt -s expand_aliases
 
-export MANPAGER="nvim +Man!"
 
 #
 # # ex - archive extractor
@@ -52,9 +51,8 @@ export MANPAGER="nvim +Man!"
      alias egrep='egrep --color=auto'
  fi
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#    tmux attach -t default || tmux new -s default
+#fi
 
 set -o vi
-
