@@ -7,7 +7,7 @@ append_path () {
     esac
 }
 append_path "$HOME/.local/bin"
-append_path "$HOME/.local/share/gem/ruby/2.7.0/bin"
+#append_path "$HOME/.local/share/gem/ruby/2.7.0/bin"
 export PATH
 export EDITOR=nvim
 #export BROWSER=firefox
