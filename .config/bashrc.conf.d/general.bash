@@ -56,3 +56,5 @@ shopt -s expand_aliases
 #fi
 
 set -o vi
+
+eval "$(_TMUXP_COMPLETE=source tmuxp)"
