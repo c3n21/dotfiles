@@ -323,3 +323,17 @@ zsh-completions/
 .config/background
 .config/glade.conf
 .surfshark/
+.bash_completion
+.bash_completion.d/
+.config/falkTX/
+.config/geary-development/
+.config/lsp-plugins/
+.config/tmuxp/
+.config/totem/
+.openjfx/
+.themes/
+.xournalpp/
+node_modules/
+package-lock.json
+package.json
+workspace/
