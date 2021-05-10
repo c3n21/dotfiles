@@ -7,5 +7,8 @@
 (setq x-select-enable-clipboard nil)
 (global-set-key (kbd "<mouse-2>") 'clipboard-yank)
 
+;;enable cua mode
+(cua-mode t)
+
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
