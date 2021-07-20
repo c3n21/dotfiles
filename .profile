@@ -8,6 +8,7 @@ append_path () {
 }
 append_path "$HOME/.local/bin"
 append_path "$HOME/node_modules/.bin"
+append_path "$HOME/.cargo/bin"
 export PATH
 export EDITOR=nvim
 export DIFFPROG="nvim -d"
@@ -21,7 +22,6 @@ export JAVA_HOME="/usr/lib/jvm/default"
 export JDTLS_CONFIG="$HOME/.local/share/java/jdtls/config_linux"
 export WORKSPACE="$HOME/Documents/workspace"
 #export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
-
 unset -f append_path
 
 alias luamake=/home/nezuko/Downloads/github/lua-language-server/3rd/luamake/luamake

@@ -340,3 +340,12 @@ package.json
 snap/
 workspace/
 zsh-completions/
+.bundle/
+.config/emacs/session.1095bf65263af0113c162195398131926500000015520086
+.config/emacs/session.1095bf65263af0113c16219540034085500000015520087
+.config/jgit/
+.config/komorebi/
+.config/onlyoffice/
+.dotnet/
+.m2/
+.rbenv/
