@@ -15,7 +15,7 @@ Ctrl+b o                    //Go to the next pane<br/>
 Ctrl+b ;                    //Toggle between the current and previous pane<br/>
 Ctrl+b x                    //Close the current pane<br/>
 
-# Dependancies
+# Dependencies
 * sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"<br/>
 * git clone git://github.com/zsh-users/zsh-completions.git<br/>
 * git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-\~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions<br/>
