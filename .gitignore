@@ -349,3 +349,16 @@ zsh-completions/
 .dotnet/
 .m2/
 .rbenv/
+.config/Zeal/
+.config/asciinema/
+.config/balena-etcher-electron/
+.config/buildstream.conf
+.config/hidamari/
+.config/obs-studio/
+.config/xournalpp/
+.dbus-keyrings/
+.viminfo
+MEGAsync*
+Templates/
+roba
+scripts/
