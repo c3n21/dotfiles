@@ -362,3 +362,8 @@ MEGAsync*
 Templates/
 roba
 scripts/
+.config/Element/
+.config/qalculate/
+.metadata/
+.packettracer
+packettracer/
