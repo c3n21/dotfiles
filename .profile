@@ -9,8 +9,17 @@ append_path () {
 append_path "$HOME/.local/bin"
 append_path "$HOME/node_modules/.bin"
 append_path "$HOME/.cargo/bin"
+
+if [[ -d "$HOME/.local/share/junest" ]]; then
+    append_path "$HOME/.local/share/junest/bin"
+fi
+
+if [ "$XDG_SESSION_TYPE" == "wayland" ] ; then
+    export MOZ_ENABLE_WAYLAND=1
+fi
+
 export PATH
-export EDITOR=nvim
+export EDITOR="nvim"
 export DIFFPROG="nvim -d"
 export AURDEST="$HOME/Downloads/aur"
 export AURSEEN="$HOME/Downloads/aur"
@@ -21,7 +30,6 @@ export GRADLE_HOME="$HOME/gradle"
 export JAVA_HOME="/usr/lib/jvm/default"
 export JDTLS_CONFIG="$HOME/.local/share/java/jdtls/config_linux"
 export WORKSPACE="$HOME/Documents/workspace"
-#export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
 unset -f append_path
 
 alias luamake=/home/nezuko/Downloads/github/lua-language-server/3rd/luamake/luamake
