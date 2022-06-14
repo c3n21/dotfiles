@@ -1,0 +1,6 @@
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = git@github.com:c3n21/nvim-configuration.git
+[submodule ".config/aconfmgr"]
+	path = .config/aconfmgr
+	url = git@github.com:c3n21/arch-config.git
