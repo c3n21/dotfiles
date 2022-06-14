@@ -8,3 +8,6 @@ then
     rm install
 fi
 echo -e "[oh-my-fish] Done...\n"
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo -e "[TPM] Remember to install tmux plugins using <prefix> + I"
