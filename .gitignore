@@ -342,7 +342,7 @@
 .smb/
 .soapuios/
 .sogouinput/
-.ssh/
+!.ssh/config
 .steam/
 .steampath
 .steampid
