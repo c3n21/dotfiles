@@ -343,6 +343,7 @@
 .soapuios/
 .sogouinput/
 !.ssh/config
+.ssh/*
 .steam/
 .steampath
 .steampid
