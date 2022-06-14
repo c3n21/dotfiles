@@ -45,7 +45,6 @@
 .config/VirtualBox/
 .config/VirtualBoxrc
 .config/Zeal/
-.config/aconfmgr/
 .config/akonadi-firstrunrc
 .config/akonadi-migrationrc
 .config/akonadi/
@@ -205,7 +204,6 @@
 .config/neofetch/
 .config/neomutt/
 .config/nnn/
-.config/nvim/
 .config/obs-studio/
 .config/okularpartrc
 .config/okularrc
