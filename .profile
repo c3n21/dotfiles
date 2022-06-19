@@ -6,9 +6,15 @@ append_path () {
             PATH="${PATH:+$PATH:}$1"
     esac
 }
+ANDROID_SDK_ROOT='/opt/android-sdk'
 append_path "$HOME/.local/bin"
 append_path "$HOME/node_modules/.bin"
 append_path "$HOME/.cargo/bin"
+append_path "$PATH:$ANDROID_HOME/emulator"
+append_path "$PATH:$ANDROID_HOME/platform-tools/"
+append_path "$PATH:$ANDROID_HOME/tools/bin/"
+append_path "$PATH:$ANDROID_HOME/tools/"
+PATH="$ANDROID_HOME/emulator:$PATH"
 
 if [[ -d "$HOME/.local/share/junest" ]]; then
     append_path "$HOME/.local/share/junest/bin"
