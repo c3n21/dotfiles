@@ -1,6 +1,9 @@
+!.ssh/config
 .AndroidStudio3.5/
 .Xauthority
 .android/
+.aws
+.azure
 .bash_completion.d/
 .bash_history
 .bash_logout
@@ -45,6 +48,7 @@
 .config/VirtualBox/
 .config/VirtualBoxrc
 .config/Zeal/
+.config/aconfmgr
 .config/akonadi-firstrunrc
 .config/akonadi-migrationrc
 .config/akonadi/
@@ -204,6 +208,7 @@
 .config/neofetch/
 .config/neomutt/
 .config/nnn/
+.config/nvim
 .config/obs-studio/
 .config/okularpartrc
 .config/okularrc
@@ -285,6 +290,7 @@
 .dart/
 .dartServer/
 .dbus-keyrings/
+.ddev/
 .dmrc
 .docker/
 .dotnet/
@@ -342,7 +348,6 @@
 .smb/
 .soapuios/
 .sogouinput/
-!.ssh/config
 .ssh/*
 .steam/
 .steampath
