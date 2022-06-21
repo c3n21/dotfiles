@@ -6,15 +6,26 @@ append_path () {
             PATH="${PATH:+$PATH:}$1"
     esac
 }
-ANDROID_SDK_ROOT='/opt/android-sdk'
+
 append_path "$HOME/.local/bin"
 append_path "$HOME/node_modules/.bin"
 append_path "$HOME/.cargo/bin"
-append_path "$PATH:$ANDROID_HOME/emulator"
-append_path "$PATH:$ANDROID_HOME/platform-tools/"
-append_path "$PATH:$ANDROID_HOME/tools/bin/"
-append_path "$PATH:$ANDROID_HOME/tools/"
-PATH="$ANDROID_HOME/emulator:$PATH"
+
+if [[ "$ANDROID_HOME" != "" ]]; then # https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+    ANDROID_SDK_ROOT='/opt/android-sdk'
+    # append_path "$PATH:$ANDROID_HOME/emulator"
+    # append_path "$PATH:$ANDROID_HOME/platform-tools/"
+    # append_path "$PATH:$ANDROID_HOME/tools/bin/"
+    # append_path "$PATH:$ANDROID_HOME/tools/"
+    # PATH="$ANDROID_HOME/emulator:$PATH"
+
+    append_path "$ANDROID_HOME/emulator"
+    append_path "$ANDROID_HOME/platform-tools/"
+    append_path "$ANDROID_HOME/tools/bin/"
+    append_path "$ANDROID_HOME/tools/"
+    append_path "$ANDROID_HOME/emulator"
+fi
+
 
 if [[ -d "$HOME/.local/share/junest" ]]; then
     append_path "$HOME/.local/share/junest/bin"
@@ -37,5 +48,3 @@ export JAVA_HOME="/usr/lib/jvm/default"
 export JDTLS_CONFIG="$HOME/.local/share/java/jdtls/config_linux"
 export WORKSPACE="$HOME/Documents/workspace"
 unset -f append_path
-
-alias luamake=/home/nezuko/Downloads/github/lua-language-server/3rd/luamake/luamake
