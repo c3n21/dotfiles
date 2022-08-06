@@ -1,6 +1,5 @@
 set -x theme_color_scheme nord
 
-#set -gx MANPAGER "nvim +Man!"
 
 fish_vi_key_bindings
 
@@ -55,3 +54,5 @@ set fish_cursor_replace_one underscore
 #set -g theme_project_dir_length 1
 #set -g theme_newline_cursor yes
 #set -g theme_newline_prompt '$ '
+
+zoxide init fish | source
