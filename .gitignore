@@ -423,3 +423,10 @@ zsh-completions/
 .opam/
 .pub-cache/
 .python_history-46300.tmp
+.config/nextjs-nodejs/
+.landscape/
+.motd_shown
+.npmrc
+.sudo_as_admin_successful
+.vscode-remote-containers/
+intelephense/
