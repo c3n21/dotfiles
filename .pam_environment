@@ -4,3 +4,4 @@ QT_IM_MODULE=ibus
 JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 ANDROID_SDK_ROOT='/opt/android-sdk'
 JAVA_HOME='/usr/lib/jvm/default'
+QT_QPA_PLATFORM=wayland;xcb
