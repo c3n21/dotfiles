@@ -11,6 +11,10 @@ append_path "$HOME/.local/bin"
 append_path "$HOME/node_modules/.bin"
 append_path "$HOME/.cargo/bin"
 
+if [[ -x "/usr/sbin/bob" ]]; then
+    append_path "$HOME/.local/share/neovim/bin"
+fi
+
 if [[ "$ANDROID_HOME" != "" ]]; then # https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
     ANDROID_SDK_ROOT='/opt/android-sdk'
     append_path "$ANDROID_HOME/emulator"
