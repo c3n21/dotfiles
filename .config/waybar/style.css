@@ -1,0 +1,86 @@
+/* https://github.com/catppuccin/waybar */
+@import "./themes/latte.css";
+
+* {
+  /* font-family: FantasqueSansMono Nerd Font; */
+  font-family: Delugia Mono;
+  font-size: 13px;
+  min-height: 0;
+  padding: 1px 4px;
+}
+
+/* window#waybar { */
+/*   background: transparent; */
+/* } */
+
+#workspaces {
+  border-radius: 1rem;
+  background-color: @surface0;
+  /* margin-top: 1rem; */
+  /* margin: 7px 3px 0px 7px; */
+}
+
+#workspaces button {
+  color: @pink;
+  border-radius: 1rem;
+  padding-left: 6px;
+  margin: 3px 0;
+  padding: 0 4px;
+  box-shadow: inset 0 -3px transparent;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.68);
+  background-color: transparent;
+}
+
+#workspaces button.active {
+  color: @flamingo;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @rosewater;
+  border-radius: 1rem;
+}
+
+#tray,
+#network,
+#backlight,
+#clock,
+#battery,
+#pulseaudio,
+#custom-lock,
+#temperature,
+#clock {
+  color: @lavender;
+  border-radius: 3px 10px 3px 10px;
+  background-color: @surface0;
+  margin: 3px 2px;
+  padding: 5px 6px;
+}
+
+#network {
+  color: @flamingo;
+}
+
+#pulseaudio {
+  color: @pink;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#tray {
+  margin: 3px 2px;
+  /* border-radius: 1rem; */
+  /* border-radius: 12px; */
+  padding: 5px 6px;
+}
+
+tooltip {
+  background: @base;
+  border: 1px solid @pink;
+}
+
+tooltip label {
+  color: @text;
+}
