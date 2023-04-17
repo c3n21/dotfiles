@@ -33,6 +33,11 @@ if [ "$XDG_SESSION_TYPE" == "wayland" ] ; then
     export MOZ_ENABLE_WAYLAND=1
 fi
 
+# if bob is executable then append to path ~/.local/share/neovim/bin
+if [ -x "/usr/sbin/bob" ]; then
+    append_path "$HOME/.local/share/neovim/bin"
+fi
+
 export PATH
 export EDITOR="nvim"
 export DIFFPROG="nvim -d"
