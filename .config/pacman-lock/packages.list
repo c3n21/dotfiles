@@ -51,7 +51,7 @@ bolt 0.9.5-1
 boost-libs 1.81.0-3
 botan 2.19.3-1
 box2d 2.4.1-1
-brave-bin 1:1.50.114-1
+brave-bin 1:1.50.119-1
 breeze 5.27.4-1
 breeze-gtk 5.27.4-2
 breeze-icons 5.105.0-1
@@ -508,7 +508,7 @@ libproxy 0.4.18-2
 libpsl 0.21.2-1
 libpulse 16.1-6
 libqaccessibilityclient 0.4.1-2
-libqalculate 4.6.0-1
+libqalculate 4.6.1-1
 libqmi 1.32.4-1
 libqrtr-glib 1.2.2-2
 libqxp 0.0.2-9
