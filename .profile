@@ -49,4 +49,10 @@ export GRADLE_HOME="$HOME/gradle"
 export JAVA_HOME="/usr/lib/jvm/default"
 export JDTLS_CONFIG="$HOME/.local/share/java/jdtls/config_linux"
 export WORKSPACE="$HOME/Documents/workspace"
+
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 unset -f append_path
