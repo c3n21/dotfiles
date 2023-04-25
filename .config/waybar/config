@@ -10,7 +10,7 @@
 
     "modules-center": ["hyprland/window"],
 
-    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "temperature", "clock"],
+    "modules-right": [ "idle_inhibitor", "tray", "disk", "disk#home", "pulseaudio", "network", "temperature", "memory","cpu","clock", "clock#calendar"],
 
     "wlr/workspaces": {
     	"format": "{name}: {icon}",
@@ -35,6 +35,19 @@
             "unlocked": ""
         }
     },
+
+    "disk": {
+        "interval": 30,
+        "format": "{path}: {percentage_used}%",
+        "path": "/"
+    },
+
+    "disk#home":{
+        "interval": 30,
+        "format": "{path}: {percentage_used}%",
+        "path": "/home"
+    },
+
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -74,16 +87,15 @@
             "deactivated": ""
         }
     },
-    
+
     "tray": {
         "icon-size": 15,
         "spacing": 10
     },
 
-    "clock": {
-        // "timezone": "America/New_York",
+    "clock#calendar": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%Y-%m-%d}"
     },
 
     "cpu": {
@@ -138,7 +150,7 @@
         "format-disconnected": "Disconnected ⚠",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "wofi-wifi.sh",	// https://raw.githubusercontent.com/cristobaltapia/dotfiles_sway/master/home/.config/wofi/scripts/wofi-wifi.sh
-	//"on-click": "nmtui",
+        //"on-click": "nmtui",
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
