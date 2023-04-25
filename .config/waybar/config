@@ -10,7 +10,7 @@
 
     "modules-center": ["hyprland/window"],
 
-    "modules-right": [ "idle_inhibitor", "tray", "disk", "disk#home", "pulseaudio", "network", "temperature", "memory","cpu","clock", "clock#calendar"],
+    "modules-right": [ "idle_inhibitor", "tray", "disk", "disk#home", "memory", "cpu", "pulseaudio", "network", "temperature", "clock", "clock#calendar"],
 
     "wlr/workspaces": {
     	"format": "{name}: {icon}",
