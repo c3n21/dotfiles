@@ -28,6 +28,19 @@ autoconf 2.71-4
 automake 1.16.5-2
 avahi 0.8+22+gfd482a7-3
 awesome-terminal-fonts 1.1.0-4
+aws-c-auth 0.6.25-1
+aws-c-cal 0.5.21-2
+aws-c-common 0.8.13-1
+aws-c-compression 0.2.16-1
+aws-c-event-stream 0.2.20-1
+aws-c-http 0.7.5-1
+aws-c-io 0.13.18-1
+aws-c-mqtt 0.8.7-1
+aws-c-s3 0.2.6-1
+aws-c-sdkutils 0.1.7-1
+aws-checksums 0.1.14-1
+aws-crt-cpp 0.19.8-1
+aws-sdk-cpp 1.11.37-1
 ayatana-ido 0.9.3-1
 baloo 5.105.0-1
 baloo-widgets 23.04.0-1
@@ -105,6 +118,7 @@ duktape 2.7.0-5
 dunst 1.9.2-1
 e2fsprogs 1.47.0-1
 ebook-tools 0.2.2-7
+editline 1.17.1-2
 efibootmgr 18-2
 efivar 38-3
 egl-wayland 2:1.1.11-4
@@ -339,6 +353,7 @@ libcdio-paranoia 10.2+2.0.1-2
 libcdr 0.1.7-5
 libcloudproviders 0.3.1+r8+g3a229ee-1
 libcolord 1.4.6-1
+libcpuid 0.6.3-1
 libcups 1:2.4.2-6
 libdaemon 0.14-5
 libdatrie 0.2.13-2
@@ -553,6 +568,7 @@ llvm-libs 15.0.7-2
 lm_sensors 1:3.6.0.r41.g31d1f125-2
 lmdb 0.9.30-3
 locale-hook 1.0-1
+lowdown 1.0.0-1
 lpsolve 5.5.2.11-2
 lsd 0.23.1-1
 lsof 4.98.0-1
@@ -594,6 +610,8 @@ netavark 1.6.0-1
 nettle 3.8.1-1
 networkmanager 1.42.6-1
 nftables 1:1.0.7-1
+nix 2.15.0-1
+nix-busybox 1.35.0-1
 node-gyp 9.3.1-1
 nodejs 19.9.0-1
 nodejs-nopt 7.1.0-1
@@ -736,6 +754,7 @@ rsync 3.2.7-4
 rtkit 0.13-2
 rubberband 3.2.1-1
 runc 1.1.6-1
+s2n-tls 1.3.42-1
 samba 4.18.2-1
 sbc 2.0-1
 sddm 0.19.0-9
