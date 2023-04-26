@@ -24,11 +24,6 @@ if [[ "$ANDROID_HOME" != "" ]]; then # https://stackoverflow.com/questions/36015
     append_path "$ANDROID_HOME/emulator"
 fi
 
-
-if [[ -d "$HOME/.local/share/junest" ]]; then
-    append_path "$HOME/.local/share/junest/bin"
-fi
-
 if [ "$XDG_SESSION_TYPE" == "wayland" ] ; then
     export MOZ_ENABLE_WAYLAND=1
 fi
