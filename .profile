@@ -28,6 +28,14 @@ if [ "$XDG_SESSION_TYPE" == "wayland" ] ; then
     export MOZ_ENABLE_WAYLAND=1
 fi
 
+if [[ -x "/usr/bin/nix" ]] ; then
+    XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+fi
+
+if [[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
+    source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
+
 export PATH
 export EDITOR="nvim"
 export DIFFPROG="nvim -d"
@@ -44,5 +52,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_DIRS
 
 unset -f append_path
