@@ -34,9 +34,9 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    (nixGLWrap pkgsUnstable.element-desktop-wayland)
     (nixGLWrap pkgsUnstable.remmina)
     (nixGLWrap pkgsUnstable.firefox)
-    (nixGLWrap pkgsUnstable.tdesktop)
     (nixGLWrap pkgsUnstable.kitty)
     nixgl.auto.nixGLDefault
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -56,13 +56,6 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-rime ];
-  };
-
-
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
