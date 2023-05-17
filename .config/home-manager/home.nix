@@ -34,6 +34,9 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    (nixGLWrap pkgsUnstable.gwenview)
+    (nixGLWrap pkgsUnstable.okular)
+    (nixGLWrap pkgsUnstable.thunderbird)
     (nixGLWrap pkgsUnstable.element-desktop-wayland)
     (nixGLWrap pkgsUnstable.remmina)
     (nixGLWrap pkgsUnstable.firefox)
