@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 let unstable = import <nixpkgs-unstable> { config = { config = { allowUnfree = true; }; }; };
 in
+let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {}; in
 let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm {}; in
 {
   imports =
@@ -70,6 +71,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     description = "Zhifan Chen";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with unstable; [
+      swaylock
       firefox
       git
       kitty
@@ -166,7 +168,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 #jack.enable = true;
   };
   fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = ["CascadiaCode"]; })
+  fonts.fonts = [
+    delugia-code
   ];
 }
