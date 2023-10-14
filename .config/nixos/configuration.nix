@@ -19,7 +19,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   services.thermald.enable = true;
   services.tlp.enable = true;
   services.auto-cpufreq.enable = true;
-
+  security.pam.services.swaylock = {};
 # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -64,6 +64,10 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   };
 
   virtualisation.docker.enable = true;
+
+  environment.variables = {
+    XCURSOR_SIZE = "32";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhifan = {
