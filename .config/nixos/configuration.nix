@@ -75,7 +75,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     description = "Zhifan Chen";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with unstable; [
-      swaylock
+      hyprpaper
       firefox
       git
       kitty
@@ -133,6 +133,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   #  wget
 	  neovim
     catppuccin-macchiato
+    swaylock
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
