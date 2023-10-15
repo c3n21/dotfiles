@@ -88,7 +88,6 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
         bat
         ripgrep
         fzf
-        asdf-vm
         nodejs
         gnumake
         sqlite
