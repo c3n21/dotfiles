@@ -1,17 +1,17 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.stdenv.mkDerivation rec {
   name = "catppuccin-macchiato";
-  dontBuild = true;
-  version = "7fc67d1027cdb7f4d833c5d23a8c34a0029b0661";
+  # dontBuild = true;
+  version = "40cd049b8f43c593bc179eb5584aeba200df5b52";
 
 # fetchFromGitHub is a build support function that fetches a GitHub
 # repository and extracts into a directory; so we can use it
 # fetchFromGithub is actually a derivation itself :)
   src = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
+    owner = "c3n21";
     repo = "sddm";
-    rev = "7fc67d1027cdb7f4d833c5d23a8c34a0029b0661";
-    sha256 = "SjYwyUvvx/ageqVH5MmYmHNRKNvvnF3DYMJ/f2/L+Go=";
+    rev = "40cd049b8f43c593bc179eb5584aeba200df5b52";
+    sha256 = "lLjHvsqX0P0a4Alx4NMYJv4D8AwgzIJbIxHlQjj8B30=";
   };
 
 # This overrides the shell code that is run during the installPhase.
