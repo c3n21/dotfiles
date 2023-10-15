@@ -1,23 +1,26 @@
 /* https://github.com/catppuccin/waybar */
-@import "./themes/latte.css";
+@import "./themes/macchiato.css";
 
 * {
-  /* font-family: FantasqueSansMono Nerd Font; */
   font-family: Delugia Mono;
   font-size: 13px;
   min-height: 0;
   padding: 1px 4px;
+  color: @text;
 }
 
+window#waybar {
+  /* you can also GTK3 CSS functions! */
+  background-color: shade(@base, 0.9);
+  border: 2px solid alpha(@crust, 0.3);
+}
 /* window#waybar { */
 /*   background: transparent; */
 /* } */
 
-#workspaces {
+/* #workspaces {
   border-radius: 1rem;
   background-color: @surface0;
-  /* margin-top: 1rem; */
-  /* margin: 7px 3px 0px 7px; */
 }
 
 #workspaces button {
@@ -71,8 +74,6 @@
 
 #tray {
   margin: 3px 2px;
-  /* border-radius: 1rem; */
-  /* border-radius: 12px; */
   padding: 5px 6px;
 }
 
@@ -83,4 +84,4 @@ tooltip {
 
 tooltip label {
   color: @text;
-}
+} */
