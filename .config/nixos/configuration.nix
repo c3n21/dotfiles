@@ -7,12 +7,23 @@ let unstable = import <nixpkgs-unstable> { config = { config = { allowUnfree = t
 in
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {}; in
 let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm {}; in
+# let
+#   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+# in
 {
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # (import "${home-manager}/nixos")
     ];
   services.flatpak.enable = true;
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      '';
+  };
 
 # laptop
   powerManagement.enable = true;
@@ -54,6 +65,8 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
 # Configure keymap in X11
   services.xserver = {
+    # doesn't seem to fix cursor issue
+    # dpi = 162;
     enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
@@ -98,8 +111,17 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
         pavucontrol
         jetbrains.idea-community
         telegram-desktop
+        # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
+        # this fixes cursor issue on firefox at least
+        gnome.adwaita-icon-theme
         ];
   };
+
+  # home-manager.users.zhifan = {
+  #   /* The home.stateVersion option does not have a default and must be set */
+  #   home.stateVersion = "23.05";
+  #   /* Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ]; */
+  # };
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"

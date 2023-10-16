@@ -1,21 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nixpkgs,unstable-pkgs, ... }:
 
-let
-  pkgsUnstable = import <nixpkgs> {};
-  nixgl = import <nixgl> {};
-  # https://github.com/guibou/nixGL/issues/44
-  nixGLWrap = pkg: pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
-    mkdir $out
-    ln -s ${pkg}/* $out
-    rm $out/bin
-    mkdir $out/bin
-    for bin in ${pkg}/bin/*; do
-     wrapped_bin=$out/bin/$(basename $bin)
-     echo "exec ${lib.getExe nixgl.auto.nixGLDefault} $bin \"\$@\"" > $wrapped_bin
-     chmod +x $wrapped_bin
-    done
-  '';
-in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -34,14 +18,8 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    (nixGLWrap pkgsUnstable.gwenview)
-    (nixGLWrap pkgsUnstable.okular)
-    (nixGLWrap pkgsUnstable.thunderbird)
-    (nixGLWrap pkgsUnstable.element-desktop-wayland)
-    (nixGLWrap pkgsUnstable.remmina)
-    (nixGLWrap pkgsUnstable.firefox)
-    (nixGLWrap pkgsUnstable.kitty)
-    nixgl.auto.nixGLDefault
+    unstable-pkgs.tmux
+    # nixgl.auto.nixGLDefault
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
