@@ -17,8 +17,36 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    unstable-pkgs.tmux
+  home.packages = with unstable-pkgs; [
+    tmux
+    libsForQt5.okular
+    hyprpaper
+    firefox
+    git
+    kitty
+    distrobox
+    rofi
+    fish
+    waybar
+    zoxide
+    lsd
+    bat
+    ripgrep
+    fzf
+    nodejs
+    gnumake
+    sqlite
+    fd
+    wl-clipboard
+    gcc
+    killall
+    pavucontrol
+    jetbrains.idea-community
+    telegram-desktop
+    libsForQt5.okular
+# https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
+# this fixes cursor issue on firefox at least
+    gnome.adwaita-icon-theme
     # nixgl.auto.nixGLDefault
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

@@ -87,34 +87,6 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     isNormalUser = true;
     description = "Zhifan Chen";
     extraGroups = [ "networkmanager" "wheel" "docker" "video"];
-    packages = with unstable; [
-      hyprpaper
-        firefox
-        git
-        kitty
-        distrobox
-        rofi
-        fish
-        waybar
-        zoxide
-        lsd
-        bat
-        ripgrep
-        fzf
-        nodejs
-        gnumake
-        sqlite
-        fd
-        wl-clipboard
-        gcc
-        killall
-        pavucontrol
-        jetbrains.idea-community
-        telegram-desktop
-        # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
-        # this fixes cursor issue on firefox at least
-        gnome.adwaita-icon-theme
-        ];
   };
 
   # home-manager.users.zhifan = {
