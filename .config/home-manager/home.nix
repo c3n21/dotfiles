@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixpkgs,unstable-pkgs, ... }:
+{ config, pkgs, lib, nixpkgs, unstable-pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -18,6 +18,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with unstable-pkgs; [
+    nixd
+    unstable-pkgs
+    nixpkgs-fmt
     tmux
     libsForQt5.okular
     hyprpaper
@@ -43,9 +46,8 @@
     pavucontrol
     jetbrains.idea-community
     telegram-desktop
-    libsForQt5.okular
-# https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
-# this fixes cursor issue on firefox at least
+    # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
+    # this fixes cursor issue on firefox at least
     gnome.adwaita-icon-theme
     # nixgl.auto.nixGLDefault
     # # Adds the 'hello' command to your environment. It prints a friendly
