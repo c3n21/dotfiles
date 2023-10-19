@@ -5,50 +5,55 @@
 { config, pkgs, ... }:
 let unstable = import <nixpkgs-unstable> { config = { config = { allowUnfree = true; }; }; };
 in
-let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {}; in
-let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm {}; in
-# let
-#   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-# in
+let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
+let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm { }; in
 {
   imports =
-    [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    # (import "${home-manager}/nixos")
+    [
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
     ];
   services.flatpak.enable = true;
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with unstable; [
+      fcitx5-rime
+    ];
+  };
+
 
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
-      '';
+    '';
   };
 
-# laptop
+  # laptop
   powerManagement.enable = true;
   services.thermald.enable = true;
   services.tlp.enable = true;
   services.auto-cpufreq.enable = true;
-  security.pam.services.swaylock = {};
-# Bootloader.
+  security.pam.services.swaylock = { };
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-# Configure network proxy if necessary
-# networking.proxy.default = "http://user:password@proxy:port/";
-# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-# Enable networking
-    networking.networkmanager.enable = true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-# Set your time zone.
+  # Set your time zone.
   time.timeZone = "Europe/Rome";
 
-# Select internationalisation properties.
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -63,7 +68,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     LC_TIME = "it_IT.UTF-8";
   };
 
-# Configure keymap in X11
+  # Configure keymap in X11
   services.xserver = {
     # doesn't seem to fix cursor issue
     # dpi = 162;
@@ -78,15 +83,11 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
   virtualisation.docker.enable = true;
 
-  environment.variables = {
-    XCURSOR_SIZE = "32";
-  };
-
-# Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhifan = {
     isNormalUser = true;
     description = "Zhifan Chen";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
   };
 
   # home-manager.users.zhifan = {
@@ -97,80 +98,95 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-    '';
+  '';
 
-  environment.etc = let
-    json = pkgs.formats.json {};
-  in {
-    "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-      context.modules = [
-      {
-        name = "libpipewire-module-protocol-pulse";
-        args = {
-          pulse.min.req = "32/48000";
-          pulse.default.req = "32/48000";
-          pulse.max.req = "32/48000";
-          pulse.min.quantum = "32/48000";
-          pulse.max.quantum = "32/48000";
+  # xsession.pointerCursor = {
+  #   package = pkgs.gnome3.defaultIconTheme;
+  #   name = "Adwaita";
+  #   size = 130;
+  # };
+
+  environment.etc =
+    let
+      json = pkgs.formats.json { };
+    in
+    {
+      "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
+        context.modules = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args = {
+              pulse.min.req = "32/48000";
+              pulse.default.req = "32/48000";
+              pulse.max.req = "32/48000";
+              pulse.min.quantum = "32/48000";
+              pulse.max.quantum = "32/48000";
+            };
+          }
+        ];
+        stream.properties = {
+          node.latency = "32/48000";
+          resample.quality = 1;
         };
-      }
-      ];
-      stream.properties = {
-        node.latency = "32/48000";
-        resample.quality = 1;
       };
     };
-  };
 
-# Allow unfree packages
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-# List packages installed in system profile. To search, run:
-# $ nix search wget
-  environment.systemPackages = with pkgs; [
-#  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-#  wget
-    neovim
+  # temporary workaround to make neovim work with sqlite
+  environment.sessionVariables =
+    rec {
+      LD_LIBRARY_PATH = "${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:$LD_LIBRARY_PATH";
+    };
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs;
+    [
+      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
+      neovim
       catppuccin-macchiato
       swaylock
       swayidle
-  ];
+    ];
 
-# Some programs need SUID wrappers, can be configured further or are
-# started in user sessions.
-# programs.mtr.enable = true;
-# programs.gnupg.agent = {
-#   enable = true;
-#   enableSSHSupport = true;
-# };
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-# List services that you want to enable:
+  # List services that you want to enable:
 
-# Enable the OpenSSH daemon.
-# services.openssh.enable = true;
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
-# Open ports in the firewall.
-# networking.firewall.allowedTCPPorts = [ ... ];
-# networking.firewall.allowedUDPPorts = [ ... ];
-# Or disable the firewall altogether.
-# networking.firewall.enable = false;
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
-# This value determines the NixOS release from which the default
-# settings for stateful data, like file locations and database versions
-# on your system were taken. It‘s perfectly fine and recommended to leave
-# this value at the release version of the first install of this system.
-# Before changing this value read the documentation for this option
-# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-    programs.hyprland.enable = true;
+  programs.hyprland.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-# If you want to use JACK applications, uncomment this
-#jack.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
   };
   fonts.fontDir.enable = true;
   fonts.fonts = [
