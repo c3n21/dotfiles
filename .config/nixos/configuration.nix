@@ -17,8 +17,9 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with unstable; [
+    fcitx5.addons = with pkgs; [
       fcitx5-rime
+      fcitx5-chinese-addons
     ];
   };
 
