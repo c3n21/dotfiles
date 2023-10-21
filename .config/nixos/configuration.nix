@@ -88,6 +88,12 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     LC_TIME = "it_IT.UTF-8";
   };
 
+  hardware =
+    {
+      bluetooth.enable = true; # enables support for Bluetooth
+      bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot  };
+    };
+
   # Configure keymap in X11
   services.xserver = {
     # doesn't seem to fix cursor issue
@@ -205,6 +211,11 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
   security.rtkit.enable = true;
+
+  services = {
+    blueman.enable = true;
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
