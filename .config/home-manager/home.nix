@@ -5,8 +5,6 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "zhifan";
-  home.homeDirectory = "/home/zhifan";
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -16,6 +14,8 @@ in
   # release notes.
   home = {
     stateVersion = "22.11"; # Please read the comment before changing.
+    username = "zhifan";
+    homeDirectory = "/home/zhifan";
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
@@ -75,29 +75,17 @@ in
     telegram-desktop
     # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
     # this fixes cursor issue on firefox at least
-    gnome.adwaita-icon-theme
-    # nixgl.auto.nixGLDefault
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    ocamlPackages.ocaml-lsp
+    ocamlPackages.ocamlformat
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".tmux.conf".text = ''
+      set-option -g default-shell "${unstable-pkgs.fish}/bin/fish"
+      ${builtins.readFile ./dotfiles/tmux.conf}
+    '';
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -108,18 +96,9 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
   };
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/zhifan/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     XCURSOR_SIZE = cursor_size;
     XMODIFIERS = "@im=fcitx";
