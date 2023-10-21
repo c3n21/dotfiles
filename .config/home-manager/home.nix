@@ -13,7 +13,32 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "22.11"; # Please read the comment before changing.
+  home = {
+    stateVersion = "22.11"; # Please read the comment before changing.
+    pointerCursor = {
+      gtk.enable = true;
+      # x11.enable = true;
+      package = unstable-pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 32;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+    iconTheme = {
+      package = pkgs.libsForQt5.breeze-icons;
+      name = "breeze-dark";
+    };
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -98,6 +123,16 @@
     XMODIFIER = "@im=fcitx";
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
+    GDK_BACKEND = "wayland,x11";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 
   # Let Home Manager install and manage itself.
