@@ -1,6 +1,10 @@
 { config, pkgs, lib, nixpkgs, unstable-pkgs, ... }:
 let
-  cursor_size = 16;
+  cursor = {
+    name = "Bibata-Modern-Classic";
+    size = 16;
+  };
+  shell = "${unstable-pkgs.fish}/bin/fish";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,8 +24,8 @@ in
       gtk.enable = true;
       x11.enable = true;
       package = unstable-pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = cursor_size;
+      name = cursor.name;
+      size = cursor.size;
     };
   };
 
@@ -83,8 +87,12 @@ in
   # plain files is through 'home.file'.
   home.file = {
     ".tmux.conf".text = ''
-      set-option -g default-shell "${unstable-pkgs.fish}/bin/fish"
+      set-option -g default-shell "${shell}"
       ${builtins.readFile ./dotfiles/tmux.conf}
+    '';
+    ".config/kitty/kitty.conf".text = ''
+      shell ${shell}
+      ${builtins.readFile ./dotfiles/kitty/kitty.conf}
     '';
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -100,7 +108,7 @@ in
   };
 
   home.sessionVariables = {
-    XCURSOR_SIZE = cursor_size;
+    XCURSOR_SIZE = cursor.size;
     XMODIFIERS = "@im=fcitx";
     XMODIFIER = "@im=fcitx";
     GTK_IM_MODULE = "fcitx";
