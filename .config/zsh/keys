@@ -1,7 +1,0 @@
-bindkey -v
-KEYTIMEOUT=1
-
-#bindkey '^[[Z' reverse-menu-complete
-
-bindkey '^F' autosuggest-accept
-bindkey '^X' autosuggest-clear
