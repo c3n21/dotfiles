@@ -28,6 +28,8 @@
       unstable-pkgs = nixpkgs-unstable.legacyPackages.${system};
     in
     {
+      overlays = import ./overlays { inherit inputs; };
+
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -48,6 +50,8 @@
             modules = [ ./home-manager/home.nix ];
             extraSpecialArgs = {
               inherit unstable-pkgs;
+              inherit inputs;
+              inherit outputs;
             };
             # Optionally use extraSpecialArgs
             # to pass through arguments to home.nix

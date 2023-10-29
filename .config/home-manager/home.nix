@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixpkgs, unstable-pkgs, ... }:
+{ config, pkgs, lib, unstable-pkgs, outputs, inputs, ... }:
 let
   cursor = {
     name = "Bibata-Modern-Classic";
@@ -45,9 +45,30 @@ in
     };
   };
 
+  nixpkgs = {
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with unstable-pkgs; [
+    gitflow
+    dunst
+    networkmanagerapplet
+    libsForQt5.polkit-kde-agent
+    grimblast
     nwg-look
     neovim
     nixd
@@ -90,9 +111,15 @@ in
       set-option -g default-shell "${shell}"
       ${builtins.readFile ./dotfiles/tmux.conf}
     '';
+
     ".config/kitty/kitty.conf".text = ''
       shell ${shell}
       ${builtins.readFile ./dotfiles/kitty/kitty.conf}
+    '';
+
+    ".config/hypr/hyprland.conf".text = ''
+      exec-once=${unstable-pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
+      ${builtins.readFile ./dotfiles/hypr/hyprland.conf}
     '';
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
