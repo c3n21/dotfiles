@@ -64,6 +64,9 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with unstable-pkgs; [
+    erlfmt
+    erlang
+    erlang-ls
     gitflow
     dunst
     networkmanagerapplet
@@ -102,6 +105,8 @@ in
     # this fixes cursor issue on firefox at least
     ocamlPackages.ocaml-lsp
     ocamlPackages.ocamlformat
+    dnsutils
+    unzip
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
