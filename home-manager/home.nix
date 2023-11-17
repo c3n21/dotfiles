@@ -73,7 +73,7 @@ in
     libsForQt5.polkit-kde-agent
     grimblast
     nwg-look
-    neovim
+    pkgs.neovim-nightly
     nixd
     nixpkgs-fmt
     tmux

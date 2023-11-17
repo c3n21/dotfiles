@@ -3,11 +3,10 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
     hyprland.url = "github:hyprwm/Hyprland";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +21,9 @@
     , ...
     } @ inputs:
     let
+      overlays = [
+        inputs.neovim-nightly-overlay.overlay
+      ];
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -47,7 +49,12 @@
 
             # Specify your home configuration modules here, for example,
             # the path to your home.nix.
-            modules = [ ./home-manager/home.nix ];
+            modules = [
+              ./home-manager/home.nix
+              ({ config, ... }: {
+                nixpkgs.overlays = overlays;
+              })
+            ];
             extraSpecialArgs = {
               inherit unstable-pkgs;
               inherit inputs;
