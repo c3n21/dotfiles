@@ -7,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +19,7 @@
     , nixpkgs
     , home-manager
     , nixpkgs-unstable
+    , nixos-hardware
     , ...
     } @ inputs:
     let
@@ -38,7 +40,10 @@
             inherit inputs outputs;
             inherit unstable-pkgs;
           };
-          modules = [ ./nixos/configuration.nix ];
+          modules = [
+            nixos-hardware.nixosModules.framework-13-7040-amd
+            ./nixos/configuration.nix
+          ];
         };
       };
 

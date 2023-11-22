@@ -35,25 +35,36 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
   # laptop
   powerManagement.enable = true;
-  services.thermald.enable = true;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  services =
+    {
+      thermald.enable = true;
+      power-profiles-daemon.enable = true;
+      fwupd.enable = true;
+      # fprintd = {
+      #   enable = true;
+      #   tod.enable = true;
+      #   tod.driver = pkgs.libfprint-2-tod1-goodix;
+      # };
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 20;
-
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
     };
-  };
+  # services.tlp = {
+  #   enable = true;
+  #   settings = {
+  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #     CPU_SCALING_GOVERNOR_ON_BAT = "schedutils";
+
+  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "schedutil";
+  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+  #     CPU_MIN_PERF_ON_AC = 0;
+  #     CPU_MAX_PERF_ON_AC = 100;
+  #     CPU_MIN_PERF_ON_BAT = 0;
+  #     CPU_MAX_PERF_ON_BAT = 20;
+  #     USB_DENYLIST = "0bda:8156";
+  #     START_CHARGE_THRESH_BAT0 = 75;
+  #     STOP_CHARGE_THRESH_BAT0 = 80;
+  #   };
+  # };
   services.auto-cpufreq.enable = true;
 
   security.pam.services = {
@@ -101,13 +112,12 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   hardware =
     {
       bluetooth.enable = true; # enables support for Bluetooth
-      bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot  };
+      bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
     };
 
   # Configure keymap in X11
   services.xserver = {
-    # doesn't seem to fix cursor issue
-    # dpi = 162;
+    # for SDDM
     enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
@@ -132,9 +142,9 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   #   /* Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ]; */
   # };
 
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-  '';
+  # services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  # '';
 
   # xsession.pointerCursor = {
   #   package = pkgs.gnome3.defaultIconTheme;
@@ -186,6 +196,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
       catppuccin-macchiato
       swaylock
       swayidle
+      git
     ];
 
   programs = {
