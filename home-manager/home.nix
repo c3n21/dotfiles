@@ -1,10 +1,10 @@
-{ config, pkgs, lib, unstable-pkgs, outputs, inputs, ... }:
+{ config, pkgs, lib, outputs, inputs, ... }:
 let
   cursor = {
     name = "Bibata-Modern-Classic";
     size = 16;
   };
-  shell = "${unstable-pkgs.fish}/bin/fish";
+  shell = "${pkgs.fish}/bin/fish";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -23,7 +23,7 @@ in
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      package = unstable-pkgs.bibata-cursors;
+      package = pkgs.bibata-cursors;
       name = cursor.name;
       size = cursor.size;
     };
@@ -63,7 +63,8 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with unstable-pkgs; [
+  home.packages = with pkgs; [
+    htop
     erlfmt
     erlang
     erlang-ls
@@ -126,7 +127,8 @@ in
     '';
 
     ".config/hypr/hyprland.conf".text = ''
-      exec-once=${unstable-pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
+      exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
+      exec-once=${pkgs.libsForQt5.kwallet}/bin/kwalletd5
       ${builtins.readFile ./dotfiles/hypr/hyprland.conf}
     '';
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in

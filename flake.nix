@@ -4,12 +4,11 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -18,7 +17,6 @@
     { self
     , nixpkgs
     , home-manager
-    , nixpkgs-unstable
     , nixos-hardware
     , ...
     } @ inputs:
@@ -29,7 +27,6 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      unstable-pkgs = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       overlays = import ./overlays { inherit inputs; };
@@ -38,7 +35,6 @@
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
-            inherit unstable-pkgs;
           };
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
@@ -61,7 +57,6 @@
               })
             ];
             extraSpecialArgs = {
-              inherit unstable-pkgs;
               inherit inputs;
               inherit outputs;
             };

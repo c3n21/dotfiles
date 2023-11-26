@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, unstable-pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
 let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm { }; in
 {
@@ -69,7 +69,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
 
   security.pam.services = {
     swaylock = { };
-    kwallet = {
+    sddm = {
       name = "kwallet";
       enableKwallet = true;
     };
@@ -197,6 +197,9 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
       swaylock
       swayidle
       git
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+      libsForQt5.kwalletmanager
     ];
 
   programs = {
@@ -246,7 +249,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   };
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       source-han-sans
       source-han-serif
