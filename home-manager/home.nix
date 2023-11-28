@@ -111,6 +111,9 @@ in
     zbar
     way-displays
     jq
+    lua-language-server
+    selene
+    stylua
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
