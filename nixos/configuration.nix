@@ -203,6 +203,13 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     ];
 
   programs = {
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+    nano = {
+      enable = false;
+    };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
