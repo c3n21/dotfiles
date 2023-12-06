@@ -77,6 +77,8 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
