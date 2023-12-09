@@ -2,9 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, sugar-catppuccin, ... }:
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
-let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin-sddm { }; in
 {
   imports =
     [
@@ -40,12 +39,6 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
       thermald.enable = true;
       power-profiles-daemon.enable = true;
       fwupd.enable = true;
-      # fprintd = {
-      #   enable = true;
-      #   tod.enable = true;
-      #   tod.driver = pkgs.libfprint-2-tod1-goodix;
-      # };
-
     };
   # services.tlp = {
   #   enable = true;
@@ -125,7 +118,7 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
     xkbVariant = "altgr-intl";
     displayManager.sddm = {
       enable = true;
-      theme = "catppuccin-macchiato";
+      theme = "sugar-catppuccin";
     };
   };
 
@@ -195,13 +188,14 @@ let catppuccin-macchiato = pkgs.callPackage /home/zhifan/.config/nixos/catpuccin
       #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       #  wget
       neovim
-      catppuccin-macchiato
       swaylock
       swayidle
       git
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
       libsForQt5.kwalletmanager
+      sugar-catppuccin
+      libsForQt5.qt5.qtgraphicaleffects
     ];
 
   programs = {
