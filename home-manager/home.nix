@@ -116,6 +116,9 @@ in
     selene
     stylua
     chromium
+    usbutils
+    nodePackages_latest.pnpm
+    vscode-langservers-extracted
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
