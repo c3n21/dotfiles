@@ -7,6 +7,7 @@ let
   shell = "${pkgs.fish}/bin/fish";
 in
 {
+  nixpkgs.config.allowUnfree = true;
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   # This value determines the Home Manager release that your configuration is
@@ -119,6 +120,7 @@ in
     usbutils
     nodePackages_latest.pnpm
     vscode-langservers-extracted
+    discord
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
