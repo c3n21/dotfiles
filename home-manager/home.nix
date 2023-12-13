@@ -121,6 +121,16 @@ in
     nodePackages_latest.pnpm
     vscode-langservers-extracted
     discord
+    typescript
+    lsof
+    eslint_d
+    tailwindcss-language-server
+    microsoft-edge
+    google-chrome
+    jdk17
+    coursier
+    scala
+    scalafmt
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
