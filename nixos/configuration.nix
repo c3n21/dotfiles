@@ -178,7 +178,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   # temporary workaround to make neovim work with sqlite
   environment.sessionVariables =
     rec {
-      LD_LIBRARY_PATH = "${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
+      LD_LIBRARY_PATH = "${pkgs.javaPackages.openjfx17}/modules_libs/javafx.graphics:${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
     };
 
   # List packages installed in system profile. To search, run:
@@ -196,6 +196,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
       libsForQt5.kwalletmanager
       sugar-catppuccin
       libsForQt5.qt5.qtgraphicaleffects
+      javaPackages.openjfx17
     ];
 
   programs = {
