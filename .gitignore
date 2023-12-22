@@ -1,4 +1,6 @@
-.gitignore
+*
+!nixos/
+!home-manager/
 JetBrains
 QtProject.conf
 TabNine
@@ -25,3 +27,4 @@ kitty
 pulse
 distrobox
 environment.d
+.gitignore

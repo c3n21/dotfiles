@@ -185,4 +185,52 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs =
+    {
+      fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set -x theme_color_scheme nord
+          fish_vi_key_bindings
+          # Emulates vim's cursor shape behavior
+          # Set the normal and visual mode cursors to a block
+          set fish_cursor_default block
+          # Set the insert mode cursor to a line
+          set fish_cursor_insert line
+          # Set the replace mode cursor to an underscore
+          set fish_cursor_replace_one underscore
+          bind -M insert \cf accept-autosuggestion
+        '';
+        shellAliases = {
+          ls = "lsd";
+          cat = "bat";
+          vim = "nvim";
+        };
+        plugins = [
+          rec {
+            name = "fzf.fish";
+            src = pkgs.fetchFromGitHub {
+              owner = "PatrickF1";
+              repo = name;
+              rev = "main";
+              sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
+            };
+          }
+          rec {
+            name = "theme-bobthefish";
+            src = pkgs.fetchFromGitHub {
+              owner = "oh-my-fish";
+              repo = name;
+              rev = "master";
+              sha256 = "jiXzkW4H9YORR4iRNAfjlPT2jSyXQKmNx3WA+TjleE8=";
+            };
+          }
+
+        ];
+      };
+      zoxide = {
+        enable = true;
+      };
+    };
 }
