@@ -12,6 +12,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,6 +25,7 @@
     , nixpkgs
     , home-manager
     , nixos-hardware
+    , lanzaboote
     , ...
     } @ inputs:
     let
@@ -42,6 +48,10 @@
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
             ./nixos/configuration.nix
+            # This is not a complete NixOS configuration and you need to reference
+            # your normal configuration here.
+
+            lanzaboote.nixosModules.lanzaboote
           ];
         };
       };

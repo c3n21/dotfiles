@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, sugar-catppuccin, ... }:
+{ inputs, config, pkgs, sugar-catppuccin, lib, ... }:
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
 {
   imports =
@@ -73,7 +73,19 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+
+  # Lanzaboote currently replaces the systemd-boot module.
+  # This setting is usually set to true in configuration.nix
+  # generated at installation time. So we force it to false
+  # for now.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -197,6 +209,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
       sugar-catppuccin
       libsForQt5.qt5.qtgraphicaleffects
       javaPackages.openjfx17
+      sbctl
     ];
 
   programs = {
