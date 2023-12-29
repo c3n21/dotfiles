@@ -70,23 +70,29 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+    };
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = lib.mkForce false;
+    };
 
-  # Bootloader.
 
-  # Lanzaboote currently replaces the systemd-boot module.
-  # This setting is usually set to true in configuration.nix
-  # generated at installation time. So we force it to false
-  # for now.
-  boot.loader.systemd-boot.enable = lib.mkForce false;
+    # Bootloader.
 
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
+    # Lanzaboote currently replaces the systemd-boot module.
+    # This setting is usually set to true in configuration.nix
+    # generated at installation time. So we force it to false
+    # for now.
+    # boot.loader.systemd-boot.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
-
-  # boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
