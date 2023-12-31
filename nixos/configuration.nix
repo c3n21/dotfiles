@@ -70,6 +70,17 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+  };
+
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
@@ -197,6 +208,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   environment.sessionVariables =
     rec {
       LD_LIBRARY_PATH = "${pkgs.javaPackages.openjfx17}/modules_libs/javafx.graphics:${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
+      # QT_QPA_PLATFORMTHEME = "gtk3";
     };
 
   # List packages installed in system profile. To search, run:

@@ -131,6 +131,8 @@ in
     coursier
     scala
     scalafmt
+    wget
+    btop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -179,10 +181,14 @@ in
     # QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
     EDITOR = "nvim";
   };
 
+  # TODO: to be solved
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk";
+  # };
 
   programs =
     {
