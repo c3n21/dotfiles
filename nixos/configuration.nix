@@ -82,6 +82,9 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   };
 
   boot = {
+    kernelParams = [
+      "amdgpu.sg_display=0"
+    ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
       "vm.swappiness" = 10;
