@@ -18,7 +18,7 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home = {
-    stateVersion = "22.11"; # Please read the comment before changing.
+    stateVersion = "24.05"; # Please read the comment before changing.
     username = "zhifan";
     homeDirectory = "/home/zhifan";
     pointerCursor = {
@@ -138,6 +138,8 @@ in
     sbt
     prettierd
     brave
+    vscode-extensions.sonarsource.sonarlint-vscode
+    file
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -171,6 +173,38 @@ in
 
   };
 
+  xdg= {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = ["firefox.desktop"];
+        "x-scheme-handler/http"=["firefox.desktop"];
+        "x-scheme-handler/https"=["firefox.desktop"];
+# x-scheme-handler/chrome=firefox.desktop
+# text/html=firefox.desktop
+# application/x-extension-htm=firefox.desktop
+# application/x-extension-html=firefox.desktop
+# application/x-extension-shtml=firefox.desktop
+# application/xhtml+xml=firefox.desktop
+# application/x-extension-xhtml=firefox.desktop
+# application/x-extension-xht=firefox.desktop
+# x-scheme-handler/tg=org.telegram.desktop.desktop
+
+# x-scheme-handler/http=firefox.desktop;
+# x-scheme-handler/https=firefox.desktop;
+# x-scheme-handler/chrome=firefox.desktop;
+# text/html=firefox.desktop;
+# application/x-extension-htm=firefox.desktop;
+# application/x-extension-html=firefox.desktop;
+# application/x-extension-shtml=firefox.desktop;
+# application/xhtml+xml=firefox.desktop;
+# application/x-extension-xhtml=firefox.desktop;
+# application/x-extension-xht=firefox.desktop;
+# x-scheme-handler/tg=org.telegram.desktop.desktop;
+      };
+    };
+  };
+
   home.sessionVariables = {
     XCURSOR_SIZE = cursor.size;
     XMODIFIERS = "@im=fcitx";
@@ -183,67 +217,67 @@ in
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
-    # QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+# QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "nvim";
   };
 
-  # TODO: to be solved
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk";
-  # };
+# TODO: to be solved
+# qt = {
+#   enable = true;
+#   platformTheme = "gtk";
+# };
 
   programs =
-    {
-      # Let Home Manager install and manage itself.
-      home-manager = {
-        enable = true;
-      };
-      fish = {
-        enable = true;
-        interactiveShellInit = ''
-          set -x theme_color_scheme nord
-          fish_vi_key_bindings
-          # Emulates vim's cursor shape behavior
-          # Set the normal and visual mode cursors to a block
-          set fish_cursor_default block
-          # Set the insert mode cursor to a line
-          set fish_cursor_insert line
-          # Set the replace mode cursor to an underscore
-          set fish_cursor_replace_one underscore
-          bind -M insert \cf accept-autosuggestion
-        '';
-        shellAliases = {
-          ls = "lsd";
-          cat = "bat";
-          vim = "nvim";
-        };
-        plugins = [
-          rec {
-            name = "fzf.fish";
-            src = pkgs.fetchFromGitHub {
-              owner = "PatrickF1";
-              repo = name;
-              rev = "main";
-              sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
-            };
-          }
-          rec {
-            name = "theme-bobthefish";
-            src = pkgs.fetchFromGitHub {
-              owner = "oh-my-fish";
-              repo = name;
-              rev = "master";
-              sha256 = "jiXzkW4H9YORR4iRNAfjlPT2jSyXQKmNx3WA+TjleE8=";
-            };
-          }
-
-        ];
-      };
-      zoxide = {
-        enable = true;
-      };
+  {
+# Let Home Manager install and manage itself.
+    home-manager = {
+      enable = true;
     };
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set -x theme_color_scheme nord
+        fish_vi_key_bindings
+# Emulates vim's cursor shape behavior
+# Set the normal and visual mode cursors to a block
+        set fish_cursor_default block
+# Set the insert mode cursor to a line
+        set fish_cursor_insert line
+# Set the replace mode cursor to an underscore
+        set fish_cursor_replace_one underscore
+        bind -M insert \cf accept-autosuggestion
+        '';
+      shellAliases = {
+        ls = "lsd";
+        cat = "bat";
+        vim = "nvim";
+      };
+      plugins = [
+        rec {
+          name = "fzf.fish";
+          src = pkgs.fetchFromGitHub {
+            owner = "PatrickF1";
+            repo = name;
+            rev = "main";
+            sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
+          };
+        }
+      rec {
+        name = "theme-bobthefish";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = name;
+          rev = "master";
+          sha256 = "jiXzkW4H9YORR4iRNAfjlPT2jSyXQKmNx3WA+TjleE8=";
+        };
+      }
+
+      ];
+    };
+    zoxide = {
+      enable = true;
+    };
+  };
 }
