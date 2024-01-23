@@ -234,6 +234,9 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     ];
 
   programs = {
+    npm = {
+      enable = true;
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
