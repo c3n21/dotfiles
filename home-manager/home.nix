@@ -140,6 +140,7 @@ in
     brave
     vscode-extensions.sonarsource.sonarlint-vscode
     file
+    psensor
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
