@@ -443,7 +443,6 @@ bindt = [
         exec-once = swayidle -w timeout 300 'swaylock -f -i ~/Pictures/wallpaper.jpg' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
         # notification daemon
-        exec-once=dunst
 
         # background
         exec=pkill --signal 9 hyprpaper; hyprpaper
@@ -470,8 +469,7 @@ bindt = [
   #   platformTheme = "gtk";
   # };
 
-  programs =
-  {
+  programs = {
     waybar = {
       enable = true;
       systemd = {
@@ -525,6 +523,12 @@ bindt = [
       ];
     };
     zoxide = {
+      enable = true;
+    };
+  };
+
+  services = {
+    dunst = {
       enable = true;
     };
   };
