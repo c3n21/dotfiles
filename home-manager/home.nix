@@ -5,6 +5,7 @@ let
     size = 16;
   };
   shell = "${pkgs.fish}/bin/fish";
+  hyprland_session_target = "hyprland-session.target";
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -141,6 +142,8 @@ in
     vscode-extensions.sonarsource.sonarlint-vscode
     file
     psensor
+    docker-compose
+    cypress
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -436,29 +439,17 @@ bindt = [
 
         # allow for screen recording via xdg-desktop-portal-wlr
         # exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-        exec-once=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-        exec-once=hash dbus-update-activation-environment 2>/dev/null && \
-            dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+        # exec-once=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+        # exec-once=hash dbus-update-activation-environment 2>/dev/null && \
+        #     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
         exec-once = swayidle -w timeout 300 'swaylock -f -i ~/Pictures/wallpaper.jpg' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-
-        # notification daemon
 
         # background
         exec=pkill --signal 9 hyprpaper; hyprpaper
 
         exec-once=hyprctl setcursor Bibata-Modern-Classic 16
         exec-once = $HOME/.config/hypr/start-way-displays.sh
-
-        # env = LIBVA_DRIVER_NAME,nvidia
-
-        # env = GBM_BACKEND,nvidia-drm
-        # env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-        # env = WLR_NO_HARDWARE_CURSORS,1
-
-        #exec-once=systemctl --user start xdg-desktop-portal
-        #exec-once=systemctl --user start xdg-desktop-portal-hyprland
-        #exec-once=/usr/lib/polkit-kde-authentication-agent-1
       '';
       # ...
     };
@@ -474,7 +465,7 @@ bindt = [
       enable = true;
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        target = hyprland_session_target;
       };
     };
   # Let Home Manager install and manage itself.
@@ -528,6 +519,10 @@ bindt = [
   };
 
   services = {
+    swayidle = {
+      enable = true;
+      systemdTarget = hyprland_session_target;
+    };
     dunst = {
       enable = true;
     };
