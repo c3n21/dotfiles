@@ -153,8 +153,10 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   services.xserver = {
     # for SDDM
     enable = true;
-    layout = "us";
-    xkbVariant = "altgr-intl";
+    xkb = {
+      variant = "altgr-intl";
+      layout = "us";
+    };
     displayManager.sddm = {
       enable = true;
       theme = "sugar-catppuccin";
@@ -185,31 +187,6 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   #   name = "Adwaita";
   #   size = 130;
   # };
-
-  environment.etc =
-    let
-      json = pkgs.formats.json { };
-    in
-    {
-      "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-        context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "32/48000";
-              pulse.default.req = "32/48000";
-              pulse.max.req = "32/48000";
-              pulse.min.quantum = "32/48000";
-              pulse.max.quantum = "32/48000";
-            };
-          }
-        ];
-        stream.properties = {
-          node.latency = "32/48000";
-          resample.quality = 1;
-        };
-      };
-    };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -292,6 +269,30 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig = {
+      pipewire-pulse = {
+
+        "92-low-latency.conf" = {
+          context.modules = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args = {
+              pulse.min.req = "32/48000";
+              pulse.default.req = "32/48000";
+              pulse.max.req = "32/48000";
+              pulse.min.quantum = "32/48000";
+              pulse.max.quantum = "32/48000";
+            };
+          }
+          ];
+          stream.properties = {
+            node.latency = "32/48000";
+            resample.quality = 1;
+          };
+
+        };
+      };
+    };
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
