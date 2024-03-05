@@ -302,8 +302,8 @@ in
 
         "$mod" = "SUPER";
 bind = [
-"$mod,T,exec,$HOME/.config/hypr/scripts/focus-kitty.sh"
-"$mod SHIFT,Q,killactive,"
+        "$mod,T,togglespecialworkspace"
+        "$mod SHIFT,Q,killactive,"
 
         "$mod CTRLSHIFT,X,exit, "
         "$mod SHIFT,g,togglefloating,"
@@ -431,6 +431,7 @@ bindt = [
         windowrulev2 = float,class:(kitty)
         windowrulev2 = size 80% 80% ,class:(kitty)
         windowrulev2 = center,class:(kitty)
+        windowrulev2 = workspace special,class:(kitty)
 
         exec-once=nm-applet
         exec-once=blueman-applet
