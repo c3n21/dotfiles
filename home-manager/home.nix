@@ -332,6 +332,11 @@ bind = [
         # "$mod ,8,split-workspace,8"
         # "$mod ,9,split-workspace,9"
         # "$mod ,0,split-workspace,10"
+        "$mod ,6,workspace,6"
+        "$mod ,7,workspace,7"
+        "$mod ,8,workspace,8"
+        "$mod ,9,workspace,9"
+        "$mod ,0,workspace,10"
 
         # "$mod ,y,split-workspace,e+1"
         # "$mod ,e,split-workspace,e-1"
