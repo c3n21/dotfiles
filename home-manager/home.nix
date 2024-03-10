@@ -437,7 +437,7 @@ bindt = [
         exec-once=nm-applet
         exec-once=blueman-applet
         exec-once=fcitx5 -d --replace
-        exec-once=swayidle -w before-sleep 'swaylock -f -i ~/Pictures/wallpaper.jpg'
+        # exec-once=swayidle -w before-sleep 'swaylock -f -i ~/Pictures/wallpaper.jpg'
 
         # allow for screen recording via xdg-desktop-portal-wlr
         # exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -445,7 +445,7 @@ bindt = [
         # exec-once=hash dbus-update-activation-environment 2>/dev/null && \
         #     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
-        exec-once = swayidle -w timeout 300 'swaylock -f -i ~/Pictures/wallpaper.jpg' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+        # exec-once = swayidle -w timeout 300 'swaylock -f -i ~/Pictures/wallpaper.jpg' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
         # background
         exec=pkill --signal 9 hyprpaper; hyprpaper
@@ -462,6 +462,8 @@ bindt = [
   #   platformTheme = "gtk";
   # };
 
+# Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
+# that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
     waybar = {
       enable = true;
@@ -524,6 +526,10 @@ bindt = [
     swayidle = {
       enable = true;
       systemdTarget = hyprland_session_target;
+      events =    [
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg"; }
+        { event = "lock"; command = "lock"; }
+      ];
     };
     dunst = {
       enable = true;
