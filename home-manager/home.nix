@@ -274,7 +274,7 @@ in
         misc = {
             vfr = true;
                 layers_hog_keyboard_focus = true;
-                focus_on_activate = true;
+                focus_on_activate = false;
                 mouse_move_enables_dpms = true;
                 key_press_enables_dpms = true;
                 allow_session_lock_restore = true;
