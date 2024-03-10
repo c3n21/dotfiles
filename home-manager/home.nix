@@ -144,6 +144,9 @@ in
     psensor
     docker-compose
     cypress
+    nwg-displays
+    # dependency for nwg-displays
+    wlr-randr
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -398,17 +401,8 @@ bindt = [
 ];
       };
       extraConfig = ''
-        # workspace = 1, monitor:DP-3, persistent:true
-        # workspace = 2, monitor:DP-3, persistent:true
-        # workspace = 3, monitor:DP-3, persistent:true
-        # workspace = 4, monitor:DP-3, persistent:true
-        # workspace = 5, monitor:eDP-1, persistent:true
-        # workspace = 6, monitor:eDP-1, persistent:true
-        # workspace = 7, monitor:eDP-1, persistent:true
-        # workspace = 8, monitor:eDP-1, persistent:true
-        # workspace = 9, monitor:eDP-1, persistent:true
-        workspace = name:terminal, monitor:DP-3, persistent:true
-        # workspace = 0, monitor:eDP-1, persistent:true
+        source = ~/.config/hypr/monitors.conf
+        source = ~/.config/hypr/workspaces.conf
 
         windowrulev2=windowdance,class:^(jetbrains-.*)$
         # search dialog
@@ -451,7 +445,6 @@ bindt = [
         exec=pkill --signal 9 hyprpaper; hyprpaper
 
         exec-once=hyprctl setcursor Bibata-Modern-Classic 16
-        exec-once = $HOME/.config/hypr/start-way-displays.sh
       '';
       # ...
     };
