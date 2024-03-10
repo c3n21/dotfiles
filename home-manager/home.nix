@@ -87,7 +87,7 @@ in
     git
     kitty
     distrobox
-    rofi
+    rofi-wayland
     fish
     waybar
     zoxide
@@ -429,9 +429,9 @@ bindt = [
 
         windowrule=pseudo,fcitx
 
-        windowrulev2 = float,class:(kitty)
-        windowrulev2 = size 80% 80% ,class:(kitty)
-        windowrulev2 = center,class:(kitty)
+        # windowrulev2 = float,class:(kitty)
+        # windowrulev2 = size 80% 80% ,class:(kitty)
+        # windowrulev2 = center,class:(kitty)
         windowrulev2 = workspace special,class:(kitty)
 
         exec-once=nm-applet
