@@ -68,9 +68,6 @@ in
   home.packages = with pkgs; [
     mpv
     htop
-    erlfmt
-    erlang
-    erlang-ls
     gitflow
     dunst
     networkmanagerapplet
@@ -107,12 +104,9 @@ in
     telegram-desktop
     # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
     # this fixes cursor issue on firefox at least
-    ocamlPackages.ocaml-lsp
-    ocamlPackages.ocamlformat
     dnsutils
     unzip
     zbar
-    way-displays
     jq
     lua-language-server
     selene
@@ -142,7 +136,6 @@ in
     vscode-extensions.sonarsource.sonarlint-vscode
     file
     psensor
-    docker-compose
     cypress
     nwg-displays
     # dependency for nwg-displays
