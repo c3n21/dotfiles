@@ -39,23 +39,44 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      mkNixosConfiguration = {
+        system ? "x86_64-linux",
+        hostName,
+        # username,
+        args ? {},
+        modules,
+      }: let
+        specialArgs = {
+            inherit inputs outputs;
+            sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
+        } // {inherit hostName;} // args;
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules =
+            [
+              ./nixos/configuration.nix
+              lanzaboote.nixosModules.lanzaboote
+            ]
+            ++ modules;
+        };
     in
     {
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
-          };
+        framework-13-7040-amd = mkNixosConfiguration {
+          hostName = "zenuko";
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
-            ./nixos/configuration.nix
-            # This is not a complete NixOS configuration and you need to reference
-            # your normal configuration here.
+            ./nixos/framework-13-7040-amd/hardware-configuration.nix
+          ];
 
-            lanzaboote.nixosModules.lanzaboote
+        };
+
+        hp-elitebook = mkNixosConfiguration {
+          hostName = "elitebook";
+          modules = [
           ];
         };
       };

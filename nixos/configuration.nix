@@ -2,14 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, sugar-catppuccin, lib, ... }:
+# Common configuration for all machines
+{ inputs, config, pkgs, sugar-catppuccin, lib, hostName, ... }:
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
   services.flatpak.enable = true;
 
   i18n.inputMethod = {
@@ -40,9 +36,10 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   services =
     {
       thermald.enable = true;
-      power-profiles-daemon.enable = true;
       fwupd.enable = true;
     };
+    
+  # configure this only for intel
   # services.tlp = {
   #   enable = true;
   #   settings = {
@@ -85,9 +82,6 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   };
 
   boot = {
-    kernelParams = [
-      "amdgpu.sg_display=0"
-    ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
       "vm.swappiness" = 10;
@@ -112,7 +106,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   };
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
+    hostName = hostName; # Define your hostname.
       # firewall= {
       #   allowedUDPPorts = [3000 3001];
       #   allowedTCPPorts = [3000 3001];
