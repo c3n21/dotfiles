@@ -21,6 +21,9 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-ld-rs.url = "github:nix-community/nix-ld-rs";
+    nix-ld-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -49,6 +52,7 @@
         specialArgs = {
             inherit inputs outputs;
             sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
+            nix-ld-rs = inputs.nix-ld-rs.packages.${pkgs.system}.default;
         } // {inherit hostName;} // args;
       in
         nixpkgs.lib.nixosSystem {

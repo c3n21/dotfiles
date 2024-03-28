@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 # Common configuration for all machines
-{ inputs, config, pkgs, sugar-catppuccin, lib, hostName, ... }:
+{ inputs, config, pkgs, sugar-catppuccin, lib, hostName, nix-ld-rs,... }:
 let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
 {
   services.flatpak.enable = true;
@@ -215,6 +215,10 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     ];
 
   programs = {
+  nix-ld = {
+    enable = true;
+    package = nix-ld-rs;
+  };
     npm = {
       enable = true;
     };
