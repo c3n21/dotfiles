@@ -1,30 +1,37 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 # Common configuration for all machines
-{ inputs, config, pkgs, sugar-catppuccin, lib, hostName, nix-ld-rs,... }:
-let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { }; in
 {
+  inputs,
+  config,
+  pkgs,
+  sugar-catppuccin,
+  lib,
+  hostName,
+  nix-ld-rs,
+  ...
+}: let
+  delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {};
+in {
   services.flatpak.enable = true;
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5 =  {
+    fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-rime
-          fcitx5-chinese-addons
+        fcitx5-chinese-addons
       ];
     };
   };
 
-
   nix = {
     package = pkgs.nixFlakes;
     settings = {
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -33,12 +40,11 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
 
   # laptop
   powerManagement.enable = true;
-  services =
-    {
-      thermald.enable = true;
-      fwupd.enable = true;
-    };
-    
+  services = {
+    thermald.enable = true;
+    fwupd.enable = true;
+  };
+
   # configure this only for intel
   # services.tlp = {
   #   enable = true;
@@ -61,7 +67,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   services.auto-cpufreq.enable = true;
 
   security.pam.services = {
-    swaylock = { };
+    swaylock = {};
     sddm = {
       name = "kwallet";
       enableKwallet = true;
@@ -73,7 +79,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   qt = {
@@ -91,7 +97,6 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
       systemd-boot.enable = lib.mkForce false;
     };
 
-
     # Bootloader.
 
     # Lanzaboote currently replaces the systemd-boot module.
@@ -107,10 +112,10 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
 
   networking = {
     hostName = hostName; # Define your hostname.
-      # firewall= {
-      #   allowedUDPPorts = [3000 3001];
-      #   allowedTCPPorts = [3000 3001];
-      # };
+    # firewall= {
+    #   allowedUDPPorts = [3000 3001];
+    #   allowedTCPPorts = [3000 3001];
+    # };
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -140,11 +145,10 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     LC_TIME = "it_IT.UTF-8";
   };
 
-  hardware =
-    {
-      bluetooth.enable = true; # enables support for Bluetooth
-      bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
-    };
+  hardware = {
+    bluetooth.enable = true; # enables support for Bluetooth
+    bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -166,7 +170,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   users.users.zhifan = {
     isNormalUser = true;
     description = "Zhifan Chen";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = ["networkmanager" "wheel" "docker" "video"];
   };
 
   # home-manager.users.zhifan = {
@@ -189,36 +193,44 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
   nixpkgs.config.allowUnfree = true;
 
   # temporary workaround to make neovim work with sqlite
-  environment.sessionVariables =
-    rec {
-      LD_LIBRARY_PATH = "${pkgs.javaPackages.openjfx17}/modules_libs/javafx.graphics:${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
-      # QT_QPA_PLATFORMTHEME = "gtk3";
-    };
+  environment.sessionVariables = rec {
+    # LD_LIBRARY_PATH = "${pkgs.javaPackages.openjfx17}/modules_libs/javafx.graphics:${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
+    # QT_QPA_PLATFORMTHEME = "gtk3";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-      neovim
-      swaylock
-      swayidle
-      git
-      libsForQt5.kwallet
-      libsForQt5.kwallet-pam
-      libsForQt5.kwalletmanager
-      sugar-catppuccin
-      libsForQt5.qt5.qtgraphicaleffects
-      javaPackages.openjfx17
-      sbctl
-    ];
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    neovim
+    swaylock
+    swayidle
+    git
+    libsForQt5.kwallet
+    libsForQt5.kwallet-pam
+    libsForQt5.kwalletmanager
+    sugar-catppuccin
+    libsForQt5.qt5.qtgraphicaleffects
+    javaPackages.openjfx17
+    sbctl
+  ];
 
   programs = {
-  nix-ld = {
-    enable = true;
-    package = nix-ld-rs;
-  };
+    nix-ld = {
+      enable = true;
+      package = nix-ld-rs;
+      libraries = with pkgs; [
+        gtk3
+        libGL
+        xorg.libXtst
+        jdk17
+        nodejs
+        javaPackages.openjfx17
+        sqlite
+        zlib
+      ];
+    };
     npm = {
       enable = true;
     };
@@ -272,25 +284,23 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     pulse.enable = true;
     extraConfig = {
       pipewire-pulse = {
-
         "92-low-latency.conf" = {
           context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "32/48000";
-              pulse.default.req = "32/48000";
-              pulse.max.req = "32/48000";
-              pulse.min.quantum = "32/48000";
-              pulse.max.quantum = "32/48000";
-            };
-          }
+            {
+              name = "libpipewire-module-protocol-pulse";
+              args = {
+                pulse.min.req = "32/48000";
+                pulse.default.req = "32/48000";
+                pulse.max.req = "32/48000";
+                pulse.min.quantum = "32/48000";
+                pulse.max.quantum = "32/48000";
+              };
+            }
           ];
           stream.properties = {
             node.latency = "32/48000";
             resample.quality = 1;
           };
-
         };
       };
     };
@@ -307,7 +317,7 @@ let delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
     ];
     fontconfig = {
       defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
+        emoji = ["Noto Color Emoji"];
         monospace = [
           "Noto Sans Mono CJK SC"
           "Sarasa Mono SC"

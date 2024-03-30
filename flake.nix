@@ -24,87 +24,92 @@
 
     nix-ld-rs.url = "github:nix-community/nix-ld-rs";
     nix-ld-rs.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self
-    , sddm-sugar-catppuccin
-    , nixpkgs
-    , home-manager
-    , nixos-hardware
-    , lanzaboote
-    , ...
-    } @ inputs:
-    let
-      overlays = [
-        inputs.neovim-nightly-overlay.overlay
-      ];
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      mkNixosConfiguration = {
-        system ? "x86_64-linux",
-        hostName,
-        # username,
-        args ? {},
-        modules,
-      }: let
-        specialArgs = {
-            inherit inputs outputs;
-            sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
-            nix-ld-rs = inputs.nix-ld-rs.packages.${pkgs.system}.default;
-        } // {inherit hostName;} // args;
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
-          modules =
-            [
-              ./nixos/configuration.nix
-              lanzaboote.nixosModules.lanzaboote
-            ]
-            ++ modules;
-        };
+  outputs = {
+    self,
+    alejandra,
+    sddm-sugar-catppuccin,
+    nixpkgs,
+    home-manager,
+    nixos-hardware,
+    lanzaboote,
+    ...
+  } @ inputs: let
+    overlays = [
+      inputs.neovim-nightly-overlay.overlay
+    ];
+    inherit (self) outputs;
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    mkNixosConfiguration = {
+      system ? "x86_64-linux",
+      hostName,
+      # username,
+      args ? {},
+      modules,
+    }: let
+      specialArgs =
+        {
+          inherit inputs outputs;
+          sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
+          nix-ld-rs = inputs.nix-ld-rs.packages.${pkgs.system}.default;
+        }
+        // {inherit hostName;}
+        // args;
     in
-    {
-      overlays = import ./overlays { inherit inputs; };
+      nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+        modules =
+          [
+            ./nixos/configuration.nix
+            lanzaboote.nixosModules.lanzaboote
+            {
+              environment.systemPackages = [alejandra.defaultPackage.${system}];
+            }
+          ]
+          ++ modules;
+      };
+  in {
+    overlays = import ./overlays {inherit inputs;};
 
-      nixosConfigurations = {
-        framework-13-7040-amd = mkNixosConfiguration {
-          hostName = "zenuko";
-          modules = [
-            nixos-hardware.nixosModules.framework-13-7040-amd
-            ./nixos/framework-13-7040-amd/hardware-configuration.nix
-          ];
-
-        };
-
-        hp-elitebook = mkNixosConfiguration {
-          hostName = "elitebook";
-          modules = [
-          ];
-        };
+    nixosConfigurations = {
+      framework-13-7040-amd = mkNixosConfiguration {
+        hostName = "zenuko";
+        modules = [
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          ./nixos/framework-13-7040-amd/hardware-configuration.nix
+        ];
       };
 
-      homeConfigurations = {
-        "zhifan@nixos" =
-          home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-
-            # Specify your home configuration modules here, for example,
-            # the path to your home.nix.
-            modules = [
-              ./home-manager/home.nix
-              ({ config, ... }: {
-                nixpkgs.overlays = overlays;
-              })
-            ];
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit outputs;
-            };
-            # Optionally use extraSpecialArgs
-            # to pass through arguments to home.nix
-          };
+      hp-elitebook = mkNixosConfiguration {
+        hostName = "elitebook";
+        modules = [
+        ];
       };
     };
+
+    homeConfigurations = {
+      zhifan = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./home-manager/home.nix
+          ({config, ...}: {
+            nixpkgs.overlays = overlays;
+          })
+        ];
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit outputs;
+        };
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+    };
+  };
 }
