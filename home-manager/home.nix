@@ -137,6 +137,7 @@ in {
     nwg-displays
     # dependency for nwg-displays
     wlr-randr
+    vscode
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -172,30 +173,12 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = {
+        "default-web-browser" = ["firefox.desktop"];
+        "text/html" = ["firefox.desktop"];
         "application/pdf" = ["firefox.desktop"];
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
-        # x-scheme-handler/chrome=firefox.desktop
-        # text/html=firefox.desktop
-        # application/x-extension-htm=firefox.desktop
-        # application/x-extension-html=firefox.desktop
-        # application/x-extension-shtml=firefox.desktop
-        # application/xhtml+xml=firefox.desktop
-        # application/x-extension-xhtml=firefox.desktop
-        # application/x-extension-xht=firefox.desktop
-        # x-scheme-handler/tg=org.telegram.desktop.desktop
-
-        # x-scheme-handler/http=firefox.desktop;
-        # x-scheme-handler/https=firefox.desktop;
-        # x-scheme-handler/chrome=firefox.desktop;
-        # text/html=firefox.desktop;
-        # application/x-extension-htm=firefox.desktop;
-        # application/x-extension-html=firefox.desktop;
-        # application/x-extension-shtml=firefox.desktop;
-        # application/xhtml+xml=firefox.desktop;
-        # application/x-extension-xhtml=firefox.desktop;
-        # application/x-extension-xht=firefox.desktop;
-        # x-scheme-handler/tg=org.telegram.desktop.desktop;
+        "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
       };
     };
   };
@@ -502,6 +485,11 @@ in {
     };
     zoxide = {
       enable = true;
+    };
+    neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
+      defaultEditor = true;
     };
   };
 
