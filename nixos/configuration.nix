@@ -221,14 +221,27 @@ in {
       enable = true;
       package = nix-ld-rs;
       libraries = with pkgs; [
+        acl
+        attr
+        bzip2
+        curl
         gtk3
-        libGL
-        xorg.libXtst
-        jdk17
-        nodejs
         javaPackages.openjfx17
+        jdk17
+        libGL
+        libsodium
+        libssh
+        libxml2
+        nodejs
+        openssl
         sqlite
+        stdenv.cc.cc
+        systemd
+        util-linux
+        xorg.libXtst
+        xz
         zlib
+        zstd
       ];
     };
     npm = {
