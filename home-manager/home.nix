@@ -345,6 +345,11 @@ in {
         # Lock scren
         "$mod CTRL,e,exec,swaylock -f -i ~/Pictures/wallpaper.jpg"
 
+        "$mod SHIFT,6,movetoworkspacesilent,6"
+        "$mod SHIFT,7,movetoworkspacesilent,7"
+        "$mod SHIFT,8,movetoworkspacesilent,8"
+        "$mod SHIFT,9,movetoworkspacesilent,9"
+        "$mod SHIFT,0,movetoworkspacesilent,10"
         # "$mod SHIFT,6,split-movetoworkspacesilent,6"
         # "$mod SHIFT,7,split-movetoworkspacesilent,7"
         # "$mod SHIFT,8,split-movetoworkspacesilent,8"
