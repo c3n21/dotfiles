@@ -173,6 +173,8 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = {
+        "inode/directory" = ["kitty-open.desktop"];
+        "text/plain" = ["nvim.desktop"];
         "default-web-browser" = ["firefox.desktop"];
         "text/html" = ["firefox.desktop"];
         "application/pdf" = ["firefox.desktop"];
