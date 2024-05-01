@@ -79,7 +79,6 @@ in {
     libsForQt5.polkit-kde-agent
     grimblast
     nwg-look
-    pkgs.neovim-nightly
     nixd
     tmux
     libsForQt5.okular
@@ -174,7 +173,7 @@ in {
       enable = true;
       defaultApplications = {
         "inode/directory" = ["kitty-open.desktop"];
-        "text/plain" = ["nvim.desktop"];
+        "text/*" = ["nvim.desktop"];
         "default-web-browser" = ["firefox.desktop"];
         "text/html" = ["firefox.desktop"];
         "application/pdf" = ["firefox.desktop"];
@@ -497,6 +496,7 @@ in {
       enable = true;
       package = pkgs.neovim-nightly;
       defaultEditor = true;
+      extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
     };
   };
 
