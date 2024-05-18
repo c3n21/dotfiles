@@ -171,6 +171,37 @@ in {
 
   xdg = {
     mimeApps = {
+      associations = {
+        added = {
+          "inode/directory" = ["kitty-open.desktop"];
+          "text/*" = ["nvim.desktop"];
+          "default-web-browser" = ["firefox.desktop"];
+          "text/html" = ["firefox.desktop"];
+          "application/pdf" = ["firefox.desktop"];
+          "x-scheme-handler/http" = ["firefox.desktop"];
+          "x-scheme-handler/https" = ["firefox.desktop"];
+          "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
+        };
+
+        removed = {
+          "application/pdf" = ["brave-browser.desktop"];
+          "application/rdf+xml" = ["brave-browser.desktop"];
+          "application/rss+xml" = ["brave-application.desktop"];
+          "application/xhtml+xml" = ["brave-application.desktop"];
+          "application/xhtml_xml" = ["brave-application.desktop"];
+          "application/xml" = ["brave-image.desktop"];
+          "image/gif" = ["brave-image.desktop"];
+          "image/jpeg" = ["brave-image.desktop"];
+          "image/png" = ["brave-image.desktop"];
+          "image/webp" = ["brave-text.desktop"];
+          "text/html" = ["brave-text.desktop"];
+          "text/xml" = ["brave-scheme.desktop"];
+          "x-scheme-handler/http" = ["brave-scheme.desktop"];
+          "x-scheme-handler/https" = ["brave-scheme.desktop"];
+          "x-scheme-handler/ipfs" = ["brave-scheme.desktop"];
+          "x-scheme-handler/ipns" = ["brave-enable.desktop"];
+        };
+      };
       enable = true;
       defaultApplications = {
         "inode/directory" = ["kitty-open.desktop"];
