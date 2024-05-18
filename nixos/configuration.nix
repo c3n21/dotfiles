@@ -32,6 +32,7 @@ in {
     settings = {
       substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      auto-optimise-store = true;
     };
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -204,7 +205,6 @@ in {
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    neovim
     swaylock
     swayidle
     git
