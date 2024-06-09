@@ -71,6 +71,10 @@ in {
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    libreoffice-fresh
+    mpvpaper
+    yt-dlp
+    socat
     wineWowPackages.waylandFull
     mpv
     htop
