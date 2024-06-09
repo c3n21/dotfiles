@@ -160,10 +160,6 @@ in {
       variant = "altgr-intl";
       layout = "us";
     };
-    displayManager.sddm = {
-      enable = true;
-      theme = "sugar-catppuccin";
-    };
   };
 
   # Enable common container config files in /etc/containers
@@ -216,25 +212,27 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    swaylock
-    swayidle
-    git
-    libsForQt5.kwallet
-    libsForQt5.kwallet-pam
-    libsForQt5.kwalletmanager
-    sugar-catppuccin
-    libsForQt5.qt5.qtgraphicaleffects
-    javaPackages.openjfx17
-    sbctl
+  environment = {
+    systemPackages = with pkgs; [
+      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
+      swaylock
+      swayidle
+      git
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+      libsForQt5.kwalletmanager
+      sugar-catppuccin
+      libsForQt5.qt5.qtgraphicaleffects
+      javaPackages.openjfx17
+      sbctl
 
-    # Podman
-    dive # look into docker image layers
-    podman-tui # status of containers in the terminal
-    podman-compose # start group of containers for dev
-  ];
+      # Podman
+      dive # look into docker image layers
+      podman-tui # status of containers in the terminal
+      podman-compose # start group of containers for dev
+    ];
+  };
 
   programs = {
     nix-ld = {
@@ -308,6 +306,13 @@ in {
 
   services = {
     blueman.enable = true;
+  };
+
+  services.displayManager = {
+    sddm = {
+      theme = "sugar-catppuccin";
+      enable = true;
+    };
   };
 
   services.pipewire = {
