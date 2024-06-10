@@ -5,7 +5,12 @@
     # Specify the source of Home Manager and Nixpkgs.
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
+    # https://github.com/hyprwm/Hyprland/issues/5891
+    hyprland = {
+      submodules = true;
+      url = "https://github.com/hyprwm/Hyprland";
+      type = "git";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sddm-sugar-catppuccin.url = "github:TiagoDamascena/sddm-sugar-catppuccin";
     split-monitor-workspaces = {
@@ -39,9 +44,6 @@
     lanzaboote,
     ...
   } @ inputs: let
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
     inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -74,20 +76,12 @@
           ++ modules;
       };
   in {
-    overlays = import ./overlays {inherit inputs;};
-
     nixosConfigurations = {
       framework-13-7040-amd = mkNixosConfiguration {
         hostName = "zenuko";
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/framework-13-7040-amd/hardware-configuration.nix
-        ];
-      };
-
-      hp-elitebook = mkNixosConfiguration {
-        hostName = "elitebook";
-        modules = [
         ];
       };
     };
@@ -100,9 +94,6 @@
         # the path to your home.nix.
         modules = [
           ./home-manager/home.nix
-          ({config, ...}: {
-            nixpkgs.overlays = overlays;
-          })
         ];
         extraSpecialArgs = {
           inherit inputs;

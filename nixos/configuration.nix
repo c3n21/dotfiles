@@ -4,7 +4,6 @@
 # Common configuration for all machines
 {
   inputs,
-  config,
   pkgs,
   sugar-catppuccin,
   lib,
