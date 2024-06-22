@@ -126,6 +126,8 @@ in {
     # dependency for nwg-displays
     wlr-randr
     vscode
+    framework-tool
+    devenv
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
