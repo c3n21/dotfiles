@@ -44,6 +44,7 @@ in {
   services = {
     thermald.enable = true;
     fwupd.enable = true;
+    upower.enable = true;
   };
 
   # configure this only for intel
