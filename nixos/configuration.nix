@@ -16,7 +16,8 @@ in {
   services.flatpak.enable = true;
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    type = "fcitx5";
+    enable = true;
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
@@ -66,7 +67,6 @@ in {
   #     STOP_CHARGE_THRESH_BAT0 = 80;
   #   };
   # };
-  services.auto-cpufreq.enable = true;
 
   security.pam.services = {
     swaylock = {};

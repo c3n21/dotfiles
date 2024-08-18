@@ -105,6 +105,11 @@ in {
     stylua
     chromium
     usbutils
+    lua51Packages.luarocks
+    testdisk-qt
+    gparted
+    exfatprogs
+    nmap
     nodePackages_latest.pnpm
     discord
     typescript
@@ -406,7 +411,7 @@ in {
       source = ~/.config/hypr/monitors.conf
       source = ~/.config/hypr/workspaces.conf
 
-      windowrulev2=windowdance,class:^(jetbrains-.*)$
+      # windowrulev2=windowdance,class:^(jetbrains-.*)$
       # search dialog
       windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
       windowrulev2=center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
@@ -517,8 +522,10 @@ in {
     neovim = {
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      extraLuaPackages = ps: [ps.magick];
+      extraPackages = with pkgs; [imagemagick lua51Packages.luarocks fswatch tree-sitter];
       defaultEditor = true;
-      extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
+      # extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
     };
   };
 
