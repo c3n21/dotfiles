@@ -52,6 +52,15 @@ in {
     };
   };
 
+  # this is needed to declaratively manage connection to qemu in virt-manager
+  # https://nixos.wiki/wiki/Virt-manager
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [

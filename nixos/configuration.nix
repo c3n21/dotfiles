@@ -177,13 +177,26 @@ in {
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = with pkgs; [
+            OVMFFull.fd
+          ];
+        };
+      };
+    };
+    spiceUSBRedirection.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhifan = {
     isNormalUser = true;
     description = "Zhifan Chen";
-    extraGroups = ["networkmanager" "wheel" "docker" "video"];
+    extraGroups = ["networkmanager" "wheel" "docker" "video" "libvirtd"];
   };
 
   # home-manager.users.zhifan = {
@@ -277,6 +290,7 @@ in {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
+    virt-manager.enable = true;
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
