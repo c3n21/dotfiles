@@ -64,6 +64,8 @@ in {
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
+    virtiofsd
     libreoffice-fresh
     mpvpaper
     yt-dlp
