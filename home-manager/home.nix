@@ -137,7 +137,6 @@ in {
     lm_sensors
     sbt
     prettierd
-    brave
     file
     psensor
     nwg-displays
@@ -189,25 +188,6 @@ in {
           "x-scheme-handler/http" = ["firefox.desktop"];
           "x-scheme-handler/https" = ["firefox.desktop"];
           "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-        };
-
-        removed = {
-          "application/pdf" = ["brave-browser.desktop"];
-          "application/rdf+xml" = ["brave-browser.desktop"];
-          "application/rss+xml" = ["brave-application.desktop"];
-          "application/xhtml+xml" = ["brave-application.desktop"];
-          "application/xhtml_xml" = ["brave-application.desktop"];
-          "application/xml" = ["brave-image.desktop"];
-          "image/gif" = ["brave-image.desktop"];
-          "image/jpeg" = ["brave-image.desktop"];
-          "image/png" = ["brave-image.desktop"];
-          "image/webp" = ["brave-text.desktop"];
-          "text/html" = ["brave-text.desktop"];
-          "text/xml" = ["brave-scheme.desktop"];
-          "x-scheme-handler/http" = ["brave-scheme.desktop"];
-          "x-scheme-handler/https" = ["brave-scheme.desktop"];
-          "x-scheme-handler/ipfs" = ["brave-scheme.desktop"];
-          "x-scheme-handler/ipns" = ["brave-enable.desktop"];
         };
       };
       enable = true;
@@ -536,7 +516,7 @@ in {
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
-      extraPackages = with pkgs; [imagemagick lua51Packages.luarocks fswatch tree-sitter];
+      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter];
       defaultEditor = true;
       # extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
     };
