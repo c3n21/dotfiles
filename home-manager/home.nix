@@ -154,11 +154,6 @@ in {
       ${builtins.readFile ./dotfiles/tmux.conf}
     '';
 
-    ".config/kitty/kitty.conf".text = ''
-      shell ${shell}
-      ${builtins.readFile ./dotfiles/kitty/kitty.conf}
-    '';
-
     # ".config/hypr/hyprland.conf".text = ''
     #   exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
     #   exec-once=${pkgs.libsForQt5.kwallet}/bin/kwalletd5 ${builtins.readFile ./dotfiles/hypr/hyprland.conf} '';
@@ -457,6 +452,25 @@ in {
   # Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
   # that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
+    kitty = {
+      enable = true;
+      theme = "Belafonte Night";
+      extraConfig = "
+      shell ${shell}
+      font_family Delugia Italic
+      bold_font       Delugia Bold
+      italic_font     Delugia Light Italic
+      bold_italic_font Delugia Bold Italic
+
+      font_features Delugia-Italic +ss01 +ss02 +ss19
+      font_size        18
+
+      enable_audio_bell no
+      background_opacity 0.7
+
+      confirm_os_window_close 1
+      ";
+    };
     waybar = {
       enable = true;
       systemd = {
