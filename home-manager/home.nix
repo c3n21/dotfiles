@@ -123,7 +123,6 @@ in {
     gparted
     exfatprogs
     nmap
-    nodePackages_latest.pnpm
     discord
     typescript
     lsof
