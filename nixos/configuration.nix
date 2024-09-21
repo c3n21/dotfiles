@@ -168,12 +168,9 @@ in {
     containers = {
       enable = true;
     };
+    docker.enable = true;
     podman = {
       enable = true;
-
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -196,7 +193,7 @@ in {
   users.users.zhifan = {
     isNormalUser = true;
     description = "Zhifan Chen";
-    extraGroups = ["networkmanager" "wheel" "docker" "video" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "podman" "docker"];
   };
 
   # home-manager.users.zhifan = {
@@ -218,18 +215,10 @@ in {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # temporary workaround to make neovim work with sqlite
-  environment.sessionVariables = rec {
-    # LD_LIBRARY_PATH = "${pkgs.javaPackages.openjfx17}/modules_libs/javafx.graphics:${pkgs.zlib}/lib:${pkgs.sqlite.out}/lib:\${LD_LIBRARY_PATH}";
-    # QT_QPA_PLATFORMTHEME = "gtk3";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
       swaylock
       swayidle
       git
