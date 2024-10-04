@@ -529,7 +529,8 @@ in {
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
-      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter];
+      # go is for nvim-dbee
+      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go];
       defaultEditor = true;
       # extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
     };
