@@ -94,6 +94,7 @@
         # the path to your home.nix.
         modules = [
           ./home-manager/home.nix
+          ./home-manager/linux
         ];
         extraSpecialArgs = {
           inherit inputs;
