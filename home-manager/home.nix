@@ -1,8 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
-  outputs,
   inputs,
   ...
 }: let
@@ -110,30 +107,6 @@ in {
     devenv
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    ".tmux.conf".text = ''
-      set-option -g default-shell "${shell}"
-      ${builtins.readFile ./dotfiles/tmux.conf}
-    '';
-
-    # ".config/hypr/hyprland.conf".text = ''
-    #   exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
-    #   exec-once=${pkgs.libsForQt5.kwallet}/bin/kwalletd5 ${builtins.readFile ./dotfiles/hypr/hyprland.conf} '';
-
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
   xdg = {
     mimeApps = {
       associations = {
@@ -171,6 +144,44 @@ in {
   # Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
   # that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      clock24 = true;
+      prefix = "C-a";
+      plugins = with pkgs; [
+        tmuxPlugins.sensible
+        {
+          plugin =
+            tmuxPlugins.mkTmuxPlugin
+            rec {
+              pluginName = "tmux-themepack";
+              version = "1.1.0";
+              rtpFilePath = "themepack.tmux";
+              src = fetchFromGitHub {
+                owner = "jimeh";
+                repo = "tmux-themepack";
+                rev = version;
+                hash = "sha256-f6y92kYsKDFanNx5ATx4BkaB/E7UrmyIHU/5Z01otQE=";
+              };
+            };
+          extraConfig = ''
+            set -g @themepack 'powerline/double/cyan'
+          '';
+        }
+      ];
+      extraConfig = ''
+        # Customize the status line
+        set -g status-fg  green
+        set -g status-bg  black
+        setw -g mouse on
+
+        #Set theme
+        set-window-option -g mode-keys vi
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+      '';
+    };
     kitty = {
       enable = true;
       theme = "Belafonte Night";

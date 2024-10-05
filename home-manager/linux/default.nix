@@ -1,8 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
-  outputs,
   inputs,
   ...
 }: let
@@ -10,7 +7,6 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
-  shell = "${pkgs.fish}/bin/fish";
   hyprland_session_target = "hyprland-session.target";
 in {
   home.sessionVariables = {
@@ -59,7 +55,6 @@ in {
     grimblast
     nwg-look
     nixd
-    tmux
     libsForQt5.okular
     hyprpaper
     firefox
