@@ -52,46 +52,21 @@ in {
     };
   };
 
-  # this is needed to declaratively manage connection to qemu in virt-manager
-  # https://nixos.wiki/wiki/Virt-manager
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-  };
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     ripgrep-all
-    remmina
-    # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
-    virtiofsd
     libreoffice-fresh
-    mpvpaper
     yt-dlp
     socat
-    wineWowPackages.waylandFull
     mpv
     htop
-    gitflow
-    dunst
-    networkmanagerapplet
-    libsForQt5.polkit-kde-agent
-    grimblast
-    nwg-look
     nixd
     tmux
-    libsForQt5.okular
-    hyprpaper
     firefox
     git
     kitty
-    distrobox
-    rofi-wayland
     fish
-    waybar
     zoxide
     lsd
     bat
@@ -101,15 +76,9 @@ in {
     gnumake
     sqlite
     fd
-    wl-clipboard
     gcc
     killall
-    pavucontrol
-    jetbrains.idea-community
     telegram-desktop
-    # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
-    # this fixes cursor issue on firefox at least
-    dnsutils
     unzip
     zbar
     jq
@@ -119,10 +88,8 @@ in {
     chromium
     usbutils
     lua51Packages.luarocks
-    testdisk-qt
     gparted
     exfatprogs
-    nmap
     discord
     typescript
     lsof
@@ -138,9 +105,6 @@ in {
     prettierd
     file
     psensor
-    nwg-displays
-    # dependency for nwg-displays
-    wlr-randr
     vscode
     framework-tool
     devenv

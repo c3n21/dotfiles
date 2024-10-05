@@ -31,6 +31,98 @@ in {
     EDITOR = "nvim";
   };
 
+  # this is needed to declaratively manage connection to qemu in virt-manager
+  # https://nixos.wiki/wiki/Virt-manager
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
+  home.packages = with pkgs; [
+    ripgrep-all
+    remmina
+    # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
+    virtiofsd
+    libreoffice-fresh
+    mpvpaper
+    yt-dlp
+    socat
+    wineWowPackages.waylandFull
+    mpv
+    htop
+    gitflow
+    dunst
+    networkmanagerapplet
+    libsForQt5.polkit-kde-agent
+    grimblast
+    nwg-look
+    nixd
+    tmux
+    libsForQt5.okular
+    hyprpaper
+    firefox
+    git
+    kitty
+    distrobox
+    rofi-wayland
+    fish
+    waybar
+    zoxide
+    lsd
+    bat
+    ripgrep
+    fzf
+    nodejs
+    gnumake
+    sqlite
+    fd
+    wl-clipboard
+    gcc
+    killall
+    pavucontrol
+    jetbrains.idea-community
+    telegram-desktop
+    # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
+    # this fixes cursor issue on firefox at least
+    dnsutils
+    unzip
+    zbar
+    jq
+    lua-language-server
+    selene
+    stylua
+    chromium
+    usbutils
+    lua51Packages.luarocks
+    testdisk-qt
+    gparted
+    exfatprogs
+    nmap
+    discord
+    typescript
+    lsof
+    eslint_d
+    microsoft-edge
+    google-chrome
+    jdk17
+    wget
+    btop
+    powertop
+    lm_sensors
+    sbt
+    prettierd
+    file
+    psensor
+    nwg-displays
+    # dependency for nwg-displays
+    wlr-randr
+    vscode
+    framework-tool
+    devenv
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
