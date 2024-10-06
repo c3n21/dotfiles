@@ -8,7 +8,6 @@
     size = 16;
   };
   shell = "${pkgs.fish}/bin/fish";
-  hyprland_session_target = "hyprland-session.target";
 in {
   nixpkgs.config.allowUnfree = true;
   # Home Manager needs a bit of information about you and the paths it should
@@ -171,6 +170,8 @@ in {
         }
       ];
       extraConfig = ''
+        set-option -g default-shell ${pkgs.fish}/bin/fish
+
         # Customize the status line
         set -g status-fg  green
         set -g status-bg  black
