@@ -100,7 +100,6 @@ in {
     sbt
     prettierd
     file
-    psensor
     vscode
     framework-tool
     devenv

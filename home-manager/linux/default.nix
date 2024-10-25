@@ -109,7 +109,6 @@ in {
     sbt
     prettierd
     file
-    psensor
     nwg-displays
     # dependency for nwg-displays
     wlr-randr
@@ -135,9 +134,8 @@ in {
         kb_layout = "us";
         kb_variant = "altgr-intl";
         kb_options = "caps:swapescape";
-
         follow_mouse = "1";
-
+        sensitivity = 0.5;
         touchpad = {
           natural_scroll = "yes";
         };
@@ -149,14 +147,11 @@ in {
       };
 
       general = {
-        sensitivity = 1.0;
-
         gaps_in = 5;
         gaps_out = 5;
         border_size = 7;
         "col.active_border" = "0x66ee1111";
         "col.inactive_border" = "0x66333333";
-        apply_sens_to_raw = 0; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
       };
 
       decoration = {

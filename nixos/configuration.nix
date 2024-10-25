@@ -8,7 +8,6 @@
   sugar-catppuccin,
   lib,
   hostName,
-  nix-ld-rs,
   ...
 }: let
   delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {};
@@ -28,7 +27,6 @@ in {
   };
 
   nix = {
-    package = pkgs.nixFlakes;
     settings = {
       substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -241,7 +239,6 @@ in {
   programs = {
     nix-ld = {
       enable = true;
-      package = nix-ld-rs;
       libraries = with pkgs; [
         acl
         attr
