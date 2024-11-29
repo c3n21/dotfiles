@@ -266,6 +266,7 @@ in {
         vimPlugins.vim-fugitive
         vimPlugins.auto-session
         vimPlugins.nvim-web-devicons
+        vimPlugins.inc-rename-nvim
         vimPlugins.telescope-fzf-native-nvim
         vimPlugins.nvim-surround
         vimPlugins.comment-nvim
