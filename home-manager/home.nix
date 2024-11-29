@@ -264,6 +264,9 @@ in {
         vimPlugins.neogit
         vimPlugins.gitsigns-nvim
         vimPlugins.vim-fugitive
+        vimPlugins.auto-session
+        vimPlugins.nvim-web-devicons
+        vimPlugins.telescope-fzf-native-nvim
         vimPlugins.nvim-surround
         vimPlugins.comment-nvim
         vimPlugins.conform-nvim
