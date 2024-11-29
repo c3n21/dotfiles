@@ -258,41 +258,49 @@ in {
       # go is for nvim-dbee
       extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp];
       plugins = with pkgs; [
-        vimPlugins.sleuth
-        vimPlugins.vim-illuminate
-        vimPlugins.indent-blankline-nvim
-        vimPlugins.vim-matchup
-        vimPlugins.nvim-treesitter
-        vimPlugins.nvim-ts-context-commentstring
-        vimPlugins.nvim-ts-autotag
-        vimPlugins.nvim-cmp
+        vimPlugins.SchemaStore-nvim
+        vimPlugins.auto-session
+        vimPlugins.cmp-buffer
         vimPlugins.cmp-dap
+        vimPlugins.cmp-nvim-lsp
         vimPlugins.cmp-nvim-lsp-signature-help
         vimPlugins.cmp_luasnip
-        vimPlugins.cmp-nvim-lsp
-        vimPlugins.cmp-buffer
-        vimPlugins.copilot-cmp
-        vimPlugins.copilot-lua
-        vimPlugins.SchemaStore-nvim
-        vimPlugins.nvim-autopairs
-        vimPlugins.lualine-nvim
-        vimPlugins.neogit
-        vimPlugins.gitsigns-nvim
-        vimPlugins.vim-fugitive
-        vimPlugins.auto-session
-        vimPlugins.nvim-web-devicons
-        vimPlugins.inc-rename-nvim
-        vimPlugins.telescope-fzf-native-nvim
-        vimPlugins.nvim-surround
         vimPlugins.comment-nvim
         vimPlugins.conform-nvim
+        vimPlugins.copilot-cmp
+        vimPlugins.copilot-lua
         vimPlugins.diffview-nvim
+        vimPlugins.dropbar-nvim
+        vimPlugins.flutter-tools-nvim
+        vimPlugins.gitsigns-nvim
+        vimPlugins.inc-rename-nvim
+        vimPlugins.indent-blankline-nvim
         vimPlugins.lazydev-nvim
+        vimPlugins.lsp_lines-nvim
+        vimPlugins.lualine-nvim
+        vimPlugins.neogit
+        vimPlugins.neorg
+        vimPlugins.nvim-autopairs
+        vimPlugins.nvim-cmp
+        vimPlugins.nvim-dap
         vimPlugins.nvim-dbee
         vimPlugins.nvim-lspconfig
+        vimPlugins.nvim-surround
+        vimPlugins.nvim-treesitter
+        vimPlugins.nvim-treesitter-textobjects
+        vimPlugins.nvim-ts-autotag
+        vimPlugins.nvim-ts-context-commentstring
+        vimPlugins.nvim-web-devicons
         vimPlugins.oil-nvim
+        vimPlugins.otter-nvim
+        vimPlugins.sleuth
+        vimPlugins.telescope-fzf-native-nvim
         vimPlugins.telescope-nvim
         vimPlugins.telescope-ui-select-nvim
+        vimPlugins.typescript-tools-nvim
+        vimPlugins.vim-fugitive
+        vimPlugins.vim-illuminate
+        vimPlugins.vim-matchup
       ];
       defaultEditor = true;
       # extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
