@@ -103,6 +103,9 @@ in {
     vscode
     framework-tool
     devenv
+    logisim
+    qbittorrent
+    spotify
   ];
 
   xdg = {
