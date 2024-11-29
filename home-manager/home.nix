@@ -258,6 +258,21 @@ in {
       # go is for nvim-dbee
       extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp];
       plugins = with pkgs; [
+        vimPlugins.sleuth
+        vimPlugins.vim-illuminate
+        vimPlugins.indent-blankline-nvim
+        vimPlugins.vim-matchup
+        vimPlugins.nvim-treesitter
+        vimPlugins.nvim-ts-context-commentstring
+        vimPlugins.nvim-ts-autotag
+        vimPlugins.nvim-cmp
+        vimPlugins.cmp-dap
+        vimPlugins.cmp-nvim-lsp-signature-help
+        vimPlugins.cmp_luasnip
+        vimPlugins.cmp-nvim-lsp
+        vimPlugins.cmp-buffer
+        vimPlugins.copilot-cmp
+        vimPlugins.copilot-lua
         vimPlugins.SchemaStore-nvim
         vimPlugins.nvim-autopairs
         vimPlugins.lualine-nvim
