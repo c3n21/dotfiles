@@ -258,11 +258,12 @@ in {
       # go is for nvim-dbee
       extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp];
       plugins = with pkgs; [
+        vimPlugins.comment-nvim
+        vimPlugins.conform-nvim
+        vimPlugins.lazydev-nvim
         vimPlugins.nvim-dbee
         vimPlugins.nvim-lspconfig
-        vimPlugins.conform-nvim
-        vimPlugins.comment-nvim
-        vimPlugins.lazydev-nvim
+        vimPlugins.oil-nvim
         vimPlugins.telescope-nvim
         vimPlugins.telescope-ui-select-nvim
       ];
