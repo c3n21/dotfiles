@@ -260,6 +260,7 @@ in {
       plugins = with pkgs; [
         vimPlugins.comment-nvim
         vimPlugins.conform-nvim
+        vimPlugins.diffview-nvim
         vimPlugins.lazydev-nvim
         vimPlugins.nvim-dbee
         vimPlugins.nvim-lspconfig
