@@ -261,6 +261,10 @@ in {
         vimPlugins.SchemaStore-nvim
         vimPlugins.nvim-autopairs
         vimPlugins.lualine-nvim
+        vimPlugins.neogit
+        vimPlugins.gitsigns-nvim
+        vimPlugins.vim-fugitive
+        vimPlugins.nvim-surround
         vimPlugins.comment-nvim
         vimPlugins.conform-nvim
         vimPlugins.diffview-nvim
