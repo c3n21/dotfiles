@@ -184,7 +184,7 @@ in {
     };
     kitty = {
       enable = true;
-      theme = "Belafonte Night";
+      themeFile = "Belafonte_Night";
       extraConfig = "
       shell ${shell}
       font_family Delugia Italic
