@@ -259,6 +259,8 @@ in {
       extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp];
       plugins = with pkgs; [
         vimPlugins.SchemaStore-nvim
+        vimPlugins.nvim-autopairs
+        vimPlugins.lualine-nvim
         vimPlugins.comment-nvim
         vimPlugins.conform-nvim
         vimPlugins.diffview-nvim
