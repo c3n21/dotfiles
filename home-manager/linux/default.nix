@@ -122,6 +122,7 @@ in {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
+      variables = ["--all"];
     };
     xwayland = {
       enable = true;
@@ -129,13 +130,14 @@ in {
     # plugins = [
     #   inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     # ];
+
     settings = {
       input = {
         kb_layout = "us";
         kb_variant = "altgr-intl";
         kb_options = "caps:swapescape";
         follow_mouse = "1";
-        sensitivity = 0.5;
+        sensitivity = 0.35;
         touchpad = {
           natural_scroll = "yes";
         };
@@ -156,9 +158,11 @@ in {
 
       decoration = {
         rounding = 10;
-        drop_shadow = false;
-        shadow_range = 10;
-        shadow_render_power = 2;
+        shadow = {
+          enabled = false;
+          range = 10;
+          render_power = 2;
+        };
       };
 
       misc = {
