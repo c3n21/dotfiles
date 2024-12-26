@@ -5,7 +5,6 @@
 {
   inputs,
   pkgs,
-  sugar-catppuccin,
   lib,
   hostName,
   ...
@@ -216,8 +215,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    systemPackages =
-      (with pkgs; [
+    systemPackages = with pkgs; [
         swaylock
         swayidle
         git
@@ -232,8 +230,7 @@ in {
         dive # look into docker image layers
         podman-tui # status of containers in the terminal
         podman-compose # start group of containers for dev
-      ])
-      ++ [sugar-catppuccin];
+    ];
   };
 
   programs = {
@@ -273,7 +270,11 @@ in {
     nano = {
       enable = false;
     };
+    uwsm = {
+      enable = true;
+    };
     hyprland = {
+      withUWSM = true;
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };

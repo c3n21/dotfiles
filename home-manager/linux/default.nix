@@ -121,7 +121,8 @@ in {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
-      enable = true;
+      # disabling because of this https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
+      enable = false;
       variables = ["--all"];
     };
     xwayland = {

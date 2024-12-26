@@ -12,7 +12,6 @@
       type = "git";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    sddm-sugar-catppuccin.url = "github:TiagoDamascena/sddm-sugar-catppuccin";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -34,7 +33,6 @@
   outputs = {
     self,
     alejandra,
-    sddm-sugar-catppuccin,
     nixpkgs,
     home-manager,
     nixos-hardware,
@@ -54,7 +52,6 @@
       specialArgs =
         {
           inherit inputs outputs;
-          sugar-catppuccin = sddm-sugar-catppuccin.packages.x86_64-linux.default;
         }
         // {inherit hostName;}
         // args;
