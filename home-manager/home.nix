@@ -256,8 +256,19 @@ in {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
-      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp];
+      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server];
       plugins = with pkgs; [
+        # parsers
+        vimPlugins.nvim-treesitter-parsers.javascript
+        vimPlugins.nvim-treesitter-parsers.jsdoc
+        vimPlugins.nvim-treesitter-parsers.tsx
+        vimPlugins.nvim-treesitter-parsers.typescript
+        vimPlugins.nvim-treesitter-parsers.astro
+
+        vimPlugins.nvim-treesitter-parsers.lua
+        vimPlugins.nvim-treesitter-parsers.luadoc
+
+        vimPlugins.luasnip
         vimPlugins.SchemaStore-nvim
         vimPlugins.auto-session
         vimPlugins.cmp-buffer
