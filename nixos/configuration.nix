@@ -107,7 +107,7 @@ in {
     # boot.loader.systemd-boot.enable = true;
     lanzaboote = {
       enable = true;
-      pkiBundle = "/etc/secureboot";
+      pkiBundle = "/var/lib/sbctl";
     };
   };
 

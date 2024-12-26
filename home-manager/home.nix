@@ -265,6 +265,7 @@ in {
         vimPlugins.nvim-treesitter-parsers.tsx
         vimPlugins.nvim-treesitter-parsers.typescript
         vimPlugins.nvim-treesitter-parsers.astro
+        vimPlugins.nvim-treesitter-parsers.nix
 
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc

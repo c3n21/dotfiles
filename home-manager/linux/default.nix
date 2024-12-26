@@ -77,7 +77,7 @@ in {
     gcc
     killall
     pavucontrol
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
     telegram-desktop
     # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
     # this fixes cursor issue on firefox at least
