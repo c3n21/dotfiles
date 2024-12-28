@@ -28,6 +28,10 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs = {
@@ -37,6 +41,7 @@
     home-manager,
     nixos-hardware,
     lanzaboote,
+    ghostty,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -88,6 +93,11 @@
         modules = [
           ./home-manager/home.nix
           ./home-manager/linux
+          {
+            home.packages = [
+              ghostty.packages.x86_64-linux.default
+            ];
+          }
         ];
         extraSpecialArgs = {
           inherit inputs;
