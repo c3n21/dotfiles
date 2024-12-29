@@ -272,10 +272,16 @@ in {
     };
     uwsm = {
       enable = true;
+      waylandCompositors = {
+        niri = {
+          binPath = "/run/current-system/sw/bin/niri-session";
+          prettyName = "Niri";
+        };
+      };
     };
     hyprland = {
-      withUWSM = true;
-      enable = true;
+      withUWSM = false;
+      enable = false;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
     virt-manager.enable = true;

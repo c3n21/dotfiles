@@ -118,7 +118,7 @@ in {
   ];
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       # disabling because of this https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
