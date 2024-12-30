@@ -40,6 +40,7 @@ in {
   # laptop
   powerManagement.enable = true;
   services = {
+    logind.lidSwitch = "suspend-then-hibernate";
     thermald.enable = true;
     fwupd.enable = true;
     upower.enable = true;
@@ -78,7 +79,14 @@ in {
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    # configPackages = with pkgs; [
+    #   xdg-desktop-portal-gtk
+    #   xdg-desktop-portal-hyprland
+    # ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      # xdg-desktop-portal-hyprland
+    ];
   };
 
   qt = {
@@ -216,20 +224,20 @@ in {
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-        swaylock
-        swayidle
-        git
-        libsForQt5.kwallet
-        libsForQt5.kwallet-pam
-        libsForQt5.kwalletmanager
-        libsForQt5.qt5.qtgraphicaleffects
-        javaPackages.openjfx17
-        sbctl
+      swaylock
+      swayidle
+      git
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+      libsForQt5.kwalletmanager
+      libsForQt5.qt5.qtgraphicaleffects
+      javaPackages.openjfx17
+      sbctl
 
-        # Podman
-        dive # look into docker image layers
-        podman-tui # status of containers in the terminal
-        podman-compose # start group of containers for dev
+      # Podman
+      dive # look into docker image layers
+      podman-tui # status of containers in the terminal
+      podman-compose # start group of containers for dev
     ];
   };
 

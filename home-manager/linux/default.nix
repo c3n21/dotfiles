@@ -348,7 +348,7 @@ in {
   services = {
     swayidle = {
       enable = true;
-      systemdTarget = hyprland_session_target;
+      # systemdTarget = hyprland_session_target;
       events = [
         {
           event = "before-sleep";
@@ -370,7 +370,7 @@ in {
       enable = true;
       systemd = {
         enable = true;
-        target = hyprland_session_target;
+        # target = hyprland_session_target;
       };
     };
   };
