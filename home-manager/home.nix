@@ -23,30 +23,30 @@ in {
     stateVersion = "24.05"; # Please read the comment before changing.
     username = "zhifan";
     homeDirectory = "/home/zhifan";
-    pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = cursor.name;
-      size = cursor.size;
-    };
+    # pointerCursor = {
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    #   package = pkgs.bibata-cursors;
+    #   name = cursor.name;
+    #   size = cursor.size;
+    # };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
-    iconTheme = {
-      package = pkgs.libsForQt5.breeze-icons;
-      name = "breeze-dark";
-    };
-    font = {
-      name = "Sans";
-      size = 11;
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     package = pkgs.flat-remix-gtk;
+  #     name = "Flat-Remix-GTK-Grey-Darkest";
+  #   };
+  #   iconTheme = {
+  #     package = pkgs.libsForQt5.breeze-icons;
+  #     name = "breeze-dark";
+  #   };
+  #   font = {
+  #     name = "Sans";
+  #     size = 11;
+  #   };
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -257,10 +257,11 @@ in {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
-      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server];
+      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server jdt-language-server];
       plugins = with pkgs; [
         # parsers
         vimPlugins.nvim-treesitter-parsers.javascript
+        vimPlugins.nvim-treesitter-parsers.java
         vimPlugins.nvim-treesitter-parsers.jsdoc
         vimPlugins.nvim-treesitter-parsers.tsx
         vimPlugins.nvim-treesitter-parsers.typescript
@@ -270,6 +271,94 @@ in {
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc
 
+        # nvim-java dep
+        vimPlugins.nui-nvim
+        vimPlugins.mason-nvim
+        vimPlugins.mason-lspconfig-nvim
+
+        (
+          pkgs.vimUtils.buildVimPlugin rec {
+            name = "spring-boot.nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "JavaHello";
+              repo = name;
+              rev = "21483b5cf3dd4bfa16f498f7a28d11e7b34aa2ec";
+              hash = "sha256-Fa0htsbWlInuZf7QE7F+CmStyBuZNwDsDHWPhfrsKHI=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "nvim-java-dap";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "nvim-java-dap";
+              rev = "55f239532f7a3789d21ea68d1e795abc77484974";
+              hash = "sha256-Xrzydrlbo8B99Y1kJUri0H/3gLBHXaZ/jbIZIfhi2gU=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "nvim-java-test";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "nvim-java-test";
+              rev = "7f0f40e9c5b7eab5096d8bec6ac04251c6e81468";
+              hash = "sha256-aqFg+m8EMNpQkj5aQPZaW18dtez+AsxARiEiU3ycW6I=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "nvim-java-core";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "nvim-java-core";
+              rev = "22eca6b90b7e209299d99cbf60421f0ffdae5629";
+              hash = "sha256-+KK0xDcemC4yIEqN49wh1CSUPNVnUzI20XtWe1IdN9U=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "lua-async";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "lua-async";
+              rev = "652d94df34e97abe2d4a689edbc4270e7ead1a98";
+              hash = "sha256-SB+gmBfF3AKZyktOmPaR9CRyTyCYz2jlrxi+jgBI/Eo=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "nvim-java-refactor";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "nvim-java-refactor";
+              rev = "ea1420fed5463c9cc976c2b4175f434b3646f0f7";
+              hash = "sha256-FC4MFHqeQBvk16iNcUkHrbsRv9lyqG1BnMkwgB21V0s=";
+            };
+          }
+        )
+
+        (
+          pkgs.vimUtils.buildVimPlugin {
+            name = "nvim-java";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvim-java";
+              repo = "nvim-java";
+              rev = "e8e84413ca03e7d0541921e795b2e6bf8801f186";
+              hash = "sha256-WRfX6aoBVux6mUE8qXzbUq0E9pzPuII5Ubp5Xl+EEkI=";
+            };
+          }
+        )
         vimPlugins.luasnip
         vimPlugins.SchemaStore-nvim
         vimPlugins.auto-session
