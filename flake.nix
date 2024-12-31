@@ -58,9 +58,9 @@
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/framework-13-7040-amd/hardware-configuration.nix
-
           ./nixos/configuration.nix
           ./nixos/desktop.nix
+          ./nixos/specialisations.nix
           lanzaboote.nixosModules.lanzaboote
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];

@@ -1,6 +1,5 @@
 # This file is used to setup a desktop environment
 {
-  inputs,
   pkgs,
   lib,
   ...
@@ -186,14 +185,6 @@ in {
     };
     npm = {
       enable = true;
-    };
-    uwsm = {
-      enable = true;
-    };
-    hyprland = {
-      withUWSM = true;
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
     virt-manager.enable = true;
   };
