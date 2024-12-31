@@ -216,20 +216,25 @@ in {
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-        swaylock
-        swayidle
-        git
-        libsForQt5.kwallet
-        libsForQt5.kwallet-pam
-        libsForQt5.kwalletmanager
-        libsForQt5.qt5.qtgraphicaleffects
-        javaPackages.openjfx17
-        sbctl
+      swaylock
+      swayidle
+      git
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+      libsForQt5.kwalletmanager
+      libsForQt5.qt5.qtgraphicaleffects
+      javaPackages.openjfx17
+      sbctl
 
-        # Podman
-        dive # look into docker image layers
-        podman-tui # status of containers in the terminal
-        podman-compose # start group of containers for dev
+      qt5.qtwayland
+      qt6.qtwayland
+
+      xwayland-satellite
+
+      # Podman
+      dive # look into docker image layers
+      podman-tui # status of containers in the terminal
+      podman-compose # start group of containers for dev
     ];
   };
 
