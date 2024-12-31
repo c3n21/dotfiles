@@ -7,7 +7,6 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
-  hyprland_session_target = "hyprland-session.target";
 in {
   home.sessionVariables = {
     XCURSOR_SIZE = cursor.size;
@@ -348,7 +347,6 @@ in {
   services = {
     swayidle = {
       enable = true;
-      # systemdTarget = hyprland_session_target;
       events = [
         {
           event = "before-sleep";
@@ -370,7 +368,6 @@ in {
       enable = true;
       systemd = {
         enable = true;
-        # target = hyprland_session_target;
       };
     };
   };
