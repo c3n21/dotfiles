@@ -153,7 +153,7 @@ in {
   # Configure keymap in X11
   services.xserver = {
     # for SDDM
-    enable = true;
+    enable = false;
     xkb = {
       variant = "altgr-intl";
       layout = "us";
@@ -326,6 +326,7 @@ in {
     sddm = {
       theme = "sugar-catppuccin";
       enable = true;
+      wayland.enable = true;
     };
   };
 
