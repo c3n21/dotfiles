@@ -6,7 +6,6 @@
   inputs,
   pkgs,
   lib,
-  hostName,
   ...
 }: let
   delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {};
@@ -116,14 +115,6 @@ in {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
     };
-  };
-
-  networking = {
-    hostName = hostName; # Define your hostname.
-    # firewall= {
-    #   allowedUDPPorts = [3000 3001];
-    #   allowedTCPPorts = [3000 3001];
-    # };
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

@@ -47,39 +47,29 @@
     inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    mkNixosConfiguration = {
-      system ? "x86_64-linux",
-      hostName,
-      # username,
-      args ? {},
-      modules,
-    }: let
-      specialArgs =
-        {
-          inherit inputs outputs;
-        }
-        // {inherit hostName;}
-        // args;
-    in
-      nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-        modules =
-          [
-            ./nixos/configuration.nix
-            lanzaboote.nixosModules.lanzaboote
-            {
-              environment.systemPackages = [alejandra.defaultPackage.${system}];
-            }
-          ]
-          ++ modules;
-      };
   in {
     nixosConfigurations = {
-      framework-13-7040-amd = mkNixosConfiguration {
-        hostName = "zenuko";
+      framework-13-7040-amd = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/framework-13-7040-amd/hardware-configuration.nix
+
+          ./nixos/configuration.nix
+          lanzaboote.nixosModules.lanzaboote
+          {
+            environment.systemPackages = [alejandra.defaultPackage.${system}];
+            environment.sessionVariables.NIXOS_OZONE_WL = "1";
+          }
+          {
+            networking = {
+              hostName = "zenuko"; # Define your hostname.
+            };
+          }
         ];
       };
     };
