@@ -60,6 +60,7 @@
           ./nixos/framework-13-7040-amd/hardware-configuration.nix
 
           ./nixos/configuration.nix
+          ./nixos/desktop.nix
           lanzaboote.nixosModules.lanzaboote
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
