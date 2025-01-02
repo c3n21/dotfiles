@@ -30,8 +30,6 @@ in {
     };
   };
 
-  services.flatpak.enable = true;
-
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
@@ -63,19 +61,6 @@ in {
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    # configPackages = with pkgs; [
-    #   xdg-desktop-portal-gtk
-    #   xdg-desktop-portal-hyprland
-    # ];
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      # xdg-desktop-portal-hyprland
-    ];
-  };
-
   qt = {
     enable = true;
     platformTheme = "gtk2";
@@ -99,16 +84,6 @@ in {
   hardware = {
     bluetooth.enable = true; # enables support for Bluetooth
     bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
-  };
-
-  # Configure keymap in X11
-  services.xserver = {
-    # for SDDM
-    enable = true;
-    xkb = {
-      variant = "altgr-intl";
-      layout = "us";
-    };
   };
 
   # Enable common container config files in /etc/containers

@@ -93,7 +93,21 @@
           niri.homeModules.niri
           {
             programs.niri.package = pkgs.niri;
+            home.packages = [pkgs.xwayland-satellite];
+
             programs.niri.config = ''
+              // dirty fix to use X11 apps because I'm too lazy to dig through
+              spawn-at-startup "xwayland-satellite" ":0"
+
+              // Set open-maximized to true for all windows.
+              window-rule {
+                  open-maximized true
+              }
+
+              environment {
+                DISPLAY ":0"
+              }
+
               input {
                 keyboard {
                     xkb {
