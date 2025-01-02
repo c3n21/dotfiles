@@ -150,14 +150,16 @@ in {
       enable = true;
       enableFishIntegration = true;
       settings = {
-        window-decoration = false;
-        gtk-single-instance = true;
+        background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
+        background-opacity = 0;
         font-family = "Delugia";
+        font-feature = ["ss01" "ss02" "ss19"];
         font-style = "Italic";
         font-style-bold = "Bold Italic";
-        font-style-italic = "Italic";
         font-style-bold-italic = "Bold Italic";
-        font-feature = ["ss01" "ss02" "ss19"];
+        font-style-italic = "Italic";
+        gtk-single-instance = true;
+        window-decoration = false;
       };
     };
     tmux = {
