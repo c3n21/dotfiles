@@ -195,6 +195,7 @@ in {
 
   services.displayManager = {
     sddm = {
+      wayland.enable = true;
       theme = "sugar-catppuccin";
       enable = true;
     };

@@ -23,30 +23,30 @@ in {
     stateVersion = "24.05"; # Please read the comment before changing.
     username = "zhifan";
     homeDirectory = "/home/zhifan";
-    pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = cursor.name;
-      size = cursor.size;
-    };
+    # pointerCursor = {
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    #   package = pkgs.bibata-cursors;
+    #   name = cursor.name;
+    #   size = cursor.size;
+    # };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
-    iconTheme = {
-      package = pkgs.libsForQt5.breeze-icons;
-      name = "breeze-dark";
-    };
-    font = {
-      name = "Sans";
-      size = 11;
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     package = pkgs.flat-remix-gtk;
+  #     name = "Flat-Remix-GTK-Grey-Darkest";
+  #   };
+  #   iconTheme = {
+  #     package = pkgs.libsForQt5.breeze-icons;
+  #     name = "breeze-dark";
+  #   };
+  #   font = {
+  #     name = "Sans";
+  #     size = 11;
+  #   };
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
