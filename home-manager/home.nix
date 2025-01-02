@@ -148,6 +148,17 @@ in {
   programs = {
     ghostty = {
       enable = true;
+      enableFishIntegration = true;
+      settings = {
+        window-decoration = false;
+        gtk-single-instance = true;
+        font-family = "Delugia";
+        font-style = "Italic";
+        font-style-bold = "Bold Italic";
+        font-style-italic = "Italic";
+        font-style-bold-italic = "Bold Italic";
+        font-feature = ["ss01" "ss02" "ss19"];
+      };
     };
     tmux = {
       enable = true;
