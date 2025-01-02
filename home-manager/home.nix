@@ -146,6 +146,9 @@ in {
   # Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
   # that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
+    ghostty = {
+      enable = true;
+    };
     tmux = {
       enable = true;
       baseIndex = 1;
@@ -285,6 +288,7 @@ in {
         (
           pkgs.vimUtils.buildVimPlugin rec {
             name = "spring-boot.nvim";
+            doCheck = false;
             src = pkgs.fetchFromGitHub {
               owner = "JavaHello";
               repo = name;
@@ -297,6 +301,7 @@ in {
         (
           pkgs.vimUtils.buildVimPlugin {
             name = "nvim-java-dap";
+            doCheck = false;
             src = pkgs.fetchFromGitHub {
               owner = "nvim-java";
               repo = "nvim-java-dap";
@@ -321,6 +326,8 @@ in {
         (
           pkgs.vimUtils.buildVimPlugin {
             name = "nvim-java-core";
+            doCheck = false;
+
             src = pkgs.fetchFromGitHub {
               owner = "nvim-java";
               repo = "nvim-java-core";
@@ -345,6 +352,7 @@ in {
         (
           pkgs.vimUtils.buildVimPlugin {
             name = "nvim-java-refactor";
+            doCheck = false;
             src = pkgs.fetchFromGitHub {
               owner = "nvim-java";
               repo = "nvim-java-refactor";
@@ -357,6 +365,7 @@ in {
         (
           pkgs.vimUtils.buildVimPlugin {
             name = "nvim-java";
+            doCheck = false;
             src = pkgs.fetchFromGitHub {
               owner = "nvim-java";
               repo = "nvim-java";

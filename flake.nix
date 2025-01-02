@@ -29,10 +29,6 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +42,6 @@
     home-manager,
     nixos-hardware,
     lanzaboote,
-    ghostty,
     niri,
     ...
   } @ inputs: let
@@ -96,11 +91,6 @@
           ./home-manager/home.nix
           ./home-manager/linux
           niri.homeModules.niri
-          {
-            home.packages = [
-              ghostty.packages.x86_64-linux.default
-            ];
-          }
           {
             programs.niri.package = pkgs.niri;
             programs.niri.config = ''
