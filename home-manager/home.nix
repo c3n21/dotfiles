@@ -292,6 +292,7 @@ in {
 
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc
+        vimPlugins.nvim-treesitter-parsers.norg
 
         # nvim-java dep
         vimPlugins.nui-nvim
