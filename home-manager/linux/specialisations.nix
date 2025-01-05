@@ -249,7 +249,13 @@
             open-maximized true
         }
 
+        // this seems to fix cursor issues with niri
+        cursor {
+            xcursor-size 16
+        }
+
         environment {
+          QT_QPA_PLATFORM "wayland;xcb"
           DISPLAY ":0"
         }
 
