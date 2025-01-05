@@ -60,6 +60,7 @@
           };
 
           misc = {
+            disable_autoreload = true;
             vfr = true;
             layers_hog_keyboard_focus = true;
             focus_on_activate = false;

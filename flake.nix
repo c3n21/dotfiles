@@ -82,7 +82,7 @@
     };
 
     homeConfigurations = {
-      zhifan = home-manager.lib.homeManagerConfiguration {
+      linux = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
