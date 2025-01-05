@@ -190,9 +190,6 @@
           ];
         };
         extraConfig = ''
-          source = ~/.config/hypr/monitors.conf
-          source = ~/.config/hypr/workspaces.conf
-
           # windowrulev2=windowdance,class:^(jetbrains-.*)$
           # search dialog
           windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
