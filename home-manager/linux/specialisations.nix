@@ -31,9 +31,9 @@
             kb_variant = "altgr-intl";
             kb_options = "caps:swapescape";
             follow_mouse = "1";
-            sensitivity = 0.35;
             touchpad = {
-              natural_scroll = "yes";
+              natural_scroll = true;
+              scroll_factor = 0.5; # seems to work well for my framework laptop
             };
           };
 
@@ -177,31 +177,13 @@
 
 
 
-          # plugin {
-          #     split-monitor-workspaces {
-          #         count = 5
-          #     }
-          # }
-
           windowrule=pseudo,fcitx
 
-          # windowrulev2 = float,class:(kitty)
-          # windowrulev2 = size 80% 80% ,class:(kitty)
-          # windowrulev2 = center,class:(kitty)
           windowrulev2 = workspace special,class:(kitty)
 
           exec-once=nm-applet
           exec-once=blueman-applet
           exec-once=fcitx5 -d --replace
-          # exec-once=swayidle -w before-sleep 'swaylock -f -i ~/Pictures/wallpaper.jpg'
-
-          # allow for screen recording via xdg-desktop-portal-wlr
-          # exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          # exec-once=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-          # exec-once=hash dbus-update-activation-environment 2>/dev/null && \
-          #     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-
-          # exec-once = swayidle -w timeout 300 'swaylock -f -i ~/Pictures/wallpaper.jpg' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
           # background
           exec=pkill --signal 9 hyprpaper; hyprpaper
