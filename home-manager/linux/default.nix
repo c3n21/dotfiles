@@ -115,6 +115,7 @@ in {
     vscode
     framework-tool
     devenv
+    wechat-uos
   ];
 
   services = {
