@@ -63,7 +63,10 @@ in {
 
   qt = {
     enable = true;
-    platformTheme = "gtk2";
+    # TODO:
+    # should check if this will make the theme between
+    # GTK and QT not uniform
+    platformTheme = "qt5ct";
   };
 
   # Enable networking
