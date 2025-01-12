@@ -131,7 +131,7 @@
             "$mod SHIFT,e,movetoworkspace,r-1"
 
             "$mod ,F11,fullscreen"
-            "$mod SHIFT,S,exec,grimblast --freeze copy area"
+            ",Print,exec,grimblast --freeze copy area"
 
             # Lock scren
             "$mod CTRL,e,exec,swaylock -f -i ~/Pictures/wallpaper.jpg"
