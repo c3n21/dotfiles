@@ -151,8 +151,8 @@
           binde = [
             ",XF86AudioLowerVolume,exec,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
             ",XF86AudioRaiseVolume,exec,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-            # ",XF86MonBrightnessDown,exec,awk '{ print $1 - 50}' /sys/class/backlight/intel_backlight/actual_brightness > /sys/class/backlight/intel_backlight/brightness"
-            # ",XF86MonBrightnessUp,exec,awk '{ print $1 + 50}' /sys/class/backlight/intel_backlight/actual_brightness > /sys/class/backlight/intel_backlight/brightness"
+            ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
+            ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
           ];
 
           bindt = [

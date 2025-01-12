@@ -108,6 +108,7 @@ in {
     logisim
     qbittorrent
     spotify
+    brightnessctl
   ];
 
   xdg = {
