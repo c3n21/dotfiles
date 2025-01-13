@@ -60,10 +60,8 @@ in {
     mpv
     htop
     nixd
-    tmux
     firefox
     git
-    kitty
     fish
     zoxide
     lsd
@@ -163,6 +161,8 @@ in {
       baseIndex = 1;
       clock24 = true;
       prefix = "C-a";
+      # Less secure but it persists the session across user login and logout
+      secureSocket = false;
       plugins = with pkgs; [
         tmuxPlugins.sensible
         {
@@ -184,9 +184,9 @@ in {
           '';
         }
       ];
+      shell = "${pkgs.fish}/bin/fish";
+      newSession = true;
       extraConfig = ''
-        set-option -g default-shell ${pkgs.fish}/bin/fish
-
         # Customize the status line
         set -g status-fg  green
         set -g status-bg  black
@@ -209,7 +209,7 @@ in {
       bold_italic_font Delugia Bold Italic
 
       font_features Delugia-Italic +ss01 +ss02 +ss19
-      font_size        18
+      font_size        14
 
       enable_audio_bell no
       background_opacity 0.7

@@ -59,7 +59,6 @@ in {
     hyprpaper
     firefox
     git
-    kitty
     distrobox
     rofi-wayland
     fish
