@@ -119,6 +119,39 @@ in {
   ];
 
   services = {
+    kanshi = {
+      enable = true;
+      systemdTarget = "graphical-session.target";
+      settings = [
+        {
+          profile = {
+            name = "laptop";
+            outputs = [
+              {
+                criteria = "eDP-1";
+              }
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "home";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                position = "296,720";
+              }
+              {
+                criteria = "LG Electronics LG ULTRAGEAR 208NTVS0P575";
+                position = "0,0";
+                scale = 2.0;
+                mode = "3440x1440@85.00Hz";
+              }
+            ];
+          };
+        }
+      ];
+    };
     swayidle = {
       enable = true;
       events = [
@@ -140,9 +173,6 @@ in {
   programs = {
     waybar = {
       enable = true;
-      systemd = {
-        enable = true;
-      };
     };
   };
 }
