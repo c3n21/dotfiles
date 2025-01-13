@@ -63,7 +63,6 @@ in {
     distrobox
     rofi-wayland
     fish
-    waybar
     zoxide
     lsd
     bat
@@ -173,6 +172,7 @@ in {
   programs = {
     waybar = {
       enable = true;
+      systemd.enable = true;
     };
   };
 }
