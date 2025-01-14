@@ -117,6 +117,9 @@ in {
   ];
 
   services = {
+    swaync = {
+      enable = true;
+    };
     kanshi = {
       enable = true;
       systemdTarget = "graphical-session.target";
@@ -162,9 +165,6 @@ in {
           command = "lock";
         }
       ];
-    };
-    dunst = {
-      enable = true;
     };
   };
 
