@@ -1,24 +1,34 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   wsl.enable = true;
   wsl.defaultUser = "zhifan";
   wsl.wslConf = {
     automount.options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
   };
 
+  wsl = {
+    interop = {
+      includePath = true;
+      register = true;
+    };
+    docker-desktop.enable = true;
+    useWindowsDriver = true;
+  };
+
   environment.systemPackages = with pkgs; [
     wslu
   ];
 
-  programs.neovim.defaultEditor = true;  
+  programs.neovim.defaultEditor = true;
   programs.neovim.enable = true;
 
   users.users.zhifan = {
