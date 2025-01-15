@@ -90,7 +90,6 @@ in {
     git
     distrobox
     rofi-wayland
-    fish
     zoxide
     lsd
     bat

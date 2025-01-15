@@ -6,5 +6,5 @@
 !home-manager/
 
 # Allow all files within the directories
-nixos/**/*
-home-manager/**/*
+!nixos/**/*
+!home-manager/**/*

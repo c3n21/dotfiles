@@ -152,6 +152,7 @@ in {
       interactiveShellInit = ''
         set -x theme_color_scheme nord
         if not set -q NVIM
+          echo $NVIM
           fish_vi_key_bindings
 
           # Emulates vim's cursor shape behavior
@@ -167,23 +168,24 @@ in {
 
         bind -M insert \cf accept-autosuggestion
       '';
-      plugins = [
-        #rec {
-        #  name = "fzf.fish";
-        #  src = pkgs.fetchFromGitHub {
-        #    owner = "PatrickF1";
-        #    repo = name;
-        #    rev = "main";
-        #    sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
-        #  };
-        #}
-        #pkgs.fishPlugins.bobthefish
+      plugins = with pkgs; [
+        {
+          name = "fzf.fish";
+          src = fishPlugins.fzf-fish.src;
+        }
+        {
+          name = "bobthefish";
+          src = fishPlugins.bobthefish.src;
+        }
       ];
     };
     zoxide = {
       enable = true;
     };
     neovim = {
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
