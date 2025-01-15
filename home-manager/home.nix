@@ -21,7 +21,6 @@ in {
     homeDirectory = pkgs.lib.mkForce "/home/zhifan";
   };
 
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -189,7 +188,20 @@ in {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
-      extraPackages = with pkgs; [nodejs lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server jdt-language-server];
+      extraPackages = with pkgs; [
+        nodejs
+        lua51Packages.luarocks
+        fswatch
+        tree-sitter
+        go
+        python3
+        luajitPackages.lua-lsp
+        vscode-langservers-extracted
+        deno
+        astro-language-server
+        jdt-language-server
+        typescript-language-server
+      ];
       plugins = with pkgs; [
         # parsers
         vimPlugins.nvim-treesitter-parsers.javascript
