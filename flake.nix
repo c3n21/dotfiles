@@ -70,12 +70,28 @@
           ./nixos/configuration.nix
           ./nixos/desktop.nix
           ./nixos/specialisations.nix
+          home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
             environment.sessionVariables.NIXOS_OZONE_WL = "1";
           }
           {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.zhifan = {
+              imports = [
+                inputs.niri.homeModules.niri
+                ./home-manager/linux
+                ./home-manager/home.nix
+              ];
+            };
+
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit outputs;
+            };
+
             networking = {
               hostName = "zenuko"; # Define your hostname.
             };
