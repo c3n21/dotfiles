@@ -33,6 +33,8 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = {
@@ -43,6 +45,7 @@
     nixos-hardware,
     lanzaboote,
     niri,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -76,6 +79,23 @@
             networking = {
               hostName = "zenuko"; # Define your hostname.
             };
+          }
+        ];
+      };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default
+          home-manager.nixosModules.home-manager
+          ./nixos/wsl/configuration.nix
+          {
+            environment.systemPackages = [alejandra.defaultPackage.${system}];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.zhifan = import ./home-manager/home.nix {inherit pkgs inputs;};
+            system.stateVersion = "24.05";
+            wsl.enable = true;
           }
         ];
       };

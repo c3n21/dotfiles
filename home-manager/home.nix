@@ -3,10 +3,6 @@
   inputs,
   ...
 }: let
-  cursor = {
-    name = "Bibata-Modern-Classic";
-    size = 16;
-  };
   shell = "${pkgs.fish}/bin/fish";
 in {
   nixpkgs.config.allowUnfree = true;
@@ -22,91 +18,22 @@ in {
   home = {
     stateVersion = "24.05"; # Please read the comment before changing.
     username = "zhifan";
-    homeDirectory = "/home/zhifan";
-    pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = cursor.name;
-      size = cursor.size;
-    };
+    homeDirectory = pkgs.lib.mkForce "/home/zhifan";
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
-    iconTheme = {
-      package = pkgs.libsForQt5.breeze-icons;
-      name = "breeze-dark";
-    };
-    font = {
-      name = "Sans";
-      size = 11;
-    };
-  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    brave
-    scrcpy
-    ripgrep-all
-    libreoffice-fresh
-    yt-dlp
-    socat
-    mpv
-    htop
-    nixd
-    firefox
     git
-    fish
-    zoxide
-    lsd
-    bat
-    ripgrep
-    fzf
-    nodejs
-    gnumake
-    sqlite
-    fd
-    gcc
-    killall
-    telegram-desktop
     unzip
-    zbar
     jq
-    lua-language-server
-    selene
-    stylua
-    chromium
-    usbutils
-    lua51Packages.luarocks
-    gparted
-    exfatprogs
-    discord
-    typescript
-    lsof
-    eslint_d
-    microsoft-edge
-    google-chrome
-    jdk17
-    wget
     btop
-    powertop
-    lm_sensors
-    sbt
-    prettierd
     file
-    vscode
-    framework-tool
-    devenv
-    logisim
-    qbittorrent
-    spotify
-    brightnessctl
+
+    # workaround to make NeoVim work
+    lua51Packages.luarocks
+    gnumake
   ];
 
   xdg = {
@@ -241,30 +168,17 @@ in {
 
         bind -M insert \cf accept-autosuggestion
       '';
-      shellAliases = {
-        ls = "lsd";
-        cat = "bat";
-        vim = "nvim";
-      };
       plugins = [
-        rec {
-          name = "fzf.fish";
-          src = pkgs.fetchFromGitHub {
-            owner = "PatrickF1";
-            repo = name;
-            rev = "main";
-            sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
-          };
-        }
-        rec {
-          name = "theme-bobthefish";
-          src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = name;
-            rev = "master";
-            sha256 = "jiXzkW4H9YORR4iRNAfjlPT2jSyXQKmNx3WA+TjleE8=";
-          };
-        }
+        #rec {
+        #  name = "fzf.fish";
+        #  src = pkgs.fetchFromGitHub {
+        #    owner = "PatrickF1";
+        #    repo = name;
+        #    rev = "main";
+        #    sha256 = "/31pjXPTBw3VnA0jM6WlRCLVaG57LQNjVQhSc3Bd2o4=";
+        #  };
+        #}
+        #pkgs.fishPlugins.bobthefish
       ];
     };
     zoxide = {
@@ -275,7 +189,7 @@ in {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
-      extraPackages = with pkgs; [lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server jdt-language-server];
+      extraPackages = with pkgs; [nodejs lua51Packages.luarocks fswatch tree-sitter go python3 luajitPackages.lua-lsp vscode-langservers-extracted deno astro-language-server jdt-language-server];
       plugins = with pkgs; [
         # parsers
         vimPlugins.nvim-treesitter-parsers.javascript
@@ -356,7 +270,6 @@ in {
         vimPlugins.vim-matchup
       ];
       defaultEditor = true;
-      # extraPackages = with pkgs; [lua51Packages.luarocks fswatch];
     };
   };
 }

@@ -1,3 +1,4 @@
+# This is needed only for full blown Linux systems
 {
   pkgs,
   inputs,
@@ -27,6 +28,32 @@ in {
     EDITOR = "nvim";
   };
 
+  home = {
+    pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      package = pkgs.bibata-cursors;
+      name = cursor.name;
+      size = cursor.size;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+    iconTheme = {
+      package = pkgs.libsForQt5.breeze-icons;
+      name = "breeze-dark";
+    };
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
+
   # this is needed to declaratively manage connection to qemu in virt-manager
   # https://nixos.wiki/wiki/Virt-manager
   dconf.settings = {
@@ -37,6 +64,8 @@ in {
   };
 
   home.packages = with pkgs; [
+    brave
+    scrcpy
     ripgrep-all
     remmina
     # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
@@ -113,6 +142,9 @@ in {
     vscode
     framework-tool
     devenv
+    logisim
+    qbittorrent
+    spotify
     wechat-uos
   ];
 
