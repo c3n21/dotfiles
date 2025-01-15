@@ -150,9 +150,8 @@ in {
     fish = {
       enable = true;
       interactiveShellInit = ''
-        set -x theme_color_scheme nord
+        fish_default_key_bindings
         if not set -q NVIM
-          echo $NVIM
           fish_vi_key_bindings
 
           # Emulates vim's cursor shape behavior
