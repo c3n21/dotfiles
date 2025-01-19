@@ -145,6 +145,9 @@ in {
     qbittorrent
     spotify
     wechat-uos
+    brightnessctl
+    adbfs-rootless
+    mgba
   ];
 
   services = {
