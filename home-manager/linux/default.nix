@@ -148,6 +148,7 @@ in {
     brightnessctl
     adbfs-rootless
     mgba
+    localsend
   ];
 
   services = {
