@@ -141,7 +141,6 @@ in {
         acl
         attr
         bzip2
-        curl
         gtk3
         javaPackages.openjfx17
         jdk17
