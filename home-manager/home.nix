@@ -190,6 +190,8 @@ in {
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
       extraPackages = with pkgs; [
+        terraform-ls
+        terraform-lsp
         nodejs
         lua51Packages.luarocks
         fswatch
@@ -212,6 +214,7 @@ in {
         vimPlugins.nvim-treesitter-parsers.typescript
         vimPlugins.nvim-treesitter-parsers.astro
         vimPlugins.nvim-treesitter-parsers.nix
+        vimPlugins.nvim-treesitter-parsers.terraform
 
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc
