@@ -29,6 +29,9 @@ in {
     jq
     btop
     file
+    ripgrep
+    fd
+    fzf
 
     # workaround to make NeoVim work
     lua51Packages.luarocks
@@ -190,6 +193,7 @@ in {
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
       extraPackages = with pkgs; [
+        prettierd
         terraform-ls
         terraform-lsp
         nodejs
