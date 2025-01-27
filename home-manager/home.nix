@@ -193,6 +193,7 @@ in {
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
       extraPackages = with pkgs; [
+        sonarlint-ls
         prettierd
         terraform-ls
         terraform-lsp
@@ -244,6 +245,7 @@ in {
           }
         )
 
+        inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
         vimPlugins.luasnip
         vimPlugins.SchemaStore-nvim
         vimPlugins.auto-session
