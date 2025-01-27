@@ -136,5 +136,10 @@
         # to pass through arguments to home.nix
       };
     };
+    devShell = {
+      nodejs = {
+        buildInputs = [pkgs.nodejs];
+      };
+    };
   };
 }
