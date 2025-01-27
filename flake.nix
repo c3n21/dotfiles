@@ -136,8 +136,8 @@
         # to pass through arguments to home.nix
       };
     };
-    devShell = {
-      nodejs = {
+    devShells = {
+      x86_64-linux.nodejs = pkgs.mkShell {
         buildInputs = [pkgs.nodejs];
       };
     };
