@@ -226,11 +226,11 @@ in {
         vimPlugins.nvim-treesitter-parsers.norg
 
         # nvim-java dep
-        vimPlugins.nui-nvim
-        vimPlugins.mason-nvim
-        vimPlugins.mason-lspconfig-nvim
+        # vimPlugins.nui-nvim
+        # vimPlugins.mason-nvim
+        #vimPlugins.mason-lspconfig-nvim
 
-        vimPlugins.nvim-java
+        # vimPlugins.nvim-java
 
         (
           pkgs.vimUtils.buildVimPlugin rec {
