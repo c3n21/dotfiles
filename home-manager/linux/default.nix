@@ -95,7 +95,6 @@ in {
     bat
     ripgrep
     fzf
-    nodejs
     gnumake
     sqlite
     fd

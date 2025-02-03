@@ -148,7 +148,6 @@ in {
         libsodium
         libssh
         libxml2
-        nodejs
         openssl
         sqlite
         stdenv.cc.cc
