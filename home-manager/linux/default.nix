@@ -140,7 +140,6 @@ in {
     vscode
     framework-tool
     devenv
-    logisim
     qbittorrent
     spotify
     wechat-uos
