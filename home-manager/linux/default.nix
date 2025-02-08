@@ -121,9 +121,7 @@ in {
     exfatprogs
     nmap
     discord
-    typescript
     lsof
-    eslint_d
     microsoft-edge
     google-chrome
     jdk17
@@ -132,7 +130,6 @@ in {
     powertop
     lm_sensors
     sbt
-    prettierd
     file
     nwg-displays
     # dependency for nwg-displays
