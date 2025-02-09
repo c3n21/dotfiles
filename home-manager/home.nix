@@ -194,6 +194,17 @@ in {
       extraLuaPackages = ps: [ps.magick];
       # go is for nvim-dbee
       extraPackages = with pkgs; [
+        (
+          sonarlint-ls.overrideAttrs
+          (oldAttrs: {
+            installPhase = ''
+              ${oldAttrs.installPhase}
+
+              makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
+                --add-flags "-jar $out/share/sonarlint-ls.jar"
+            '';
+          })
+        )
         sonarlint-ls
         prettierd
         terraform-ls

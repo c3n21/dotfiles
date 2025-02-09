@@ -654,11 +654,11 @@
     },
     "mynixpkgs": {
       "locked": {
-        "lastModified": 1738976246,
-        "narHash": "sha256-SKeHFk/SSSfP5d/5OiEDIZFOhGu2ApLWX8jKbqoy8pI=",
+        "lastModified": 1739014541,
+        "narHash": "sha256-1NnvOLLLvilT0cdQqAAZlW7UJ12Ncaw/UyxTi2AFyRc=",
         "owner": "c3n21",
         "repo": "nixpkgs",
-        "rev": "57923c3ef983dfd758c1b6b070bb2a983ddfa8c2",
+        "rev": "99c00816ce00936cce89f763af0e9365011e21ec",
         "type": "github"
       },
       "original": {
