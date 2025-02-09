@@ -3,13 +3,15 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cursor = {
     name = "Bibata-Modern-Classic";
     size = 16;
   };
-in {
-  specialisation = import ./specialisations.nix {inherit pkgs inputs;};
+in
+{
+  specialisation = import ./specialisations.nix { inherit pkgs inputs; };
   home.sessionVariables = {
     XCURSOR_SIZE = cursor.size;
     XMODIFIERS = "@im=fcitx";
@@ -58,8 +60,8 @@ in {
   # https://nixos.wiki/wiki/Virt-manager
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 

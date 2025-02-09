@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
-  delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code {};
-in {
+}:
+let
+  delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
+in
+{
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
@@ -52,7 +54,7 @@ in {
   };
 
   security.pam.services = {
-    swaylock = {};
+    swaylock = { };
     sddm = {
       name = "kwallet";
       enableKwallet = true;
@@ -218,7 +220,7 @@ in {
     ];
     fontconfig = {
       defaultFonts = {
-        emoji = ["Noto Color Emoji"];
+        emoji = [ "Noto Color Emoji" ];
         monospace = [
           "Noto Sans Mono CJK SC"
           "Sarasa Mono SC"
@@ -242,6 +244,13 @@ in {
   users.users.zhifan = {
     isNormalUser = true;
     description = "Zhifan Chen";
-    extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "podman" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "libvirtd"
+      "podman"
+      "docker"
+    ];
   };
 }

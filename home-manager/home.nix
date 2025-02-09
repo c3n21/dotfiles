@@ -2,9 +2,11 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   shell = "${pkgs.fish}/bin/fish";
-in {
+in
+{
   nixpkgs.config.allowUnfree = true;
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -38,26 +40,26 @@ in {
     mimeApps = {
       associations = {
         added = {
-          "inode/directory" = ["kitty-open.desktop"];
-          "text/*" = ["nvim.desktop"];
-          "default-web-browser" = ["firefox.desktop"];
-          "text/html" = ["firefox.desktop"];
-          "application/pdf" = ["firefox.desktop"];
-          "x-scheme-handler/http" = ["firefox.desktop"];
-          "x-scheme-handler/https" = ["firefox.desktop"];
-          "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
+          "inode/directory" = [ "kitty-open.desktop" ];
+          "text/*" = [ "nvim.desktop" ];
+          "default-web-browser" = [ "firefox.desktop" ];
+          "text/html" = [ "firefox.desktop" ];
+          "application/pdf" = [ "firefox.desktop" ];
+          "x-scheme-handler/http" = [ "firefox.desktop" ];
+          "x-scheme-handler/https" = [ "firefox.desktop" ];
+          "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
         };
       };
       enable = true;
       defaultApplications = {
-        "inode/directory" = ["kitty-open.desktop"];
-        "text/*" = ["nvim.desktop"];
-        "default-web-browser" = ["firefox.desktop"];
-        "text/html" = ["firefox.desktop"];
-        "application/pdf" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
+        "inode/directory" = [ "kitty-open.desktop" ];
+        "text/*" = [ "nvim.desktop" ];
+        "default-web-browser" = [ "firefox.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "application/pdf" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
   };
@@ -75,7 +77,11 @@ in {
         background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
         background-opacity = 0;
         font-family = "Delugia";
-        font-feature = ["ss01" "ss02" "ss19"];
+        font-feature = [
+          "ss01"
+          "ss02"
+          "ss19"
+        ];
         font-style = "Italic";
         font-style-bold = "Bold Italic";
         font-style-bold-italic = "Bold Italic";
@@ -94,19 +100,17 @@ in {
       plugins = with pkgs; [
         tmuxPlugins.sensible
         {
-          plugin =
-            tmuxPlugins.mkTmuxPlugin
-            rec {
-              pluginName = "tmux-themepack";
-              version = "1.1.0";
-              rtpFilePath = "themepack.tmux";
-              src = fetchFromGitHub {
-                owner = "jimeh";
-                repo = "tmux-themepack";
-                rev = version;
-                hash = "sha256-f6y92kYsKDFanNx5ATx4BkaB/E7UrmyIHU/5Z01otQE=";
-              };
+          plugin = tmuxPlugins.mkTmuxPlugin rec {
+            pluginName = "tmux-themepack";
+            version = "1.1.0";
+            rtpFilePath = "themepack.tmux";
+            src = fetchFromGitHub {
+              owner = "jimeh";
+              repo = "tmux-themepack";
+              rev = version;
+              hash = "sha256-f6y92kYsKDFanNx5ATx4BkaB/E7UrmyIHU/5Z01otQE=";
             };
+          };
           extraConfig = ''
             set -g @themepack 'powerline/double/cyan'
           '';
@@ -189,20 +193,18 @@ in {
       vimdiffAlias = true;
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-      extraLuaPackages = ps: [ps.magick];
+      extraLuaPackages = ps: [ ps.magick ];
       # go is for nvim-dbee
       extraPackages = with pkgs; [
-        (
-          sonarlint-ls.overrideAttrs
-          (oldAttrs: {
-            installPhase = ''
-              ${oldAttrs.installPhase}
+        nixfmt-rfc-style
+        (sonarlint-ls.overrideAttrs (oldAttrs: {
+          installPhase = ''
+            ${oldAttrs.installPhase}
 
-              makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
-                --add-flags "-jar $out/share/sonarlint-ls.jar"
-            '';
-          })
-        )
+            makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
+              --add-flags "-jar $out/share/sonarlint-ls.jar"
+          '';
+        }))
         sonarlint-ls
         prettierd
         terraform-ls
@@ -242,18 +244,16 @@ in {
 
         # vimPlugins.nvim-java
 
-        (
-          pkgs.vimUtils.buildVimPlugin rec {
-            name = "spring-boot.nvim";
-            doCheck = false;
-            src = pkgs.fetchFromGitHub {
-              owner = "JavaHello";
-              repo = name;
-              rev = "21483b5cf3dd4bfa16f498f7a28d11e7b34aa2ec";
-              hash = "sha256-Fa0htsbWlInuZf7QE7F+CmStyBuZNwDsDHWPhfrsKHI=";
-            };
-          }
-        )
+        (pkgs.vimUtils.buildVimPlugin rec {
+          name = "spring-boot.nvim";
+          doCheck = false;
+          src = pkgs.fetchFromGitHub {
+            owner = "JavaHello";
+            repo = name;
+            rev = "21483b5cf3dd4bfa16f498f7a28d11e7b34aa2ec";
+            hash = "sha256-Fa0htsbWlInuZf7QE7F+CmStyBuZNwDsDHWPhfrsKHI=";
+          };
+        })
 
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
         vimPlugins.luasnip

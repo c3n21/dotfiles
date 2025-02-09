@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   hyprland = {
     configuration = {
       wayland.windowManager.hyprland = {
@@ -11,7 +12,7 @@
         systemd = {
           # disabling because of this https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
           enable = false;
-          variables = ["--all"];
+          variables = [ "--all" ];
         };
         xwayland = {
           enable = true;
@@ -198,7 +199,7 @@
   niri = {
     configuration = {
       programs.niri.package = pkgs.niri;
-      home.packages = [pkgs.xwayland-satellite];
+      home.packages = [ pkgs.xwayland-satellite ];
 
       programs.niri.config = ''
         // dirty fix to use X11 apps because I'm too lazy to dig through

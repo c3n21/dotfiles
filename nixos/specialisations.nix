@@ -2,11 +2,12 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   specialisation = {
     hyprland = {
       configuration = {
-        system.nixos.tags = ["hyprland"];
+        system.nixos.tags = [ "hyprland" ];
 
         xdg.portal = {
           enable = true;
@@ -25,7 +26,7 @@
 
     niri = {
       configuration = {
-        system.nixos.tags = ["niri"];
+        system.nixos.tags = [ "niri" ];
 
         xdg.portal = {
           enable = true;
@@ -35,7 +36,7 @@
         programs = {
           uwsm = {
             enable = true;
-            waylandCompositors = {};
+            waylandCompositors = { };
           };
 
           niri = {
