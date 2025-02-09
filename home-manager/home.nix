@@ -25,7 +25,6 @@ in {
   # environment.
   home.packages = with pkgs; [
     nix-tree
-    git
     unzip
     jq
     btop
@@ -33,10 +32,6 @@ in {
     ripgrep
     fd
     fzf
-
-    # workaround to make NeoVim work
-    lua51Packages.luarocks
-    gnumake
   ];
 
   xdg = {
@@ -70,6 +65,9 @@ in {
   # Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
   # that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
+    git = {
+      enable = true;
+    };
     ghostty = {
       enable = true;
       enableFishIntegration = true;
