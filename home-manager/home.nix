@@ -256,6 +256,8 @@ in
         })
 
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
+
+        vimPlugins.blink-cmp
         vimPlugins.luasnip
         vimPlugins.SchemaStore-nvim
         vimPlugins.auto-session
