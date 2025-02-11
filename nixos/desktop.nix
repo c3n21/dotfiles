@@ -7,7 +7,7 @@
 let
   delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
 in
-{
+rec {
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
@@ -72,7 +72,17 @@ in
   };
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      wifi = {
+        powersave = true;
+        macAddress = "stable-ssid"; # mac address generation is stable per ssid
+        backend = "iwd";
+      };
+    };
+  };
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "it_IT.UTF-8";
@@ -167,45 +177,46 @@ in
 
   services = {
     blueman.enable = true;
-  };
-
-  services.displayManager = {
-    sddm = {
-      wayland.enable = true;
-      theme = "sugar-catppuccin";
-      enable = true;
+    resolved = {
+      enable = networking.networkmanager.dns == "systemd-resolved";
     };
-  };
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    extraConfig = {
-      pipewire-pulse = {
-        "92-low-latency.conf" = {
-          context.modules = [
-            {
-              name = "libpipewire-module-protocol-pulse";
-              args = {
-                pulse.min.req = "32/48000";
-                pulse.default.req = "32/48000";
-                pulse.max.req = "32/48000";
-                pulse.min.quantum = "32/48000";
-                pulse.max.quantum = "32/48000";
-              };
-            }
-          ];
-          stream.properties = {
-            node.latency = "32/48000";
-            resample.quality = 1;
+    displayManager = {
+      sddm = {
+        wayland.enable = true;
+        theme = "sugar-catppuccin";
+        enable = true;
+      };
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      extraConfig = {
+        pipewire-pulse = {
+          "92-low-latency.conf" = {
+            context.modules = [
+              {
+                name = "libpipewire-module-protocol-pulse";
+                args = {
+                  pulse.min.req = "32/48000";
+                  pulse.default.req = "32/48000";
+                  pulse.max.req = "32/48000";
+                  pulse.min.quantum = "32/48000";
+                  pulse.max.quantum = "32/48000";
+                };
+              }
+            ];
+            stream.properties = {
+              node.latency = "32/48000";
+              resample.quality = 1;
+            };
           };
         };
       };
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
     };
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
   };
 
   fonts = {
