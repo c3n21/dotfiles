@@ -66,6 +66,8 @@ in
   };
 
   home.packages = with pkgs; [
+    swaylock
+    swayidle
     brave
     scrcpy
     ripgrep-all

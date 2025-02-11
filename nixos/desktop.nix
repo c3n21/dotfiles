@@ -119,8 +119,6 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      swaylock
-      swayidle
       git
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
