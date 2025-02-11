@@ -68,6 +68,7 @@
             nixos-hardware.nixosModules.framework-13-7040-amd
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
+            ./nixos/common.nix
             ./nixos/desktop.nix
             ./nixos/specialisations.nix
             lanzaboote.nixosModules.lanzaboote
@@ -88,6 +89,7 @@
             nixos-wsl.nixosModules.default
             home-manager.nixosModules.home-manager
             ./nixos/wsl/configuration.nix
+            ./nixos/common.nix
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
