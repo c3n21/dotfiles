@@ -215,7 +215,10 @@ in
         tree-sitter
         go
         python3
-        luajitPackages.lua-lsp
+        lua-language-server
+        nixd
+        selene
+        stylua
         vscode-langservers-extracted
         deno
         astro-language-server

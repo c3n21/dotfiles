@@ -87,7 +87,6 @@ in
     libsForQt5.polkit-kde-agent
     grimblast
     nwg-look
-    nixd
     libsForQt5.okular
     hyprpaper
     firefox
@@ -114,12 +113,8 @@ in
     unzip
     zbar
     jq
-    lua-language-server
-    selene
-    stylua
     chromium
     usbutils
-    lua51Packages.luarocks
     testdisk-qt
     gparted
     exfatprogs
@@ -128,7 +123,6 @@ in
     lsof
     microsoft-edge
     google-chrome
-    jdk17
     wget
     btop
     powertop
