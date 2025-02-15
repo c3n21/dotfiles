@@ -260,6 +260,7 @@ in
 
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
 
+        vimPlugins.blink-copilot
         vimPlugins.blink-cmp
         vimPlugins.luasnip
         vimPlugins.SchemaStore-nvim
