@@ -224,6 +224,7 @@ in
         astro-language-server
         jdt-language-server
         typescript-language-server
+        vtsls
       ];
       plugins = with pkgs; [
         # parsers
