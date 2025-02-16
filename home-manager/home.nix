@@ -5,6 +5,16 @@
 }:
 let
   shell = "${pkgs.fish}/bin/fish";
+  sonarlint-ls = (
+    pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
+      installPhase = ''
+        ${oldAttrs.installPhase}
+
+        makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
+          --add-flags "-jar $out/share/sonarlint-ls.jar"
+      '';
+    })
+  );
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -195,37 +205,34 @@ in
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ ps.magick ];
       # go is for nvim-dbee
-      extraPackages = with pkgs; [
-        nixfmt-rfc-style
-        (sonarlint-ls.overrideAttrs (oldAttrs: {
-          installPhase = ''
-            ${oldAttrs.installPhase}
-
-            makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
-              --add-flags "-jar $out/share/sonarlint-ls.jar"
-          '';
-        }))
-        sonarlint-ls
-        prettierd
-        terraform-ls
-        terraform-lsp
-        nodejs
-        lua51Packages.luarocks
-        fswatch
-        tree-sitter
-        go
-        python3
-        lua-language-server
-        nixd
-        selene
-        stylua
-        vscode-langservers-extracted
-        deno
-        astro-language-server
-        jdt-language-server
-        typescript-language-server
-        vtsls
-      ];
+      extraPackages =
+        (with pkgs; [
+          astro-language-server
+          black
+          dart
+          deno
+          fswatch
+          go
+          isort
+          jdt-language-server
+          lua-language-server
+          lua51Packages.luarocks
+          nixd
+          nixfmt-rfc-style
+          nodejs
+          php84Packages.php-cs-fixer
+          prettierd
+          python3
+          selene
+          stylua
+          terraform-ls
+          terraform-lsp
+          tree-sitter
+          typescript-language-server
+          vscode-langservers-extracted
+          vtsls
+        ])
+        ++ [ sonarlint-ls ];
       plugins = with pkgs; [
         # parsers
         vimPlugins.nvim-treesitter-parsers.javascript
@@ -260,6 +267,7 @@ in
         })
 
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
+        # inputs.vtslsnixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
 
         vimPlugins.blink-copilot
         vimPlugins.blink-cmp
