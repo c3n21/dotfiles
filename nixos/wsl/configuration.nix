@@ -29,8 +29,14 @@
     wslu
   ];
 
-  programs.neovim.defaultEditor = true;
-  programs.neovim.enable = true;
+  programs = {
+    neovim = {
+      defaultEditor = true;
+      enable = true;
+    };
+    npm.enable = true;
+
+  };
 
   users.users.zhifan = {
     isNormalUser = true;
