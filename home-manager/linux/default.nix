@@ -63,6 +63,10 @@ in
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];
     };
+    # for brave's dark mode https://github.com/brave/brave-browser/issues/30766
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
   };
 
   home.packages = with pkgs; [
