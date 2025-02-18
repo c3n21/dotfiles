@@ -81,6 +81,23 @@
                 hostName = "zenuko"; # Define your hostname.
               };
             }
+            home-manager.nixosModules.home-manager
+            inputs.niri.nixosModules.niri
+            {
+              environment.systemPackages = [
+                home-manager.outputs.default
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              nixpkgs.config.allowUnfree = true;
+
+              home-manager.users.zhifan = import ./home-manager/home.nix { inherit pkgs inputs; };
+            }
+            { nixpkgs.config.allowUnfree = true; }
+
+            {
+              home-manager.users.zhifan = import ./home-manager/linux { inherit pkgs inputs; };
+            }
           ];
         };
 
