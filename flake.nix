@@ -109,6 +109,7 @@
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
           modules = [
+            ./home-manager/standalone.nix
             ./home-manager/home.nix
             ./home-manager/linux
             inputs.niri.homeModules.niri
