@@ -17,7 +17,6 @@ let
   );
 in
 {
-  nixpkgs.config.allowUnfree = true;
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   # This value determines the Home Manager release that your configuration is
