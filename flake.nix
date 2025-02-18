@@ -66,6 +66,7 @@
 
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
+            ./nixos/common/fish.nix
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
             ./nixos/firewall.nix
@@ -86,6 +87,7 @@
         wsl = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            ./nixos/common/fish.nix
             nixos-wsl.nixosModules.default
             home-manager.nixosModules.home-manager
             ./nixos/wsl/configuration.nix
