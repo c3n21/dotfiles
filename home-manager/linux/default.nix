@@ -70,6 +70,7 @@ in
   };
 
   home.packages = with pkgs; [
+    baobab
     steam
     swaylock
     swayidle
