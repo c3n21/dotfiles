@@ -70,6 +70,7 @@ in
   };
 
   home.packages = with pkgs; [
+    steam
     swaylock
     swayidle
     brave
