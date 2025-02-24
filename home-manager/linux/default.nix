@@ -185,6 +185,41 @@ in
             ];
           };
         }
+        {
+          profile = {
+            name = "home2";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                position = "0,540";
+              }
+              {
+                criteria = "Samsung Electric Company S24F350 H4ZH808827";
+                position = "84,0";
+                scale = 2.0;
+                mode = "1920x1080@60.00Hz";
+              }
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "home2-horizontal";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                position = "0,0";
+              }
+              {
+                criteria = "Samsung Electric Company S24F350 H4ZH808827";
+                position = "1128,106";
+                scale = 2.0;
+                mode = "1920x1080@71.91Hz";
+              }
+            ];
+          };
+        }
+
       ];
     };
     swayidle = {
