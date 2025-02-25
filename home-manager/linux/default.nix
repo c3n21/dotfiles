@@ -4,16 +4,10 @@
   inputs,
   ...
 }:
-let
-  cursor = {
-    name = "Bibata-Modern-Classic";
-    size = 16;
-  };
-in
-{
+rec {
   specialisation = import ./specialisations.nix { inherit pkgs inputs; };
   home.sessionVariables = {
-    XCURSOR_SIZE = cursor.size;
+    XCURSOR_SIZE = home.pointerCursor.size;
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 
@@ -22,8 +16,8 @@ in
       gtk.enable = true;
       x11.enable = true;
       package = pkgs.bibata-cursors;
-      name = cursor.name;
-      size = cursor.size;
+      name = "Bibata-Modern-Classic";
+      size = 16;
     };
   };
 
