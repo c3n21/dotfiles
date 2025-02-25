@@ -17,9 +17,9 @@
         xwayland = {
           enable = true;
         };
-        # plugins = [
-        #   inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-        # ];
+        plugins = [
+          inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+        ];
 
         settings = {
           # unscale XWayland
@@ -108,28 +108,28 @@
             "$mod SHIFT,k,movewindow,u"
             "$mod SHIFT,j,movewindow,d"
 
-            "$mod ,1,workspace,1"
-            "$mod ,2,workspace,2"
-            "$mod ,3,workspace,3"
-            "$mod ,4,workspace,4"
-            "$mod ,5,workspace,5"
-            "$mod ,6,workspace,6"
-            "$mod ,7,workspace,7"
-            "$mod ,8,workspace,8"
-            "$mod ,9,workspace,9"
-            "$mod ,0,workspace,10"
+            "$mod ,1,split-workspace,1"
+            "$mod ,2,split-workspace,2"
+            "$mod ,3,split-workspace,3"
+            "$mod ,4,split-workspace,4"
+            "$mod ,5,split-workspace,5"
+            "$mod ,6,split-workspace,6"
+            "$mod ,7,split-workspace,7"
+            "$mod ,8,split-workspace,8"
+            "$mod ,9,split-workspace,9"
+            "$mod ,0,split-workspace,10"
 
-            "$mod ,y,workspace,r+1"
-            "$mod ,e,workspace,r-1"
+            "$mod ,y,split-workspace,r+1"
+            "$mod ,e,split-workspace,r-1"
 
-            "$mod SHIFT,1,movetoworkspacesilent,1"
-            "$mod SHIFT,2,movetoworkspacesilent,2"
-            "$mod SHIFT,3,movetoworkspacesilent,3"
-            "$mod SHIFT,4,movetoworkspacesilent,4"
-            "$mod SHIFT,5,movetoworkspacesilent,5"
+            "$mod SHIFT,1,split-movetoworkspacesilent,1"
+            "$mod SHIFT,2,split-movetoworkspacesilent,2"
+            "$mod SHIFT,3,split-movetoworkspacesilent,3"
+            "$mod SHIFT,4,split-movetoworkspacesilent,4"
+            "$mod SHIFT,5,split-movetoworkspacesilent,5"
 
-            "$mod SHIFT,y,movetoworkspace,r+1"
-            "$mod SHIFT,e,movetoworkspace,r-1"
+            "$mod SHIFT,y,split-movetoworkspace,r+1"
+            "$mod SHIFT,e,split-movetoworkspace,r-1"
 
             "$mod ,F11,fullscreen"
             ",Print,exec,grimblast --freeze copy area"
@@ -137,11 +137,11 @@
             # Lock scren
             "$mod CTRL,e,exec,swaylock -f -i ~/Pictures/wallpaper.jpg"
 
-            "$mod SHIFT,6,movetoworkspacesilent,6"
-            "$mod SHIFT,7,movetoworkspacesilent,7"
-            "$mod SHIFT,8,movetoworkspacesilent,8"
-            "$mod SHIFT,9,movetoworkspacesilent,9"
-            "$mod SHIFT,0,movetoworkspacesilent,10"
+            "$mod SHIFT,6,split-movetoworkspacesilent,6"
+            "$mod SHIFT,7,split-movetoworkspacesilent,7"
+            "$mod SHIFT,8,split-movetoworkspacesilent,8"
+            "$mod SHIFT,9,split-movetoworkspacesilent,9"
+            "$mod SHIFT,0,split-movetoworkspacesilent,10"
           ];
 
           bindm = [
@@ -166,31 +166,41 @@
             ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ];
         };
-        extraConfig = ''
-          # windowrulev2=windowdance,class:^(jetbrains-.*)$
-          # search dialog
-          windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
-          windowrulev2=center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
-          # autocomplete & menus
-          windowrulev2=noanim,class:^(jetbrains-.*)$,title:^(win.*)$
-          windowrulev2=noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$
-          windowrulev2=rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$
+        extraConfig = # hyprlang
+          ''
+            plugin {
+              split-monitor-workspaces {
+                count = 5
+                keep_focused = 0
+                enable_notifications = 0
+                enable_persistent_workspaces = 1
+              }
+            }
+
+            # windowrulev2=windowdance,class:^(jetbrains-.*)$
+            # search dialog
+            windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
+            windowrulev2=center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
+            # autocomplete & menus
+            windowrulev2=noanim,class:^(jetbrains-.*)$,title:^(win.*)$
+            windowrulev2=noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$
+            windowrulev2=rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$
 
 
 
-          windowrule=pseudo,fcitx
+            windowrule=pseudo,fcitx
 
-          windowrulev2 = workspace special,class:(kitty)
+            windowrulev2 = workspace special,class:(kitty)
 
-          exec-once=nm-applet
-          exec-once=blueman-applet
-          exec-once=fcitx5 -d --replace
+            exec-once=nm-applet
+            exec-once=blueman-applet
+            exec-once=fcitx5 -d --replace
 
-          # background
-          exec=pkill --signal 9 hyprpaper; hyprpaper
+            # background
+            exec=pkill --signal 9 hyprpaper; hyprpaper
 
-          exec-once=hyprctl setcursor Bibata-Modern-Classic 16
-        '';
+            exec-once=hyprctl setcursor Bibata-Modern-Classic 16
+          '';
         # ...
       };
     };

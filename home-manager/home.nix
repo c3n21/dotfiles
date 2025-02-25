@@ -89,8 +89,6 @@ in
     };
   };
 
-  # Sometimes waybar and swayidle don't work properly because of this bug https://github.com/hyprwm/Hyprland/issues/4849
-  # that causes Hyprland to crash and thus the services are not properly stopped.
   programs = {
     git = {
       enable = true;

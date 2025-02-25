@@ -22,14 +22,20 @@
         "hyprland/workspaces": {
             "format": "{name}: {icon}",
             "format-icons": {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": "",
-                "5": "",
+//                "1": "",
+//                "2": "",
+//                "3": "",
+//                "4": "",
+//                "5": "",
                 "active": "",
-                "default": ""
+                "default": "",
+                "urgent": "",
+                "active": "", // focused workspace on current monitor 
+                "visible": "", // focused workspace on other monitors
+                "default": "",
+                "empty": "" // persistent (created by this plugin)
             },
+            "all-outputs": false // recommended
         },
 
         // Modules configuration
