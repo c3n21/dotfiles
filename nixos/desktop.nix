@@ -180,13 +180,6 @@ rec {
     resolved = {
       enable = networking.networkmanager.dns == "systemd-resolved";
     };
-    displayManager = {
-      sddm = {
-        wayland.enable = true;
-        theme = "sugar-catppuccin";
-        enable = true;
-      };
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
