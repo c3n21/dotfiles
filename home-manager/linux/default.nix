@@ -1,13 +1,10 @@
 # This is needed only for full blown Linux systems
 {
   pkgs,
-  inputs,
   ...
 }:
 rec {
-  specialisation = import ./specialisations.nix { inherit pkgs inputs; };
   home.sessionVariables = {
-    XCURSOR_SIZE = home.pointerCursor.size;
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 
@@ -15,17 +12,22 @@ rec {
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 16;
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
+      size = 32;
     };
   };
 
   gtk = {
     enable = true;
+    cursorTheme = {
+      package = home.pointerCursor.package;
+      name = home.pointerCursor.name;
+      size = home.pointerCursor.size;
+    };
     theme = {
       package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      name = "Flat-Remix-GTK-Blue-Dark-Solid";
     };
     iconTheme = {
       package = pkgs.libsForQt5.breeze-icons;

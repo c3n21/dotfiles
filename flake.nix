@@ -112,6 +112,7 @@
             ./home-manager/standalone.nix
             ./home-manager/home.nix
             ./home-manager/linux
+            ./home-manager/linux/specialisations.nix
             inputs.niri.homeModules.niri
           ];
           extraSpecialArgs = {
