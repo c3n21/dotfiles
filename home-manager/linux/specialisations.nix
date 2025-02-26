@@ -228,16 +228,7 @@
               windowrulev2=noanim,class:^(jetbrains-.*)$,title:^(win.*)$
               windowrulev2=noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$
               windowrulev2=rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$
-
-
-
-              windowrule=pseudo,fcitx
-
               windowrulev2 = workspace special,class:(kitty)
-
-              exec-once=nm-applet
-              exec-once=blueman-applet
-              exec-once=fcitx5 -d --replace
             '';
           # ...
         };
