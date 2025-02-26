@@ -172,11 +172,11 @@ rec {
             outputs = [
               {
                 criteria = "eDP-1";
-                position = "0,0";
+                position = "960,0";
               }
               {
                 criteria = "Samsung Electric Company S24F350 H4ZH808827";
-                position = "1128,106";
+                position = "0,106";
                 scale = 2.0;
                 mode = "1920x1080@71.91Hz";
               }
