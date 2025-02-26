@@ -6,9 +6,27 @@
 {
   hyprland = {
     configuration = {
+      services = {
+        hyprpaper = {
+          enable = true;
+          settings = {
+            ipc = "off";
+
+            preload = [
+              "~/Pictures/wallpaper.jpg"
+            ];
+
+            wallpaper = [
+              "eDP-1,~/Pictures/wallpaper.jpg"
+              ",~/Pictures/wallpaper.jpg"
+            ];
+          };
+        };
+      };
+
       wayland.windowManager.hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        package = null; # use whatever is system wide
         systemd = {
           # disabling because of this https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
           enable = false;
@@ -197,9 +215,6 @@
             exec-once=fcitx5 -d --replace
 
             # background
-            exec=pkill --signal 9 hyprpaper; hyprpaper
-
-            exec-once=hyprctl setcursor Bibata-Modern-Classic 16
           '';
         # ...
       };

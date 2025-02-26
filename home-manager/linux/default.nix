@@ -75,7 +75,6 @@ rec {
     grimblast
     nwg-look
     libsForQt5.okular
-    hyprpaper
     firefox
     git
     distrobox
