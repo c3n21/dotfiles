@@ -24,6 +24,11 @@
       };
 
     };
-    nftables.enable = true;
+
+    # breaks libvirtd because it uses iptables for NAT forwarding
+    # maybe interesting issues:
+    # https://github.com/NixOS/nixpkgs/issues/263359
+    # https://github.com/NixOS/nixpkgs/issues/88643
+    nftables.enable = false;
   };
 }
