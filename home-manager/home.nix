@@ -63,27 +63,11 @@ in
 
   xdg = {
     mimeApps = {
-      associations = {
-        added = {
-          "inode/directory" = [ "kitty-open.desktop" ];
-          "text/*" = [ "nvim.desktop" ];
-          "default-web-browser" = [ "firefox.desktop" ];
-          "text/html" = [ "firefox.desktop" ];
-          "application/pdf" = [ "firefox.desktop" ];
-          "x-scheme-handler/http" = [ "firefox.desktop" ];
-          "x-scheme-handler/https" = [ "firefox.desktop" ];
-          "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-        };
-      };
       enable = true;
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
-        "default-web-browser" = [ "firefox.desktop" ];
-        "text/html" = [ "firefox.desktop" ];
-        "application/pdf" = [ "firefox.desktop" ];
-        "x-scheme-handler/http" = [ "firefox.desktop" ];
-        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "default-web-browser" = [ "brave-browser.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
