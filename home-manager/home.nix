@@ -212,6 +212,7 @@ in
           go
           isort
           jdt-language-server
+          tailwindcss-language-server
           lua-language-server
           lua51Packages.luarocks
           nixd
@@ -265,7 +266,7 @@ in
 
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
         # inputs.vtslsnixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
-
+        vimPlugins.nvim-colorizer-lua
         vimPlugins.blink-copilot
         vimPlugins.blink-cmp
         vimPlugins.luasnip
