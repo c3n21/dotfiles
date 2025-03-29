@@ -47,6 +47,22 @@ rec {
   # laptop
   powerManagement.enable = true;
   services = {
+    kanata = {
+      enable = true;
+      keyboards = {
+        laptop = {
+          config =
+            # lisp
+            ''
+              (defsrc caps esc)
+              (deflayer base esc caps)
+            '';
+          devices = [
+            "/dev/input/by-path/platform-i8042-serio-0-event-kbd" # framework-13-7040-amd
+          ];
+        };
+      };
+    };
     logind.lidSwitch = "suspend-then-hibernate";
     thermald.enable = true;
     fwupd.enable = true;
@@ -169,6 +185,16 @@ rec {
         zstd
       ];
     };
+    gamescope = {
+      enable = true;
+    };
+    steam = {
+      enable = true;
+      gamescopeSession = {
+        enable = true;
+      };
+    };
+
     npm = {
       enable = true;
     };
