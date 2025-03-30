@@ -233,6 +233,7 @@ in
         ++ [ sonarlint-ls ];
       plugins = with pkgs; [
         # parsers
+        vimPlugins.nvim-treesitter-parsers.commonlisp
         vimPlugins.nvim-treesitter-parsers.javascript
         vimPlugins.nvim-treesitter-parsers.java
         vimPlugins.nvim-treesitter-parsers.jsdoc
