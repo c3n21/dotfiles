@@ -92,6 +92,9 @@ rec {
 
   # Enable networking
   networking = {
+    # make wireguard work in conjunction with nm
+    # https://wiki.nixos.org/wiki/WireGuard
+    firewall.checkReversePath = "loose";
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
