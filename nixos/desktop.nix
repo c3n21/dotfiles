@@ -9,6 +9,9 @@ let
 in
 rec {
   boot = {
+    supportedFilesystems = {
+      nfs = true;
+    };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
       "vm.swappiness" = 10;
