@@ -68,6 +68,7 @@ in
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
         "default-web-browser" = [ "brave-browser.desktop" ];
+        "application/pdf" = [ "brave-browser.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
