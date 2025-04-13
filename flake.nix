@@ -67,6 +67,7 @@
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
             ./nixos/common/fish.nix
+            ./nixos/common/distributed-builds.nix
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
             ./nixos/firewall.nix
