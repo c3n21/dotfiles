@@ -205,6 +205,7 @@ in
       # go is for nvim-dbee
       extraPackages =
         (with pkgs; [
+          angular-language-server
           astro-language-server
           black
           dart
@@ -213,7 +214,6 @@ in
           go
           isort
           jdt-language-server
-          tailwindcss-language-server
           lua-language-server
           lua51Packages.luarocks
           nixd
@@ -224,12 +224,14 @@ in
           python3
           selene
           stylua
+          tailwindcss-language-server
           terraform-ls
           terraform-lsp
           tree-sitter
           typescript-language-server
           vscode-langservers-extracted
           vtsls
+          yaml-language-server
         ])
         ++ [ sonarlint-ls ];
       plugins = with pkgs; [
@@ -243,11 +245,14 @@ in
         vimPlugins.nvim-treesitter-parsers.astro
         vimPlugins.nvim-treesitter-parsers.nix
         vimPlugins.nvim-treesitter-parsers.terraform
+        vimPlugins.nvim-treesitter-parsers.yaml
 
+        vimPlugins.nvim-treesitter-parsers.angular
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc
         vimPlugins.nvim-treesitter-parsers.norg
 
+        vimPlugins.go-nvim
         # nvim-java dep
         # vimPlugins.nui-nvim
         # vimPlugins.mason-nvim
