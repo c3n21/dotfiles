@@ -75,6 +75,9 @@ in
   };
 
   programs = {
+    obs-studio = {
+      enable = true;
+    };
     git = {
       enable = true;
     };
