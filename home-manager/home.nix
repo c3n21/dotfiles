@@ -223,7 +223,7 @@ in
           nixd
           nixfmt-rfc-style
           nodejs
-          php84Packages.php-cs-fixer
+          # php84Packages.php-cs-fixer
           prettierd
           python3
           selene
