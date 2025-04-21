@@ -7,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     mynixpkgs.url = "github:c3n21/nixpkgs/feature/sonarlint-nvim";
     # https://github.com/hyprwm/Hyprland/issues/5891
+    # https://github.com/NixOS/nix/issues/6633
     hyprland = {
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";

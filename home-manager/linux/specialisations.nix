@@ -47,6 +47,7 @@
         wayland.windowManager.hyprland = {
           enable = true;
           package = null; # use whatever is system wide
+          portalPackage = null; # use whatever is system wide
           systemd = {
             # disabling because of this https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm
             enable = false;
