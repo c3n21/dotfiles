@@ -5,19 +5,6 @@
 }:
 let
   shell = "${pkgs.fish}/bin/fish";
-  # workaround until the fix is not merged
-  otter-nvim = (
-    pkgs.vimUtils.buildVimPlugin rec {
-      name = "otter.nvim";
-      doCheck = false;
-      src = pkgs.fetchFromGitHub {
-        owner = "c3n21";
-        repo = name;
-        rev = "3ebbf38f36bf0157abe9bbd49e27d1923c5b1cfe";
-        hash = "sha256-VijUN7EtLzuR/AfPMYzSdv7pfg30zNtLRrfLIRc5SgU=";
-      };
-    }
-  );
   sonarlint-ls = (
     pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
       installPhase = ''
@@ -315,7 +302,7 @@ in
         vimPlugins.nvim-ts-context-commentstring
         vimPlugins.nvim-web-devicons
         vimPlugins.oil-nvim
-        otter-nvim
+        vimPlugins.otter-nvim
         vimPlugins.sleuth
         vimPlugins.telescope-fzf-native-nvim
         vimPlugins.telescope-nvim
