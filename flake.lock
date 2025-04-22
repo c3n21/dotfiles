@@ -611,11 +611,11 @@
     },
     "mynixpkgs": {
       "locked": {
-        "lastModified": 1739014541,
-        "narHash": "sha256-1NnvOLLLvilT0cdQqAAZlW7UJ12Ncaw/UyxTi2AFyRc=",
+        "lastModified": 1745228306,
+        "narHash": "sha256-FYPMagJWMf7mNBGxL9gqbN2fiBqC6owYhZ89CFirTRU=",
         "owner": "c3n21",
         "repo": "nixpkgs",
-        "rev": "99c00816ce00936cce89f763af0e9365011e21ec",
+        "rev": "b5d3f773d213be7b9ae78a7ed9937eb6197d7709",
         "type": "github"
       },
       "original": {
