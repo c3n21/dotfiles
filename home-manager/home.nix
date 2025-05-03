@@ -196,6 +196,7 @@ in
       # go is for nvim-dbee
       extraPackages =
         (with pkgs; [
+          # php84Packages.php-cs-fixer
           angular-language-server
           astro-language-server
           black
@@ -210,16 +211,17 @@ in
           nixd
           nixfmt-rfc-style
           nodejs
-          # php84Packages.php-cs-fixer
           prettierd
           python3
           selene
+          shfmt
           stylua
           tailwindcss-language-server
           terraform-ls
           terraform-lsp
           tree-sitter
           typescript-language-server
+          typos-lsp
           vscode-langservers-extracted
           vtsls
           yaml-language-server
@@ -237,6 +239,8 @@ in
         vimPlugins.nvim-treesitter-parsers.nix
         vimPlugins.nvim-treesitter-parsers.terraform
         vimPlugins.nvim-treesitter-parsers.yaml
+        vimPlugins.nvim-treesitter-parsers.bash
+        vimPlugins.nvim-treesitter-parsers.ssh_config
 
         vimPlugins.nvim-treesitter-parsers.angular
         vimPlugins.nvim-treesitter-parsers.lua
@@ -262,6 +266,7 @@ in
           };
         })
 
+        vimPlugins.toggleterm-nvim
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
         # inputs.vtslsnixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
         vimPlugins.nvim-colorizer-lua
