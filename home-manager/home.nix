@@ -241,7 +241,7 @@ in
         vimPlugins.nvim-treesitter-parsers.yaml
         vimPlugins.nvim-treesitter-parsers.bash
         vimPlugins.nvim-treesitter-parsers.ssh_config
-
+        vimPlugins.nvim-treesitter-parsers.go
         vimPlugins.nvim-treesitter-parsers.angular
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.luadoc
