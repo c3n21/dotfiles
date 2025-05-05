@@ -316,6 +316,8 @@ in
         vimPlugins.vim-fugitive
         vimPlugins.vim-illuminate
         vimPlugins.vim-matchup
+
+        vimPlugins.fzf-lua
       ];
       defaultEditor = true;
     };
