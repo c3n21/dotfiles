@@ -93,7 +93,7 @@ in
       enable = true;
       baseIndex = 1;
       clock24 = true;
-      prefix = "C-a";
+      prefix = "M-a";
       # Less secure but it persists the session across user login and logout
       secureSocket = false;
       plugins = with pkgs; [
