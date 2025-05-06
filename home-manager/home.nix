@@ -298,7 +298,14 @@ in
         vimPlugins.nvim-autopairs
         vimPlugins.nvim-cmp
         vimPlugins.nvim-dap
-        vimPlugins.nvim-dbee
+        (vimPlugins.nvim-dbee.overrideAttrs {
+          src = pkgs.fetchFromGitHub {
+            owner = "c3n21";
+            repo = "nvim-dbee";
+            rev = "415acc221692204c209e4e7195cc704563f31aff";
+            hash = "sha256-uvInCrEe5IBZu82qNL7ac9zN5qONht+0+I3e9v7zBFA=";
+          };
+        })
         vimPlugins.nvim-lspconfig
         vimPlugins.nvim-surround
         vimPlugins.nvim-treesitter
