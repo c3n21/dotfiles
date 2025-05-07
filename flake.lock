@@ -611,16 +611,16 @@
     },
     "mynixpkgs": {
       "locked": {
-        "lastModified": 1745228306,
-        "narHash": "sha256-FYPMagJWMf7mNBGxL9gqbN2fiBqC6owYhZ89CFirTRU=",
+        "lastModified": 1746629491,
+        "narHash": "sha256-7+K9CxzqRYGkLhjHElsQh7hVZ/t5gkSuVk2pW4fULyA=",
         "owner": "c3n21",
         "repo": "nixpkgs",
-        "rev": "b5d3f773d213be7b9ae78a7ed9937eb6197d7709",
+        "rev": "a3ee0b8bcbf9ae3b39f25ef516861be3896cf2d5",
         "type": "github"
       },
       "original": {
         "owner": "c3n21",
-        "ref": "feature/sonarlint-nvim",
+        "ref": "feature/nvim-vtsls",
         "repo": "nixpkgs",
         "type": "github"
       }

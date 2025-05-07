@@ -5,7 +5,7 @@
     # Specify the source of Home Manager and Nixpkgs.
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    mynixpkgs.url = "github:c3n21/nixpkgs/feature/sonarlint-nvim";
+    mynixpkgs.url = "github:c3n21/nixpkgs/feature/nvim-vtsls";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
     hyprland = {

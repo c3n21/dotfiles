@@ -223,7 +223,6 @@ in
           typescript-language-server
           typos-lsp
           vscode-langservers-extracted
-          vtsls
           yaml-language-server
         ])
         ++ [ sonarlint-ls ];
@@ -267,6 +266,7 @@ in
         })
 
         vimPlugins.toggleterm-nvim
+        inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
         inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
         # inputs.vtslsnixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
         vimPlugins.nvim-colorizer-lua
