@@ -302,8 +302,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "c3n21";
             repo = "nvim-dbee";
-            rev = "415acc221692204c209e4e7195cc704563f31aff";
-            hash = "sha256-uvInCrEe5IBZu82qNL7ac9zN5qONht+0+I3e9v7zBFA=";
+            rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
+            hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
           };
         })
         vimPlugins.nvim-lspconfig
