@@ -38,6 +38,7 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+      inputs.nvim-configuration.packages.${pkgs.system}.note-nvim
     radeontop
     nix-tree
     unzip
@@ -191,141 +192,6 @@ in
       vimAlias = true;
       vimdiffAlias = true;
       enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-      extraLuaPackages = ps: [ ps.magick ];
-      # go is for nvim-dbee
-      extraPackages =
-        (with pkgs; [
-          # php84Packages.php-cs-fixer
-          angular-language-server
-          astro-language-server
-          black
-          dart
-          deno
-          fswatch
-          go
-          isort
-          jdt-language-server
-          lua-language-server
-          lua51Packages.luarocks
-          nixd
-          nixfmt-rfc-style
-          nodejs
-          prettierd
-          python3
-          selene
-          shfmt
-          stylua
-          tailwindcss-language-server
-          terraform-ls
-          terraform-lsp
-          tree-sitter
-          typescript-language-server
-          typos-lsp
-          vscode-langservers-extracted
-          yaml-language-server
-        ])
-        ++ [ sonarlint-ls ];
-      plugins = with pkgs; [
-        # parsers
-        vimPlugins.nvim-treesitter-parsers.commonlisp
-        vimPlugins.nvim-treesitter-parsers.javascript
-        vimPlugins.nvim-treesitter-parsers.java
-        vimPlugins.nvim-treesitter-parsers.jsdoc
-        vimPlugins.nvim-treesitter-parsers.tsx
-        vimPlugins.nvim-treesitter-parsers.typescript
-        vimPlugins.nvim-treesitter-parsers.astro
-        vimPlugins.nvim-treesitter-parsers.nix
-        vimPlugins.nvim-treesitter-parsers.terraform
-        vimPlugins.nvim-treesitter-parsers.yaml
-        vimPlugins.nvim-treesitter-parsers.bash
-        vimPlugins.nvim-treesitter-parsers.ssh_config
-        vimPlugins.nvim-treesitter-parsers.go
-        vimPlugins.nvim-treesitter-parsers.angular
-        vimPlugins.nvim-treesitter-parsers.lua
-        vimPlugins.nvim-treesitter-parsers.luadoc
-        vimPlugins.nvim-treesitter-parsers.norg
-
-        vimPlugins.go-nvim
-        # nvim-java dep
-        # vimPlugins.nui-nvim
-        # vimPlugins.mason-nvim
-        #vimPlugins.mason-lspconfig-nvim
-
-        # vimPlugins.nvim-java
-
-        (pkgs.vimUtils.buildVimPlugin rec {
-          name = "spring-boot.nvim";
-          doCheck = false;
-          src = pkgs.fetchFromGitHub {
-            owner = "JavaHello";
-            repo = name;
-            rev = "21483b5cf3dd4bfa16f498f7a28d11e7b34aa2ec";
-            hash = "sha256-Fa0htsbWlInuZf7QE7F+CmStyBuZNwDsDHWPhfrsKHI=";
-          };
-        })
-
-        vimPlugins.toggleterm-nvim
-        inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
-        inputs.mynixpkgs.legacyPackages."x86_64-linux".vimPlugins.sonarlint-nvim
-        # inputs.vtslsnixpkgs.legacyPackages."x86_64-linux".vimPlugins.nvim-vtsls
-        vimPlugins.nvim-colorizer-lua
-        vimPlugins.blink-copilot
-        vimPlugins.blink-cmp
-        vimPlugins.luasnip
-        vimPlugins.SchemaStore-nvim
-        vimPlugins.auto-session
-        vimPlugins.cmp-buffer
-        vimPlugins.cmp-dap
-        vimPlugins.cmp-nvim-lsp
-        vimPlugins.cmp-nvim-lsp-signature-help
-        vimPlugins.cmp_luasnip
-        vimPlugins.comment-nvim
-        vimPlugins.conform-nvim
-        vimPlugins.copilot-cmp
-        vimPlugins.copilot-lua
-        vimPlugins.diffview-nvim
-        vimPlugins.dropbar-nvim
-        vimPlugins.flutter-tools-nvim
-        vimPlugins.gitsigns-nvim
-        vimPlugins.inc-rename-nvim
-        vimPlugins.indent-blankline-nvim
-        vimPlugins.lazydev-nvim
-        vimPlugins.lsp_lines-nvim
-        vimPlugins.lualine-nvim
-        vimPlugins.neogit
-        vimPlugins.neorg
-        vimPlugins.nvim-autopairs
-        vimPlugins.nvim-cmp
-        vimPlugins.nvim-dap
-        (vimPlugins.nvim-dbee.overrideAttrs {
-          src = pkgs.fetchFromGitHub {
-            owner = "c3n21";
-            repo = "nvim-dbee";
-            rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
-            hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
-          };
-        })
-        vimPlugins.nvim-lspconfig
-        vimPlugins.nvim-surround
-        vimPlugins.nvim-treesitter
-        vimPlugins.nvim-treesitter-textobjects
-        vimPlugins.nvim-ts-autotag
-        vimPlugins.nvim-ts-context-commentstring
-        vimPlugins.nvim-web-devicons
-        vimPlugins.oil-nvim
-        vimPlugins.otter-nvim
-        vimPlugins.sleuth
-        vimPlugins.telescope-fzf-native-nvim
-        vimPlugins.telescope-nvim
-        vimPlugins.telescope-ui-select-nvim
-        vimPlugins.typescript-tools-nvim
-        vimPlugins.vim-fugitive
-        vimPlugins.vim-illuminate
-        vimPlugins.vim-matchup
-
-        vimPlugins.fzf-lua
-      ];
       defaultEditor = true;
     };
   };

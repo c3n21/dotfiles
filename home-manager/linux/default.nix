@@ -67,7 +67,6 @@ rec {
     mpvpaper
     yt-dlp
     socat
-    wineWowPackages.waylandFull
     mpv
     htop
     gitflow
@@ -79,7 +78,6 @@ rec {
     libsForQt5.okular
     firefox
     git
-    distrobox
     rofi-wayland
     zoxide
     lsd
@@ -87,7 +85,6 @@ rec {
     ripgrep
     fzf
     gnumake
-    sqlite
     fd
     wl-clipboard
     gcc
@@ -122,7 +119,6 @@ rec {
     wlr-randr
     vscode
     framework-tool
-    devenv
     qbittorrent
     spotify
     wechat-uos
