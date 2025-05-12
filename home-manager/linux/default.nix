@@ -1,11 +1,13 @@
 # This is needed only for full blown Linux systems
 {
   pkgs,
+  inputs,
   ...
 }:
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    EDITOR = "${inputs.nvim-configuration.packages.${pkgs.system}.vi.outPath}/bin/vi";
   };
 
   home = {

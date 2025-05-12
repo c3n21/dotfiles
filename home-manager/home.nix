@@ -5,16 +5,6 @@
 }:
 let
   shell = "${pkgs.fish}/bin/fish";
-  sonarlint-ls = (
-    pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
-      installPhase = ''
-        ${oldAttrs.installPhase}
-
-        makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
-          --add-flags "-jar $out/share/sonarlint-ls.jar"
-      '';
-    })
-  );
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -38,7 +28,8 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-      inputs.nvim-configuration.packages.${pkgs.system}.note-nvim
+    inputs.nvim-configuration.packages.${pkgs.system}.note
+    inputs.nvim-configuration.packages.${pkgs.system}.vi
     radeontop
     nix-tree
     unzip
@@ -187,12 +178,9 @@ in
     zoxide = {
       enable = true;
     };
+    # TODO: refactor inside nvim-configuration
     neovim = {
-      viAlias = true;
-      vimAlias = true;
       vimdiffAlias = true;
-      enable = true;
-      defaultEditor = true;
     };
   };
 }
