@@ -1,11 +1,13 @@
 # This is needed only for full blown Linux systems
 {
   pkgs,
+  inputs,
   ...
 }:
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    EDITOR = "${inputs.nvim-configuration.packages.${pkgs.system}.vi.outPath}/bin/vi";
   };
 
   home = {
@@ -67,7 +69,6 @@ rec {
     mpvpaper
     yt-dlp
     socat
-    wineWowPackages.waylandFull
     mpv
     htop
     gitflow
@@ -79,7 +80,6 @@ rec {
     libsForQt5.okular
     firefox
     git
-    distrobox
     rofi-wayland
     zoxide
     lsd
@@ -87,7 +87,6 @@ rec {
     ripgrep
     fzf
     gnumake
-    sqlite
     fd
     wl-clipboard
     gcc
@@ -122,7 +121,6 @@ rec {
     wlr-randr
     vscode
     framework-tool
-    devenv
     qbittorrent
     spotify
     wechat-uos
