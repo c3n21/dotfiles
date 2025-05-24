@@ -75,15 +75,22 @@ rec {
   security = {
     pam.services = {
       swaylock = {
+      };
+      login = {
         kwallet = {
           enable = true;
           package = pkgs.kdePackages.kwallet-pam;
+          forceRun = true;
         };
       };
     };
     rtkit.enable = true;
     polkit.enable = true;
   };
+
+  xdg.portal.extraPortals = [
+    pkgs.kdePackages.kwallet
+  ];
 
   qt = {
     enable = true;

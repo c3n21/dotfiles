@@ -4,6 +4,12 @@
   inputs,
   ...
 }:
+let
+  edge_flake = import inputs.edge {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -54,81 +60,87 @@ rec {
     };
   };
 
-  home.packages = with pkgs; [
-    baobab
-    steam
-    swaylock
-    swayidle
-    brave
-    scrcpy
-    ripgrep-all
-    remmina
-    # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
-    virtiofsd
-    libreoffice-fresh
-    mpvpaper
-    yt-dlp
-    socat
-    mpv
-    htop
-    gitflow
-    dunst
-    networkmanagerapplet
-    libsForQt5.polkit-kde-agent
-    grimblast
-    nwg-look
-    libsForQt5.okular
-    firefox
-    git
-    rofi-wayland
-    zoxide
-    lsd
-    bat
-    ripgrep
-    fzf
-    gnumake
-    fd
-    wl-clipboard
-    gcc
-    killall
-    pavucontrol
-    jetbrains.idea-community-bin
-    telegram-desktop
-    # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
-    # this fixes cursor issue on firefox at least
-    dnsutils
-    unzip
-    zbar
-    jq
-    chromium
-    usbutils
-    testdisk-qt
-    gparted
-    exfatprogs
-    nmap
-    discord
-    lsof
-    microsoft-edge
-    google-chrome
-    wget
-    btop
-    powertop
-    lm_sensors
-    sbt
-    file
-    nwg-displays
-    # dependency for nwg-displays
-    wlr-randr
-    vscode
-    framework-tool
-    qbittorrent
-    spotify
-    wechat-uos
-    brightnessctl
-    adbfs-rootless
-    mgba
-    localsend
-  ];
+  home.packages =
+    (with pkgs; [
+      baobab
+      steam
+      swaylock
+      swayidle
+      brave
+      scrcpy
+      ripgrep-all
+      remmina
+      # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
+      virtiofsd
+      libreoffice-fresh
+      mpvpaper
+      yt-dlp
+      socat
+      mpv
+      htop
+      gitflow
+      dunst
+      networkmanagerapplet
+      libsForQt5.polkit-kde-agent
+      grimblast
+      nwg-look
+      libsForQt5.okular
+      firefox
+      git
+      rofi-wayland
+      zoxide
+      lsd
+      bat
+      ripgrep
+      fzf
+      gnumake
+      fd
+      wl-clipboard
+      gcc
+      killall
+      pavucontrol
+      jetbrains.idea-community-bin
+      telegram-desktop
+      # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
+      # this fixes cursor issue on firefox at least
+      dnsutils
+      unzip
+      zbar
+      jq
+      chromium
+      usbutils
+      testdisk-qt
+      gparted
+      exfatprogs
+      nmap
+      discord
+      lsof
+      google-chrome
+      wget
+      btop
+      powertop
+      lm_sensors
+      sbt
+      file
+      nwg-displays
+      # dependency for nwg-displays
+      wlr-randr
+      vscode
+      framework-tool
+      qbittorrent
+      spotify
+      wechat-uos
+      brightnessctl
+      adbfs-rootless
+      mgba
+      localsend
+    ]
+
+    )
+    ++ [
+      # edge_flake.legacyPackages.${pkgs.system}.microsoft-edge
+      edge_flake.microsoft-edge
+    ];
 
   services = {
     blueman-applet = {
