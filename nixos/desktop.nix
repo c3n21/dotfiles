@@ -72,15 +72,18 @@ rec {
     upower.enable = true;
   };
 
-  security.pam.services = {
-    swaylock = { };
-    sddm = {
-      name = "kwallet";
-      enableKwallet = true;
+  security = {
+    pam.services = {
+      swaylock = {
+        kwallet = {
+          enable = true;
+          package = pkgs.kdePackages.kwallet-pam;
+        };
+      };
     };
+    rtkit.enable = true;
+    polkit.enable = true;
   };
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
 
   qt = {
     enable = true;
@@ -151,12 +154,7 @@ rec {
 
   environment = {
     systemPackages = with pkgs; [
-      git
-      libsForQt5.kwallet
-      libsForQt5.kwallet-pam
-      libsForQt5.kwalletmanager
-      libsForQt5.qt5.qtgraphicaleffects
-      javaPackages.openjfx17
+      kdePackages.kwalletmanager
       sbctl
 
       # Podman
@@ -168,7 +166,7 @@ rec {
 
   programs = {
     nix-ld = {
-      enable = true;
+      enable = false;
       libraries = with pkgs; [
         acl
         attr
