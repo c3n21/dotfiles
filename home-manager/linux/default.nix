@@ -73,7 +73,7 @@ rec {
       # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
       virtiofsd
       libreoffice-fresh
-      mpvpaper
+      # mpvpaper # sometimes I may want to have it again
       yt-dlp
       socat
       mpv
@@ -81,7 +81,7 @@ rec {
       gitflow
       dunst
       networkmanagerapplet
-      libsForQt5.polkit-kde-agent
+      kdePackages.polkit-kde-agent-1
       grimblast
       nwg-look
       libsForQt5.okular
@@ -93,30 +93,22 @@ rec {
       bat
       ripgrep
       fzf
-      gnumake
       fd
       wl-clipboard
-      gcc
       killall
       pavucontrol
       jetbrains.idea-community-bin
       telegram-desktop
-      # https://github.com/NixOS/nixpkgs/issues/34603#issuecomment-1025616898
-      # this fixes cursor issue on firefox at least
       dnsutils
       unzip
       zbar
       jq
       chromium
       usbutils
-      testdisk-qt
-      gparted
       exfatprogs
       nmap
-      discord
       lsof
       google-chrome
-      wget
       btop
       powertop
       lm_sensors
@@ -125,9 +117,7 @@ rec {
       nwg-displays
       # dependency for nwg-displays
       wlr-randr
-      vscode
       framework-tool
-      qbittorrent
       spotify
       wechat-uos
       brightnessctl
