@@ -133,6 +133,21 @@ rec {
     ];
 
   services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "off";
+
+        preload = [
+          "~/Pictures/wallpaper.jpg"
+        ];
+
+        wallpaper = [
+          "eDP-1,~/Pictures/wallpaper.jpg"
+          ",~/Pictures/wallpaper.jpg"
+        ];
+      };
+    };
     blueman-applet = {
       enable = true;
     };
@@ -209,6 +224,9 @@ rec {
   };
 
   programs = {
+    swaylock = {
+      enable = true;
+    };
     waybar = {
       enable = true;
       systemd.enable = true;

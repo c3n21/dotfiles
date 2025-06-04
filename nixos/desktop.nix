@@ -74,8 +74,9 @@ rec {
 
   security = {
     pam.services = {
-      swaylock = {
-      };
+      # Needed for swaylock integration in userland
+      # https://home-manager.dev/manual/unstable/options.xhtml#opt-programs.swaylock.enable
+      swaylock = { };
       login = {
         kwallet = {
           enable = true;

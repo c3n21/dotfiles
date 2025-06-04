@@ -66,7 +66,7 @@ in
       enableFishIntegration = true;
       settings = {
         background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
-        background-opacity = 0;
+        background-opacity = 1;
         font-family = "Delugia";
         font-feature = [
           "ss01"
