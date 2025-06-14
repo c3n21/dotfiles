@@ -26,24 +26,6 @@
           };
         };
 
-        services = {
-          hyprpaper = {
-            enable = true;
-            settings = {
-              ipc = "off";
-
-              preload = [
-                "~/Pictures/wallpaper.jpg"
-              ];
-
-              wallpaper = [
-                "eDP-1,~/Pictures/wallpaper.jpg"
-                ",~/Pictures/wallpaper.jpg"
-              ];
-            };
-          };
-        };
-
         wayland.windowManager.hyprland = {
           enable = true;
           package = null; # use whatever is system wide
@@ -172,7 +154,7 @@
               "$mod ,F11,fullscreen"
               ",Print,exec,grimblast --freeze copy area"
 
-              # Lock scren
+              # Lock screen
               "$mod CTRL,e,exec,swaylock -f -i ~/Pictures/wallpaper.jpg"
 
               "$mod SHIFT,6,split-movetoworkspacesilent,6"
@@ -239,42 +221,48 @@
       configuration = {
         programs.niri.package = pkgs.niri;
         home.packages = [ pkgs.xwayland-satellite ];
+        programs.niri.config = # kdl
+          ''
+            // dirty fix to use X11 apps because I'm too lazy to dig through
+            spawn-at-startup "xwayland-satellite" ":0"
 
-        programs.niri.config = ''
-          // dirty fix to use X11 apps because I'm too lazy to dig through
-          spawn-at-startup "xwayland-satellite" ":0"
-
-          // Set open-maximized to true for all windows.
-          window-rule {
+            // Set open-maximized to true for all windows.
+            window-rule {
               open-maximized true
-          }
+            }
 
-          // this seems to fix cursor issues with niri
-          cursor {
-              xcursor-size 16
-          }
+            // this seems to fix cursor issues with niri
+            cursor {
+              xcursor-size ${builtins.toString config.home.pointerCursor.size}
+            }
 
-          environment {
-            QT_QPA_PLATFORM "wayland;xcb"
-            DISPLAY ":0"
-          }
+            environment {
+              QT_QPA_PLATFORM "wayland;xcb"
+              DISPLAY ":0"
+              GTK_IM_MODULE "fcitx"
+              QT_IM_MODULE "fcitx"
+            }
 
-          input {
-            keyboard {
+            switch-events {
+              lid-close { spawn "systemctl" "suspend"; }
+              lid-open { spawn "notify-send" "The laptop lid is open!"; }
+              tablet-mode-on { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"; }
+              tablet-mode-off { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"; }
+            }
+
+            input {
+              keyboard {
                 xkb {
-                    layout "us"
-                    variant "altgr-intl"
-                    options "caps:swapescape"
-                    // model ""
-                    // rules ""
+                  layout "us"
+                  variant "altgr-intl"
                 }
 
                 // repeat-delay 600
                 // repeat-rate 25
                 // track-layout "global"
-            }
+              }
 
-            touchpad {
+              touchpad {
                 // off
                 tap
                 // dwt
@@ -290,9 +278,9 @@
                 // left-handed
                 // disabled-on-external-mouse
                 // middle-emulation
-            }
+              }
 
-            mouse {
+              mouse {
                 // off
                 // natural-scroll
                 // accel-speed 0.2
@@ -302,9 +290,9 @@
                 // scroll-button 273
                 // left-handed
                 // middle-emulation
-            }
+              }
 
-            trackpoint {
+              trackpoint {
                 // off
                 // natural-scroll
                 // accel-speed 0.2
@@ -312,9 +300,9 @@
                 // scroll-method "on-button-down"
                 // scroll-button 273
                 // middle-emulation
-            }
+              }
 
-            trackball {
+              trackball {
                 // off
                 // natural-scroll
                 // accel-speed 0.2
@@ -323,48 +311,53 @@
                 // scroll-button 273
                 // left-handed
                 // middle-emulation
-            }
+              }
 
-            tablet {
+              tablet {
                 // off
                 map-to-output "eDP-1"
                 // left-handed
-            }
+              }
 
-            touch {
+              touch {
                 map-to-output "eDP-1"
+              }
+
+              // disable-power-key-handling
+              warp-mouse-to-focus
+              focus-follows-mouse max-scroll-amount="0%"
+              // workspace-auto-back-and-forth
             }
+            output "eDP-1" {
+              scale 2.0
+            }
+            binds {
 
-            // disable-power-key-handling
-            warp-mouse-to-focus
-            // focus-follows-mouse max-scroll-amount="0%"
-            // workspace-auto-back-and-forth
-          }
-          output "eDP-1" {
-             scale 2.0
-          }
-          binds {
+              Print { screenshot; }
 
-            Print { screenshot; }
+              // Window bindings (Mod + W prefix)
+              Mod+O { maximize-column; }
 
-            // Window bindings (Mod + W prefix)
-            Mod+O { maximize-column; }
+              Mod+T { spawn "ghostty"; }
+              Mod+Shift+X { quit; }
+              Mod+H { focus-column-left; }
+              Mod+L { focus-column-right; }
+              Mod+F11 { fullscreen-window; }
+              Mod+slash { spawn "rofi" "-show" "drun"; }
+              Mod+Shift+Q {close-window; }
 
-            Mod+T { spawn "ghostty"; }
-            Mod+Shift+X { quit; }
-            Mod+H { focus-column-left; }
-            Mod+L { focus-column-right; }
-            Mod+F11 { fullscreen-window; }
-            Mod+slash { spawn "rofi" "-show" "drun"; }
-            Mod+Shift+Q {close-window; }
+              Mod+Shift+E allow-inhibiting=false { spawn "swaylock" "-f" "-i" "~/Pictures/wallpaper.jpg"; }
 
-            // Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
-            XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-            XF86AudioLowerVolume { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+              // Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
+              XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+              XF86AudioLowerVolume { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+              XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
+              XF86MonBrightnessUp { spawn "brightnessctl" "set" "5%+"; }
 
-            XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-          }
-        '';
+
+              XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+            }
+          '';
       };
     };
 

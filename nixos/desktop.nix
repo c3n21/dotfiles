@@ -72,15 +72,26 @@ rec {
     upower.enable = true;
   };
 
-  security.pam.services = {
-    swaylock = { };
-    sddm = {
-      name = "kwallet";
-      enableKwallet = true;
+  security = {
+    pam.services = {
+      # Needed for swaylock integration in userland
+      # https://home-manager.dev/manual/unstable/options.xhtml#opt-programs.swaylock.enable
+      swaylock = { };
+      login = {
+        kwallet = {
+          enable = true;
+          package = pkgs.kdePackages.kwallet-pam;
+          forceRun = true;
+        };
+      };
     };
+    rtkit.enable = true;
+    polkit.enable = true;
   };
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+
+  xdg.portal.extraPortals = [
+    pkgs.kdePackages.kwallet
+  ];
 
   qt = {
     enable = true;
@@ -151,12 +162,7 @@ rec {
 
   environment = {
     systemPackages = with pkgs; [
-      git
-      libsForQt5.kwallet
-      libsForQt5.kwallet-pam
-      libsForQt5.kwalletmanager
-      libsForQt5.qt5.qtgraphicaleffects
-      javaPackages.openjfx17
+      kdePackages.kwalletmanager
       sbctl
 
       # Podman
@@ -168,7 +174,7 @@ rec {
 
   programs = {
     nix-ld = {
-      enable = true;
+      enable = false;
       libraries = with pkgs; [
         acl
         attr

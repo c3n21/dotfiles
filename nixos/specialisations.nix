@@ -10,7 +10,6 @@
         system.nixos.tags = [ "hyprland" ];
 
         xdg.portal = {
-          enable = true;
           xdgOpenUsePortal = true;
         };
 
@@ -30,9 +29,24 @@
       configuration = {
         system.nixos.tags = [ "niri" ];
 
+        services.gnome.gnome-keyring.enable = false;
+
         xdg.portal = {
-          enable = true;
           xdgOpenUsePortal = true;
+          config = {
+            # seems like niri-portals.conf doesn't do merging with the default niri-portals.conf,
+            # thus I'm providing the full config.
+            niri = {
+              default = [
+                "gnome"
+                "gtk"
+              ];
+              "org.freedesktop.impl.portal.Access" = "gtk";
+              "org.freedesktop.impl.portal.Notification" = "gtk";
+              "org.freedesktop.impl.portal.FileChooser" = "gtk";
+              "org.freedesktop.impl.portal.Secret" = "kwallet"; # needs to be tested
+            };
+          };
         };
 
         programs = {
