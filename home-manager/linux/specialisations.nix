@@ -221,16 +221,17 @@
       configuration = {
         programs.niri.package = pkgs.niri;
         home.packages = [ pkgs.xwayland-satellite ];
-        xdg.portal = {
-          enable = true;
-          config = {
-            niri = {
-              # otherwise it will use nautilus
-              "org.freedesktop.impl.portal.FileChooser" = "gtk";
-              "org.freedesktop.impl.portal.Secret" = "kwallet"; # needs to be tested
-            };
-          };
-        };
+        # TODO: to be checked
+        # xdg.portal = {
+        #   enable = true;
+        #   config = {
+        #     niri = {
+        #       # otherwise it will use nautilus
+        #       "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        #       # "org.freedesktop.impl.portal.Secret" = "kwallet"; # needs to be tested
+        #     };
+        #   };
+        # };
         programs.niri.config = # kdl
           ''
             // dirty fix to use X11 apps because I'm too lazy to dig through
@@ -249,6 +250,8 @@
             environment {
               QT_QPA_PLATFORM "wayland;xcb"
               DISPLAY ":0"
+              GTK_IM_MODULE "fcitx"
+              QT_IM_MODULE "fcitx"
             }
 
             switch-events {

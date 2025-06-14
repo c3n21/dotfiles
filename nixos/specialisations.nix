@@ -10,7 +10,6 @@
         system.nixos.tags = [ "hyprland" ];
 
         xdg.portal = {
-          enable = true;
           xdgOpenUsePortal = true;
         };
 
@@ -31,8 +30,8 @@
         system.nixos.tags = [ "niri" ];
 
         xdg.portal = {
-          enable = true;
           xdgOpenUsePortal = true;
+          configPackages = [ pkgs.niri ];
         };
 
         programs = {
