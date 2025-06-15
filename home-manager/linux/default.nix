@@ -231,5 +231,14 @@ rec {
       enable = true;
       systemd.enable = true;
     };
+    sesh = {
+      enable = true;
+    };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      tmux.enableShellIntegration = true;
+    };
   };
 }
