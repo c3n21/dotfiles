@@ -50,7 +50,11 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ niri.overlays.niri ];
+      };
     in
     {
       overlays = [ niri.overlays.niri ];
@@ -61,6 +65,7 @@
       nixosConfigurations = {
         framework-13-7040-amd = nixpkgs.lib.nixosSystem {
           inherit system;
+
           specialArgs = {
             inherit inputs outputs;
           };
@@ -82,6 +87,12 @@
               networking = {
                 hostName = "zenuko"; # Define your hostname.
               };
+            }
+            {
+              nixpkgs.overlays = [
+                niri.overlays.niri
+              ];
+
             }
           ];
         };

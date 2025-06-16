@@ -219,12 +219,16 @@
 
     niri = {
       configuration = {
-        programs.niri.package = pkgs.niri;
+        programs.niri.package = pkgs.niri-unstable;
         home.packages = [ pkgs.xwayland-satellite ];
         programs.niri.config = # kdl
           ''
             // dirty fix to use X11 apps because I'm too lazy to dig through
             spawn-at-startup "xwayland-satellite" ":0"
+
+            debug {
+              deactivate-unfocused-windows
+            }
 
             // Set open-maximized to true for all windows.
             window-rule {
