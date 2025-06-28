@@ -182,5 +182,34 @@ in
     neovim = {
       vimdiffAlias = true;
     };
+    neovide = {
+      enable = true;
+      settings = {
+        fork = false;
+        frame = "full";
+        idle = true;
+        maximized = false;
+        no-multigrid = false;
+        srgb = false;
+        tabs = true;
+        theme = "auto";
+        vsync = false;
+        title-hidden = true;
+        font = {
+          normal = {
+            family = "Delugia";
+            style = "Italic";
+          };
+          size = 14.0;
+          features = {
+            Delugia = [
+              "ss01"
+              "ss02"
+              "ss19"
+            ];
+          };
+        };
+      };
+    };
   };
 }
