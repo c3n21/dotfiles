@@ -64,6 +64,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
+    adb.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
