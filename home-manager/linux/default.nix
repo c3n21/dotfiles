@@ -119,7 +119,6 @@ rec {
       # dependency for nwg-displays
       wlr-randr
       framework-tool
-      spotify
       wechat-uos
       brightnessctl
       adbfs-rootless
