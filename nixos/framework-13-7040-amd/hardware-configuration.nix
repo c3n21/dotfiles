@@ -24,7 +24,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [ "amdgpu.sg_display=0" ];
+  boot.kernelParams = [ ];
 
   services.power-profiles-daemon.enable = true;
 

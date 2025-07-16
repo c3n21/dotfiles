@@ -39,6 +39,7 @@ in
     ripgrep
     fd
     fzf
+    vscode
   ];
 
   xdg = {
