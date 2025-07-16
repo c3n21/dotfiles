@@ -5,7 +5,7 @@
   ...
 }:
 let
-  delugia-code = pkgs.callPackage /home/zhifan/.config/nixos/delugia-code { };
+  delugia-code = pkgs.callPackage ./delugia-code { };
 in
 rec {
   boot = {
