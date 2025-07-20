@@ -98,7 +98,8 @@ rec {
       wl-clipboard
       killall
       pavucontrol
-      jetbrains.idea-community-bin
+      # TODO: currently broken
+      # jetbrains.idea-community-bin
       telegram-desktop
       dnsutils
       unzip
