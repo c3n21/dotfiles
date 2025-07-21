@@ -82,7 +82,6 @@ in
         gtk-single-instance = true;
         window-decoration = false;
       };
-      clearDefaultKeybinds = true;
     };
     tmux = {
       enable = true;
