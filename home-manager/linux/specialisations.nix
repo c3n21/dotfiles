@@ -353,6 +353,11 @@
               Mod+J { focus-window-or-workspace-down; }
               Mod+K { focus-window-or-workspace-up; }
 
+
+              // Workspace focus
+              Mod+W { focus-monitor-next; }
+              Mod+Shift+W { focus-monitor-previous; }
+
               Mod+F11 { fullscreen-window; }
               Mod+slash { spawn "rofi" "-show" "drun"; }
               Mod+Shift+Q {close-window; }
