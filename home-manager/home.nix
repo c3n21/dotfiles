@@ -28,6 +28,7 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    home-manager
     inputs.nvim-configuration.packages.${pkgs.system}.note
     inputs.nvim-configuration.packages.${pkgs.system}.vi
     radeontop
@@ -81,6 +82,7 @@ in
         gtk-single-instance = true;
         window-decoration = false;
       };
+      clearDefaultKeybinds = true;
     };
     tmux = {
       enable = true;
