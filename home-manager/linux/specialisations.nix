@@ -223,6 +223,7 @@
         home.packages = [ pkgs.xwayland-satellite ];
         programs.niri.config = # kdl
           ''
+            prefer-no-csd
             // dirty fix to use X11 apps because I'm too lazy to dig through
             spawn-at-startup "xwayland-satellite" ":0"
 
