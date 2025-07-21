@@ -336,6 +336,7 @@
             output "eDP-1" {
               scale 2.0
             }
+
             binds {
 
               Print { screenshot; }
@@ -345,8 +346,13 @@
 
               Mod+T { spawn "ghostty"; }
               Mod+Shift+X { quit; }
-              Mod+H { focus-column-left; }
-              Mod+L { focus-column-right; }
+
+              // Window focus and movement bindings
+              Mod+H { focus-column-or-monitor-left; }
+              Mod+L { focus-column-or-monitor-right; }
+              Mod+J { focus-window-or-workspace-down; }
+              Mod+K { focus-window-or-workspace-up; }
+
               Mod+F11 { fullscreen-window; }
               Mod+slash { spawn "rofi" "-show" "drun"; }
               Mod+Shift+Q {close-window; }
