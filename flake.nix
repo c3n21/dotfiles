@@ -101,6 +101,8 @@
 
             {
               home-manager.users.zhifan = ./home-manager/linux/specialisations.nix;
+              specialisation.niri.configuration.home-manager.users.zhifan =
+                ./home-manager/linux/specialisations/niri.nix;
             }
 
             lanzaboote.nixosModules.lanzaboote
