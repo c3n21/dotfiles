@@ -100,7 +100,6 @@
             }
 
             {
-              home-manager.users.zhifan = ./home-manager/linux/specialisations.nix;
               specialisation.niri.configuration.home-manager.users.zhifan =
                 ./home-manager/linux/specialisations/niri.nix;
               specialisation.hyprland.configuration.home-manager.users.zhifan =
