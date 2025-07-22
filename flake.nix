@@ -79,6 +79,33 @@
             ./nixos/firewall.nix
             ./nixos/desktop.nix
             ./nixos/specialisations.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.zhifan = ./home-manager/home.nix;
+            }
+
+            {
+
+              # home-manager modules must be put there
+              home-manager.users.zhifan.imports = [
+                inputs.niri.homeModules.niri
+              ];
+            }
+
+            {
+              home-manager.users.zhifan = ./home-manager/linux;
+            }
+
+            {
+              specialisation.niri.configuration.home-manager.users.zhifan =
+                ./home-manager/linux/specialisations/niri.nix;
+              specialisation.hyprland.configuration.home-manager.users.zhifan =
+                ./home-manager/linux/specialisations/hyprland.nix;
+            }
+
             lanzaboote.nixosModules.lanzaboote
             {
               environment.sessionVariables.NIXOS_OZONE_WL = "1";

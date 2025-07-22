@@ -8,3 +8,5 @@
 # Allow all files within the directories
 !nixos/**/*
 !home-manager/**/*
+
+!README.md
