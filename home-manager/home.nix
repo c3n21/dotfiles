@@ -49,8 +49,30 @@ in
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
-        "default-web-browser" = [ "brave-browser.desktop" ];
-        "application/pdf" = [ "brave-browser.desktop" ];
+        "default-web-browser" = [
+          "librewolf.desktop"
+        ];
+        "application/pdf" = [
+          "librewolf.desktop"
+        ];
+        "text/html" = [
+          "librewolf.desktop"
+        ];
+        "text/xml" = [
+          "librewolf.desktop"
+        ];
+        "application/xhtml+xml" = [
+          "librewolf.desktop"
+        ];
+        "application/vnd.mozilla.xul+xml" = [
+          "librewolf.desktop"
+        ];
+        "x-scheme-handler/http" = [
+          "librewolf.desktop"
+        ];
+        "x-scheme-handler/https" = [
+          "librewolf.desktop"
+        ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
