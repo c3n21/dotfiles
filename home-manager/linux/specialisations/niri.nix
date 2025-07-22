@@ -139,6 +139,12 @@
         Mod+W { focus-monitor-next; }
         Mod+Shift+W { focus-monitor-previous; }
 
+        // Move windows
+        Mod+Shift+H { move-column-left-or-to-monitor-left; }
+        Mod+Shift+L { move-column-right-or-to-monitor-right; }
+        Mod+Shift+J { move-window-down-or-to-workspace-down; }
+        Mod+Shift+K { move-window-up-or-to-workspace-up; }
+
         Mod+F11 { fullscreen-window; }
         Mod+slash { spawn "rofi" "-show" "drun"; }
         Mod+Shift+Q {close-window; }
