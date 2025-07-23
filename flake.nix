@@ -13,6 +13,11 @@
       url = "https://github.com/hyprwm/Hyprland";
       type = "git";
     };
+    disko = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/disko";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
@@ -45,6 +50,7 @@
       lanzaboote,
       niri,
       nixos-wsl,
+      disko,
       ...
     }@inputs:
     let
@@ -72,10 +78,14 @@
 
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
+            disko.nixosModules.disko
             ./nixos/common/fish.nix
             ./nixos/common/distributed-builds.nix
+
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
+            ./nixos/framework-13-7040-amd/disko.nix
+
             ./nixos/firewall.nix
             ./nixos/desktop.nix
             ./nixos/specialisations.nix

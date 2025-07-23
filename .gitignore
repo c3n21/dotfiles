@@ -1,6 +1,9 @@
 # Ignore everything
 *
 
+!flake.nix
+!flake.lock
+
 # Allow directories
 !nixos/
 !home-manager/
