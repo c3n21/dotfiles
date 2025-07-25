@@ -135,15 +135,16 @@
         Mod+K { focus-window-or-workspace-up; }
 
 
-        // Workspace focus
+        // Monitor focus
+        // I use at most 2 monitors so the behavior is the same as a toggle
         Mod+W { focus-monitor-next; }
-        Mod+Shift+W { focus-monitor-previous; }
 
         // Move windows
         Mod+Shift+H { move-column-left-or-to-monitor-left; }
         Mod+Shift+L { move-column-right-or-to-monitor-right; }
         Mod+Shift+J { move-window-down-or-to-workspace-down; }
         Mod+Shift+K { move-window-up-or-to-workspace-up; }
+        Mod+Shift+W { move-window-to-monitor-next; }
 
         Mod+F11 { fullscreen-window; }
         Mod+slash { spawn "rofi" "-show" "drun"; }
