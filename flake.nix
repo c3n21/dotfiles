@@ -51,6 +51,14 @@
       inherit (self) outputs;
       system = "x86_64-linux";
 
+      # home-manager common configuration
+      homeManagerExtraSpecialArgs = { inherit inputs; };
+      homeManagerModuleConfiguration = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = homeManagerExtraSpecialArgs;
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ niri.overlays.niri ];
@@ -73,6 +81,7 @@
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
             ./nixos/common/fish.nix
+            ./nixos/common/nixpkgs-configuration.nix
             ./nixos/common/distributed-builds.nix
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
@@ -80,10 +89,8 @@
             ./nixos/desktop.nix
             ./nixos/specialisations.nix
             home-manager.nixosModules.home-manager
+            homeManagerModuleConfiguration
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.zhifan = ./home-manager/home.nix;
             }
 
@@ -128,13 +135,13 @@
           system = "x86_64-linux";
           modules = [
             ./nixos/common/fish.nix
+            ./nixos/common/nixpkgs-configuration.nix
             nixos-wsl.nixosModules.default
             home-manager.nixosModules.home-manager
             ./nixos/wsl/configuration.nix
+            homeManagerModuleConfiguration
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.zhifan = import ./home-manager/home.nix { inherit pkgs inputs; };
+              home-manager.users.zhifan = ./home-manager/home.nix;
               system.stateVersion = "24.05";
               wsl.enable = true;
             }
@@ -155,33 +162,7 @@
             ./home-manager/linux/specialisations.nix
             inputs.niri.homeModules.niri
           ];
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit outputs;
-          };
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-
-        wsl = {
-          inherit pkgs;
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            ./home-manager/home.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit outputs;
-          };
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-      };
-      devShells = {
-        x86_64-linux.nodejs = pkgs.mkShell {
-          buildInputs = [ pkgs.nodejs ];
+          extraSpecialArgs = homeManagerExtraSpecialArgs;
         };
       };
     };
