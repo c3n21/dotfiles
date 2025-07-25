@@ -105,6 +105,10 @@
             }
 
             {
+              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
+            }
+
+            {
 
               # home-manager modules must be put there
               home-manager.users.zhifan.imports = [
