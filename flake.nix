@@ -93,7 +93,8 @@
 
             ./nixos/framework-13-7040-amd/hardware-configuration.nix
             ./nixos/framework-13-7040-amd/configuration.nix
-            ./nixos/framework-13-7040-amd/disko.nix
+            # TODO: enable when the config is ready
+            # ./nixos/framework-13-7040-amd/disko.nix
 
             ./nixos/firewall.nix
             ./nixos/desktop.nix
