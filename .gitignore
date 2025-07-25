@@ -13,3 +13,6 @@
 !home-manager/**/*
 
 !README.md
+
+!flake.nix
+!flake.lock

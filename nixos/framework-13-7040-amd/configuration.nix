@@ -60,9 +60,6 @@
   #   size = 130;
   # };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   programs = {
     adb.enable = true;
     neovim = {
