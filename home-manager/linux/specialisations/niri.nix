@@ -121,6 +121,8 @@
       binds {
 
         Print { screenshot; }
+        Mod+Print { screenshot-screen; }
+        Shift+Print { screenshot-window; }
 
         // Window bindings (Mod + W prefix)
         Mod+O { maximize-column; }
