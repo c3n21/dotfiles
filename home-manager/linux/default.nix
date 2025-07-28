@@ -116,9 +116,6 @@ rec {
       lm_sensors
       sbt
       file
-      nwg-displays
-      # dependency for nwg-displays
-      wlr-randr
       framework-tool
       wechat-uos
       brightnessctl

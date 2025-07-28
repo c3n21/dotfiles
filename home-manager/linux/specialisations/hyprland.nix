@@ -6,6 +6,11 @@
 }:
 {
   home = {
+    packages = with pkgs; [
+      nwg-displays
+      # dependency for nwg-displays
+      wlr-randr
+    ];
     pointerCursor = {
       hyprcursor = {
         enable = true;
