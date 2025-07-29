@@ -65,8 +65,6 @@ rec {
       bitwarden-desktop
       baobab
       steam
-      swaylock
-      swayidle
       brave
       scrcpy
       ripgrep-all
@@ -83,7 +81,6 @@ rec {
       dunst
       networkmanagerapplet
       kdePackages.polkit-kde-agent-1
-      grimblast
       nwg-look
       libsForQt5.okular
       firefox
