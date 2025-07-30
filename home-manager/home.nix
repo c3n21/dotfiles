@@ -89,7 +89,7 @@ in
       enableFishIntegration = true;
       settings = {
         background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
-        background-opacity = 1;
+        background-opacity = 0.65;
         font-family = "Delugia";
         font-feature = [
           "ss01"
@@ -102,6 +102,9 @@ in
         font-style-italic = "Italic";
         gtk-single-instance = true;
         window-decoration = false;
+        keybind = [
+          "ctrl+enter=unbind"
+        ];
       };
     };
     tmux = {

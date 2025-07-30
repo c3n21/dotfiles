@@ -17,6 +17,11 @@
         open-maximized true
       }
 
+      window-rule {
+        draw-border-with-background false
+        match app-id="com.mitchellh.ghostty"
+      }
+
       // this seems to fix cursor issues with niri
       cursor {
         xcursor-size ${builtins.toString config.home.pointerCursor.size}
