@@ -212,6 +212,7 @@ in
       enable = true;
       settings = {
         fork = false;
+        neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.system}.neo}/bin/neo";
         frame = "full";
         idle = true;
         maximized = false;
