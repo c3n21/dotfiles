@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    edge.url = "github:nixos/nixpkgs/47dec1cd02e559655a90d3d2748aa56e04459a86";
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
