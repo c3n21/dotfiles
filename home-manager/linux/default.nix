@@ -20,6 +20,11 @@ rec {
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "xdgdesktopportal";
+  };
+
   gtk = {
     enable = true;
     cursorTheme = {
