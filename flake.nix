@@ -4,6 +4,10 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
@@ -55,6 +59,7 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+      tapInterface = null;
 
       # home-manager common configuration
       homeManagerExtraSpecialArgs = { inherit inputs; };
@@ -160,6 +165,81 @@
               wsl.enable = true;
             }
           ];
+        };
+
+        # librewolf-vm = ./nixos/microvm/librewolf.nix;
+        librewolf-vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            # this runs as a MicroVM
+            inputs.microvm.nixosModules.microvm
+
+            (
+              { lib, pkgs, ... }:
+              {
+                microvm = {
+                  hypervisor = "cloud-hypervisor";
+                  graphics.enable = true;
+                  interfaces = lib.optional (tapInterface != null) {
+                    type = "tap";
+                    id = null;
+                    mac = "00:00:00:00:00:02";
+                  };
+                };
+
+                networking.hostName = "graphical-microvm";
+                system.stateVersion = lib.trivial.release;
+                nixpkgs.overlays = [ inputs.microvm.overlay ];
+
+                services.getty.autologinUser = "user";
+                users.users.user = {
+                  password = "";
+                  group = "user";
+                  isNormalUser = true;
+                  extraGroups = [
+                    "wheel"
+                    "video"
+                  ];
+                };
+                users.groups.user = { };
+                security.sudo = {
+                  enable = true;
+                  wheelNeedsPassword = false;
+                };
+
+                environment.sessionVariables = {
+                  WAYLAND_DISPLAY = "wayland-1";
+                  DISPLAY = ":0";
+                  QT_QPA_PLATFORM = "wayland"; # Qt Applications
+                  GDK_BACKEND = "wayland"; # GTK Applications
+                  XDG_SESSION_TYPE = "wayland"; # Electron Applications
+                  SDL_VIDEODRIVER = "wayland";
+                  CLUTTER_BACKEND = "wayland";
+                };
+
+                systemd.user.services.wayland-proxy = {
+                  enable = true;
+                  description = "Wayland Proxy";
+                  serviceConfig = with pkgs; {
+                    # Environment = "WAYLAND_DISPLAY=wayland-1";
+                    ExecStart = "${wayland-proxy-virtwl}/bin/wayland-proxy-virtwl --virtio-gpu --x-display=0 --xwayland-binary=${xwayland}/bin/Xwayland";
+                    Restart = "on-failure";
+                    RestartSec = 5;
+                  };
+                  wantedBy = [ "default.target" ];
+                };
+
+                environment.systemPackages = with pkgs; [
+                  xdg-utils # Required
+                  librewolf
+                ];
+
+                hardware.graphics.enable = true;
+              }
+            )
+          ];
+
         };
       };
 
