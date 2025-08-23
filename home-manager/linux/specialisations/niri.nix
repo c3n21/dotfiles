@@ -56,7 +56,7 @@
         touchpad {
           // off
           tap
-          // dwt
+          dwt
           // dwtp
           natural-scroll
           // accel-speed 0.2
@@ -136,8 +136,8 @@
         Mod+Shift+X { quit; }
 
         // Window focus and movement bindings
-        Mod+H { focus-column-or-monitor-left; }
-        Mod+L { focus-column-or-monitor-right; }
+        Mod+H { focus-column-left; }
+        Mod+L { focus-column-right; }
         Mod+J { focus-window-or-workspace-down; }
         Mod+K { focus-window-or-workspace-up; }
 
