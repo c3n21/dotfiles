@@ -12,26 +12,12 @@ rec {
     supportedFilesystems = {
       nfs = true;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernel.sysctl = {
       "vm.swappiness" = 10;
       "fs.inotify.max_queued_events" = 100000;
     };
     loader = {
       efi.canTouchEfiVariables = true;
-      systemd-boot.enable = lib.mkForce false;
-    };
-
-    # Bootloader.
-
-    # Lanzaboote currently replaces the systemd-boot module.
-    # This setting is usually set to true in configuration.nix
-    # generated at installation time. So we force it to false
-    # for now.
-    # boot.loader.systemd-boot.enable = true;
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
     };
   };
 
