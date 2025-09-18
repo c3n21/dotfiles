@@ -80,10 +80,10 @@ rec {
     networkmanagerapplet
     kdePackages.polkit-kde-agent-1
     nwg-look
-    libsForQt5.okular
+    kdePackages.okular
     firefox
     git
-    rofi-wayland
+    rofi
     zoxide
     lsd
     bat
@@ -112,7 +112,7 @@ rec {
     sbt
     file
     framework-tool
-    wechat-uos
+    # wechat-uos # 403 error
     brightnessctl
     adbfs-rootless
     mgba
