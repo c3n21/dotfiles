@@ -52,7 +52,7 @@ rec {
         };
       };
     };
-    logind.lidSwitch = "suspend-then-hibernate";
+    logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
     thermald.enable = true;
     fwupd.enable = true;
     upower.enable = true;
