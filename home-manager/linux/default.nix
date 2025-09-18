@@ -1,13 +1,53 @@
-# This is needed only for full blown Linux systems
+# This is needed only for full blown Linux systems.
+# It contains cursor, services and programs configuration needed to make
+# a Linux machine more comfortable.
 {
   pkgs,
   inputs,
   ...
 }:
+let
+  shell = "${pkgs.fish}/bin/fish";
+in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "${inputs.nvim-configuration.packages.${pkgs.system}.vi.outPath}/bin/vi";
+  };
+
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = [ "kitty-open.desktop" ];
+        "text/*" = [ "nvim.desktop" ];
+        "default-web-browser" = [
+          "librewolf.desktop"
+        ];
+        "application/pdf" = [
+          "librewolf.desktop"
+        ];
+        "text/html" = [
+          "librewolf.desktop"
+        ];
+        "text/xml" = [
+          "librewolf.desktop"
+        ];
+        "application/xhtml+xml" = [
+          "librewolf.desktop"
+        ];
+        "application/vnd.mozilla.xul+xml" = [
+          "librewolf.desktop"
+        ];
+        "x-scheme-handler/http" = [
+          "librewolf.desktop"
+        ];
+        "x-scheme-handler/https" = [
+          "librewolf.desktop"
+        ];
+        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+      };
+    };
   };
 
   home = {
@@ -246,5 +286,59 @@ rec {
       };
     };
 
+    obs-studio = {
+      enable = true;
+    };
+
+    kitty = {
+      enable = true;
+      themeFile = "Belafonte_Night";
+      extraConfig = "
+      shell ${shell}
+      font_family Delugia Italic
+      bold_font       Delugia Bold
+      italic_font     Delugia Light Italic
+      bold_italic_font Delugia Bold Italic
+
+      font_features Delugia-Italic +ss01 +ss02 +ss19
+      font_size        14
+
+      enable_audio_bell no
+      background_opacity 0.7
+
+      confirm_os_window_close 1
+      ";
+    };
+  };
+
+  neovide = {
+    enable = true;
+    settings = {
+      fork = false;
+      neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.system}.neo}/bin/neo";
+      frame = "full";
+      idle = true;
+      maximized = false;
+      no-multigrid = false;
+      srgb = false;
+      tabs = true;
+      theme = "auto";
+      vsync = false;
+      title-hidden = true;
+      font = {
+        normal = {
+          family = "Delugia";
+          style = "Italic";
+        };
+        size = 14.0;
+        features = {
+          Delugia = [
+            "ss01"
+            "ss02"
+            "ss19"
+          ];
+        };
+      };
+    };
   };
 }
