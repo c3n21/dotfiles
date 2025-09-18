@@ -65,52 +65,28 @@ rec {
     steam
     brave
     scrcpy
-    ripgrep-all
     remmina
     # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
     virtiofsd
     libreoffice-fresh
     # mpvpaper # sometimes I may want to have it again
-    yt-dlp
-    socat
     mpv
-    htop
-    gitflow
-    dunst
     networkmanagerapplet
     kdePackages.polkit-kde-agent-1
     nwg-look
     kdePackages.okular
     firefox
-    git
     rofi
-    zoxide
-    lsd
-    bat
-    ripgrep
-    fzf
-    fd
     wl-clipboard
     killall
     pavucontrol
     # TODO: currently broken
     # jetbrains.idea-community-bin
     telegram-desktop
-    dnsutils
-    unzip
     zbar
-    jq
     chromium
-    usbutils
-    exfatprogs
-    nmap
-    lsof
     google-chrome
-    btop
-    powertop
     lm_sensors
-    sbt
-    file
     framework-tool
     # wechat-uos # 403 error
     brightnessctl
@@ -127,6 +103,7 @@ rec {
       longitude = 9.18187300;
       tray = true;
     };
+
     hyprpaper = {
       enable = true;
       settings = {
@@ -142,15 +119,19 @@ rec {
         ];
       };
     };
+
     blueman-applet = {
       enable = true;
     };
+
     network-manager-applet = {
       enable = true;
     };
+
     swaync = {
       enable = true;
     };
+
     kanshi = {
       enable = true;
       systemdTarget = "graphical-session.target";
@@ -202,6 +183,7 @@ rec {
 
       ];
     };
+
     swayidle = {
       enable = true;
       events = [
@@ -218,21 +200,38 @@ rec {
   };
 
   programs = {
+
     swaylock = {
       enable = true;
     };
+
     waybar = {
       enable = true;
       systemd.enable = true;
     };
-    sesh = {
-      enable = true;
-    };
 
-    fzf = {
+    ghostty = {
       enable = true;
       enableFishIntegration = true;
-      tmux.enableShellIntegration = true;
+      settings = {
+        background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
+        background-opacity = 0.65;
+        font-family = "Delugia";
+        font-feature = [
+          "ss01"
+          "ss02"
+          "ss19"
+        ];
+        font-style = "Italic";
+        font-style-bold = "Bold Italic";
+        font-style-bold-italic = "Bold Italic";
+        font-style-italic = "Italic";
+        gtk-single-instance = true;
+        window-decoration = false;
+        keybind = [
+          "ctrl+enter=unbind"
+        ];
+      };
     };
 
     librewolf = {
