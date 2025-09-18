@@ -1,11 +1,10 @@
+# Every home should at least contain these configuration.
+# This contains the basic CLI tools that I always need
 {
   pkgs,
   inputs,
   ...
 }:
-let
-  shell = "${pkgs.fish}/bin/fish";
-in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -30,83 +29,39 @@ in
   home.packages = with pkgs; [
     inputs.nvim-configuration.packages.${pkgs.system}.note
     inputs.nvim-configuration.packages.${pkgs.system}.vi
+    # TODO: move somewhere else
     radeontop
+    dnsutils
+    usbutils
+    exfatprogs
+    nmap
+    lsof
+    btop
+    powertop
     nix-tree
     unzip
     jq
     btop
     file
     ripgrep
-    fd
-    fzf
     vscode
+    ripgrep-all
+    yt-dlp
+    htop
+    socat
+    gitflow
   ];
 
-  xdg = {
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "inode/directory" = [ "kitty-open.desktop" ];
-        "text/*" = [ "nvim.desktop" ];
-        "default-web-browser" = [
-          "librewolf.desktop"
-        ];
-        "application/pdf" = [
-          "librewolf.desktop"
-        ];
-        "text/html" = [
-          "librewolf.desktop"
-        ];
-        "text/xml" = [
-          "librewolf.desktop"
-        ];
-        "application/xhtml+xml" = [
-          "librewolf.desktop"
-        ];
-        "application/vnd.mozilla.xul+xml" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/http" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/https" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-      };
-    };
-  };
-
   programs = {
-    obs-studio = {
-      enable = true;
-    };
     git = {
       enable = true;
     };
-    ghostty = {
+
+    lsd = {
       enable = true;
       enableFishIntegration = true;
-      settings = {
-        background-blur-radius = 20; # Recommended value https://ghostty.org/docs/config/reference#background-blur-radius
-        background-opacity = 0.65;
-        font-family = "Delugia";
-        font-feature = [
-          "ss01"
-          "ss02"
-          "ss19"
-        ];
-        font-style = "Italic";
-        font-style-bold = "Bold Italic";
-        font-style-bold-italic = "Bold Italic";
-        font-style-italic = "Italic";
-        gtk-single-instance = true;
-        window-decoration = false;
-        keybind = [
-          "ctrl+enter=unbind"
-        ];
-      };
     };
+
     tmux = {
       enable = true;
       baseIndex = 1;
@@ -147,29 +102,12 @@ in
         bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
       '';
     };
-    kitty = {
-      enable = true;
-      themeFile = "Belafonte_Night";
-      extraConfig = "
-      shell ${shell}
-      font_family Delugia Italic
-      bold_font       Delugia Bold
-      italic_font     Delugia Light Italic
-      bold_italic_font Delugia Bold Italic
 
-      font_features Delugia-Italic +ss01 +ss02 +ss19
-      font_size        14
-
-      enable_audio_bell no
-      background_opacity 0.7
-
-      confirm_os_window_close 1
-      ";
-    };
     # Let Home Manager install and manage itself.
     home-manager = {
       enable = true;
     };
+
     fish = {
       enable = true;
       interactiveShellInit = ''
@@ -201,42 +139,32 @@ in
         }
       ];
     };
+
     zoxide = {
       enable = true;
     };
+
+    fd = {
+      enable = true;
+    };
+
+    bat = {
+      enable = true;
+    };
+
+    sesh = {
+      enable = true;
+    };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      tmux.enableShellIntegration = true;
+    };
+
     # TODO: refactor inside nvim-configuration
     neovim = {
       vimdiffAlias = true;
-    };
-    neovide = {
-      enable = true;
-      settings = {
-        fork = false;
-        neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.system}.neo}/bin/neo";
-        frame = "full";
-        idle = true;
-        maximized = false;
-        no-multigrid = false;
-        srgb = false;
-        tabs = true;
-        theme = "auto";
-        vsync = false;
-        title-hidden = true;
-        font = {
-          normal = {
-            family = "Delugia";
-            style = "Italic";
-          };
-          size = 14.0;
-          features = {
-            Delugia = [
-              "ss01"
-              "ss02"
-              "ss19"
-            ];
-          };
-        };
-      };
     };
   };
 }

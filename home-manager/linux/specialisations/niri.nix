@@ -35,7 +35,8 @@
       }
 
       switch-events {
-        lid-close { spawn "systemctl" "suspend"; }
+        // let logind handle suspension
+        // lid-close { spawn "systemctl" "suspend"; }
         lid-open { spawn "notify-send" "The laptop lid is open!"; }
         tablet-mode-on { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"; }
         tablet-mode-off { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"; }

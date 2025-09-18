@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 # Common configuration for all machines
+{ pkgs, ... }:
 {
   nix = {
     settings = {
@@ -17,6 +18,10 @@
       experimental-features = nix-command flakes
       builders-use-substitutes = true
     '';
+  };
+
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
   hardware = {
