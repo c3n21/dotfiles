@@ -309,34 +309,34 @@ rec {
       confirm_os_window_close 1
       ";
     };
-  };
 
-  neovide = {
-    enable = true;
-    settings = {
-      fork = false;
-      neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.system}.neo}/bin/neo";
-      frame = "full";
-      idle = true;
-      maximized = false;
-      no-multigrid = false;
-      srgb = false;
-      tabs = true;
-      theme = "auto";
-      vsync = false;
-      title-hidden = true;
-      font = {
-        normal = {
-          family = "Delugia";
-          style = "Italic";
-        };
-        size = 14.0;
-        features = {
-          Delugia = [
-            "ss01"
-            "ss02"
-            "ss19"
-          ];
+    neovide = {
+      enable = true;
+      settings = {
+        fork = false;
+        neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.system}.neo}/bin/neo";
+        frame = "full";
+        idle = true;
+        maximized = false;
+        no-multigrid = false;
+        srgb = false;
+        tabs = true;
+        theme = "auto";
+        vsync = false;
+        title-hidden = true;
+        font = {
+          normal = {
+            family = "Delugia";
+            style = "Italic";
+          };
+          size = 14.0;
+          features = {
+            Delugia = [
+              "ss01"
+              "ss02"
+              "ss19"
+            ];
+          };
         };
       };
     };
