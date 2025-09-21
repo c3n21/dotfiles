@@ -52,7 +52,12 @@ rec {
         };
       };
     };
-    logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend-then-hibernate";
+      # When the laptop is plugged to an external monitor
+      HandleLidSwitchDocked = "suspend-then-hibernate";
+    };
     thermald.enable = true;
     fwupd.enable = true;
     upower.enable = true;
