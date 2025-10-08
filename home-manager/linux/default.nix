@@ -131,7 +131,6 @@ rec {
     # wechat-uos # 403 error
     brightnessctl
     adbfs-rootless
-    mgba
     localsend
     microsoft-edge
   ];
