@@ -68,6 +68,18 @@
         inherit system;
         overlays = [ niri.overlays.niri ];
       };
+
+      nixosSystemWithSpecialArgs =
+        nixosSystem:
+        nixpkgs.lib.nixosSystem (
+          nixosSystem
+          // {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [ homeManagerModuleConfiguration ];
+          }
+        );
     in
     {
       overlays = [ niri.overlays.niri ];
@@ -76,75 +88,7 @@
       ];
 
       nixosConfigurations = {
-        framework-13-7040-amd = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit inputs outputs;
-          };
-
-          modules = [
-            nixos-hardware.nixosModules.framework-13-7040-amd
-            disko.nixosModules.disko
-            ./nixos/common/fish.nix
-            ./nixos/common/nixpkgs-configuration.nix
-            ./nixos/common/distributed-builds.nix
-
-            ./nixos/framework-13-7040-amd/hardware-configuration.nix
-            ./nixos/framework-13-7040-amd/configuration.nix
-            # TODO: enable when the config is ready
-            # ./nixos/framework-13-7040-amd/disko.nix
-
-            ./nixos/firewall.nix
-            ./nixos/desktop.nix
-            ./nixos/specialisations.nix
-            home-manager.nixosModules.home-manager
-            homeManagerModuleConfiguration
-            {
-              home-manager.users.zhifan = ./home-manager/home.nix;
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
-            }
-
-            {
-
-              # home-manager modules must be put there
-              home-manager.users.zhifan.imports = [
-                inputs.niri.homeModules.niri
-              ];
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux;
-            }
-
-            {
-              specialisation.niri.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/niri.nix;
-              specialisation.hyprland.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/hyprland.nix;
-            }
-
-            lanzaboote.nixosModules.lanzaboote
-            ./nixos/common/secure-boot.nix
-            {
-              environment.sessionVariables.NIXOS_OZONE_WL = "1";
-            }
-            {
-              networking = {
-                hostName = "zenuko"; # Define your hostname.
-              };
-            }
-            {
-              nixpkgs.overlays = [
-                niri.overlays.niri
-              ];
-
-            }
-          ];
-        };
+        framework-13-7040-amd = nixosSystemWithSpecialArgs (import ./nixos/framework-13-7040-amd inputs);
 
         workstation = nixpkgs.lib.nixosSystem {
           inherit system;
