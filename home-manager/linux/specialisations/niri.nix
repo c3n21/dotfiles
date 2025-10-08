@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 {
-  programs.niri.package = pkgs.niri-unstable;
+  programs.niri.package = pkgs.niri;
   home.packages = [ pkgs.xwayland-satellite ];
   programs.niri.config = # kdl
     ''

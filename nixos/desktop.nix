@@ -52,7 +52,12 @@ rec {
         };
       };
     };
-    logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend-then-hibernate";
+      # When the laptop is plugged to an external monitor
+      HandleLidSwitchDocked = "suspend-then-hibernate";
+    };
     thermald.enable = true;
     fwupd.enable = true;
     upower.enable = true;
@@ -127,12 +132,6 @@ rec {
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = with pkgs; [
-            OVMFFull.fd
-          ];
-        };
       };
     };
     spiceUSBRedirection.enable = true;
