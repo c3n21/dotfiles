@@ -27,9 +27,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    inputs.nvim-configuration.packages.${pkgs.system}.note
-    inputs.nvim-configuration.packages.${pkgs.system}.vi
-    # TODO: move somewhere else
     radeontop
     dnsutils
     usbutils
@@ -160,11 +157,6 @@
       enable = true;
       enableFishIntegration = true;
       tmux.enableShellIntegration = true;
-    };
-
-    # TODO: refactor inside nvim-configuration
-    neovim = {
-      vimdiffAlias = true;
     };
   };
 }
