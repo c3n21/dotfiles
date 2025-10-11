@@ -990,11 +990,11 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1760200787,
-        "narHash": "sha256-XSdVAzXZBihzK2CEzfU4gTLQa7om6Yr3OmcwpqXplRw=",
+        "lastModified": 1760202210,
+        "narHash": "sha256-Z6MhLRR/NmrIjJazUO9Sv8v/YLdjcYjnpRjFObWL2pI=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
-        "rev": "ac28097725e38ac55d6f5f5b852753b9e633ce4a",
+        "rev": "de6563b47ccd0f8426ceee626e42dd6bddb3324b",
         "type": "github"
       },
       "original": {
