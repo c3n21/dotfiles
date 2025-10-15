@@ -36,6 +36,7 @@
     btop
     powertop
     nix-tree
+    zip
     unzip
     jq
     btop
