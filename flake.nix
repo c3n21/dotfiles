@@ -97,7 +97,6 @@
 
             ./nixos/firewall.nix
             ./nixos/desktop.nix
-            ./nixos/specialisations.nix
             home-manager.nixosModules.home-manager
             homeManagerModuleConfiguration
             {
@@ -120,12 +119,18 @@
               home-manager.users.zhifan = ./home-manager/linux;
             }
 
+            # ./nixos/specialisations.nix
+            ./nixos/specialisation/niri.nix
             {
-              specialisation.niri.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/niri.nix;
-              specialisation.hyprland.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/hyprland.nix;
+              home-manager.users.zhifan = ./home-manager/linux/specialisations/niri.nix;
             }
+
+            # {
+            #   specialisation.niri.configuration.home-manager.users.zhifan =
+            #     ./home-manager/linux/specialisations/niri.nix;
+            #   specialisation.hyprland.configuration.home-manager.users.zhifan =
+            #     ./home-manager/linux/specialisations/hyprland.nix;
+            # }
 
             lanzaboote.nixosModules.lanzaboote
             ./nixos/common/secure-boot.nix
