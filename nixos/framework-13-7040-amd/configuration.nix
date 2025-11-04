@@ -4,6 +4,21 @@
 # Common configuration for all machines
 { pkgs, ... }:
 {
+
+  imports = [
+    # common
+    ../common
+
+    ./hardware-configuration.nix
+
+    ../desktop.nix
+    ../firewall.nix
+  ];
+
+  networking = {
+    hostName = "zenuko"; # Define your hostname.
+  };
+
   nix = {
     settings = {
       substituters = [ "https://hyprland.cachix.org" ];

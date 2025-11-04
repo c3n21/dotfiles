@@ -138,6 +138,7 @@ rec {
   };
 
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
     systemPackages = with pkgs; [
       kdePackages.kwalletmanager
       sbctl

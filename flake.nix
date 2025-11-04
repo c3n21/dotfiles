@@ -85,20 +85,25 @@
 
           modules = [
             nixos-hardware.nixosModules.framework-13-7040-amd
-            disko.nixosModules.disko
-            ./nixos/common/fish.nix
-            ./nixos/common/nixpkgs-configuration.nix
-            ./nixos/common/distributed-builds.nix
 
-            ./nixos/framework-13-7040-amd/hardware-configuration.nix
+            disko.nixosModules.disko
+
+            lanzaboote.nixosModules.lanzaboote
+
+            home-manager.nixosModules.home-manager
+
+            homeManagerModuleConfiguration
+
+            {
+              nixpkgs.overlays = [
+                niri.overlays.niri
+              ];
+            }
+
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
             # ./nixos/framework-13-7040-amd/disko.nix
 
-            ./nixos/firewall.nix
-            ./nixos/desktop.nix
-            home-manager.nixosModules.home-manager
-            homeManagerModuleConfiguration
             {
               home-manager.users.zhifan = ./home-manager/home.nix;
             }
@@ -132,22 +137,6 @@
             #     ./home-manager/linux/specialisations/hyprland.nix;
             # }
 
-            lanzaboote.nixosModules.lanzaboote
-            ./nixos/common/secure-boot.nix
-            {
-              environment.sessionVariables.NIXOS_OZONE_WL = "1";
-            }
-            {
-              networking = {
-                hostName = "zenuko"; # Define your hostname.
-              };
-            }
-            {
-              nixpkgs.overlays = [
-                niri.overlays.niri
-              ];
-
-            }
           ];
         };
 

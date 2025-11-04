@@ -51,7 +51,7 @@
       socat
       gitflow
     ]
-    ++ (with inputs.nvim-configuration.packages.${pkgs.system}; [
+    ++ (with inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}; [
       neo
     ]);
 
