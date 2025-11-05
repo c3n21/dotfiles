@@ -94,11 +94,12 @@
 
             homeManagerModuleConfiguration
 
-            {
-              nixpkgs.overlays = [
-                niri.overlays.niri
-              ];
-            }
+            # TODO: remember to remove when is certain that it's not needed
+            # {
+            #   nixpkgs.overlays = [
+            #     niri.overlays.niri
+            #   ];
+            # }
 
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
@@ -126,9 +127,6 @@
 
             # ./nixos/specialisations.nix
             ./nixos/specialisation/niri.nix
-            {
-              home-manager.users.zhifan = ./home-manager/linux/specialisations/niri.nix;
-            }
 
             # {
             #   specialisation.niri.configuration.home-manager.users.zhifan =

@@ -1,5 +1,7 @@
+# Requires niri and home-manager modules to be imported.
+# TODO:
+# - could be a nice idea to make the user parametric
 {
-  inputs,
   pkgs,
   ...
 }:
@@ -36,4 +38,5 @@
     };
   };
 
+  home-manager.users.zhifan = ../../home-manager/linux/specialisations/niri.nix;
 }
