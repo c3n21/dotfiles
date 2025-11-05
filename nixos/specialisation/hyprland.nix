@@ -1,3 +1,5 @@
+# TODO:
+# - to be tested if it works or not
 { inputs, pkgs, ... }:
 {
   xdg.portal = {
@@ -14,4 +16,6 @@
     };
   };
 
+  specialisation.hyprland.configuration.home-manager.users.zhifan =
+    ../../home-manager/linux/specialisations/hyprland.nix;
 }
