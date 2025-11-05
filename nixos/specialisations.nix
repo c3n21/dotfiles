@@ -1,3 +1,7 @@
+# Convenience file to import all specialisations at once in a system.
+# In case it's not needed I can just import the specific specialisation which
+# reduces my system size.
+#
 # For some reason I need to specify pkgs otherwise it doesn't pick it up
 {
   pkgs,
