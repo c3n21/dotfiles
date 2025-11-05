@@ -77,13 +77,6 @@
 
   programs = {
     adb.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
-    nano = {
-      enable = false;
-    };
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
