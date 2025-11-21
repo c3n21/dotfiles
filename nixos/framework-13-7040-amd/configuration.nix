@@ -4,21 +4,19 @@
 # Common configuration for all machines
 { pkgs, ... }:
 {
-  nix = {
-    settings = {
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      auto-optimise-store = true;
-      download-buffer-size = 524288000;
-      trusted-users = [
-        "root"
-        "zhifan"
-      ];
-    };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      builders-use-substitutes = true
-    '';
+
+  imports = [
+    # common
+    ../common
+
+    ./hardware-configuration.nix
+
+    ../desktop.nix
+    ../firewall.nix
+  ];
+
+  networking = {
+    hostName = "zenuko"; # Define your hostname.
   };
 
   boot = {
@@ -62,13 +60,6 @@
 
   programs = {
     adb.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
-    nano = {
-      enable = false;
-    };
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

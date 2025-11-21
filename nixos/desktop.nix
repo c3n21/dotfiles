@@ -28,7 +28,7 @@ rec {
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-rime
-        fcitx5-chinese-addons
+        qt6Packages.fcitx5-chinese-addons
       ];
     };
   };
@@ -138,6 +138,7 @@ rec {
   };
 
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
     systemPackages = with pkgs; [
       kdePackages.kwalletmanager
       sbctl
