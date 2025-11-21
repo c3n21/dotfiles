@@ -19,23 +19,6 @@
     hostName = "zenuko"; # Define your hostname.
   };
 
-  nix = {
-    settings = {
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      auto-optimise-store = true;
-      download-buffer-size = 524288000;
-      trusted-users = [
-        "root"
-        "zhifan"
-      ];
-    };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      builders-use-substitutes = true
-    '';
-  };
-
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };

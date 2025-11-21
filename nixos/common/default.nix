@@ -7,5 +7,6 @@
     ./nixpkgs-configuration.nix
     ./secure-boot.nix
     ./editor.nix
+    ./nix.nix
   ];
 }
