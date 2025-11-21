@@ -65,6 +65,12 @@
       enableFishIntegration = true;
     };
 
+    starship = {
+      enable = true;
+      enableInteractive = true;
+      enableFishIntegration = true;
+    };
+
     tmux = {
       enable = true;
       baseIndex = 1;
@@ -113,9 +119,34 @@
 
     fish = {
       enable = true;
-      interactiveShellInit = ''
-        fish_default_key_bindings
-        if not set -q NVIM
+
+      functions = {
+        # fish_user_key_bindings = {
+        #   body =
+        #     # fish
+        #     ''
+        #       if not set -q NVIM
+        #         fish_vi_key_bindings
+
+        #         # Emulates vim's cursor shape behavior
+        #         # Set the normal and visual mode cursors to a block
+        #         set fish_cursor_default block
+
+        #         # Set the insert mode cursor to a line
+        #         set fish_cursor_insert line
+
+        #         # Set the replace mode cursor to an underscore
+        #         set fish_cursor_replace_one underscore
+        #       else
+        #         fish_default_key_bindings
+        #       end
+        #     '';
+        # };
+      };
+
+      interactiveShellInit =
+        # fish
+        ''
           fish_vi_key_bindings
 
           # Emulates vim's cursor shape behavior
@@ -127,19 +158,18 @@
 
           # Set the replace mode cursor to an underscore
           set fish_cursor_replace_one underscore
-        end
 
-        bind -M insert \cf accept-autosuggestion
-      '';
+          bind -M insert \cf accept-autosuggestion
+        '';
       plugins = with pkgs; [
         {
           name = "fzf.fish";
           src = fishPlugins.fzf-fish.src;
         }
-        {
-          name = "bobthefish";
-          src = fishPlugins.bobthefish.src;
-        }
+        # {
+        #   name = "bobthefish";
+        #   src = fishPlugins.bobthefish.src;
+        # }
       ];
     };
 
