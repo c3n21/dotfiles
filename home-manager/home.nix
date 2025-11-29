@@ -148,10 +148,6 @@
       interactiveShellInit =
         # fish
         ''
-          # workaround for https://github.com/nix-community/home-manager/issues/8178
-          # (some programs have broken completion like `git`)
-          set -p fish_complete_path ${config.programs.fish.package}/share/fish/completions
-
           fish_vi_key_bindings
 
           # Emulates vim's cursor shape behavior
