@@ -624,11 +624,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1764402166,
-        "narHash": "sha256-1NsVIfpxGdGwG2+Q13tWEXo9AI+3OCuFVwnFYKNaMeo=",
+        "lastModified": 1764405884,
+        "narHash": "sha256-TnvBRPmcpcyinvLgsitHS7w5soSa6yNBfRYEI2TK1Ts=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "df3ab485fe9c1e28ba8ec749318ca65ac74bea7f",
+        "rev": "10aae4855ee275f7d80d85f4328c24265fb20f1f",
         "type": "github"
       },
       "original": {
@@ -657,11 +657,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1764398162,
-        "narHash": "sha256-1lKXX7qIpJ/rbmtiCmpFUTF2J1IgROzKzsu/8cH4S8g=",
+        "lastModified": 1764399944,
+        "narHash": "sha256-FC9eYtSmplgxllCX4/3hJq5J3sXWKLSc7at8ZUxycVw=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "ed266cc77c1a46553d77fd0feadee3e5e332ecbe",
+        "rev": "b35bcae35b3f9665043c335e55ed5828af77db85",
         "type": "github"
       },
       "original": {
@@ -887,11 +887,11 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1762848745,
-        "narHash": "sha256-cvd+xp5OGDYt5FYxBWJH4WPeid/rne5cI1opAymxIMY=",
+        "lastModified": 1764413204,
+        "narHash": "sha256-RsrMRF1Qvc42UEfkVTVp16byEXH0Fcg0FOhgbx1uy7M=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
-        "rev": "670bc8ca5218606af7d065f389afe73615b05f78",
+        "rev": "64ffb02ef2aa5de527d7ab6dd4fabb6e7827f81f",
         "type": "github"
       },
       "original": {
