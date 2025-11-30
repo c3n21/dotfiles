@@ -261,6 +261,7 @@ rec {
           "ss02"
           "ss19"
         ];
+        shell-integration-features = "ssh-terminfo,ssh-env";
         font-style = "Italic";
         font-style-bold = "Bold Italic";
         font-style-bold-italic = "Bold Italic";
