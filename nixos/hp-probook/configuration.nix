@@ -6,17 +6,31 @@
 {
 
   imports = [
-    # common
-    ../common
+    ./disko.nix
+    ./facter.nix
 
-    ./hardware-configuration.nix
+    # common
+    # ../common/distributed-builds.nix
+    ../common/fish.nix
+    ../common/nixpkgs-configuration.nix
+    # ../common/secure-boot.nix
+    ../common/editor.nix
+    ../common/nix.nix
 
     ../desktop.nix
     ../firewall.nix
+
   ];
 
+  # loader = {
+  #   systemd-boot.enable = true;
+  # };
+
+  boot.loader.systemd-boot.enable = true;
+
   networking = {
-    hostName = "zenuko"; # Define your hostname.
+    hostName = "kenjy"; # Define your hostname.
+    hostId = "5cca6037";
   };
 
   boot = {
@@ -58,9 +72,6 @@
   #   size = 130;
   # };
 
-  programs = {
-    adb.enable = true;
-  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -72,7 +83,13 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  users.users = {
+    root.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXsckYz+HIMA2eJtUfyKtjTOQxHt3hW4qrycpLqS/qX hp"
+    ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -86,5 +103,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 }

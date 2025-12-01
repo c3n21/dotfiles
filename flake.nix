@@ -5,6 +5,7 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
     hyprland = {
@@ -43,13 +44,14 @@
   outputs =
     {
       self,
-      nixpkgs,
+      disko,
       home-manager,
-      nixos-hardware,
       lanzaboote,
       niri,
+      nixos-hardware,
       nixos-wsl,
-      disko,
+      nixpkgs,
+      nixos-facter-modules,
       ...
     }@inputs:
     let
@@ -76,6 +78,56 @@
       ];
 
       nixosConfigurations = {
+        hp-probook = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            nixos-facter-modules.nixosModules.facter
+            disko.nixosModules.disko
+            lanzaboote.nixosModules.lanzaboote
+            home-manager.nixosModules.home-manager
+
+            homeManagerModuleConfiguration
+
+            # TODO: remember to remove when is certain that it's not needed
+            # {
+            #   nixpkgs.overlays = [
+            #     niri.overlays.niri
+            #   ];
+            # }
+
+            ./nixos/hp-probook/configuration.nix
+
+            {
+              home-manager.users.zhifan = ./home-manager/home.nix;
+            }
+
+            {
+              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
+            }
+
+            {
+
+              # home-manager modules must be put there
+              home-manager.users.zhifan.imports = [
+                inputs.niri.homeModules.niri
+              ];
+            }
+
+            {
+              home-manager.users.zhifan = ./home-manager/linux;
+            }
+
+            # ./nixos/specialisations.nix
+            ./nixos/specialisation/niri.nix
+
+          ];
+        };
+
         framework-13-7040-amd = nixpkgs.lib.nixosSystem {
           inherit system;
 

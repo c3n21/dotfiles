@@ -14,7 +14,7 @@
     disk = {
       x = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-CT1000P5PSSD8_22313AA6F389";
+        device = "/dev/disk/by-id/usb-Samsung_PSSD_T7_S6XDNS0W648443R-0:0";
         content = {
           type = "gpt";
           partitions = {
@@ -28,6 +28,15 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+
+            swap = {
+              size = "64G";
+              content = {
+                type = "swap";
+                resumeDevice = true; # resume from hiberation from this device
+              };
+            };
+
             zfs = {
               size = "100%";
               content = {
