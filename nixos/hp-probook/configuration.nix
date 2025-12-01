@@ -31,6 +31,20 @@
   services.thermald.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
 
+  systemd = {
+    network = {
+      networks = {
+        "virbr1" = {
+          enable = true;
+          dns = [
+            "10.16.209.98"
+            "10.16.209.99"
+          ];
+        };
+      };
+    };
+  };
+
   networking = {
     hostName = "kenjy"; # Define your hostname.
     hostId = "5cca6037";
