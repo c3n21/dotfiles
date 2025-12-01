@@ -12,7 +12,9 @@ in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    EDITOR = "${inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath}/bin/neo";
+    EDITOR = "${
+      inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath
+    }/bin/neo";
   };
 
   xdg = {
