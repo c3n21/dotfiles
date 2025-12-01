@@ -42,6 +42,7 @@
 
     bridges = {
       br0 = {
+        name = "br0";
         interfaces = [
           "enp4s0"
         ];
