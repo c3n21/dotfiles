@@ -12,7 +12,9 @@ in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    EDITOR = "${inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath}/bin/neo";
+    EDITOR = "${
+      inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath
+    }/bin/neo";
   };
 
   xdg = {
@@ -261,6 +263,7 @@ rec {
           "ss02"
           "ss19"
         ];
+        shell-integration-features = "ssh-terminfo,ssh-env";
         font-style = "Italic";
         font-style-bold = "Bold Italic";
         font-style-bold-italic = "Bold Italic";

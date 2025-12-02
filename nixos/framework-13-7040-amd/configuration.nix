@@ -20,7 +20,14 @@
   };
 
   boot = {
+    supportedFilesystems = {
+      zfs = true;
+    };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  };
+
+  networking = {
+    hostId = "505639ad";
   };
 
   hardware = {
