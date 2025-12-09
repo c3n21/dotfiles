@@ -8,6 +8,12 @@
 }:
 let
   shell = "${pkgs.fish}/bin/fish";
+  catppuccin = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "waybar";
+    rev = "v1.1";
+    hash = "sha256-9lY+v1CTbpw2lREG/h65mLLw5KuT8OJdEPOb+NNC6Fo=";
+  };
 in
 rec {
   home.sessionVariables = {
@@ -249,6 +255,25 @@ rec {
     waybar = {
       enable = true;
       systemd.enable = true;
+      style =
+        # css
+        ''
+          @import "${catppuccin}/themes/macchiato.css";
+
+          * {
+            font-family: Delugia;
+            font-size: 13px;
+            min-height: 0;
+            padding: 1px 4px;
+            color: @text;
+          }
+
+          window#waybar {
+            /* you can also GTK3 CSS functions! */
+            background-color: shade(@base, 0.9);
+            border: 2px solid alpha(@crust, 0.3);
+          }
+        '';
     };
 
     ghostty = {
