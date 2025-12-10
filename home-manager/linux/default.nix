@@ -10,6 +10,9 @@ let
   shell = "${pkgs.fish}/bin/fish";
 in
 rec {
+  imports = [
+    ./programs/waybar.nix
+  ];
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "${
@@ -244,11 +247,6 @@ rec {
 
     swaylock = {
       enable = true;
-    };
-
-    waybar = {
-      enable = true;
-      systemd.enable = true;
     };
 
     ghostty = {
