@@ -13,6 +13,8 @@
 
     ../desktop.nix
     ../firewall.nix
+
+    ../services/tailscale.nix
   ];
 
   networking = {
