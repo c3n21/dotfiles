@@ -13,6 +13,8 @@
 
     ../desktop.nix
     ../firewall.nix
+
+    ../services/tailscale.nix
   ];
 
   networking = {
@@ -24,6 +26,8 @@
       zfs = true;
     };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # Needed for 6.18 kernel version
+    zfs.package = pkgs.zfs_2_4;
   };
 
   networking = {
@@ -65,9 +69,6 @@
   #   size = 130;
   # };
 
-  programs = {
-    adb.enable = true;
-  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

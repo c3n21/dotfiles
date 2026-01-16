@@ -31,10 +31,4 @@
     # https://github.com/NixOS/nixpkgs/issues/88643
     nftables.enable = false;
   };
-
-  services = {
-    tailscale = {
-      enable = true;
-    };
-  };
 }
