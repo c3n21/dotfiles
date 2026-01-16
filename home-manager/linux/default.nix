@@ -158,8 +158,12 @@ rec {
         ];
 
         wallpaper = [
-          "eDP-1,~/Pictures/wallpaper.jpg"
-          ",~/Pictures/wallpaper.jpg"
+          {
+            # monitor = "eDP-1";
+            monitor = ""; # Every monitor
+            path = "~/Pictures/wallpaper.jpg";
+            # fit_mode = "tile";
+          }
         ];
       };
     };
