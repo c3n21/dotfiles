@@ -234,16 +234,10 @@ rec {
 
     swayidle = {
       enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg";
-        }
-        {
-          event = "lock";
-          command = "lock";
-        }
-      ];
+      events = {
+        "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg";
+        "lock" = "lock";
+      };
     };
   };
 
