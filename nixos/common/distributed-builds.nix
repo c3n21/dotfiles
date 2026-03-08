@@ -5,7 +5,7 @@
 
   nix.buildMachines = [
     {
-      hostName = "nixos.private.headscale.com";
+      hostName = "coordinator.private.headscale.com";
       sshUser = "remotebuild";
       sshKey = "/root/.ssh/remotebuild";
       system = pkgs.stdenv.hostPlatform.system;
