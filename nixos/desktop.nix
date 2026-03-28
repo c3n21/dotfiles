@@ -91,11 +91,14 @@ rec {
     firewall.checkReversePath = "loose";
     networkmanager = {
       enable = true;
+      plugins = with pkgs; [
+        networkmanager-openconnect
+      ];
       dns = "systemd-resolved";
       wifi = {
         powersave = true;
         macAddress = "stable-ssid"; # mac address generation is stable per ssid
-        backend = "iwd";
+        # backend = "iwd";
       };
     };
   };
