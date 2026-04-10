@@ -28,6 +28,9 @@
 
   boot.loader.systemd-boot.enable = true;
 
+  services.thermald.enable = true;
+  hardware.cpu.intel.updateMicrocode = true;
+
   networking = {
     hostName = "kenjy"; # Define your hostname.
     hostId = "5cca6037";
@@ -42,6 +45,15 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages32 = with pkgs.driversi686Linux; [
+        intel-vaapi-driver
+        intel-media-driver
+      ];
+      extraPackages = with pkgs; [
+        vpl-gpu-rt
+        intel-vaapi-driver
+        intel-media-driver
+      ];
     };
   };
 
