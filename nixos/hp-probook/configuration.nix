@@ -35,6 +35,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    zfs.package = pkgs.zfs_2_4;
   };
 
   hardware = {
