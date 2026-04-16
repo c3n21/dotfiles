@@ -27,6 +27,9 @@ let
 
       # Idle manager
       ../services/swayidle.nix
+
+      # Lock manager
+      ../programs/swaylock.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix

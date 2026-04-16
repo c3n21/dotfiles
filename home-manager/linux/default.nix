@@ -139,10 +139,6 @@ rec {
 
   programs = {
 
-    swaylock = {
-      enable = true;
-    };
-
     ghostty = {
       enable = true;
       enableFishIntegration = true;
