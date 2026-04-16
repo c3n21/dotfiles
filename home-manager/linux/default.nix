@@ -138,10 +138,6 @@ rec {
   ];
 
   services = {
-    network-manager-applet = {
-      enable = true;
-    };
-
     swaync = {
       enable = true;
     };

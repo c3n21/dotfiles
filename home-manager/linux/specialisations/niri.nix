@@ -18,6 +18,9 @@ let
 
       # Bluetooth
       ../services/blueman-applet.nix
+
+      # Network Manager applet
+      ../services/network-manager-applet.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix
