@@ -85,9 +85,6 @@
       };
     in
     {
-      overlays = [
-        niri.overlays.niri
-      ];
       nixosModules = [
         niri.nixosModules.niri
       ];
@@ -110,13 +107,6 @@
             home-manager.nixosModules.home-manager
 
             homeManagerModuleConfiguration
-
-            # TODO: remember to remove when is certain that it's not needed
-            # {
-            #   nixpkgs.overlays = [
-            #     niri.overlays.niri
-            #   ];
-            # }
 
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
