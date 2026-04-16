@@ -21,6 +21,9 @@ let
 
       # Network Manager applet
       ../services/network-manager-applet.nix
+
+      # Sway Notification Center
+      ../services/swaync.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix

@@ -138,10 +138,6 @@ rec {
   ];
 
   services = {
-    swaync = {
-      enable = true;
-    };
-
     kanshi = {
       enable = true;
       systemdTarget = "graphical-session.target";
