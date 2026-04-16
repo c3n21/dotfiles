@@ -10,10 +10,6 @@ let
   shell = "${pkgs.fish}/bin/fish";
 in
 rec {
-  imports = [
-    ./programs/waybar.nix
-    ./programs/noctalia-shell.nix
-  ];
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "${

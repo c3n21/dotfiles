@@ -4,11 +4,26 @@ let
     "waybar"
     "noctalia-shell"
   ];
-  shellSpecificConfig = {
+  selectedShell = "noctalia-shell";
+  shellSpecificImports = {
+    "custom" = [
+      ../programs/waybar.nix
+    ];
+    "noctalia-shell" = [
+      ../programs/noctalia-shell.nix
+    ];
+  };
 
+  shellSpecificSpawnAtStartup = {
+    "custom" = [ ];
+    "noctalia-shell" = [
+      { argv = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ]; }
+    ];
   };
 in
 {
+
+  imports = shellSpecificImports."${selectedShell}";
   programs.niri.package = pkgs.niri;
   home.packages = [ pkgs.xwayland-satellite ];
 
@@ -26,7 +41,8 @@ in
 
       spawn-at-startup = [
         { argv = [ "xwayland-satellite" ]; }
-      ];
+      ]
+      ++ shellSpecificSpawnAtStartup."${selectedShell}";
 
       switch-events = {
         #  let logind handle suspension
