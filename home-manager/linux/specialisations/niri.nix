@@ -8,6 +8,7 @@ let
   shellSpecificImports = {
     "custom" = [
       ../programs/waybar.nix
+      ../services/hyprpaper.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix
