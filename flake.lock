@@ -945,7 +945,7 @@
       },
       "locked": {
         "lastModified": 1773504476,
-        "narHash": "sha256-mGLWk4JRdc/UlwMdTxoicRO+fTt6B/dNqfV06XJdzMU=",
+        "narHash": "sha256-cniHtDVtFKgbfvI/aHGGSCAgBAU3Mtn7+n7mfWQwgKA=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
         "rev": "a3611052c69206548129ad42b2d48cf1ecc3cddc",

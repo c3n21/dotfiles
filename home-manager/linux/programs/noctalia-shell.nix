@@ -2,6 +2,33 @@
   # configure options
   programs.noctalia-shell = {
     enable = true;
+    plugins = {
+      sources = [
+        {
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }
+      ];
+      states = {
+        network-manager-vpn = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+      };
+      version = 2;
+    };
+    # this may also be a string or a path to a JSON file.
+
+    pluginSettings = {
+      network-manager-vpn = {
+        "displayMode" = "onhover";
+        "disconnectedColor" = "none";
+        "connectedColor" = "primary";
+        "disableToastNotifications" = false;
+      };
+      # this may also be a string or a path to a JSON file.
+    };
     settings = {
       # configure noctalia here
       bar = {
