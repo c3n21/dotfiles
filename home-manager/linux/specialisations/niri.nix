@@ -24,6 +24,9 @@ let
 
       # Sway Notification Center
       ../services/swaync.nix
+
+      # Idle manager
+      ../services/swayidle.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix
