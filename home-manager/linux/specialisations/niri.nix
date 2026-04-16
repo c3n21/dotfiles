@@ -9,6 +9,7 @@ let
     "custom" = [
       ../programs/waybar.nix
       ../services/hyprpaper.nix
+      ../services/gammastep.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix
