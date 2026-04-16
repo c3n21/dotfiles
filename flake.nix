@@ -79,19 +79,22 @@
         inherit system;
         overlays = [
           niri.overlays.niri
-          noctalia.overlays.noctalia
+          noctalia.overlays.default
         ];
+        config.allowUnfree = true;
       };
     in
     {
-      overlays = [ niri.overlays.niri ];
+      overlays = [
+        niri.overlays.niri
+      ];
       nixosModules = [
         niri.nixosModules.niri
       ];
 
       nixosConfigurations = {
         framework-13-7040-amd = nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           specialArgs = {
             inherit inputs outputs;
