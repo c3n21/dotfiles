@@ -1,10 +1,40 @@
 { pkgs, config, ... }:
 let
+  selectedShell = "noctalia-shell";
+
+  lockAction = {
+    spawn = [
+      "swaylock"
+      "-f"
+      "-i"
+      "~/Pictures/wallpaper.jpg"
+    ];
+  };
+
+  shellSpecificLockAction = {
+    "custom" = {
+      spawn = [
+        "swaylock"
+        "-f"
+        "-i"
+        "~/Pictures/wallpaper.jpg"
+      ];
+    };
+    "noctalia-shell" = {
+      spawn = [
+        "swaylock"
+        "-f"
+        "-i"
+        "~/Pictures/wallpaper.jpg"
+      ];
+    };
+  };
+
   supportedShells = [
     "waybar"
     "noctalia-shell"
   ];
-  selectedShell = "noctalia-shell";
+
   shellSpecificImports = {
     "custom" = [
       # Shell bar
@@ -282,14 +312,7 @@ in
 
         "Mod+Shift+E" = {
           allow-inhibiting = false;
-          action = {
-            spawn = [
-              "swaylock"
-              "-f"
-              "-i"
-              "~/Pictures/wallpaper.jpg"
-            ];
-          };
+          action = lockAction;
         };
 
         # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.

@@ -60,6 +60,7 @@
       niri,
       nixos-wsl,
       disko,
+      noctalia,
       ...
     }@inputs:
     let
@@ -76,7 +77,10 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ niri.overlays.niri ];
+        overlays = [
+          niri.overlays.niri
+          noctalia.overlays.noctalia
+        ];
       };
     in
     {
