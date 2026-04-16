@@ -7,9 +7,17 @@ let
   selectedShell = "noctalia-shell";
   shellSpecificImports = {
     "custom" = [
+      # Shell bar
       ../programs/waybar.nix
+
+      # Wallpaper engine
       ../services/hyprpaper.nix
+
+      # Night color
       ../services/gammastep.nix
+
+      # Bluetooth
+      ../services/blueman-applet.nix
     ];
     "noctalia-shell" = [
       ../programs/noctalia-shell.nix
