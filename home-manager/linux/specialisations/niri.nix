@@ -42,7 +42,10 @@ let
 in
 {
 
-  imports = shellSpecificImports."${selectedShell}";
+  imports = [
+    ../services/kanshi.nix
+  ]
+  ++ shellSpecificImports."${selectedShell}";
   programs.niri.package = pkgs.niri;
   home.packages = [ pkgs.xwayland-satellite ];
 
