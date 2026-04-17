@@ -1,15 +1,17 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   selectedShell = "noctalia-shell";
 
-  lockAction = {
-    spawn = [
-      "swaylock"
-      "-f"
-      "-i"
-      "~/Pictures/wallpaper.jpg"
-    ];
-  };
+  noctalia-shell = "${pkgs.noctalia-shell}/bin/noctalia-shell";
+
+  noctalia_exec =
+    cmd:
+    [
+      noctalia-shell
+      "ipc"
+      "call"
+    ]
+    ++ (pkgs.lib.splitString " " cmd);
 
   shellSpecificLockAction = {
     "custom" = {
@@ -21,19 +23,9 @@ let
       ];
     };
     "noctalia-shell" = {
-      spawn = [
-        "swaylock"
-        "-f"
-        "-i"
-        "~/Pictures/wallpaper.jpg"
-      ];
+      spawn = noctalia_exec "lockScreen lock";
     };
   };
-
-  supportedShells = [
-    "waybar"
-    "noctalia-shell"
-  ];
 
   shellSpecificImports = {
     "custom" = [
@@ -69,7 +61,7 @@ let
   shellSpecificSpawnAtStartup = {
     "custom" = [ ];
     "noctalia-shell" = [
-      { argv = [ "${pkgs.noctalia-shell}/bin/noctalia-shell" ]; }
+      { argv = [ noctalia-shell ]; }
     ];
   };
 in
@@ -312,7 +304,7 @@ in
 
         "Mod+Shift+E" = {
           allow-inhibiting = false;
-          action = lockAction;
+          action = shellSpecificLockAction."${selectedShell}";
         };
 
         # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
