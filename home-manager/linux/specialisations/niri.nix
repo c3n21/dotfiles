@@ -13,6 +13,19 @@ let
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
+  shellSpecificLauncherAction = {
+    "custom" = {
+      spawn = [
+        "rofi"
+        "-show"
+        "drun"
+      ];
+    };
+    "noctalia-shell" = {
+      spawn = noctalia_exec "launcher toggle";
+    };
+  };
+
   shellSpecificLockAction = {
     "custom" = {
       spawn = [
@@ -291,13 +304,7 @@ in
         "Mod+F11".action = {
           fullscreen-window = { };
         };
-        "Mod+slash".action = {
-          spawn = [
-            "rofi"
-            "-show"
-            "drun"
-          ];
-        };
+        "Mod+slash".action = shellSpecificLauncherAction."${selectedShell}";
         "Mod+Shift+Q".action = {
           close-window = { };
         };
