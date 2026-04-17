@@ -113,7 +113,6 @@ rec {
     libreoffice-fresh
     # mpvpaper # sometimes I may want to have it again
     mpv
-    networkmanagerapplet
     kdePackages.polkit-kde-agent-1
     nwg-look
     kdePackages.okular

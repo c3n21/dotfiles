@@ -74,7 +74,14 @@ let
   shellSpecificSpawnAtStartup = {
     "custom" = [ ];
     "noctalia-shell" = [
-      { argv = [ noctalia-shell ]; }
+      {
+        argv = [
+          "env"
+          # QT_QPA_PLATFORMTHEME=gtk3 env var is needed to not break fcitx icon.
+          "QT_QPA_PLATFORMTHEME=gtk3"
+          noctalia-shell
+        ];
+      }
     ];
   };
 in

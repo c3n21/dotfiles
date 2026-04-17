@@ -22,7 +22,7 @@
 
     pluginSettings = {
       network-manager-vpn = {
-        "displayMode" = "onhover";
+        "displayMode" = "alwaysShow";
         "disconnectedColor" = "none";
         "connectedColor" = "primary";
         "disableToastNotifications" = false;
@@ -33,7 +33,8 @@
       # configure noctalia here
       bar = {
         density = "compact";
-        position = "right";
+        position = "top";
+        outerCorners = false;
         showCapsule = false;
         widgets = {
           left = [
@@ -45,7 +46,14 @@
               id = "Network";
             }
             {
+              id = "plugin:network-manager-vpn";
+            }
+            {
               id = "Bluetooth";
+            }
+            {
+              "id" = "Tray";
+              drawerEnabled = false;
             }
           ];
           center = [
@@ -71,7 +79,7 @@
           ];
         };
       };
-      colorSchemes.predefinedScheme = "Monochrome";
+      # colorSchemes.predefinedScheme = "Monochrome";
       # general = {
       #   avatarImage = "/home/drfoobar/.face";
       #   radiusRatio = 0.2;
