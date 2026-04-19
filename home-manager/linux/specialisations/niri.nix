@@ -112,8 +112,11 @@ in
       ++ shellSpecificSpawnAtStartup."${selectedShell}";
 
       switch-events = {
-        #  let logind handle suspension
-        # lid-close { spawn "systemctl" "suspend"; }
+        lid-close.action = {
+          # let logind handle suspension
+          # this only triggers lockScreen
+          spawn = noctalia_exec "lockScreen lock";
+        };
         lid-open.action = {
           spawn = [
             "notify-send"
