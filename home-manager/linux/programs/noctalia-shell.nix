@@ -66,6 +66,7 @@
           right = [
             {
               alwaysShowPercentage = false;
+              displayMode = "icon-always";
               id = "Battery";
               warningThreshold = 30;
             }
