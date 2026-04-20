@@ -62,6 +62,40 @@ let
         ];
       };
 
+      # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
+      "XF86AudioRaiseVolume".action = {
+        spawn = [
+          "wpctl"
+          "set-volume"
+          "-l"
+          "1.0"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%+"
+        ];
+      };
+      "XF86AudioLowerVolume".action = {
+        spawn = [
+          "wpctl"
+          "set-volume"
+          "-l"
+          "1.0"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%-"
+        ];
+      };
+
+      "XF86AudioMute" = {
+        allow-when-locked = true;
+        action = {
+          spawn = [
+            "wpctl"
+            "set-mute"
+            "@DEFAULT_AUDIO_SINK@"
+            "toggle"
+          ];
+        };
+      };
+
     };
     noctalia-shell = {
       "XF86MonBrightnessDown".action = {
@@ -69,6 +103,21 @@ let
       };
       "XF86MonBrightnessUp".action = {
         spawn = noctalia_exec "brightness increase";
+      };
+
+      # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
+      "XF86AudioRaiseVolume".action = {
+        spawn = noctalia_exec "volume increaseInput";
+      };
+      "XF86AudioLowerVolume".action = {
+        spawn = noctalia_exec "volume decreaseInput";
+      };
+
+      "XF86AudioMute" = {
+        allow-when-locked = true;
+        action = {
+          spawn = noctalia_exec "volume muteInput";
+        };
       };
     };
   };
@@ -355,40 +404,6 @@ in
         "Mod+Shift+E" = {
           allow-inhibiting = false;
           action = shellSpecificLockAction."${selectedShell}";
-        };
-
-        # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
-        "XF86AudioRaiseVolume".action = {
-          spawn = [
-            "wpctl"
-            "set-volume"
-            "-l"
-            "1.0"
-            "@DEFAULT_AUDIO_SINK@"
-            "5%+"
-          ];
-        };
-        "XF86AudioLowerVolume".action = {
-          spawn = [
-            "wpctl"
-            "set-volume"
-            "-l"
-            "1.0"
-            "@DEFAULT_AUDIO_SINK@"
-            "5%-"
-          ];
-        };
-
-        "XF86AudioMute" = {
-          allow-when-locked = true;
-          action = {
-            spawn = [
-              "wpctl"
-              "set-mute"
-              "@DEFAULT_AUDIO_SINK@"
-              "toggle"
-            ];
-          };
         };
 
       }
