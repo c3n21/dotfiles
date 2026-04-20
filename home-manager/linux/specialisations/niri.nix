@@ -13,6 +13,11 @@ let
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
+  shellSpecificPackages = {
+    custom = [ pkgs.brightnessctl ];
+    noctalia-shell = [ ];
+  };
+
   shellSpecificLauncherAction = {
     "custom" = {
       spawn = [
@@ -37,6 +42,34 @@ let
     };
     "noctalia-shell" = {
       spawn = noctalia_exec "lockScreen lock";
+    };
+  };
+
+  shellSpecificBrightnessActions = {
+    custom = {
+      "XF86MonBrightnessDown".action = {
+        spawn = [
+          "brightnessctl"
+          "set"
+          "5%-"
+        ];
+      };
+      "XF86MonBrightnessUp".action = {
+        spawn = [
+          "brightnessctl"
+          "set"
+          "5%+"
+        ];
+      };
+
+    };
+    noctalia-shell = {
+      "XF86MonBrightnessDown".action = {
+        spawn = noctalia_exec "brightness decrease";
+      };
+      "XF86MonBrightnessUp".action = {
+        spawn = noctalia_exec "brightness increase";
+      };
     };
   };
 
@@ -92,7 +125,7 @@ in
   ]
   ++ shellSpecificImports."${selectedShell}";
   programs.niri.package = pkgs.niri;
-  home.packages = [ pkgs.xwayland-satellite ];
+  home.packages = [ pkgs.xwayland-satellite ] ++ shellSpecificPackages."${selectedShell}";
 
   programs.niri = {
     settings = {
@@ -345,20 +378,6 @@ in
             "5%-"
           ];
         };
-        "XF86MonBrightnessDown".action = {
-          spawn = [
-            "brightnessctl"
-            "set"
-            "5%-"
-          ];
-        };
-        "XF86MonBrightnessUp".action = {
-          spawn = [
-            "brightnessctl"
-            "set"
-            "5%+"
-          ];
-        };
 
         "XF86AudioMute" = {
           allow-when-locked = true;
@@ -372,7 +391,8 @@ in
           };
         };
 
-      };
+      }
+      // shellSpecificBrightnessActions."${selectedShell}";
     };
 
     # config = # kdl

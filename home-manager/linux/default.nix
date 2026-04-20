@@ -130,7 +130,6 @@ rec {
     lm_sensors
     framework-tool
     # wechat-uos # 403 error
-    brightnessctl
     adbfs-rootless
     localsend
     microsoft-edge
