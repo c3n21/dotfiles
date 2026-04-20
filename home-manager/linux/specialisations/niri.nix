@@ -107,16 +107,16 @@ let
 
       # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
       "XF86AudioRaiseVolume".action = {
-        spawn = noctalia_exec "volume increaseInput";
+        spawn = noctalia_exec "volume increase";
       };
       "XF86AudioLowerVolume".action = {
-        spawn = noctalia_exec "volume decreaseInput";
+        spawn = noctalia_exec "volume decrease";
       };
 
       "XF86AudioMute" = {
         allow-when-locked = true;
         action = {
-          spawn = noctalia_exec "volume muteInput";
+          spawn = noctalia_exec "volume muteOutput";
         };
       };
     };
