@@ -196,7 +196,8 @@
 
     fzf = {
       enable = true;
-      enableFishIntegration = true;
+      # this overrides some default bindings
+      enableFishIntegration = false;
       tmux.enableShellIntegration = true;
     };
   };
