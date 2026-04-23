@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
-  selectedShell = "noctalia-shell";
+  # selectedShell = "noctalia-shell";
+  selectedShell = "custom";
 
   noctalia-shell = "${pkgs.noctalia-shell}/bin/noctalia-shell";
 
