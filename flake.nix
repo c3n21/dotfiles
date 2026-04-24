@@ -132,10 +132,6 @@
             {
               home-manager.users.zhifan = ./home-manager/linux;
             }
-
-            # ./nixos/specialisations.nix
-            ./nixos/specialisation/niri.nix
-
           ];
         };
 
