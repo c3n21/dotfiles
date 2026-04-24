@@ -60,7 +60,6 @@
       niri,
       nixos-hardware,
       nixos-wsl,
-      disko,
       noctalia,
       nixpkgs,
       nixos-facter-modules,
@@ -94,7 +93,7 @@
 
       nixosConfigurations = {
         hp-probook = nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           specialArgs = {
             inherit inputs outputs;
@@ -107,13 +106,6 @@
             home-manager.nixosModules.home-manager
 
             homeManagerModuleConfiguration
-
-            # TODO: remember to remove when is certain that it's not needed
-            # {
-            #   nixpkgs.overlays = [
-            #     niri.overlays.niri
-            #   ];
-            # }
 
             ./nixos/hp-probook/configuration.nix
 
@@ -130,16 +122,13 @@
               # home-manager modules must be put there
               home-manager.users.zhifan.imports = [
                 inputs.niri.homeModules.niri
+                inputs.noctalia.homeModules.default
               ];
             }
 
             {
               home-manager.users.zhifan = ./home-manager/linux;
             }
-
-            # ./nixos/specialisations.nix
-            ./nixos/specialisation/niri.nix
-
           ];
         };
 

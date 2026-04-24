@@ -12,7 +12,6 @@
     # common
     # ../common/distributed-builds.nix
     ../common/fish.nix
-    ../common/nixpkgs-configuration.nix
     # ../common/secure-boot.nix
     ../common/editor.nix
     ../common/nix.nix
@@ -20,6 +19,7 @@
     ../desktop.nix
     ../firewall.nix
 
+    ../modules/niri.nix
   ];
 
   # loader = {
