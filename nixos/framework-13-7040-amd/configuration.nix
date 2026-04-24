@@ -15,6 +15,8 @@
     ../firewall.nix
 
     ../services/tailscale.nix
+
+    ../modules/niri.nix
   ];
 
   networking = {

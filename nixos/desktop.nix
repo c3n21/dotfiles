@@ -195,7 +195,6 @@ rec {
   };
 
   services = {
-    blueman.enable = true;
     resolved = {
       enable = networking.networkmanager.dns == "systemd-resolved";
     };

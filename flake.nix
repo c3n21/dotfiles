@@ -12,16 +12,26 @@
       url = "https://github.com/hyprwm/Hyprland";
       type = "git";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/disko";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
+
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +60,7 @@
       niri,
       nixos-wsl,
       disko,
+      noctalia,
       ...
     }@inputs:
     let
@@ -66,18 +77,21 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ niri.overlays.niri ];
+        overlays = [
+          niri.overlays.niri
+          noctalia.overlays.default
+        ];
+        config.allowUnfree = true;
       };
     in
     {
-      overlays = [ niri.overlays.niri ];
       nixosModules = [
         niri.nixosModules.niri
       ];
 
       nixosConfigurations = {
         framework-13-7040-amd = nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           specialArgs = {
             inherit inputs outputs;
@@ -93,13 +107,6 @@
             home-manager.nixosModules.home-manager
 
             homeManagerModuleConfiguration
-
-            # TODO: remember to remove when is certain that it's not needed
-            # {
-            #   nixpkgs.overlays = [
-            #     niri.overlays.niri
-            #   ];
-            # }
 
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
@@ -118,77 +125,12 @@
               # home-manager modules must be put there
               home-manager.users.zhifan.imports = [
                 inputs.niri.homeModules.niri
+                inputs.noctalia.homeModules.default
               ];
             }
 
             {
               home-manager.users.zhifan = ./home-manager/linux;
-            }
-
-            # ./nixos/specialisations.nix
-            ./nixos/specialisation/niri.nix
-
-          ];
-        };
-
-        workstation = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit inputs outputs;
-          };
-
-          modules = [
-            disko.nixosModules.disko
-            ./nixos/common/fish.nix
-            ./nixos/common/nixpkgs-configuration.nix
-            ./nixos/common/distributed-builds.nix
-
-            ./nixos/workstation
-            # TODO: enable when the config is ready
-            # ./nixos/framework-13-7040-amd/disko.nix
-
-            ./nixos/firewall.nix
-            ./nixos/desktop.nix
-            ./nixos/specialisations.nix
-            home-manager.nixosModules.home-manager
-            homeManagerModuleConfiguration
-            {
-              home-manager.users.zhifan = ./home-manager/home.nix;
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
-            }
-
-            {
-
-              # home-manager modules must be put there
-              home-manager.users.zhifan.imports = [
-                inputs.niri.homeModules.niri
-              ];
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux;
-            }
-
-            {
-              specialisation.niri.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/niri.nix;
-              specialisation.hyprland.configuration.home-manager.users.zhifan =
-                ./home-manager/linux/specialisations/hyprland.nix;
-            }
-
-            {
-              environment.sessionVariables.NIXOS_OZONE_WL = "1";
-            }
-
-            {
-              nixpkgs.overlays = [
-                niri.overlays.niri
-              ];
-
             }
           ];
         };

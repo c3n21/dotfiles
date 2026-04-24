@@ -10,9 +10,6 @@ let
   shell = "${pkgs.fish}/bin/fish";
 in
 rec {
-  imports = [
-    ./programs/waybar.nix
-  ];
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "${
@@ -116,7 +113,6 @@ rec {
     libreoffice-fresh
     # mpvpaper # sometimes I may want to have it again
     mpv
-    networkmanagerapplet
     kdePackages.polkit-kde-agent-1
     nwg-look
     kdePackages.okular
@@ -134,118 +130,12 @@ rec {
     lm_sensors
     framework-tool
     # wechat-uos # 403 error
-    brightnessctl
     adbfs-rootless
     localsend
     microsoft-edge
   ];
 
-  services = {
-    gammastep = {
-      enable = true;
-      latitude = 45.45862600;
-      longitude = 9.18187300;
-      tray = true;
-    };
-
-    hyprpaper = {
-      enable = true;
-      settings = {
-        ipc = "off";
-
-        preload = [
-          "~/Pictures/wallpaper.jpg"
-        ];
-
-        wallpaper = [
-          {
-            # monitor = "eDP-1";
-            monitor = ""; # Every monitor
-            path = "~/Pictures/wallpaper.jpg";
-            # fit_mode = "tile";
-          }
-        ];
-      };
-    };
-
-    blueman-applet = {
-      enable = true;
-    };
-
-    network-manager-applet = {
-      enable = true;
-    };
-
-    swaync = {
-      enable = true;
-    };
-
-    kanshi = {
-      enable = true;
-      systemdTarget = "graphical-session.target";
-      settings = [
-        {
-          profile = {
-            name = "laptop";
-            outputs = [
-              {
-                criteria = "eDP-1";
-              }
-            ];
-          };
-        }
-        {
-          profile = {
-            name = "home";
-            outputs = [
-              {
-                criteria = "eDP-1";
-                position = "296,720";
-              }
-              {
-                criteria = "LG Electronics LG ULTRAGEAR 208NTVS0P575";
-                position = "0,0";
-                scale = 2.0;
-                mode = "3440x1440@85.00Hz";
-              }
-            ];
-          };
-        }
-        {
-          profile = {
-            name = "home2";
-            outputs = [
-              {
-                criteria = "eDP-1";
-                position = "0,0";
-              }
-              {
-                criteria = "Samsung Electric Company S24F350 H4ZH808827";
-                position = "1128,164";
-                scale = 1.0;
-                mode = "1920x1080@71.91Hz";
-              }
-            ];
-          };
-        }
-
-      ];
-    };
-
-    swayidle = {
-      enable = true;
-      events = {
-        "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg";
-        "lock" = "lock";
-      };
-    };
-  };
-
   programs = {
-
-    swaylock = {
-      enable = true;
-    };
 
     ghostty = {
       enable = true;
