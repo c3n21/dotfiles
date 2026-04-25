@@ -26,28 +26,49 @@ in
             "idle_inhibitor"
             "tray"
             "disk"
-            "pulseaudio"
+            "wireplumber"
+            "wireplumber#source"
             "clock"
           ];
 
-          "hyprland/workspaces" = {
-            "format" = "{name}: {icon}";
-            "format-icons" = {
-              # "1": "",
-              # "2": "",
-              # "3": "",
-              # "4": "",
-              # "5": "",
-              "active" = "";
-              "default" = "";
-              "urgent" = "";
-              # "active"= ""; # focused workspace on current monitor
-              "visible" = ""; # focused workspace on other monitors
-              # "default"= "";
-              "empty" = ""; # persistent (created by this plugin)
-            };
-            "all-outputs" = false; # recommended
+          "wireplumber" = {
+            "format" = "{volume}% {icon}";
+            "format-muted" = "";
+
+            "format-icons" = [
+              ""
+              ""
+              ""
+            ];
+            "on-click" = "pavucontrol";
           };
+
+          "wireplumber#source" = {
+            "node-type" = "Audio/Source";
+            "format" = "{volume}% 󰍬";
+            "format-muted" = "󰍭";
+            "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+            "scroll-step" = 5;
+          };
+
+          # "hyprland/workspaces" = {
+          #   "format" = "{name}: {icon}";
+          #   "format-icons" = {
+          #     # "1": "",
+          #     # "2": "",
+          #     # "3": "",
+          #     # "4": "",
+          #     # "5": "",
+          #     "active" = "";
+          #     "default" = "";
+          #     "urgent" = "";
+          #     # "active"= ""; # focused workspace on current monitor
+          #     "visible" = ""; # focused workspace on other monitors
+          #     # "default"= "";
+          #     "empty" = ""; # persistent (created by this plugin)
+          #   };
+          #   "all-outputs" = false; # recommended
+          # };
 
           # Modules configuration
           "keyboard-state" = {
