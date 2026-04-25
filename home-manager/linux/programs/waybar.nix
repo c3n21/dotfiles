@@ -21,15 +21,21 @@ in
           "spacing" = 4; # Gaps between modules (4px)
           # Choose the order of the modules
 
-          "modules-right" = [
+          "modules-left" = [
             "battery"
-            "idle_inhibitor"
             "backlight"
+            "idle_inhibitor"
+          ];
+
+          "modules-center" = [
+            "clock"
+          ];
+
+          "modules-right" = [
             "tray"
             "disk"
             "wireplumber"
             "wireplumber#source"
-            "clock"
           ];
 
           "wireplumber" = {

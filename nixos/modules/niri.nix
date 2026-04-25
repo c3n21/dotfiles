@@ -141,8 +141,6 @@ let
               mainBar = {
                 "modules-left" = [ "niri/workspaces" ];
 
-                "modules-center" = [ "niri/window" ];
-
                 "niri/workspaces" = {
                   "format" = "{icon}";
                   "format-icons" = {
