@@ -21,10 +21,6 @@ in
           "spacing" = 4; # Gaps between modules (4px)
           # Choose the order of the modules
 
-          "modules-left" = [ "hyprland/workspaces" ];
-
-          "modules-center" = [ "hyprland/window" ];
-
           "modules-right" = [
             "battery"
             "idle_inhibitor"

@@ -134,6 +134,27 @@ let
     "custom" = [
       # Shell bar
       ../../home-manager/linux/programs/waybar.nix
+      {
+        programs = {
+          waybar = {
+            settings = {
+              mainBar = {
+                "modules-left" = [ "niri/workspaces" ];
+
+                "modules-center" = [ "niri/window" ];
+
+                "niri/workspaces" = {
+                  "format" = "{icon}";
+                  "format-icons" = {
+                    "active" = "";
+                    "default" = "";
+                  };
+                };
+              };
+            };
+          };
+        };
+      }
 
       # Wallpaper engine
       ../../home-manager/linux/services/hyprpaper.nix
