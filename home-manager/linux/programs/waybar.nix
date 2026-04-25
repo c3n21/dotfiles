@@ -24,6 +24,7 @@ in
           "modules-right" = [
             "battery"
             "idle_inhibitor"
+            "backlight"
             "tray"
             "disk"
             "wireplumber"
