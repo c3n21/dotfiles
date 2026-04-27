@@ -83,6 +83,13 @@
       prefix = "M-a";
       # Less secure but it persists the session across user login and logout
       secureSocket = false;
+      terminal = "tmux-256color";
+      shell = "${pkgs.fish}/bin/fish";
+      newSession = true;
+      focusEvents = true;
+      historyLimit = 50000;
+      keyMode = "vi";
+      mouse = true;
       plugins = with pkgs; [
         tmuxPlugins.sensible
         {
@@ -102,19 +109,22 @@
           '';
         }
       ];
-      shell = "${pkgs.fish}/bin/fish";
-      newSession = true;
-      extraConfig = ''
-        # Customize the status line
-        set -g status-fg  green
-        set -g status-bg  black
-        setw -g mouse on
+      extraConfig = # tmux
+        ''
+          # Global settings
+          set -g mouse on
+          set -g set-clipboard on
+          set -g status-bg  black
+          set -g status-fg  green
+          set -ga terminal-overrides ",*:Tc"
+          set -s escape-time 10
+          # setw -g mouse on
 
-        #Set theme
-        set-window-option -g mode-keys vi
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
-      '';
+          # Vi mode settings
+          # set-window-option -g mode-keys vi
+          # bind-key -T copy-mode-vi v send-keys -X begin-selection
+          # bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+        '';
     };
 
     # Let Home Manager install and manage itself.
