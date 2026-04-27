@@ -174,6 +174,9 @@ let
 
       # Lock manager
       ../../home-manager/linux/programs/swaylock.nix
+
+      # Application launcher
+      ../../home-manager/linux/programs/rofi.nix
     ];
     "noctalia-shell" = [
       ../../home-manager/linux/programs/noctalia-shell.nix
