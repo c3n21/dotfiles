@@ -117,7 +117,6 @@ rec {
     nwg-look
     kdePackages.okular
     firefox
-    rofi
     wl-clipboard
     killall
     pavucontrol

@@ -134,6 +134,25 @@ let
     "custom" = [
       # Shell bar
       ../../home-manager/linux/programs/waybar.nix
+      {
+        programs = {
+          waybar = {
+            settings = {
+              mainBar = {
+                "modules-left" = [ "niri/workspaces" ];
+
+                "niri/workspaces" = {
+                  "format" = "{icon}";
+                  "format-icons" = {
+                    "active" = "";
+                    "default" = "";
+                  };
+                };
+              };
+            };
+          };
+        };
+      }
 
       # Wallpaper engine
       ../../home-manager/linux/services/hyprpaper.nix
@@ -155,6 +174,9 @@ let
 
       # Lock manager
       ../../home-manager/linux/programs/swaylock.nix
+
+      # Application launcher
+      ../../home-manager/linux/programs/rofi.nix
     ];
     "noctalia-shell" = [
       ../../home-manager/linux/programs/noctalia-shell.nix
