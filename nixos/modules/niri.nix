@@ -246,6 +246,17 @@ in
       settings = {
         prefer-no-csd = true;
 
+        layout = {
+          preset-column-widths = [
+            {
+              proportion = 0.5;
+            }
+            {
+              proportion = 1.0;
+            }
+          ];
+        };
+
         environment = {
           QT_QPA_PLATFORM = "wayland;xcb";
           # do I really need to hard-code the DISPLAY number?
@@ -404,6 +415,7 @@ in
           "Print".action = {
             screenshot = { };
           };
+
           "Mod+Print".action = {
             screenshot-screen = { };
           };
@@ -414,6 +426,10 @@ in
           # Window bindings (Mod + W prefix)
           "Mod+O".action = {
             maximize-column = { };
+          };
+
+          "Mod+V".action = {
+            switch-preset-column-width = { };
           };
 
           "Mod+T".action = {
