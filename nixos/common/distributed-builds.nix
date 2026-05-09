@@ -1,17 +1,26 @@
-{ pkgs, ... }:
+{ ... }:
 {
   nix.distributedBuilds = true;
-  nix.settings.builders-use-substitutes = true;
+  nix.settings = {
+    builders-use-substitutes = true;
+    # Prefer remote builders
+    max-jobs = 1;
+  };
 
   nix.buildMachines = [
     {
+      # Remote host must be added to /root/.ssh/known_hosts
+      # otherwise it will throw a generic error about not being able to start SSH connection
       hostName = "coordinator.private.headscale.com";
       sshUser = "remotebuild";
-      sshKey = "/root/.ssh/remotebuild";
-      system = pkgs.stdenv.hostPlatform.system;
-      # if the builder supports building for multiple architectures,
-      # replace the previous line by, e.g.
-      # systems = ["x86_64-linux" "aarch64-linux"];
+      sshKey = "/root/.ssh/remotebuilder";
+
+      # Supported build architectures
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "i686-linux"
+      ];
       supportedFeatures = [
         "nixos-test"
         "big-parallel"
@@ -19,8 +28,33 @@
         # "benchmark"
       ];
       protocol = "ssh-ng";
-      maxJobs = 1;
-      speedFactor = 2;
+      maxJobs = 2;
+      speedFactor = 8;
+      mandatoryFeatures = [ ];
+
+    }
+    {
+      # Remote host must be added to /root/.ssh/known_hosts
+      # otherwise it will throw a generic error about not being able to start SSH connection
+      hostName = "thinkcentre.private.headscale.com";
+      sshUser = "remotebuilder";
+      sshKey = "/root/.ssh/remotebuilder";
+
+      # Supported build architectures
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "i686-linux"
+      ];
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+        # "benchmark"
+      ];
+      protocol = "ssh-ng";
+      maxJobs = 3;
+      speedFactor = 8;
       mandatoryFeatures = [ ];
 
     }
