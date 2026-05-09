@@ -4,6 +4,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 let
@@ -74,6 +75,7 @@ rec {
       name = home.pointerCursor.name;
       size = home.pointerCursor.size;
     };
+    gtk4.theme = config.gtk.theme;
     theme = {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Blue-Dark-Solid";
