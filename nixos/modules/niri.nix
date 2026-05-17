@@ -433,7 +433,7 @@ in
           };
 
           "Mod+T".action = {
-            spawn = "ghostty";
+            spawn = "${pkgs.ghostty}/bin/ghostty";
           };
           "Mod+Shift+X".action = {
             quit = { };
