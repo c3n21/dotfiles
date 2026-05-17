@@ -81,7 +81,7 @@ rec {
       name = "Flat-Remix-GTK-Blue-Dark-Solid";
     };
     iconTheme = {
-      package = pkgs.libsForQt5.breeze-icons;
+      package = pkgs.kdePackages.breeze-icons;
       name = "breeze-dark";
     };
     font = {
