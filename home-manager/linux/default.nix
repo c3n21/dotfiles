@@ -163,6 +163,51 @@ rec {
       };
     };
 
+    opencode = {
+      enable = true;
+      context = # markdown
+        ''
+          # Environment
+
+          The user is running NixOS.
+
+          This system is declarative and reproducible.
+
+          Prefer:
+          - flakes
+          - nix shell
+          - nix develop
+          - nix run
+          - home-manager
+          - NixOS modules
+          - project-local tooling
+
+          Avoid recommending:
+          - curl | sh installers
+          - global npm/pip installs
+          - manual /usr/local modifications
+          - distro-specific instructions for Ubuntu/Debian unless explicitly requested
+
+          Assume:
+          - systemd is available
+          - modern Linux tooling is available
+          - the user is comfortable with terminal workflows
+          - the user is a technical user
+
+          # General behavior
+
+          - Prefer inspecting before changing.
+          - Always ask for permission before making modifications to the system, configuration, services, repositories, disks, or user files.
+          - Explain dangerous commands before suggesting or running them.
+          - Preserve existing user changes.
+          - Be concise but technically precise.
+          - For debugging, prioritize root-cause analysis over quick hacks.
+          - When troubleshooting, gather evidence incrementally instead of guessing.
+          - Show relevant commands and explain what they verify.
+          - Prefer reversible changes.
+        '';
+    };
+
     librewolf = {
       enable = true;
       # Enable WebGL, cookies and history
