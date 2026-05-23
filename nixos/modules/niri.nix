@@ -234,7 +234,6 @@ in
 
   services.blueman = {
     enable = true;
-    withApplet = true;
   };
 
   home-manager.users.zhifan = {
