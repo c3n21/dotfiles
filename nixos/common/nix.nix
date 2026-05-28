@@ -8,6 +8,15 @@
         "zhifan"
       ];
     };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
     extraOptions = ''
       experimental-features = nix-command flakes
       builders-use-substitutes = true

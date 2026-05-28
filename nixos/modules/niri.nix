@@ -160,8 +160,9 @@ let
       # Night color
       ../../home-manager/linux/services/gammastep.nix
 
+      # Commenting because blueman can import will autostart the applet
       # Bluetooth
-      ../../home-manager/linux/services/blueman-applet.nix
+      # ../../home-manager/linux/services/blueman-applet.nix
 
       # Network Manager applet
       ../../home-manager/linux/services/network-manager-applet.nix
@@ -231,7 +232,9 @@ in
     };
   };
 
-  services.blueman.enable = true;
+  services.blueman = {
+    enable = true;
+  };
 
   home-manager.users.zhifan = {
 
@@ -433,7 +436,7 @@ in
           };
 
           "Mod+T".action = {
-            spawn = "ghostty";
+            spawn = "${pkgs.ghostty}/bin/ghostty";
           };
           "Mod+Shift+X".action = {
             quit = { };

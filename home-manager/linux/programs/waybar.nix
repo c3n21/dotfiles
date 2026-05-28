@@ -141,7 +141,8 @@ in
           };
 
           "tray" = {
-            "icon-size" = 15;
+            # To avoid scaling issues with icons.
+            "icon-size" = 22;
             "spacing" = 10;
           };
 
