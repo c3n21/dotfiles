@@ -182,6 +182,9 @@ rec {
 
     opencode = {
       enable = true;
+      settings = {
+        lsp = true;
+      };
       context = # markdown
         ''
           # Environment
