@@ -76,6 +76,17 @@ rec {
       size = home.pointerCursor.size;
     };
     gtk4.theme = config.gtk.theme;
+    gtk3.extraCss = ''
+      @binding-set no-emoji {
+        unbind "<Control>period";
+        unbind "<Control>semicolon";
+      }
+
+      entry,
+      textview {
+        -gtk-key-bindings: no-emoji;
+      }
+    '';
     theme = {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Blue-Dark-Solid";
