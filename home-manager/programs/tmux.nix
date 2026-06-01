@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  copyCommand = "${pkgs.wl-clipboard}/bin/wl-copy";
+in
 {
   programs = {
     tmux = {
@@ -14,7 +17,7 @@
       focusEvents = true;
       historyLimit = 50000;
       keyMode = "vi";
-      mouse = true;
+      mouse = true; # TODO: to be disabled # to allow Ctrl + Click to work in Ghostty
       plugins = with pkgs; [
         tmuxPlugins.sensible
         {
@@ -37,18 +40,18 @@
       extraConfig = # tmux
         ''
           # Global settings
-          set -g mouse on
-          set -g set-clipboard on
+
+          # set -g set-clipboard external # should be the default
+          set -s copy-command '${copyCommand}'
           set -g status-bg  black
           set -g status-fg  green
           set -ga terminal-overrides ",*:Tc"
           set -s escape-time 10
+          set -g allow-passthrough on
           # setw -g mouse on
 
           # Vi mode settings
-          # set-window-option -g mode-keys vi
-          # bind-key -T copy-mode-vi v send-keys -X begin-selection
-          # bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+          bind -T copy-mode-vi y send-keys -X copy-selection
         '';
     };
 
