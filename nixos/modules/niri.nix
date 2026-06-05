@@ -4,6 +4,9 @@
 {
   pkgs,
   lib,
+  # it's for workaround
+  # config,
+  # inputs,
   ...
 }:
 let
@@ -244,6 +247,33 @@ in
     ++ shellSpecificImports."${selectedShell}";
     programs.niri.package = pkgs.niri;
     home.packages = [ pkgs.xwayland-satellite ] ++ shellSpecificPackages."${selectedShell}";
+
+    # Temporapry workaround
+    # xdg.configFile.niri-config.source =
+    #   let
+    #     inherit (inputs.niri.lib.internal) validated-config-for;
+    #     inherit (config.home-manager.users.zhifan.programs.niri) finalConfig package;
+    #   in
+    #   lib.mkForce (
+    #     validated-config-for pkgs package # kdl
+    #       ''
+    #         ${finalConfig}
+    #
+    #         window-rule {
+    #           background-effect {
+    #             // blur true
+    #             xray true
+    #           }
+    #         }
+    #
+    #         // layer-rule {
+    #         //   match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    #         //   background-effect {
+    #         //     xray false
+    #         //   }
+    #         // }
+    #       ''
+    #   );
 
     programs.niri = {
       settings = {
