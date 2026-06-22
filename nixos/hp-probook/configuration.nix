@@ -41,7 +41,7 @@
 
     certificates = [
       ''
-         -----BEGIN CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
         MIIBcjCCARigAwIBAgIRAKrMwfIuq4rrPBBWvzfSSj8wCgYIKoZIzj0EAwIwFzEV
         MBMGA1UEAxMMQ2xhbiBSb290IENBMB4XDTI2MDQwNjA1MTkwMloXDTI3MDQwNjE3
         MTkwMlowFzEVMBMGA1UEAxMMQ2xhbiBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZI

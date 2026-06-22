@@ -6,6 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    flakes.url = "github:kennethhoff/flakes";
+
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
     hyprland = {
@@ -63,6 +65,7 @@
       noctalia,
       nixpkgs,
       nixos-facter-modules,
+      flakes,
       ...
     }@inputs:
     let
@@ -128,6 +131,16 @@
 
             {
               home-manager.users.zhifan = ./home-manager/linux;
+            }
+
+            {
+
+              home-manager.users.zhifan = {
+                home.packages = with pkgs; [
+                  flakes.packages.${system}.aspire-cli
+                ];
+
+              };
             }
           ];
         };
