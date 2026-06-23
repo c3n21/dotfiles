@@ -115,7 +115,7 @@ rec {
   };
 
   home.packages = with pkgs; [
-    bitwarden-desktop
+    # bitwarden-desktop # https://github.com/NixOS/nixpkgs/issues/526914
     baobab
     steam
     brave
@@ -134,7 +134,7 @@ rec {
     killall
     pavucontrol
     # TODO: currently broken
-    # jetbrains.idea-community-bin
+    jetbrains.idea
     telegram-desktop
     zbar
     chromium
@@ -145,6 +145,8 @@ rec {
     adbfs-rootless
     localsend
     microsoft-edge
+    obsidian
+    dbeaver-bin
   ];
 
   programs = {
@@ -184,6 +186,7 @@ rec {
       enable = true;
       settings = {
         lsp = true;
+        formatter = true;
       };
       context = # markdown
         ''

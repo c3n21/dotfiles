@@ -42,13 +42,17 @@
   };
 
   boot = {
-    supportedFilesystems = {
-      zfs = true;
-    };
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    zfs = {
-      forceImportRoot = false;
-    };
+    # supportedFilesystems = {
+    #   zfs = true;
+    # };
+    # TODO:
+    # broken now.
+    # See https://github.com/NixOS/nixpkgs/issues/535850
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # zfs = {
+    #   forceImportRoot = false;
+    # };
   };
 
   networking = {
