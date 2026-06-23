@@ -42,14 +42,21 @@
   };
 
   boot = {
-    supportedFilesystems = {
-      zfs = true;
-    };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    zfs = {
-      forceImportRoot = false;
-    };
+
+    # Not really using ZFS so can be turned off for the moment
+    # supportedFilesystems = {
+    #   zfs = true;
+    # };
+    # zfs = {
+    #   forceImportRoot = false;
+    # };
   };
+
+  # TODO:
+  # Workaround for this
+  # See https://github.com/NixOS/nixpkgs/issues/535850
+  system.boot.loader.kernelFile = "vmlinuz";
 
   networking = {
     hostId = "505639ad";
