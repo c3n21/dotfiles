@@ -154,28 +154,7 @@ rec {
 
   programs = {
     nix-ld = {
-      enable = false;
-      libraries = with pkgs; [
-        acl
-        attr
-        bzip2
-        gtk3
-        javaPackages.openjfx17
-        jdk17
-        libGL
-        libsodium
-        libssh
-        libxml2
-        openssl
-        sqlite
-        stdenv.cc.cc
-        systemd
-        util-linux
-        xorg.libXtst
-        xz
-        zlib
-        zstd
-      ];
+      enable = true;
     };
     gamescope = {
       enable = true;
