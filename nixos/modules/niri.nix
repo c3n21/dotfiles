@@ -461,6 +461,18 @@ in
             maximize-column = { };
           };
 
+          "Mod+c".action = {
+            toggle-column-tabbed-display = { };
+          };
+
+          "Mod+Alt+H".action = {
+            consume-or-expel-window-left = { };
+          };
+
+          "Mod+Alt+L".action = {
+            consume-or-expel-window-right = { };
+          };
+
           "Mod+V".action = {
             switch-preset-column-width = { };
           };
