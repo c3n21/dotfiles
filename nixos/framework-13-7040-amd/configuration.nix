@@ -23,6 +23,24 @@
     hostName = "zenuko"; # Define your hostname.
   };
 
+  security.pki = {
+    installCACerts = true;
+    certificates = [
+      ''
+        -----BEGIN CERTIFICATE-----
+        MIIBcjCCARigAwIBAgIRAKrMwfIuq4rrPBBWvzfSSj8wCgYIKoZIzj0EAwIwFzEV
+        MBMGA1UEAxMMQ2xhbiBSb290IENBMB4XDTI2MDQwNjA1MTkwMloXDTI3MDQwNjE3
+        MTkwMlowFzEVMBMGA1UEAxMMQ2xhbiBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZI
+        zj0DAQcDQgAEbtr+thTdJilW38QpSpiaWv9X4+w/jeaOmgNfAG7s5LrdAFUq2+jm
+        Niq22nmXb+NbDZPQp/EGyp4jy/fT2t4chKNFMEMwDgYDVR0PAQH/BAQDAgEGMBIG
+        A1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFMABVv9Q4mFCbpBXUqqAu39p5eSm
+        MAoGCCqGSM49BAMCA0gAMEUCIQDIPqw83BZbLhPu0ETd3BY844/kEw7v/5PVqZ92
+        LDnJyQIgdXKxeIgHTWk2KiDcqkPef8LOJGBdXAWfYAfW0LXAlaE=
+        -----END CERTIFICATE-----
+      ''
+    ];
+  };
+
   boot = {
     supportedFilesystems = {
       zfs = true;
