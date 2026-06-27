@@ -7,7 +7,10 @@
         "root"
         "zhifan"
       ];
+      substituters = [ "https://attic.services.home.arpa/default" ];
+      trusted-public-keys = [ "default:QqQhH26sX5LlZOMWFGNXf1334y/7lLDTGqN3INIMgjA=" ];
     };
+
     gc = {
       automatic = true;
       dates = "weekly";
