@@ -48,6 +48,11 @@ in
           set -ga terminal-overrides ",*:Tc"
           set -s escape-time 10
           set -g allow-passthrough on
+
+          # tmux forwards modified keys in CSI-u format, which is the most reliable configuration
+          set -g extended-keys on
+          set -g extended-keys-format csi-u
+
           # setw -g mouse on
 
           # Vi mode settings
