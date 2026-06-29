@@ -1,0 +1,82 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-permission-system/main/schemas/permissions.schema.json",
+  "debugLog": false,
+  "permissionReviewLog": true,
+  "yoloMode": false,
+  "permission": {
+    "*": "ask",
+    "path": {
+      "*": "ask",
+      "AGENTS.md": "allow",
+      ".gitconfig": "allow",
+      ".gitignore": "allow",
+      "README.md": "allow",
+      "flake.lock": "allow",
+      "flake.nix": "allow",
+      "home-manager/.nixd.json": "allow",
+      "home-manager/home.nix": "allow",
+      "home-manager/linux/default.nix": "allow",
+      "home-manager/linux/packages-profiles/common.nix": "allow",
+      "home-manager/linux/packages-profiles/gaming.nix": "allow",
+      "home-manager/linux/programs/noctalia-shell.nix": "allow",
+      "home-manager/linux/programs/rofi.nix": "allow",
+      "home-manager/linux/programs/swaylock.nix": "allow",
+      "home-manager/linux/programs/waybar.nix": "allow",
+      "home-manager/linux/services/blueman-applet.nix": "allow",
+      "home-manager/linux/services/gammastep.nix": "allow",
+      "home-manager/linux/services/hyprpaper.nix": "allow",
+      "home-manager/linux/services/kanshi.nix": "allow",
+      "home-manager/linux/services/network-manager-applet.nix": "allow",
+      "home-manager/linux/services/swayidle.nix": "allow",
+      "home-manager/linux/services/swaync.nix": "allow",
+      "home-manager/linux/specialisations/hyprland.nix": "allow",
+      "home-manager/programs/pi.nix": "allow",
+      "home-manager/programs/tmux.nix": "allow",
+      "home-manager/standalone.nix": "allow",
+      "hypr/scripts/focus-kitty.sh": "allow",
+      "nixos/common/default.nix": "allow",
+      "nixos/common/distributed-builds.nix": "allow",
+      "nixos/common/editor.nix": "allow",
+      "nixos/common/fish.nix": "allow",
+      "nixos/common/nix.nix": "allow",
+      "nixos/common/secure-boot.nix": "allow",
+      "nixos/configurations/framework-13-7040-amd.nix": "allow",
+      "nixos/delugia-code/default.nix": "allow",
+      "nixos/desktop.nix": "allow",
+      "nixos/firewall.nix": "allow",
+      "nixos/framework-13-7040-amd/configuration.nix": "allow",
+      "nixos/framework-13-7040-amd/disko.nix": "allow",
+      "nixos/framework-13-7040-amd/hardware-configuration.nix": "allow",
+      "nixos/modules/niri.nix": "allow",
+      "nixos/services/tailscale.nix": "allow",
+      "nixos/specialisation/hyprland.nix": "allow",
+      "nixos/specialisations.nix": "allow",
+      "nixos/wsl/configuration.nix": "allow",
+      "way-displays/cfg.yaml": "allow",
+      ".pi/extensions/pi-permission-system/config.json": "allow"
+    },
+    "read": "allow",
+    "write": "allow",
+    "edit": "allow",
+    "grep": "allow",
+    "find": "allow",
+    "ls": "allow",
+    "bash": {
+      "*": "ask",
+      "git status": "allow",
+      "git diff": "allow",
+      "git ls-files": "allow"
+    },
+    "mcp": {
+      "*": "ask",
+      "mcp_status": "allow",
+      "mcp_list": "allow"
+    },
+    "skill": {
+      "*": "ask"
+    },
+    "external_directory": {
+      "*": "ask"
+    }
+  }
+}

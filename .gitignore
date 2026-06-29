@@ -1,6 +1,11 @@
 # Ignore everything
 *
 
+!.pi/
+!.pi/extensions/
+!.pi/extensions/pi-permission-system/
+!.pi/extensions/pi-permission-system/config.json
+
 !flake.nix
 !flake.lock
 
