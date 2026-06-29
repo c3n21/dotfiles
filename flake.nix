@@ -5,6 +5,9 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    flakes.url = "github:kennethhoff/flakes";
+
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
     hyprland = {
@@ -33,7 +36,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -53,14 +56,16 @@
   outputs =
     {
       self,
-      nixpkgs,
+      disko,
       home-manager,
-      nixos-hardware,
       lanzaboote,
       niri,
+      nixos-hardware,
       nixos-wsl,
-      disko,
       noctalia,
+      nixpkgs,
+      nixos-facter-modules,
+      flakes,
       ...
     }@inputs:
     let
@@ -90,6 +95,56 @@
       ];
 
       nixosConfigurations = {
+        hp-probook = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            nixos-facter-modules.nixosModules.facter
+            disko.nixosModules.disko
+            lanzaboote.nixosModules.lanzaboote
+            home-manager.nixosModules.home-manager
+
+            homeManagerModuleConfiguration
+
+            ./nixos/hp-probook/configuration.nix
+
+            {
+              home-manager.users.zhifan = ./home-manager/home.nix;
+            }
+
+            {
+              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
+            }
+
+            {
+
+              # home-manager modules must be put there
+              home-manager.users.zhifan.imports = [
+                inputs.niri.homeModules.niri
+                inputs.noctalia.homeModules.default
+              ];
+            }
+
+            {
+              home-manager.users.zhifan = ./home-manager/linux;
+            }
+
+            {
+
+              home-manager.users.zhifan = {
+                home.packages = with pkgs; [
+                  flakes.packages.${system}.aspire-cli
+                ];
+
+              };
+            }
+          ];
+        };
+
         framework-13-7040-amd = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
 

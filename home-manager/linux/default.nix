@@ -76,6 +76,17 @@ rec {
       size = home.pointerCursor.size;
     };
     gtk4.theme = config.gtk.theme;
+    gtk3.extraCss = ''
+      @binding-set no-emoji {
+        unbind "<Control>period";
+        unbind "<Control>semicolon";
+      }
+
+      entry,
+      textview {
+        -gtk-key-bindings: no-emoji;
+      }
+    '';
     theme = {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Blue-Dark-Solid";
@@ -104,7 +115,7 @@ rec {
   };
 
   home.packages = with pkgs; [
-    bitwarden-desktop
+    # bitwarden-desktop # https://github.com/NixOS/nixpkgs/issues/526914
     baobab
     steam
     brave
@@ -123,7 +134,7 @@ rec {
     killall
     pavucontrol
     # TODO: currently broken
-    # jetbrains.idea-community-bin
+    jetbrains.idea
     telegram-desktop
     zbar
     chromium
@@ -134,6 +145,8 @@ rec {
     adbfs-rootless
     localsend
     microsoft-edge
+    obsidian
+    dbeaver-bin
   ];
 
   programs = {
@@ -171,6 +184,10 @@ rec {
 
     opencode = {
       enable = true;
+      settings = {
+        lsp = true;
+        formatter = true;
+      };
       context = # markdown
         ''
           # Environment

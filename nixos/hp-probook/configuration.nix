@@ -6,25 +6,39 @@
 {
 
   imports = [
-    # common
-    ../common
+    ./disko.nix
+    ./facter.nix
 
-    ./hardware-configuration.nix
+    # common
+    # ../common/distributed-builds.nix
+    ../common/fish.nix
+    # ../common/secure-boot.nix
+    ../common/editor.nix
+    ../common/nix.nix
 
     ../desktop.nix
     ../firewall.nix
 
-    ../services/tailscale.nix
-
     ../modules/niri.nix
   ];
 
+  # loader = {
+  #   systemd-boot.enable = true;
+  # };
+
+  boot.loader.systemd-boot.enable = true;
+
+  services.thermald.enable = true;
+  hardware.cpu.intel.updateMicrocode = true;
+
   networking = {
-    hostName = "zenuko"; # Define your hostname.
+    hostName = "kenjy"; # Define your hostname.
+    hostId = "5cca6037";
   };
 
   security.pki = {
     installCACerts = true;
+
     certificates = [
       ''
         -----BEGIN CERTIFICATE-----
@@ -42,27 +56,27 @@
   };
 
   boot = {
-    # supportedFilesystems = {
-    #   zfs = true;
-    # };
-    # TODO:
-    # broken now.
-    # See https://github.com/NixOS/nixpkgs/issues/535850
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelPackages = pkgs.linuxPackages_latest;
-    # zfs = {
-    #   forceImportRoot = false;
-    # };
+    # kernelPackages = pkgs.linuxKernel;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    zfs.package = pkgs.zfs_2_4;
   };
 
-  networking = {
-    hostId = "505639ad";
-  };
+  # TODO: workaround for this https://github.com/NixOS/nixpkgs/issues/535850
+  system.boot.loader.kernelFile = "vmlinuz";
 
   hardware = {
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages32 = with pkgs.driversi686Linux; [
+        intel-vaapi-driver
+        intel-media-driver
+      ];
+      extraPackages = with pkgs; [
+        vpl-gpu-rt
+        intel-vaapi-driver
+        intel-media-driver
+      ];
     };
   };
 
@@ -105,7 +119,18 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  users.users = {
+    root.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXsckYz+HIMA2eJtUfyKtjTOQxHt3hW4qrycpLqS/qX hp"
+    ];
+    zhifan.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA9t1sjObdztFPx97yshUKyM1MIBDZgTFSVUCH2IiJ6Z hp-probook.zhifan"
+    ];
+  };
+
+  services.power-profiles-daemon.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -119,5 +144,12 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
+
+  # TODO: eventually put this in a module
+  home-manager.users.zhifan = {
+    home.sessionVariables = {
+      NUGET_PLUGIN_PATHS = "${pkgs.azure-artifacts-credprovider}/lib/azure-artifacts-credprovider/CredentialProvider.Microsoft.dll";
+    };
+  };
 }
