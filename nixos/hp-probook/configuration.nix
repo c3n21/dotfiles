@@ -36,7 +36,7 @@
     hostId = "5cca6037";
   };
 
-    security.pki = {
+  security.pki = {
     installCACerts = true;
 
     certificates = [
@@ -55,11 +55,14 @@
     ];
   };
 
-
   boot = {
+    # kernelPackages = pkgs.linuxKernel;
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     zfs.package = pkgs.zfs_2_4;
   };
+
+  # TODO: workaround for this https://github.com/NixOS/nixpkgs/issues/535850
+  system.boot.loader.kernelFile = "vmlinuz";
 
   hardware = {
     graphics = {
@@ -121,6 +124,9 @@
   users.users = {
     root.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXsckYz+HIMA2eJtUfyKtjTOQxHt3hW4qrycpLqS/qX hp"
+    ];
+    zhifan.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA9t1sjObdztFPx97yshUKyM1MIBDZgTFSVUCH2IiJ6Z hp-probook.zhifan"
     ];
   };
 
