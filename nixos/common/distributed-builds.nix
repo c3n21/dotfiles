@@ -12,7 +12,7 @@
       # Remote host must be added to /root/.ssh/known_hosts
       # otherwise it will throw a generic error about not being able to start SSH connection
       hostName = "coordinator.private.headscale.com";
-      sshUser = "remotebuild";
+      sshUser = "remotebuilder";
       sshKey = "/root/.ssh/remotebuilder";
 
       # Supported build architectures
