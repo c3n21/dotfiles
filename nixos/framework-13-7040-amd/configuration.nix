@@ -53,11 +53,6 @@
     # };
   };
 
-  # TODO:
-  # Workaround for this
-  # See https://github.com/NixOS/nixpkgs/issues/535850
-  system.boot.loader.kernelFile = "vmlinuz";
-
   networking = {
     hostId = "505639ad";
   };
