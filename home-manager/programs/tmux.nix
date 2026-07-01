@@ -49,6 +49,10 @@ in
           set -s escape-time 10
           set -g allow-passthrough on
 
+          # Set terminal tab with current session name
+          set -g set-titles on
+          set -g set-titles-string '#S'
+
           # tmux forwards modified keys in CSI-u format, which is the most reliable configuration
           set -g extended-keys on
           set -g extended-keys-format csi-u
