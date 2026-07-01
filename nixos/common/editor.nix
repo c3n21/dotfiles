@@ -1,11 +1,14 @@
+{ pkgs, ... }:
 {
   programs = {
     neovim = {
-      enable = true;
-      defaultEditor = true;
+      enable = false;
+      defaultEditor = false;
     };
     nano = {
       enable = false;
     };
   };
+
+  environment.systemPackages = [ pkgs.neovim ];
 }
