@@ -162,6 +162,7 @@
       enable = true;
       # this overrides some default bindings
       enableFishIntegration = false;
+      enableNushellIntegration = false;
       tmux.enableShellIntegration = true;
     };
   };
