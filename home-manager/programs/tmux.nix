@@ -49,6 +49,10 @@ in
           set -s escape-time 10
           set -g allow-passthrough on
 
+          # OSC 52
+          set -g set-clipboard on
+          set -as terminal-features ',*:clipboard'
+
           # Set terminal tab with current session name
           set -g set-titles on
           set -g set-titles-string '#S'
