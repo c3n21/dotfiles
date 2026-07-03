@@ -935,8 +935,8 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1782968081,
-        "narHash": "sha256-QGT6iUL8vOb/CUPwlfTWb6Kob1CzeZB4JLJ1g9DHJrs=",
+        "lastModified": 1782969857,
+        "narHash": "sha256-xLPPZ+oq7WTaahv1OjUZdJINsfy8/4JdsgXINEA2KrE=",
         "path": "/home/zhifan/.config/nvim",
         "type": "path"
       },
