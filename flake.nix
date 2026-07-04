@@ -113,7 +113,7 @@
             # ./nixos/framework-13-7040-amd/disko.nix
 
             {
-              home-manager.users.zhifan = ./home-manager/home.nix;
+              home-manager.users.zhifan = ./home-manager/framework-13-7040-amd.nix;
             }
 
             {
