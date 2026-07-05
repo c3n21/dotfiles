@@ -36,7 +36,7 @@
   services = {
     kdeconnect = {
       enable = true;
-      # indicator = true;
+      indicator = true;
     };
   };
 }
