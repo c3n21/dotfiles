@@ -61,6 +61,7 @@
       nixos-wsl,
       disko,
       noctalia,
+      nvim-configuration,
       ...
     }@inputs:
     let
@@ -80,6 +81,9 @@
         overlays = [
           niri.overlays.niri
           noctalia.overlays.default
+          nvim-configuration.overlays.${system}.neo
+          nvim-configuration.overlays.${system}.note
+          nvim-configuration.overlays.${system}.neovim-nightly
         ];
         config.allowUnfree = true;
       };

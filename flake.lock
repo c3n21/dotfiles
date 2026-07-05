@@ -935,12 +935,10 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1783240856,
-        "narHash": "sha256-FM4tKEgoR0q/3NOv98ED6sdZhrknC6R6A3Bn2QV14TM=",
-        "owner": "c3n21",
-        "repo": "nvim-configuration",
-        "rev": "e7fc4c676810bb8da0c68a00aabdfe0a5e52bc43",
-        "type": "github"
+        "lastModified": 1783257251,
+        "narHash": "sha256-wSgj2R9JuzBL7aWZQ40FYI8STWj9jw9ecT0It1693+M=",
+        "path": "/home/zhifan/.config/nvim",
+        "type": "path"
       },
       "original": {
         "owner": "c3n21",

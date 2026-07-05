@@ -33,34 +33,32 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages =
-    with pkgs;
-    [
-      radeontop
-      dnsutils
-      usbutils
-      exfatprogs
-      nmap
-      lsof
-      btop
-      powertop
-      nix-tree
-      zip
-      unzip
-      jq
-      btop
-      file
-      ripgrep
-      vscode
-      ripgrep-all
-      yt-dlp
-      htop
-      socat
-      gitflow
-    ]
-    ++ (with inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}; [
-      neo
-    ]);
+  home.packages = with pkgs; [
+    radeontop
+    dnsutils
+    usbutils
+    exfatprogs
+    nmap
+    lsof
+    btop
+    powertop
+    nix-tree
+    zip
+    unzip
+    jq
+    btop
+    file
+    ripgrep
+    vscode
+    ripgrep-all
+    yt-dlp
+    htop
+    socat
+    gitflow
+    # My custom NeoVim package
+    neo
+    note
+  ];
 
   programs = {
     git = {

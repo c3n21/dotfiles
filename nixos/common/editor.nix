@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  neovim = pkgs.neovim-nightly;
+in
 {
   programs = {
     neovim = {
@@ -10,5 +13,7 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.neovim ];
+  environment.systemPackages = [ neovim ];
+
+  environment.sessionVariables.EDITOR = "${neovim}/bin/nvim";
 }

@@ -3,7 +3,6 @@
 # a Linux machine more comfortable.
 {
   pkgs,
-  inputs,
   config,
   ...
 }:
@@ -13,9 +12,7 @@ in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    EDITOR = "${
-      inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath
-    }/bin/neo";
+    EDITOR = "${pkgs.neo}/bin/neo";
   };
 
   xdg = {
@@ -265,7 +262,7 @@ rec {
       enable = true;
       settings = {
         fork = false;
-        neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo}/bin/neo";
+        neovim-bin = "${pkgs.neo}/bin/neo";
         frame = "full";
         idle = true;
         maximized = false;
