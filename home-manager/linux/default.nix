@@ -48,7 +48,6 @@ rec {
         "x-scheme-handler/https" = [
           "librewolf.desktop"
         ];
-        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
   };
@@ -117,7 +116,6 @@ rec {
   home.packages = with pkgs; [
     # bitwarden-desktop # https://github.com/NixOS/nixpkgs/issues/526914
     baobab
-    steam
     brave
     scrcpy
     remmina
@@ -135,15 +133,11 @@ rec {
     pavucontrol
     # TODO: currently broken
     jetbrains.idea
-    telegram-desktop
     zbar
     chromium
     google-chrome
     lm_sensors
-    framework-tool
     # wechat-uos # 403 error
-    adbfs-rootless
-    localsend
     microsoft-edge
     obsidian
     dbeaver-bin

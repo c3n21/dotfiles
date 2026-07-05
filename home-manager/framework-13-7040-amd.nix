@@ -1,7 +1,27 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ./home.nix
+    ./linux/packages-profiles/gaming.nix
+    ./linux
+    inputs.niri.homeModules.niri
+    inputs.noctalia.homeModules.default
   ];
+
+  home.packages = with pkgs; [
+    telegram-desktop
+    framework-tool
+    adbfs-rootless
+    localsend
+  ];
+
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+      };
+    };
+  };
 
   # TODO: enable this after refactoring home.nix
   # home = {

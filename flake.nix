@@ -108,29 +108,19 @@
 
             homeManagerModuleConfiguration
 
+            {
+
+              # home-manager modules must be put there
+              home-manager.users.zhifan.imports = [
+              ];
+            }
+
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
             # ./nixos/framework-13-7040-amd/disko.nix
 
             {
               home-manager.users.zhifan = ./home-manager/framework-13-7040-amd.nix;
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
-            }
-
-            {
-
-              # home-manager modules must be put there
-              home-manager.users.zhifan.imports = [
-                inputs.niri.homeModules.niri
-                inputs.noctalia.homeModules.default
-              ];
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux;
             }
           ];
         };
