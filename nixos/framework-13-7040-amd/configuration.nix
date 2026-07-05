@@ -12,9 +12,10 @@
     ./hardware-configuration.nix
 
     ../desktop.nix
-    ../firewall.nix
+    # ../firewall.nix
 
     ../services/tailscale.nix
+    ../services/firewalld.nix
 
     ../modules/niri.nix
   ];
