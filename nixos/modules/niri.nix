@@ -433,9 +433,12 @@ in
           }
         ];
 
-        # cursor = {
-        #   xcursor-size ${builtins.toString config.home.pointerCursor.size}
-        # }
+        # TODO:
+        # figure out why it doesn't pick up what home-manager already selects
+        cursor = {
+          theme = "phinger-cursors-light";
+          size = 32;
+        };
 
         outputs = {
           "eDP-1" = {
