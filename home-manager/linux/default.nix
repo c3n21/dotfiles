@@ -129,8 +129,6 @@ rec {
     wl-clipboard
     killall
     pavucontrol
-    # TODO: currently broken
-    jetbrains.idea
     zbar
     chromium
     google-chrome

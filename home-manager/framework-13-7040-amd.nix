@@ -12,6 +12,7 @@
     framework-tool
     adbfs-rootless
     localsend
+    radeontop
   ];
 
   xdg = {
