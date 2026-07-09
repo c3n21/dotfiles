@@ -433,13 +433,6 @@ in
           }
         ];
 
-        # TODO:
-        # figure out why it doesn't pick up what home-manager already selects
-        cursor = {
-          theme = "phinger-cursors-light";
-          size = 32;
-        };
-
         outputs = {
           "eDP-1" = {
             scale = 2.0;
