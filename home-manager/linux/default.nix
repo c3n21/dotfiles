@@ -137,6 +137,7 @@ rec {
     microsoft-edge
     obsidian
     dbeaver-bin
+    waypipe
   ];
 
   programs = {
