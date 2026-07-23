@@ -1,21 +1,25 @@
-{ pkgs, ... }: {
+# To download manually the models
+# systemd-run --unit=llama-cpp-model-download   --collect   --property=Type=exec   --property=DynamicUser=yes   --property=CacheDirectory=llama-cpp   --property='Environment=LLAMA_CACHE=/var/cache/llama-cpp'     llama-server     -hf ggml-org/gemma-3-4b-it-GGUF:Q4_K_M     --host 127.0.0.1     --port 8081
+
+{ pkgs, lib, ... }: {
 
   environment.systemPackages = with pkgs; [
     llama-cpp-vulkan
     vulkan-tools
   ];
 
+  systemd.services.llama-cpp = {
+    wantedBy = lib.mkForce [ ];
+  };
+
   services.llama-cpp = {
-    enable = false;
+    enable = true;
     package = pkgs.llama-cpp-vulkan;
     # package = (pkgs.llama-cpp.override { cudaSupport = true; })
     # package = pkgs.llama-cpp-rocm;
 
     settings =
       let
-        modelDirectory = "/var/lib/llm-models";
-        # Replace this symlink whenever you want to switch models.
-        modelPath = "${modelDirectory}/current.gguf";
       in
       {
         # model = modelPath;

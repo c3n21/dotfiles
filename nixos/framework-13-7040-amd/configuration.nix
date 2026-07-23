@@ -18,6 +18,8 @@
     ../services/firewalld.nix
 
     ../modules/niri.nix
+
+    ../services/llama-cpp.nix
   ];
 
   networking = {
