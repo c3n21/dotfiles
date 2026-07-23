@@ -13,6 +13,7 @@
     adbfs-rootless
     localsend
     radeontop
+    distrobox
   ];
 
   xdg = {
