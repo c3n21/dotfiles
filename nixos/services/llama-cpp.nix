@@ -12,9 +12,23 @@
     wantedBy = lib.mkForce [ ];
   };
 
+  services.firewalld = {
+    zones = {
+      public = {
+        ports = [
+          {
+            port = 8080;
+            protocol = "tcp";
+          }
+        ];
+      };
+    };
+  };
+
   services.llama-cpp = {
     enable = true;
     package = pkgs.llama-cpp-vulkan;
+    openFirewall = true;
     # package = (pkgs.llama-cpp.override { cudaSupport = true; })
     # package = pkgs.llama-cpp-rocm;
 
@@ -25,11 +39,11 @@
         # model = modelPath;
         alias = "local";
 
-        host = "127.0.0.1";
+        host = "0.0.0.0";
         port = 8080;
 
         # Offload everything possible to the Radeon 780M.
-        "n-gpu-layers" = "all";
+        # "n-gpu-layers" = "all";
 
         # Auto is safer across different models and Vulkan kernels.
         # Benchmark "on" afterward if desired.
@@ -47,7 +61,7 @@
         "ubatch-size" = 512;
 
         # Larger contexts consume more RAM and reduce performance.
-        "ctx-size" = 8192;
+        "ctx-size" = 32768;
 
         # Necessary for reliable chat templates and tool calling.
         jinja = true;
