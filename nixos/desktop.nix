@@ -180,6 +180,9 @@ rec {
   };
 
   programs = {
+    fish = {
+      enable = true;
+    };
     nix-ld = {
       enable = false;
       libraries = with pkgs; [
@@ -288,6 +291,7 @@ rec {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhifan = {
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "Zhifan Chen";
     extraGroups = [
