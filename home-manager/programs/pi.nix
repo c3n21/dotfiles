@@ -7,15 +7,17 @@ let
     tag = "v${version}";
     hash = "sha256-aKtgPc3rwHEp856jP3N7nImph0CSG+gsWq9OVci3hmE=";
   };
-  basePackage = pkgs.pi-coding-agent.overrideAttrs (oldAttrs: rec {
-    inherit version src;
-    npmDeps = pkgs.fetchNpmDeps {
-      inherit src;
-      hash = "sha256-1EGs8lX8XoAnRtS+pw4lBRm24U/vtVB2loVRmZyd4Z8=";
-    };
-  });
+  # basePackage = pkgs.pi-coding-agent.overrideAttrs (oldAttrs: rec {
+  #   inherit version src;
+  #   npmDeps = pkgs.fetchNpmDeps {
+  #     inherit src;
+  #     hash = "sha256-1EGs8lX8XoAnRtS+pw4lBRm24U/vtVB2loVRmZyd4Z8=";
+  #   };
+  # });
+
+  basePackage = pkgs.pi-coding-agent;
   package = pkgs.symlinkJoin {
-    name = "pi-coding-agent-${version}-all-tools";
+    name = "pi-coding-agent-${basePackage.version}-all-tools";
     paths = [ basePackage ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
