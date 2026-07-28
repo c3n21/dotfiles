@@ -204,11 +204,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785158503,
-        "narHash": "sha256-vEhDKc9JYVGH5CO4nbfqIZmsWiDKLPFReYK6emsFK5U=",
+        "lastModified": 1785168662,
+        "narHash": "sha256-kGJTc0oEUQuEwV66lSlMxYtOEtpk9N/HS43k+rFAvs8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0c486d2b21bb1e4d0e5a11e374deb51587267387",
+        "rev": "cbb77679b3d992c8b62f884cd3a84af534a28621",
         "type": "github"
       },
       "original": {
@@ -292,11 +292,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1785161273,
-        "narHash": "sha256-k4wArOGDLm6x4pUaYa06QjH6etMvOaAjhom+yot0WA4=",
+        "lastModified": 1785193741,
+        "narHash": "sha256-cB1/G4a9H2cPfPkIJTc+IuBzpMaHF/lI0ZbSEji2I1E=",
         "ref": "refs/heads/main",
-        "rev": "fdd49ae16e205fb5e5178ade21f7cd4c9af06ef2",
-        "revCount": 7659,
+        "rev": "b5f71b249753ffdf54027a0760930b9f3dfe50a0",
+        "revCount": 7662,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -831,11 +831,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1785136686,
-        "narHash": "sha256-MWK0Pj2YPwuXxWdy0n+7ZiS323ww26R78bLLOk15fjE=",
+        "lastModified": 1785210918,
+        "narHash": "sha256-uY/UYA3tWnXga7h0xSuwGWvpu0Fl1LrKVu2l7DY4JR4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "988307fd6b2981b969f4b50ca32c9037837d1dce",
+        "rev": "29a3e341634615ff16f700e9a1fdbc9c42f0198c",
         "type": "github"
       },
       "original": {
@@ -868,11 +868,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785159436,
-        "narHash": "sha256-ITuWRK8yPsH6CqtNg7EO9VEvB42foWyPCDZgEs1kESQ=",
+        "lastModified": 1785210083,
+        "narHash": "sha256-2hTB7OIpToEIzgEswU2oasOzQX6ljGJrxMvRB3gBdnA=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "d6c7c3332168a842061cdaeb3ba1ae2076d34056",
+        "rev": "9e406c6cd0f704f7f3fd795171c89209d4d491be",
         "type": "github"
       },
       "original": {
@@ -891,11 +891,11 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1785139640,
-        "narHash": "sha256-XHGAOa20PrLEA+jC9LiyAXEjLAAwD6lZ/XbUtF7Okzc=",
+        "lastModified": 1785219719,
+        "narHash": "sha256-XyFYgDpIzSgd9pT8tfig0QDrfL0pdO4c9cillPshMQM=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
-        "rev": "95dd1592609c44ce7fe43e4e53da044ba2ec26e8",
+        "rev": "cf30cea183e90a3acc4a6195c3472b4c536c08b1",
         "type": "github"
       },
       "original": {
@@ -1045,11 +1045,11 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1784576463,
-        "narHash": "sha256-XVm8Bi8XasjMP2VOisrPAuJvrB6+rQZW+/TL9kr2Ogs=",
+        "lastModified": 1785188714,
+        "narHash": "sha256-2sxPGolcu1kL734NuKNDZjz9+qFZaBmEMEf75v998wc=",
         "owner": "Duckonaut",
         "repo": "split-monitor-workspaces",
-        "rev": "c8a03d993f71a3ae73179ce354e7a54859055f02",
+        "rev": "60a6f9126caa8e81addf424668ec3308aa5baa96",
         "type": "github"
       },
       "original": {
