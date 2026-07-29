@@ -22,6 +22,12 @@
     # ../services/llama-cpp.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
+  ];
+
+  security.pam.services.polkit-1.fprintAuth = true;
+
   networking = {
     hostName = "zenuko"; # Define your hostname.
   };

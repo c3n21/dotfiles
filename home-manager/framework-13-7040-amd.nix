@@ -41,6 +41,7 @@
       enable = true;
       indicator = true;
     };
+    polkit-gnome.enable = true; # It's not relevant which polkit service I'm using
   };
 
   programs.opencode.settings = {

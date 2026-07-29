@@ -112,7 +112,6 @@ rec {
   };
 
   home.packages = with pkgs; [
-    # bitwarden-desktop # https://github.com/NixOS/nixpkgs/issues/526914
     baobab
     brave
     scrcpy
@@ -122,7 +121,6 @@ rec {
     libreoffice-fresh
     # mpvpaper # sometimes I may want to have it again
     mpv
-    kdePackages.polkit-kde-agent-1
     nwg-look
     kdePackages.okular
     firefox
