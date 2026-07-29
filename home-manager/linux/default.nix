@@ -15,6 +15,10 @@ rec {
     EDITOR = "${pkgs.neo}/bin/neo";
   };
 
+  services = {
+    polkit-gnome.enable = true; # It's not relevant which polkit service I'm using
+  };
+
   xdg = {
     mimeApps = {
       enable = true;
