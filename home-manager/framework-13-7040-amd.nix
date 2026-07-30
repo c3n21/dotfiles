@@ -2,6 +2,7 @@
   imports = [
     ./home.nix
     ./programs/opencode.nix
+    ./programs/claude-code.nix
     ./linux/packages-profiles/gaming.nix
     ./linux
     inputs.niri.homeModules.niri
