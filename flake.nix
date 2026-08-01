@@ -84,29 +84,6 @@
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
-          # TODO: remove when this issue will be on nixpkgs-unstable
-          (
-            final: prev:
-            let
-              libdisplay-info-0-3 = prev.libdisplay-info.overrideAttrs (_old: rec {
-                version = "0.3.0";
-
-                src = prev.fetchFromGitLab {
-                  domain = "gitlab.freedesktop.org";
-                  owner = "emersion";
-                  repo = "libdisplay-info";
-                  rev = version;
-                  hash = "sha256-nXf2KGovNKvcchlHlzKBkAOeySMJXgxMpbi5z9gLrdc=";
-                };
-              });
-            in
-            {
-              niri = prev.niri.override {
-                libdisplay-info = libdisplay-info-0-3;
-              };
-            }
-          )
-
         ];
         config.allowUnfree = true;
       };

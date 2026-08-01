@@ -7,3 +7,11 @@ nixos-rebuild switch --sudo --flake .#framework-13-7040-amd --show-trace -L --fa
 --fallback to build an output when no substituter has the thing built
 --keep-going because why not
 --refresh to refresh substituters metadata
+
+# FAQ
+
+## When a derivation seems to be corrupted
+
+```bash
+nix store repair <store path>
+```

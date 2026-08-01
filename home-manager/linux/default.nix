@@ -88,10 +88,11 @@ rec {
         -gtk-key-bindings: no-emoji;
       }
     '';
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Blue-Dark-Solid";
-    };
+    # TODO: find another theme
+    # theme = {
+    #   package = pkgs.flat-remix-gtk;
+    #   name = "Flat-Remix-GTK-Blue-Dark-Solid";
+    # };
     iconTheme = {
       package = pkgs.kdePackages.breeze-icons;
       name = "breeze-dark";
