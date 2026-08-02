@@ -26,6 +26,16 @@
     bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
   ];
 
+  users.users = {
+    zhifan = {
+      openssh = {
+        authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAWsh71jIIevGaKuRbGfxEWh/5HrRRmzR4CnFkJOhpkJ"
+        ];
+      };
+    };
+  };
+
   security.pam.services.polkit-1.fprintAuth = true;
 
   networking = {
