@@ -129,6 +129,39 @@
           ];
         };
 
+        ciel = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            disko.nixosModules.disko
+
+            # lanzaboote.nixosModules.lanzaboote
+
+            home-manager.nixosModules.home-manager
+
+            homeManagerModuleConfiguration
+
+            # {
+            #
+            #   # home-manager modules must be put there
+            #   home-manager.users.zhifan.imports = [
+            #   ];
+            # }
+
+            ./nixos/ciel/configuration.nix
+            # TODO: enable when the config is ready
+            # ./nixos/framework-13-7040-amd/disko.nix
+
+            {
+              home-manager.users.zhifan = ./home-manager/ciel.nix;
+            }
+          ];
+        };
+
         wsl = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
