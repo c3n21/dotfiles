@@ -26,6 +26,13 @@
     bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
   ];
 
+  # TODO: enable openssh
+  services = {
+    openssh = {
+      enable = true;
+    };
+  };
+
   users.users = {
     zhifan = {
       openssh = {
