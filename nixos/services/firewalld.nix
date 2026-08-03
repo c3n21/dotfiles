@@ -20,6 +20,7 @@
 
         services = [
           "kdeconnect"
+          "ssh"
         ];
       };
     };
