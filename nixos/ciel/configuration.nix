@@ -13,6 +13,7 @@
     # ../common
 
     # these when secure boot will be enabled
+    # TODO: refactor this
     ../common/distributed-builds.nix
     ../common/fish.nix
     ../common/editor.nix
@@ -25,6 +26,15 @@
 
     ../modules/niri.nix
   ];
+
+  # Configure the remote builder
+  programs.ssh.extraConfig = ''
+    Host thinkcentre.private.headscale.com
+      HostName thinkcentre.private.headscale.com
+      User remotebuilder
+      IdentityFile /root/.ssh/remotebuilder.thinkcentre.private.headscale.com
+      IdentitiesOnly yes
+  '';
 
   hardware.facter.reportPath = ./facter.json;
   networking = {
@@ -119,6 +129,9 @@
 
   nix = {
     settings = {
+      builders-use-substitutes = true;
+      # Prefer remote builders
+      max-jobs = 1;
       experimental-features = [
         "nix-command"
         "flakes"

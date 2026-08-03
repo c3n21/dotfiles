@@ -7,6 +7,10 @@
     max-jobs = 1;
   };
 
+  programs.ssh.knownHosts."thinkcentre.private.headscale.com" = {
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3LynaGd55VsD1mvsiecmOzLNkZjyxvmoMRjEshMVIU";
+  };
+
   nix.buildMachines = [
     # {
     #   # Remote host must be added to /root/.ssh/known_hosts
@@ -37,8 +41,6 @@
       # Remote host must be added to /root/.ssh/known_hosts
       # otherwise it will throw a generic error about not being able to start SSH connection
       hostName = "thinkcentre.private.headscale.com";
-      sshUser = "remotebuilder";
-      sshKey = "/root/.ssh/remotebuilder";
 
       # Supported build architectures
       systems = [
