@@ -11,18 +11,7 @@ nixos-rebuild switch --sudo --flake .#framework-13-7040-amd --show-trace -L --fa
 # Test remote builds
 
 ```bash
-nix build \
-  --max-jobs 0 \
-  --option substitute false \
-  --print-build-logs \
-  --expr '
-    derivation {
-      name = "configured-remote-builder-test";
-      system = "x86_64-linux";
-      builder = "/bin/sh";
-      args = [ "-c" "echo built-on=$(hostname) > $out" ];
-    }
-  '
+nix build -vv --max-jobs 0 --option substitute false --option builders-use-substitutes false --expr "derivation { name = \"remote-test-$(date +%s%N)\"; system = \"x86_64-linux\"; builder = \"/bin/sh\"; args = [ \"-c\" \"echo ok > \$out\" ]; }"
 ```
 
 # FAQ
