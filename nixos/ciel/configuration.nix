@@ -18,6 +18,8 @@
     ../common/editor.nix
     ../common/nix.nix
 
+    ../desktop.nix
+
     ../services/tailscale.nix
     ../services/firewalld.nix
 
@@ -33,6 +35,25 @@
   time.timeZone = "Europe/Rome";
 
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # TODO: refactor this
+  security.pki = {
+    installCACerts = true;
+    certificates = [
+      ''
+        -----BEGIN CERTIFICATE-----
+        MIIBcjCCARigAwIBAgIRAKrMwfIuq4rrPBBWvzfSSj8wCgYIKoZIzj0EAwIwFzEV
+        MBMGA1UEAxMMQ2xhbiBSb290IENBMB4XDTI2MDQwNjA1MTkwMloXDTI3MDQwNjE3
+        MTkwMlowFzEVMBMGA1UEAxMMQ2xhbiBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZI
+        zj0DAQcDQgAEbtr+thTdJilW38QpSpiaWv9X4+w/jeaOmgNfAG7s5LrdAFUq2+jm
+        Niq22nmXb+NbDZPQp/EGyp4jy/fT2t4chKNFMEMwDgYDVR0PAQH/BAQDAgEGMBIG
+        A1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFMABVv9Q4mFCbpBXUqqAu39p5eSm
+        MAoGCCqGSM49BAMCA0gAMEUCIQDIPqw83BZbLhPu0ETd3BY844/kEw7v/5PVqZ92
+        LDnJyQIgdXKxeIgHTWk2KiDcqkPef8LOJGBdXAWfYAfW0LXAlaE=
+        -----END CERTIFICATE-----
+      ''
+    ];
+  };
 
   boot = {
     loader = {
@@ -82,14 +103,6 @@
   };
 
   users.users.zhifan = {
-    isNormalUser = true;
-    description = "Your user";
-
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-
     openssh.authorizedKeys.keys = [
       # Replace this.
       "ssh-ed25519 AAAA_REPLACE_WITH_YOUR_PUBLIC_KEY"

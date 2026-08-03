@@ -274,6 +274,7 @@ rec {
     shell = pkgs.fish;
     isNormalUser = true;
     description = "Zhifan Chen";
+    initialPassword = "changeme";
     extraGroups = [
       "networkmanager"
       "wheel"

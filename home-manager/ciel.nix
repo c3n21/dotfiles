@@ -1,3 +1,4 @@
+# TODO: state version not set yet, is inherited from home.nix
 { pkgs, inputs, ... }: {
   imports = [
     ./home.nix
