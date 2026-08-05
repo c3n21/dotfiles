@@ -13,8 +13,8 @@ rec {
       nfs = true;
     };
     kernelParams = [
-      # Instantly turn off login prompt from tty
-      "consoleblank=1"
+      # Turn off tty screen after 5 minutes
+      "consoleblank=300"
     ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
