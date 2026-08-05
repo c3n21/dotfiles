@@ -10,7 +10,7 @@
       npm = "@ai-sdk/openai-compatible";
 
       options = {
-        baseURL = "http://100.64.0.10:4000/v1";
+        baseURL = "https://litellm.services.home.arpa/v1";
 
         # Local inference may need longer than OpenCode's defaults.
         timeout = 600000;
