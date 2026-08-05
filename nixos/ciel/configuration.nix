@@ -28,13 +28,21 @@
   ];
 
   # Configure the remote builder
-  programs.ssh.extraConfig = ''
-    Host thinkcentre.private.headscale.com
-      HostName thinkcentre.private.headscale.com
-      User remotebuilder
-      IdentityFile /root/.ssh/remotebuilder.thinkcentre.private.headscale.com
-      IdentitiesOnly yes
-  '';
+  programs.ssh.extraConfig =
+    # sshconfig
+    ''
+      Host thinkcentre.private.headscale.com
+        HostName thinkcentre.private.headscale.com
+        User remotebuilder
+        IdentityFile /root/.ssh/remotebuilder.thinkcentre.private.headscale.com
+        IdentitiesOnly yes
+
+      Host kenjy.home.arpa
+        HostName kenjy.home.arpa
+        User zhifan
+        IdentityFile /root/.ssh/kenjy
+        IdentitiesOnly yes
+    '';
 
   hardware.facter.reportPath = ./facter.json;
   networking = {
