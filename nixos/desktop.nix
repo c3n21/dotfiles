@@ -12,6 +12,10 @@ rec {
     supportedFilesystems = {
       nfs = true;
     };
+    kernelParams = [
+      # Instantly turn off login prompt from tty
+      "consoleblank=1"
+    ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
       "fs.inotify.max_queued_events" = 100000;
