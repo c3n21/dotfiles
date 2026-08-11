@@ -77,6 +77,12 @@
       enable = true;
       enableInteractive = true;
       enableFishIntegration = true;
+      settings = {
+        hostname = {
+          ssh_only = false;
+          disabled = false;
+        };
+      };
     };
 
     # Let Home Manager install and manage itself.
