@@ -23,13 +23,21 @@
     # ../services/llama-cpp.nix
   ];
 
-  programs.ssh.extraConfig = ''
-    Host thinkcentre.private.headscale.com
-      HostName thinkcentre.private.headscale.com
-      User remotebuilder
-      IdentityFile /root/.ssh/remotebuilder
-      IdentitiesOnly yes
-  '';
+  programs.ssh.extraConfig =
+    # sshconfig
+    ''
+      Host thinkcentre.private.headscale.com
+        HostName thinkcentre.private.headscale.com
+        User remotebuilder
+        IdentityFile /root/.ssh/remotebuilder
+        IdentitiesOnly yes
+
+      Host kenjy.home.arpa
+        HostName kenjy.home.arpa
+        User zhifan
+        IdentityFile /home/zhifan/.ssh/hp-probook.zhifan
+        IdentitiesOnly yes
+    '';
 
   environment.systemPackages = with pkgs; [
     bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
