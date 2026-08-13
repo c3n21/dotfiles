@@ -16,6 +16,7 @@
 
     ../services/tailscale.nix
     ../services/firewalld.nix
+    ../services/kanata.nix
 
     ../modules/niri.nix
 
