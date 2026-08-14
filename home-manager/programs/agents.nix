@@ -17,5 +17,7 @@ let
 in
 {
   home.file.".claude/CLAUDE.md".source = agentsFile;
+  home.file.".gemini/config/AGENTS.md".source = agentsFile;
   xdg.configFile."opencode/AGENTS.md".source = agentsFile;
+  xdg.configFile."AGENTS.md".source = agentsFile;
 }

@@ -29,6 +29,7 @@
   imports = [
     ./programs/tmux.nix
     ./programs/pi.nix
+    ./programs/antigravity-cli.nix
     ./programs/agents.nix
   ];
 
