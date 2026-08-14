@@ -1,37 +1,14 @@
-# Global Agent Instructions
+# Global Agent Instructions (NixOS)
 
-Personal workstation `ciel`. NixOS, fish login shell.
+Personal machines of one user, all built from the same flake. NixOS +
+home-manager, fish login shell.
 
-## Environment
+## Environment & Constraints
 
-The NixOS + home-manager flake repo is checked out **at `~/.config` itself**, not
-in a separate dotfiles directory. So `~/.config` holds two different kinds of
-thing, and the difference matters before you edit anything there:
-
-- `~/.config/{flake.nix,home-manager/,nixos/}` — the repo. Edit these.
-- `~/.config/<app>/…` — mostly ordinary, unmanaged application config.
-- A few paths are home-manager-managed and are read-only symlinks into
-  `/nix/store` (e.g. `fish/config.fish`, `starship.toml`, `mimeapps.list`).
-  Editing one fails or is reverted on the next rebuild. Change its source under
-  `~/.config/home-manager/` instead.
-
-Check with `readlink -f` before editing anything under `~/.config`. A stale second
-checkout may exist elsewhere (e.g. `~/dotfiles`); confirm which tree is live via
-`git log` before changing config.
-
-Rebuild — ask first, never run these unprompted:
-
-```
-nixos-rebuild switch --sudo --flake .#ciel --show-trace -L --fallback --refresh --keep-going
-```
-
-- Untracked files are invisible to flakes. `git add` new files or the build will
-  not see them. `.gitignore` here is an allowlist (`*` plus `!` exceptions), so
-  new files outside `nixos/` and `home-manager/` are ignored by default.
+- On NixOS hosts there is no FHS layout. Do not assume `/usr/bin` or `/usr/local`,
+  and do not assume a downloaded binary will run out of the box.
 - Do not install software globally: no `curl | sh`, no `npm -g`, `pip install`,
   or `cargo install`. Use `nix shell nixpkgs#<pkg>`, `nix run`, or a devshell.
-- There is no FHS layout. Do not assume `/usr/bin` or `/usr/local`, and do not
-  assume a downloaded binary will run.
 - `sudo`, `nixos-rebuild`, `home-manager switch`, and `nix-collect-garbage`
   need explicit permission each time.
 - Your Bash tool runs bash. The user's interactive shell is fish 4.x, so commands
