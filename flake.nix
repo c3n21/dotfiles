@@ -4,6 +4,12 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
@@ -62,6 +68,7 @@
       disko,
       noctalia,
       nvim-configuration,
+      antigravity-nix,
       ...
     }@inputs:
     let
@@ -84,6 +91,7 @@
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
+          antigravity-nix.overlays.default
         ];
         config.allowUnfree = true;
       };
