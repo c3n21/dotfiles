@@ -68,6 +68,9 @@
       settings = {
         credential.helper = "libsecret";
       };
+      lfs = {
+        enable = true;
+      };
     };
 
     lsd = {
