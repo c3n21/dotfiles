@@ -19,7 +19,7 @@
     ../common/editor.nix
     ../common/nix.nix
 
-    ../desktop.nix
+    ../preset/desktop.nix
 
     ../services/tailscale.nix
     ../services/firewalld.nix

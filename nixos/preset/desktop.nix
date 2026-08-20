@@ -5,7 +5,8 @@
   ...
 }:
 let
-  delugia-code = pkgs.callPackage ./delugia-code { };
+  # TODO: put in overlay
+  delugia-code = pkgs.callPackage ../delugia-code { };
 in
 rec {
   boot = {
@@ -36,18 +37,8 @@ rec {
     };
   };
 
-  # laptop
-  powerManagement.enable = true;
   services = {
-    logind.settings.Login = {
-      HandleLidSwitch = "suspend-then-hibernate";
-      HandleLidSwitchExternalPower = "suspend-then-hibernate";
-      # When the laptop is plugged to an external monitor
-      HandleLidSwitchDocked = "suspend-then-hibernate";
-    };
-    thermald.enable = true;
     fwupd.enable = true;
-    upower.enable = true;
   };
 
   security = {
@@ -100,11 +91,6 @@ rec {
     LC_PAPER = "it_IT.UTF-8";
     LC_TELEPHONE = "it_IT.UTF-8";
     LC_TIME = "it_IT.UTF-8";
-  };
-
-  hardware = {
-    bluetooth.enable = true; # enables support for Bluetooth
-    bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
   };
 
   # Enable common container config files in /etc/containers
