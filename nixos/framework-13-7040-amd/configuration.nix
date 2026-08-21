@@ -11,7 +11,7 @@
 
     ./hardware-configuration.nix
 
-    ../desktop.nix
+    ../preset/laptop.nix
     # ../firewall.nix
 
     ../services/tailscale.nix
@@ -38,10 +38,6 @@
         IdentityFile /home/zhifan/.ssh/hp-probook.zhifan
         IdentitiesOnly yes
     '';
-
-  environment.systemPackages = with pkgs; [
-    bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
-  ];
 
   # TODO: enable openssh
   services = {
