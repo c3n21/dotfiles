@@ -92,6 +92,7 @@
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
           antigravity-nix.overlays.default
+          (import ./nixos/overlays.nix)
         ];
         config.allowUnfree = true;
       };

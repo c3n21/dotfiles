@@ -4,10 +4,6 @@
   lib,
   ...
 }:
-let
-  # TODO: put in overlay
-  delugia-code = pkgs.callPackage ../delugia-code { };
-in
 rec {
   boot = {
     supportedFilesystems = {
@@ -194,7 +190,7 @@ rec {
       noto-fonts
       source-han-sans
       source-han-serif
-      delugia-code
+      nerd-fonts.delugia-code
     ];
     fontconfig = {
       defaultFonts = {
