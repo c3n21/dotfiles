@@ -25,30 +25,6 @@ rec {
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
-        "default-web-browser" = [
-          "librewolf.desktop"
-        ];
-        "application/pdf" = [
-          "librewolf.desktop"
-        ];
-        "text/html" = [
-          "librewolf.desktop"
-        ];
-        "text/xml" = [
-          "librewolf.desktop"
-        ];
-        "application/xhtml+xml" = [
-          "librewolf.desktop"
-        ];
-        "application/vnd.mozilla.xul+xml" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/http" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/https" = [
-          "librewolf.desktop"
-        ];
       };
     };
   };
@@ -224,18 +200,6 @@ rec {
           - Show relevant commands and explain what they verify.
           - Prefer reversible changes.
         '';
-    };
-
-    librewolf = {
-      enable = true;
-      # Enable WebGL, cookies and history
-      settings = {
-        "webgl.disabled" = false;
-        "privacy.resistFingerprinting" = false;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.cookies" = false;
-        "network.cookie.lifetimePolicy" = 0;
-      };
     };
 
     obs-studio = {
