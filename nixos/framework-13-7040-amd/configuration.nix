@@ -83,13 +83,12 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
-    # Not really using ZFS so can be turned off for the moment
-    # supportedFilesystems = {
-    #   zfs = true;
-    # };
-    # zfs = {
-    #   forceImportRoot = false;
-    # };
+    supportedFilesystems = {
+      zfs = true;
+    };
+    zfs = {
+      forceImportRoot = false;
+    };
   };
 
   networking = {
