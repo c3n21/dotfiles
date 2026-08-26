@@ -99,7 +99,7 @@ rec {
     remmina
     # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
     virtiofsd
-    libreoffice-fresh
+    libreoffice-stable
     # mpvpaper # sometimes I may want to have it again
     mpv
     nwg-look
