@@ -4,6 +4,12 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
@@ -33,7 +39,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -61,6 +67,8 @@
       nixos-wsl,
       disko,
       noctalia,
+      nvim-configuration,
+      antigravity-nix,
       ...
     }@inputs:
     let
@@ -80,6 +88,11 @@
         overlays = [
           niri.overlays.niri
           noctalia.overlays.default
+          nvim-configuration.overlays.${system}.neo
+          nvim-configuration.overlays.${system}.note
+          nvim-configuration.overlays.${system}.neovim-nightly
+          antigravity-nix.overlays.default
+          (import ./nixos/overlays.nix)
         ];
         config.allowUnfree = true;
       };
@@ -108,29 +121,52 @@
 
             homeManagerModuleConfiguration
 
+            {
+
+              # home-manager modules must be put there
+              home-manager.users.zhifan.imports = [
+              ];
+            }
+
             ./nixos/framework-13-7040-amd/configuration.nix
             # TODO: enable when the config is ready
             # ./nixos/framework-13-7040-amd/disko.nix
 
             {
-              home-manager.users.zhifan = ./home-manager/home.nix;
+              home-manager.users.zhifan = ./home-manager/framework-13-7040-amd.nix;
             }
+          ];
+        };
+
+        ciel = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+
+          specialArgs = {
+            inherit inputs outputs;
+          };
+
+          modules = [
+            disko.nixosModules.disko
+
+            # lanzaboote.nixosModules.lanzaboote
+
+            home-manager.nixosModules.home-manager
+
+            homeManagerModuleConfiguration
+
+            # {
+            #
+            #   # home-manager modules must be put there
+            #   home-manager.users.zhifan.imports = [
+            #   ];
+            # }
+
+            ./nixos/ciel/configuration.nix
+            # TODO: enable when the config is ready
+            # ./nixos/framework-13-7040-amd/disko.nix
 
             {
-              home-manager.users.zhifan = ./home-manager/linux/packages-profiles/gaming.nix;
-            }
-
-            {
-
-              # home-manager modules must be put there
-              home-manager.users.zhifan.imports = [
-                inputs.niri.homeModules.niri
-                inputs.noctalia.homeModules.default
-              ];
-            }
-
-            {
-              home-manager.users.zhifan = ./home-manager/linux;
+              home-manager.users.zhifan = ./home-manager/ciel.nix;
             }
           ];
         };

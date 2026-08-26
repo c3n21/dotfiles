@@ -4,14 +4,15 @@
   lib,
   ...
 }:
-let
-  delugia-code = pkgs.callPackage ./delugia-code { };
-in
 rec {
   boot = {
     supportedFilesystems = {
       nfs = true;
     };
+    kernelParams = [
+      # Turn off tty screen after 5 minutes
+      "consoleblank=300"
+    ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
       "fs.inotify.max_queued_events" = 100000;
@@ -32,34 +33,8 @@ rec {
     };
   };
 
-  # laptop
-  powerManagement.enable = true;
   services = {
-    kanata = {
-      enable = true;
-      keyboards = {
-        laptop = {
-          config =
-            # lisp
-            ''
-              (defsrc caps esc)
-              (deflayer base esc caps)
-            '';
-          devices = [
-            "/dev/input/by-path/platform-i8042-serio-0-event-kbd" # framework-13-7040-amd
-          ];
-        };
-      };
-    };
-    logind.settings.Login = {
-      HandleLidSwitch = "suspend-then-hibernate";
-      HandleLidSwitchExternalPower = "suspend-then-hibernate";
-      # When the laptop is plugged to an external monitor
-      HandleLidSwitchDocked = "suspend-then-hibernate";
-    };
-    thermald.enable = true;
     fwupd.enable = true;
-    upower.enable = true;
   };
 
   security = {
@@ -114,11 +89,6 @@ rec {
     LC_TIME = "it_IT.UTF-8";
   };
 
-  hardware = {
-    bluetooth.enable = true; # enables support for Bluetooth
-    bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot  };
-  };
-
   # Enable common container config files in /etc/containers
   virtualisation = {
     containers = {
@@ -145,6 +115,8 @@ rec {
       kdePackages.kwalletmanager
       sbctl
 
+      bitwarden-desktop # Needs to be installed as system package because of https://github.com/NixOS/nixpkgs/issues/371479#issuecomment-4425603198
+
       # Podman
       dive # look into docker image layers
       podman-tui # status of containers in the terminal
@@ -153,29 +125,12 @@ rec {
   };
 
   programs = {
+    fish = {
+      enable = true;
+    };
     nix-ld = {
-      enable = false;
-      libraries = with pkgs; [
-        acl
-        attr
-        bzip2
-        gtk3
-        javaPackages.openjfx17
-        jdk17
-        libGL
-        libsodium
-        libssh
-        libxml2
-        openssl
-        sqlite
-        stdenv.cc.cc
-        systemd
-        util-linux
-        xorg.libXtst
-        xz
-        zlib
-        zstd
-      ];
+      enable = true;
+      libraries = lib.mkForce [ ];
     };
     gamescope = {
       enable = true;
@@ -235,7 +190,7 @@ rec {
       noto-fonts
       source-han-sans
       source-han-serif
-      delugia-code
+      nerd-fonts.delugia-code
     ];
     fontconfig = {
       defaultFonts = {
@@ -261,8 +216,10 @@ rec {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhifan = {
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "Zhifan Chen";
+    initialPassword = "changeme";
     extraGroups = [
       "networkmanager"
       "wheel"

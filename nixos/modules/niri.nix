@@ -4,6 +4,9 @@
 {
   pkgs,
   lib,
+  # it's for workaround
+  # config,
+  # inputs,
   ...
 }:
 let
@@ -245,6 +248,33 @@ in
     programs.niri.package = pkgs.niri;
     home.packages = [ pkgs.xwayland-satellite ] ++ shellSpecificPackages."${selectedShell}";
 
+    # Temporapry workaround
+    # xdg.configFile.niri-config.source =
+    #   let
+    #     inherit (inputs.niri.lib.internal) validated-config-for;
+    #     inherit (config.home-manager.users.zhifan.programs.niri) finalConfig package;
+    #   in
+    #   lib.mkForce (
+    #     validated-config-for pkgs package # kdl
+    #       ''
+    #         ${finalConfig}
+    #
+    #         window-rule {
+    #           background-effect {
+    #             // blur true
+    #             xray true
+    #           }
+    #         }
+    #
+    #         // layer-rule {
+    #         //   match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    #         //   background-effect {
+    #         //     xray false
+    #         //   }
+    #         // }
+    #       ''
+    #   );
+
     programs.niri = {
       settings = {
         prefer-no-csd = true;
@@ -403,10 +433,6 @@ in
           }
         ];
 
-        # cursor = {
-        #   xcursor-size ${builtins.toString config.home.pointerCursor.size}
-        # }
-
         outputs = {
           "eDP-1" = {
             scale = 2.0;
@@ -429,6 +455,18 @@ in
           # Window bindings (Mod + W prefix)
           "Mod+O".action = {
             maximize-column = { };
+          };
+
+          "Mod+c".action = {
+            toggle-column-tabbed-display = { };
+          };
+
+          "Mod+Alt+H".action = {
+            consume-or-expel-window-left = { };
+          };
+
+          "Mod+Alt+L".action = {
+            consume-or-expel-window-right = { };
           };
 
           "Mod+V".action = {

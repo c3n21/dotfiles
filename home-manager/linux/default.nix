@@ -3,7 +3,6 @@
 # a Linux machine more comfortable.
 {
   pkgs,
-  inputs,
   config,
   ...
 }:
@@ -13,9 +12,11 @@ in
 rec {
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    EDITOR = "${
-      inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo.outPath
-    }/bin/neo";
+    EDITOR = "${pkgs.neo}/bin/neo";
+  };
+
+  services = {
+    polkit-gnome.enable = true; # It's not relevant which polkit service I'm using
   };
 
   xdg = {
@@ -24,37 +25,13 @@ rec {
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
-        "default-web-browser" = [
-          "librewolf.desktop"
-        ];
-        "application/pdf" = [
-          "librewolf.desktop"
-        ];
-        "text/html" = [
-          "librewolf.desktop"
-        ];
-        "text/xml" = [
-          "librewolf.desktop"
-        ];
-        "application/xhtml+xml" = [
-          "librewolf.desktop"
-        ];
-        "application/vnd.mozilla.xul+xml" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/http" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/https" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       };
     };
   };
 
   home = {
     pointerCursor = {
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
       name = "phinger-cursors-light";
@@ -76,10 +53,22 @@ rec {
       size = home.pointerCursor.size;
     };
     gtk4.theme = config.gtk.theme;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Blue-Dark-Solid";
-    };
+    gtk3.extraCss = ''
+      @binding-set no-emoji {
+        unbind "<Control>period";
+        unbind "<Control>semicolon";
+      }
+
+      entry,
+      textview {
+        -gtk-key-bindings: no-emoji;
+      }
+    '';
+    # TODO: find another theme
+    # theme = {
+    #   package = pkgs.flat-remix-gtk;
+    #   name = "Flat-Remix-GTK-Blue-Dark-Solid";
+    # };
     iconTheme = {
       package = pkgs.kdePackages.breeze-icons;
       name = "breeze-dark";
@@ -104,36 +93,31 @@ rec {
   };
 
   home.packages = with pkgs; [
-    bitwarden-desktop
     baobab
-    steam
     brave
     scrcpy
     remmina
     # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
     virtiofsd
-    libreoffice-fresh
+    libreoffice-stable
     # mpvpaper # sometimes I may want to have it again
     mpv
-    kdePackages.polkit-kde-agent-1
     nwg-look
     kdePackages.okular
     firefox
     wl-clipboard
     killall
     pavucontrol
-    # TODO: currently broken
-    # jetbrains.idea-community-bin
-    telegram-desktop
     zbar
     chromium
     google-chrome
     lm_sensors
-    framework-tool
     # wechat-uos # 403 error
-    adbfs-rootless
-    localsend
     microsoft-edge
+    obsidian
+    dbeaver-bin
+    # TODO: remove this when update nixpkgs-unstable is merged with the fix
+    # waypipe
   ];
 
   programs = {
@@ -171,6 +155,10 @@ rec {
 
     opencode = {
       enable = true;
+      settings = {
+        lsp = true;
+        formatter = true;
+      };
       context = # markdown
         ''
           # Environment
@@ -214,18 +202,6 @@ rec {
         '';
     };
 
-    librewolf = {
-      enable = true;
-      # Enable WebGL, cookies and history
-      settings = {
-        "webgl.disabled" = false;
-        "privacy.resistFingerprinting" = false;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.cookies" = false;
-        "network.cookie.lifetimePolicy" = 0;
-      };
-    };
-
     obs-studio = {
       enable = true;
     };
@@ -254,7 +230,7 @@ rec {
       enable = true;
       settings = {
         fork = false;
-        neovim-bin = "${inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}.neo}/bin/neo";
+        neovim-bin = "${pkgs.neo}/bin/neo";
         frame = "full";
         idle = true;
         maximized = false;

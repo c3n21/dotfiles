@@ -11,23 +11,81 @@
 
     ./hardware-configuration.nix
 
-    ../desktop.nix
-    ../firewall.nix
+    ../preset/laptop.nix
+    # ../firewall.nix
 
     ../services/tailscale.nix
+    ../services/firewalld.nix
+    ../services/kanata.nix
 
     ../modules/niri.nix
+
+    # ../services/llama-cpp.nix
   ];
+
+  programs.ssh.extraConfig =
+    # sshconfig
+    ''
+      Host thinkcentre.private.headscale.com
+        HostName thinkcentre.private.headscale.com
+        User remotebuilder
+        IdentityFile /root/.ssh/remotebuilder
+        IdentitiesOnly yes
+
+      Host kenjy.home.arpa
+        HostName kenjy.home.arpa
+        User zhifan
+        IdentityFile /home/zhifan/.ssh/hp-probook.zhifan
+        IdentitiesOnly yes
+    '';
+
+  # TODO: enable openssh
+  services = {
+    openssh = {
+      enable = true;
+    };
+  };
+
+  users.users = {
+    zhifan = {
+      openssh = {
+        authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAWsh71jIIevGaKuRbGfxEWh/5HrRRmzR4CnFkJOhpkJ"
+        ];
+      };
+    };
+  };
+
+  security.pam.services.polkit-1.fprintAuth = true;
 
   networking = {
     hostName = "zenuko"; # Define your hostname.
   };
 
+  security.pki = {
+    installCACerts = true;
+    certificates = [
+      ''
+        -----BEGIN CERTIFICATE-----
+        MIIBcjCCARigAwIBAgIRAKrMwfIuq4rrPBBWvzfSSj8wCgYIKoZIzj0EAwIwFzEV
+        MBMGA1UEAxMMQ2xhbiBSb290IENBMB4XDTI2MDQwNjA1MTkwMloXDTI3MDQwNjE3
+        MTkwMlowFzEVMBMGA1UEAxMMQ2xhbiBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZI
+        zj0DAQcDQgAEbtr+thTdJilW38QpSpiaWv9X4+w/jeaOmgNfAG7s5LrdAFUq2+jm
+        Niq22nmXb+NbDZPQp/EGyp4jy/fT2t4chKNFMEMwDgYDVR0PAQH/BAQDAgEGMBIG
+        A1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFMABVv9Q4mFCbpBXUqqAu39p5eSm
+        MAoGCCqGSM49BAMCA0gAMEUCIQDIPqw83BZbLhPu0ETd3BY844/kEw7v/5PVqZ92
+        LDnJyQIgdXKxeIgHTWk2KiDcqkPef8LOJGBdXAWfYAfW0LXAlaE=
+        -----END CERTIFICATE-----
+      ''
+    ];
+  };
+
   boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
     supportedFilesystems = {
       zfs = true;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     zfs = {
       forceImportRoot = false;
     };
@@ -49,9 +107,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Set your time zone.
-  time.timeZone = "Europe/Rome";
+  services.timesyncd.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

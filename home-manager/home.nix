@@ -16,6 +16,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
+  # TODO: this should be refactored to be home configuration specific
   home = {
     stateVersion = "24.05"; # Please read the comment before changing.
     username = "zhifan";
@@ -27,38 +28,39 @@
 
   imports = [
     ./programs/tmux.nix
+    ./programs/pi.nix
+    ./programs/antigravity-cli.nix
+    ./programs/agents.nix
+    ./programs/librewolf.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages =
-    with pkgs;
-    [
-      radeontop
-      dnsutils
-      usbutils
-      exfatprogs
-      nmap
-      lsof
-      btop
-      powertop
-      nix-tree
-      zip
-      unzip
-      jq
-      btop
-      file
-      ripgrep
-      vscode
-      ripgrep-all
-      yt-dlp
-      htop
-      socat
-      gitflow
-    ]
-    ++ (with inputs.nvim-configuration.packages.${pkgs.stdenv.hostPlatform.system}; [
-      neo
-    ]);
+  home.packages = with pkgs; [
+    dnsutils
+    usbutils
+    exfatprogs
+    nmap
+    lsof
+    btop
+    powertop
+    nix-tree
+    zip
+    unzip
+    jq
+    btop
+    file
+    ripgrep
+    vscode
+    ripgrep-all
+    yt-dlp
+    htop
+    socat
+    gitflow
+    # My custom NeoVim package
+    neo
+    note
+  ];
 
   programs = {
     git = {
@@ -66,6 +68,9 @@
       package = pkgs.gitFull;
       settings = {
         credential.helper = "libsecret";
+      };
+      lfs = {
+        enable = true;
       };
     };
 
@@ -78,6 +83,12 @@
       enable = true;
       enableInteractive = true;
       enableFishIntegration = true;
+      settings = {
+        hostname = {
+          ssh_only = false;
+          disabled = false;
+        };
+      };
     };
 
     # Let Home Manager install and manage itself.
@@ -161,6 +172,7 @@
       enable = true;
       # this overrides some default bindings
       enableFishIntegration = false;
+      enableNushellIntegration = false;
       tmux.enableShellIntegration = true;
     };
   };
