@@ -41,11 +41,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787574976,
-        "narHash": "sha256-8Egg3kenaiXNS4NNCI6ptJpwr4du00I5UCdmwGMvShg=",
+        "lastModified": 1788016784,
+        "narHash": "sha256-RO90Fk+Rn2Yy+I8oL4ePTLLKLgOAr8hrTx7tlpwdLaA=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "cf056dcfefc5282133928b81dcaf1993d33c4ea3",
+        "rev": "783bfd9ae441d1d0519b979ac68b73ddd6e81df0",
         "type": "github"
       },
       "original": {
@@ -331,11 +331,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1788037247,
-        "narHash": "sha256-oGNR5YpGZVpr72YlcWGNhC0Xx7Bth01eU0AYtFHlE7s=",
+        "lastModified": 1788100302,
+        "narHash": "sha256-aUtqIy9TYDxR0zGATVqs3csJjnogmKq+F5Tj8yidUGs=",
         "ref": "refs/heads/main",
-        "rev": "e43eaaac6b9ff7987609244f920d978e2b6598c3",
-        "revCount": 7775,
+        "rev": "86c24e2e079aa62214421c76f01b603fc8178125",
+        "revCount": 7779,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -907,11 +907,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788056502,
-        "narHash": "sha256-ZAS3aQIuKEuUh1GujQDq/D2XNuVc+YDHqDOWOf3uQok=",
+        "lastModified": 1788099672,
+        "narHash": "sha256-t4Rw5OeULK/WA2Jh9ja615sCs2AmvahkAUx/ymdf2YQ=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "037804f86a3d2b75a7d741e6b6a965e8cba8e5b0",
+        "rev": "d891007c022a3a1d4484495fe8b350a00deafae9",
         "type": "github"
       },
       "original": {
@@ -930,11 +930,11 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1788068469,
-        "narHash": "sha256-V+HGxlxLwrWAWNROIfPzBliBP73cz/C5eiQu3GGAPaw=",
+        "lastModified": 1788103288,
+        "narHash": "sha256-42Ed5yxmQBcvwG6TjZlJT9ekAEXQ703HhQ/a3zKlO5U=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
-        "rev": "12aa2ce5fdf1d4d8c1e5a2c4b957bc8bafc63194",
+        "rev": "931d1b811aeffad1b2e5336d1a74d0032f3087af",
         "type": "github"
       },
       "original": {
