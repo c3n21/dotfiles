@@ -40,6 +40,11 @@
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = false;
       "network.cookie.lifetimePolicy" = 0;
+
+      # URL bar
+      "browser.urlbar.suggest.openpage" = true;
+      "browser.urlbar.shortcuts.tabs" = true;
+      "browser.urlbar.suggest.engines" = true;
     };
     profiles.default = {
       search = {
