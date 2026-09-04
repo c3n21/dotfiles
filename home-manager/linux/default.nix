@@ -116,8 +116,8 @@ rec {
     microsoft-edge
     obsidian
     dbeaver-bin
-    # TODO: remove this when update nixpkgs-unstable is merged with the fix
-    # waypipe
+    google-antigravity
+    waypipe
   ];
 
   programs = {
