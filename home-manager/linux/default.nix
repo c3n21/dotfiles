@@ -118,6 +118,7 @@ rec {
     dbeaver-bin
     google-antigravity
     waypipe
+    jetbrains.idea
   ];
 
   programs = {
