@@ -22,7 +22,6 @@
     ../preset/desktop.nix
 
     ../services/tailscale.nix
-    ../services/firewalld.nix
 
     ../modules/niri.nix
     ../modules/zswap.nix
