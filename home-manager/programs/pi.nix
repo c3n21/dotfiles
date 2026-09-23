@@ -42,11 +42,55 @@ in
           "npm:pi-subagents"
           "npm:pi-web-access"
           "npm:pi-mcp-adapter"
-          "npm:@gotgenes/pi-permission-system"
+          # "npm:@gotgenes/pi-permission-system"
+          "git:github.com/obra/superpowers"
           # "npm:pi-mcp-adapter"
         ];
 
         theme = "dark";
+
+        subagents.agentOverrides = {
+          scout = {
+            model = "github-copilot/mai-code-1.1-flash";
+            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            thinking = "low";
+          };
+          researcher = {
+            model = "github-copilot/gpt-5-mini";
+            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            thinking = "low";
+          };
+          delegate = {
+            model = "github-copilot/mai-code-1.1-flash";
+            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            thinking = "low";
+          };
+          "context-builder" = {
+            model = "openai-codex/gpt-5.6-luna";
+            fallbackModels = [ "github-copilot/gpt-5-mini" ];
+            thinking = "medium";
+          };
+          planner = {
+            model = "openai-codex/gpt-5.6-terra";
+            fallbackModels = [ "github-copilot/claude-sonnet-4.6" ];
+            thinking = "medium";
+          };
+          worker = {
+            model = "openai-codex/gpt-5.6-terra";
+            fallbackModels = [ "github-copilot/gpt-5.3-codex" ];
+            thinking = "high";
+          };
+          reviewer = {
+            model = "github-copilot/gpt-5.4-mini";
+            fallbackModels = [ "openai-codex/gpt-5.6-terra" ];
+            thinking = "medium";
+          };
+          oracle = {
+            model = "openai-codex/gpt-5.6-sol";
+            fallbackModels = [ "github-copilot/claude-sonnet-4.6" ];
+            thinking = "high";
+          };
+        };
 
       };
       context = # markdown

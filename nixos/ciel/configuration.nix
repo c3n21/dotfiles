@@ -26,6 +26,7 @@
     ../modules/niri.nix
     ../modules/zswap.nix
   ];
+  programs.kdeconnect.enable = true;
 
   # Configure the remote builder
   programs.ssh.extraConfig =

@@ -5,6 +5,8 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +71,7 @@
       noctalia,
       nvim-configuration,
       antigravity-nix,
+      llm-agents,
       ...
     }@inputs:
     let
@@ -86,6 +89,7 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
+          llm-agents.overlays.shared-nixpkgs
           niri.overlays.niri
           noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
