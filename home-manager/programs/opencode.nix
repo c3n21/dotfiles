@@ -1,5 +1,8 @@
 {
   programs.opencode.settings = {
+    plugin = [
+      "superpowers@git+https://github.com/obra/superpowers.git"
+    ];
     model = "litellm/qwen-local";
     small_model = "litellm/qwen-local";
 
