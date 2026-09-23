@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    claude-code
+  home.packages = [
+    pkgs.llm-agents.claude-code
+    pkgs.llm-agents.claude-desktop
   ];
   # programs.claude-code = {
   #   enable = true;
