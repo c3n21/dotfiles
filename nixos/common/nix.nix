@@ -8,7 +8,7 @@
         "zhifan"
       ];
       substituters = [ "https://attic.services.home.arpa/default" ];
-      trusted-public-keys = [ "default:QqQhH26sX5LlZOMWFGNXf1334y/7lLDTGqN3INIMgjA=" ];
+      trusted-public-keys = [ "default:6TQ+I1NsmxSo6gQKMaaX3lo64mLU+NN8T4rPNe4CGlg=" ];
     };
 
     gc = {
