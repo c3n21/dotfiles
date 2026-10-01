@@ -37,9 +37,9 @@ let
         "drun"
       ];
     };
-    "noctalia-shell" = {
-      spawn = noctalia_exec "launcher toggle";
-    };
+    # "noctalia-shell" = {
+    #   spawn = noctalia_exec "launcher toggle";
+    # };
   };
 
   shellSpecificLockAction = {
@@ -51,9 +51,9 @@ let
         "~/Pictures/wallpaper.jpg"
       ];
     };
-    "noctalia-shell" = {
-      spawn = noctalia_exec "lockScreen lock";
-    };
+    # "noctalia-shell" = {
+    #   spawn = noctalia_exec "lockScreen lock";
+    # };
   };
 
   shellSpecificBrightnessActions = {
@@ -108,29 +108,29 @@ let
       };
 
     };
-    noctalia-shell = {
-      "XF86MonBrightnessDown".action = {
-        spawn = noctalia_exec "brightness decrease";
-      };
-      "XF86MonBrightnessUp".action = {
-        spawn = noctalia_exec "brightness increase";
-      };
-
-      # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
-      "XF86AudioRaiseVolume".action = {
-        spawn = noctalia_exec "volume increase";
-      };
-      "XF86AudioLowerVolume".action = {
-        spawn = noctalia_exec "volume decrease";
-      };
-
-      "XF86AudioMute" = {
-        allow-when-locked = true;
-        action = {
-          spawn = noctalia_exec "volume muteOutput";
-        };
-      };
-    };
+    # noctalia-shell = {
+    #   "XF86MonBrightnessDown".action = {
+    #     spawn = noctalia_exec "brightness decrease";
+    #   };
+    #   "XF86MonBrightnessUp".action = {
+    #     spawn = noctalia_exec "brightness increase";
+    #   };
+    #
+    #   # Run `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+`.
+    #   "XF86AudioRaiseVolume".action = {
+    #     spawn = noctalia_exec "volume increase";
+    #   };
+    #   "XF86AudioLowerVolume".action = {
+    #     spawn = noctalia_exec "volume decrease";
+    #   };
+    #
+    #   "XF86AudioMute" = {
+    #     allow-when-locked = true;
+    #     action = {
+    #       spawn = noctalia_exec "volume muteOutput";
+    #     };
+    #   };
+    # };
   };
 
   shellSpecificImports = {
@@ -182,23 +182,23 @@ let
       # Application launcher
       ../../home-manager/linux/programs/rofi.nix
     ];
-    "noctalia-shell" = [
-      ../../home-manager/linux/programs/noctalia-shell.nix
-    ];
+    # "noctalia-shell" = [
+    #   ../../home-manager/linux/programs/noctalia-shell.nix
+    # ];
   };
 
   shellSpecificSpawnAtStartup = {
     "custom" = [ ];
-    "noctalia-shell" = [
-      {
-        argv = [
-          "env"
-          # QT_QPA_PLATFORMTHEME=gtk3 env var is needed to not break fcitx icon.
-          "QT_QPA_PLATFORMTHEME=gtk3"
-          noctalia-shell
-        ];
-      }
-    ];
+    # "noctalia-shell" = [
+    #   {
+    #     argv = [
+    #       "env"
+    #       # QT_QPA_PLATFORMTHEME=gtk3 env var is needed to not break fcitx icon.
+    #       "QT_QPA_PLATFORMTHEME=gtk3"
+    #       noctalia-shell
+    #     ];
+    #   }
+    # ];
   };
 
 in
@@ -304,31 +304,31 @@ in
         ++ shellSpecificSpawnAtStartup."${selectedShell}";
 
         switch-events = {
-          lid-close.action = {
-            # let logind handle suspension
-            # this only triggers lockScreen
-            spawn = noctalia_exec "lockScreen lock";
-          };
-          lid-open.action = {
-            spawn = [
-              "notify-send"
-              "The laptop lid is open!"
-            ];
-          };
-          tablet-mode-on.action = {
-            spawn = [
-              "bash"
-              "-c"
-              "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"
-            ];
-          };
-          tablet-mode-off.action = {
-            spawn = [
-              "bash"
-              "-c"
-              "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"
-            ];
-          };
+          # lid-close.action = {
+          #   # let logind handle suspension
+          #   # this only triggers lockScreen
+          #   spawn = noctalia_exec "lockScreen lock";
+          # };
+          # lid-open.action = {
+          #   spawn = [
+          #     "notify-send"
+          #     "The laptop lid is open!"
+          #   ];
+          # };
+          # tablet-mode-on.action = {
+          #   spawn = [
+          #     "bash"
+          #     "-c"
+          #     "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"
+          #   ];
+          # };
+          # tablet-mode-off.action = {
+          #   spawn = [
+          #     "bash"
+          #     "-c"
+          #     "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"
+          #   ];
+          # };
         };
 
         input = {

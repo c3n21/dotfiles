@@ -9,6 +9,9 @@ home-manager, fish login shell.
   and do not assume a downloaded binary will run out of the box.
 - Do not install software globally: no `curl | sh`, no `npm -g`, `pip install`,
   or `cargo install`. Use `nix shell nixpkgs#<pkg>`, `nix run`, or a devshell.
+- In a repo with `.envrc`/`flake.nix`, run project commands
+  (`npm`, `npx`, test runners) through `nix develop -c …` from
+  the repo root.
 - `sudo`, `nixos-rebuild`, `home-manager switch`, and `nix-collect-garbage`
   need explicit permission each time.
 - Your Bash tool runs bash. The user's interactive shell is fish 4.x, so commands
