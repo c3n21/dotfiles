@@ -21,10 +21,11 @@
       type = "git";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # noctalia = {
+    #   # url = "github:noctalia-dev/noctalia-shell";
+    #   url = "github:noctalia-dev/noctalia-shell.git?ref=refs/pull/4664/head";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     disko = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +69,7 @@
       niri,
       nixos-wsl,
       disko,
-      noctalia,
+      # noctalia,
       nvim-configuration,
       antigravity-nix,
       llm-agents,
@@ -91,7 +92,7 @@
         overlays = [
           llm-agents.overlays.shared-nixpkgs
           niri.overlays.niri
-          noctalia.overlays.default
+          # noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
