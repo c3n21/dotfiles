@@ -87,8 +87,19 @@
         home-manager.extraSpecialArgs = homeManagerExtraSpecialArgs;
       };
 
-      pkgs = import nixpkgs {
+      basePkgs = import nixpkgs {
         inherit system;
+      };
+
+      pkgs-drv = basePkgs.applyPatches {
+        src = basePkgs.path;
+        patches = [
+        ];
+      };
+
+      pkgs = import pkgs-drv {
+        inherit (basePkgs.stdenv) system;
+
         overlays = [
           llm-agents.overlays.shared-nixpkgs
           niri.overlays.niri
@@ -99,6 +110,7 @@
           antigravity-nix.overlays.default
           (import ./nixos/overlays.nix)
         ];
+
         config.allowUnfree = true;
       };
     in

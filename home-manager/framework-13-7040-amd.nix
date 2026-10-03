@@ -3,10 +3,11 @@
     ./home.nix
     ./programs/opencode.nix
     ./programs/claude-code.nix
+    ./programs/orca.nix
     ./linux/packages-profiles/gaming.nix
     ./linux
     inputs.niri.homeModules.niri
-    inputs.noctalia.homeModules.default
+    # inputs.noctalia.homeModules.default
   ];
 
   home.packages = with pkgs; [
