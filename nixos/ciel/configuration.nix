@@ -76,9 +76,16 @@
 
   boot = {
     loader = {
-      systemd-boot = {
+      limine = {
         enable = true;
-        configurationLimit = 20;
+        extraEntries = ''
+          /Windows
+          protocol: efi
+          path: guid(3067c3c8-f8fa-4837-b293-d9fc954c294c):/EFI/Microsoft/Boot/bootmgfw.efi
+        '';
+        secureBoot = {
+          enable = true;
+        };
       };
 
       efi.canTouchEfiVariables = true;
