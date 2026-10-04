@@ -45,11 +45,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      # Optional but recommended to limit the size of your system closure.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -65,7 +60,6 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
-      lanzaboote,
       niri,
       nixos-wsl,
       disko,
@@ -132,8 +126,6 @@
 
             disko.nixosModules.disko
 
-            lanzaboote.nixosModules.lanzaboote
-
             home-manager.nixosModules.home-manager
 
             homeManagerModuleConfiguration
@@ -164,8 +156,6 @@
 
           modules = [
             disko.nixosModules.disko
-
-            # lanzaboote.nixosModules.lanzaboote
 
             home-manager.nixosModules.home-manager
 
