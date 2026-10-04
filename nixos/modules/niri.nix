@@ -161,7 +161,8 @@ let
       ../../home-manager/linux/services/hyprpaper.nix
 
       # Night color
-      ../../home-manager/linux/services/gammastep.nix
+      # ../../home-manager/linux/services/gammastep.nix
+      ../../home-manager/linux/services/wlsunset.nix
 
       # Commenting because blueman can import will autostart the applet
       # Bluetooth
