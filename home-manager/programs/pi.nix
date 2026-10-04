@@ -1,33 +1,5 @@
-{ pkgs, lib, ... }:
-let
-  version = "0.80.2";
-  src = pkgs.fetchFromGitHub {
-    owner = "earendil-works";
-    repo = "pi";
-    tag = "v${version}";
-    hash = "sha256-aKtgPc3rwHEp856jP3N7nImph0CSG+gsWq9OVci3hmE=";
-  };
-  # basePackage = pkgs.pi-coding-agent.overrideAttrs (oldAttrs: rec {
-  #   inherit version src;
-  #   npmDeps = pkgs.fetchNpmDeps {
-  #     inherit src;
-  #     hash = "sha256-1EGs8lX8XoAnRtS+pw4lBRm24U/vtVB2loVRmZyd4Z8=";
-  #   };
-  # });
-
-  basePackage = pkgs.pi-coding-agent;
-  package = pkgs.symlinkJoin {
-    name = "pi-coding-agent-${basePackage.version}-all-tools";
-    paths = [ basePackage ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/pi \
-        --add-flags "--tools read,bash,edit,write,grep,find,ls"
-    '';
-  };
-in
+{ pkgs, ... }:
 {
-
   programs = {
     pi-coding-agent = {
       enable = true;
@@ -35,13 +7,19 @@ in
         pkgs.nodejs
         pkgs.bun
       ];
-      package = package;
+      package = pkgs.llm-agents.pi;
+
+      models = {
+        providers.openai-codex.modelOverrides = {
+          "gpt-6.1-sol".contextWindow = 1050000;
+        };
+      };
       settings = {
         packages = [
-          "npm:@termdraw/pi"
+          # "npm:@termdraw/pi"
           "npm:pi-subagents"
           "npm:pi-web-access"
-          "npm:pi-mcp-adapter"
+          # "npm:pi-mcp-adapter"
           # "npm:@gotgenes/pi-permission-system"
           "git:github.com/obra/superpowers"
           # "npm:pi-mcp-adapter"
@@ -51,91 +29,39 @@ in
 
         subagents.agentOverrides = {
           scout = {
-            model = "github-copilot/mai-code-1.1-flash";
-            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            model = "openai-codex/gpt-5.6-luna";
             thinking = "low";
           };
           researcher = {
-            model = "github-copilot/gpt-5-mini";
-            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            model = "openai-codex/gpt-5.6-luna";
             thinking = "low";
           };
           delegate = {
-            model = "github-copilot/mai-code-1.1-flash";
-            fallbackModels = [ "openai-codex/gpt-5.6-luna" ];
+            model = "openai-codex/gpt-5.6-luna";
             thinking = "low";
           };
           "context-builder" = {
             model = "openai-codex/gpt-5.6-luna";
-            fallbackModels = [ "github-copilot/gpt-5-mini" ];
             thinking = "medium";
           };
           planner = {
             model = "openai-codex/gpt-5.6-terra";
-            fallbackModels = [ "github-copilot/claude-sonnet-4.6" ];
             thinking = "medium";
           };
           worker = {
             model = "openai-codex/gpt-5.6-terra";
-            fallbackModels = [ "github-copilot/gpt-5.3-codex" ];
             thinking = "high";
           };
           reviewer = {
-            model = "github-copilot/gpt-5.4-mini";
-            fallbackModels = [ "openai-codex/gpt-5.6-terra" ];
+            model = "openai-codex/gpt-5.6-terra";
             thinking = "medium";
           };
           oracle = {
             model = "openai-codex/gpt-5.6-sol";
-            fallbackModels = [ "github-copilot/claude-sonnet-4.6" ];
             thinking = "high";
           };
         };
-
       };
-      context = # markdown
-        ''
-          # Environment
-
-          The user is running NixOS.
-
-          This system is declarative and reproducible.
-
-          Prefer:
-          - flakes
-          - nix shell
-          - nix develop
-          - nix run
-          - home-manager
-          - NixOS modules
-          - project-local tooling
-
-          Avoid recommending:
-          - curl | sh installers
-          - global npm/pip installs
-          - manual /usr/local modifications
-          - distro-specific instructions for Ubuntu/Debian unless explicitly requested
-
-          Assume:
-          - systemd is available
-          - modern Linux tooling is available
-          - the user is comfortable with terminal workflows
-          - the user is a technical user
-
-          # General behavior
-
-          - Prefer inspecting before changing.
-          - Always ask for permission before making modifications to the system, configuration, services, repositories, disks, or user files.
-          - Explain dangerous commands before suggesting or running them.
-          - Preserve existing user changes.
-          - Be concise but technically precise.
-          - For debugging, prioritize root-cause analysis over quick hacks.
-          - When troubleshooting, gather evidence incrementally instead of guessing.
-          - Show relevant commands and explain what they verify.
-          - Prefer reversible changes.
-          - Do not use `cat`, `head`, `tail`, `sed`, `awk`, `grep`, `rg`, `find`, or `ls` through Bash when an equivalent structured tool is available.
-          - Reserve Bash for compilation, tests, package management, version-control operations, and tasks that cannot be expressed through another tool.
-        '';
     };
   };
 }
