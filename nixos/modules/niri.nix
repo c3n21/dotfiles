@@ -45,10 +45,8 @@ let
   shellSpecificLockAction = {
     "custom" = {
       spawn = [
-        "swaylock"
-        "-f"
-        "-i"
-        "~/Pictures/wallpaper.jpg"
+        "loginctl"
+        "lock-session"
       ];
     };
     # "noctalia-shell" = {
@@ -133,60 +131,76 @@ let
     # };
   };
 
-  shellSpecificImports = {
-    "custom" = [
-      # Shell bar
-      ../../home-manager/linux/programs/waybar.nix
-      {
-        programs = {
-          waybar = {
-            settings = {
-              mainBar = {
-                "modules-left" = [ "niri/workspaces" ];
+  shellSpecificImports =
+    let
+      lock = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg";
+      displaysOff = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+    in
+    {
+      "custom" = [
+        # Shell bar
+        ../../home-manager/linux/programs/waybar.nix
+        {
+          programs = {
+            waybar = {
+              settings = {
+                mainBar = {
+                  "modules-left" = [ "niri/workspaces" ];
 
-                "niri/workspaces" = {
-                  "format" = "{icon}";
-                  "format-icons" = {
-                    "active" = "";
-                    "default" = "";
+                  "niri/workspaces" = {
+                    "format" = "{icon}";
+                    "format-icons" = {
+                      "active" = "";
+                      "default" = "";
+                    };
                   };
                 };
               };
             };
           };
-        };
-      }
+        }
 
-      # Wallpaper engine
-      ../../home-manager/linux/services/hyprpaper.nix
+        # Wallpaper engine
+        ../../home-manager/linux/services/hyprpaper.nix
 
-      # Night color
-      # ../../home-manager/linux/services/gammastep.nix
-      ../../home-manager/linux/services/wlsunset.nix
+        # Night color
+        # ../../home-manager/linux/services/gammastep.nix
+        ../../home-manager/linux/services/wlsunset.nix
 
-      # Commenting because blueman can import will autostart the applet
-      # Bluetooth
-      # ../../home-manager/linux/services/blueman-applet.nix
+        # Commenting because blueman can import will autostart the applet
+        # Bluetooth
+        # ../../home-manager/linux/services/blueman-applet.nix
 
-      # Network Manager applet
-      ../../home-manager/linux/services/network-manager-applet.nix
+        # Network Manager applet
+        ../../home-manager/linux/services/network-manager-applet.nix
 
-      # Sway Notification Center
-      ../../home-manager/linux/services/swaync.nix
+        # Sway Notification Center
+        ../../home-manager/linux/services/swaync.nix
 
-      # Idle manager
-      ../../home-manager/linux/services/swayidle.nix
+        # Idle manager
+        ../../home-manager/linux/services/swayidle.nix
+        {
+          services = {
+            swayidle = {
+              events = {
+                lock = "${lock}; ${displaysOff} ";
 
-      # Lock manager
-      ../../home-manager/linux/programs/swaylock.nix
+                before-sleep = lock;
+              };
+            };
+          };
+        }
 
-      # Application launcher
-      ../../home-manager/linux/programs/rofi.nix
-    ];
-    # "noctalia-shell" = [
-    #   ../../home-manager/linux/programs/noctalia-shell.nix
-    # ];
-  };
+        # Lock manager
+        ../../home-manager/linux/programs/swaylock.nix
+
+        # Application launcher
+        ../../home-manager/linux/programs/rofi.nix
+      ];
+      # "noctalia-shell" = [
+      #   ../../home-manager/linux/programs/noctalia-shell.nix
+      # ];
+    };
 
   shellSpecificSpawnAtStartup = {
     "custom" = [ ];
