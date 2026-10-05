@@ -18,7 +18,7 @@ in
   programs.rofi = {
     enable = true;
     theme = "${catppuccin-rofi-theme}";
-    extraConfig = {
+    settings = {
       modi = "run,drun,window";
       icon-theme = "Oranchelo";
       show-icons = true;

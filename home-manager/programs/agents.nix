@@ -18,5 +18,6 @@ in
 {
   home.file.".claude/CLAUDE.md".source = nixosAgentsFile;
   home.file.".gemini/config/AGENTS.md".source = nixosAgentsFile;
+  home.file."${config.programs.pi-coding-agent.configDir}/AGENTS.md".source = nixosAgentsFile;
   xdg.configFile."opencode/AGENTS.md".source = nixosAgentsFile;
 }

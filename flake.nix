@@ -45,11 +45,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      # Optional but recommended to limit the size of your system closure.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -65,7 +60,6 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
-      lanzaboote,
       niri,
       nixos-wsl,
       disko,
@@ -87,8 +81,19 @@
         home-manager.extraSpecialArgs = homeManagerExtraSpecialArgs;
       };
 
-      pkgs = import nixpkgs {
+      basePkgs = import nixpkgs {
         inherit system;
+      };
+
+      pkgs-drv = basePkgs.applyPatches {
+        src = basePkgs.path;
+        patches = [
+        ];
+      };
+
+      pkgs = import pkgs-drv {
+        inherit (basePkgs.stdenv) system;
+
         overlays = [
           llm-agents.overlays.shared-nixpkgs
           niri.overlays.niri
@@ -99,6 +104,7 @@
           antigravity-nix.overlays.default
           (import ./nixos/overlays.nix)
         ];
+
         config.allowUnfree = true;
       };
     in
@@ -119,8 +125,6 @@
             nixos-hardware.nixosModules.framework-13-7040-amd
 
             disko.nixosModules.disko
-
-            lanzaboote.nixosModules.lanzaboote
 
             home-manager.nixosModules.home-manager
 
@@ -152,8 +156,6 @@
 
           modules = [
             disko.nixosModules.disko
-
-            # lanzaboote.nixosModules.lanzaboote
 
             home-manager.nixosModules.home-manager
 

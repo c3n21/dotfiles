@@ -76,9 +76,16 @@
 
   boot = {
     loader = {
-      systemd-boot = {
+      limine = {
         enable = true;
-        configurationLimit = 20;
+        extraEntries = ''
+          /Windows
+          protocol: efi_boot_entry
+          entry: Windows Boot Manager
+        '';
+        secureBoot = {
+          enable = true;
+        };
       };
 
       efi.canTouchEfiVariables = true;

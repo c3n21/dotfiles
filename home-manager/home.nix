@@ -60,6 +60,7 @@
     # My custom NeoVim package
     neo
     note
+    llm-agents.bb-app
   ];
 
   programs = {
