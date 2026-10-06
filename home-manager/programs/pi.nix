@@ -12,6 +12,7 @@
       models = {
         providers.openai-codex.modelOverrides = {
           "gpt-6.1-sol".contextWindow = 1050000;
+          "gpt-5.6-sol".contextWindow = 1050000;
         };
       };
       settings = {
