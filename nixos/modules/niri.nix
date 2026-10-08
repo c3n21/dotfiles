@@ -6,7 +6,7 @@
   lib,
   # it's for workaround
   # config,
-  # inputs,
+  inputs,
   ...
 }:
 let
@@ -218,7 +218,25 @@ let
 
 in
 {
-  services.gnome.gnome-keyring.enable = false;
+
+  imports = [
+    inputs.nirinit.nixosModules.nirinit
+  ];
+
+  services = {
+    gnome.gnome-keyring.enable = false;
+    nirinit = {
+      enable = true;
+      settings = {
+        # Map app_id to launch command (useful for PWAs, flatpaks, etc.)
+        # launch = {
+        #   "chromium-example.com__-Default" = "example-web-app";
+        # };
+        # Apps to skip during restore
+        skip.apps = [ "steam" ];
+      };
+    };
+  };
 
   xdg.portal = {
     xdgOpenUsePortal = true;
@@ -257,11 +275,16 @@ in
   home-manager.users.zhifan = {
 
     imports = [
+
       ../../home-manager/linux/services/kanshi.nix
     ]
     ++ shellSpecificImports."${selectedShell}";
     programs.niri.package = pkgs.niri;
-    home.packages = [ pkgs.xwayland-satellite ] ++ shellSpecificPackages."${selectedShell}";
+    home.packages = [
+      pkgs.xwayland-satellite
+      inputs.nirinit.packages."${pkgs.stdenv.hostPlatform.system}".nirinit
+    ]
+    ++ shellSpecificPackages."${selectedShell}";
 
     # Temporapry workaround
     # xdg.configFile.niri-config.source =
