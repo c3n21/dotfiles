@@ -8,6 +8,11 @@
     # llm-agents.url = "github:numtide/llm-agents.nix";
     llm-agents.url = "github:c3n21/llm-agents.nix/feature/antigravity";
 
+    neovide-nightly = {
+      url = "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage";
+      flake = false;
+    };
+
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
     # https://github.com/NixOS/nix/issues/6633
@@ -108,7 +113,9 @@
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
-          (import ./nixos/overlays.nix)
+          (import ./nixos/overlays.nix {
+            inherit inputs;
+          })
         ];
 
         config.allowUnfree = true;

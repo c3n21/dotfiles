@@ -229,6 +229,7 @@ rec {
 
     neovide = {
       enable = true;
+      package = pkgs.dotfiles.neovide-nightly;
       settings = {
         fork = false;
         neovim-bin = "${pkgs.neo}/bin/neo";

@@ -636,6 +636,18 @@
         "type": "github"
       }
     },
+    "neovide-nightly": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-MORjiK25DTjRv2uKr8hGgVZu2vrGqupnNoGznjt+boY=",
+        "type": "file",
+        "url": "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -1077,6 +1089,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "llm-agents": "llm-agents",
+        "neovide-nightly": "neovide-nightly",
         "niri": "niri",
         "nirinit": "nirinit",
         "nixos-hardware": "nixos-hardware",

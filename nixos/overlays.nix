@@ -1,4 +1,13 @@
-final: prev: {
+{ inputs }:
+final: prev:
+let
+  contents = final.appimageTools.extractType2 {
+    pname = "neovide-nightly";
+    version = "nightly";
+    src = inputs.neovide-nightly;
+  };
+in
+{
   go-mockery = prev.go-mockery.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [
       # workaround to solve this https://github.com/vektra/mockery/pull/1188
@@ -11,10 +20,32 @@ final: prev: {
 
     vendorHash = "sha256-ksfAHdPdOd8ELS0CSBg+E7KPd5xX/uGeLPn9HiItjdI=";
   });
+
   nerd-fonts = prev.nerd-fonts // {
     delugia-code = final.callPackage ./delugia-code/default.nix { pkgs = final; };
   };
+
   dotfiles = {
+    neovide-nightly = final.appimageTools.wrapType2 {
+      pname = "neovide";
+      version = "nightly";
+
+      src = inputs.neovide-nightly;
+
+      extraInstallCommands = ''
+        install -m 444 -D \
+          ${contents}/neovide.desktop \
+          $out/share/applications/neovide.desktop
+
+        install -m 444 -D \
+          ${contents}/neovide.svg \
+          $out/share/icons/hicolor/scalable/apps/neovide.svg
+      '';
+
+      meta = prev.neovide.meta // {
+        mainProgram = "neovide";
+      };
+    };
     agy-acp-server = final.callPackage ./packages/agy-acp-server.nix { pkgs = final; };
   };
 }
