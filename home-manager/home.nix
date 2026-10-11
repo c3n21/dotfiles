@@ -60,7 +60,11 @@
     # My custom NeoVim package
     neo
     note
-    llm-agents.bb-app
+    llm-agents.orca
+    docker-sbx
+    # llm-agents.bb-app
+    # Violates ToS using this outside of supported ACP platform
+    # dotfiles.agy-acp-server
   ];
 
   programs = {

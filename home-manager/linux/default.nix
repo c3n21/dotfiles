@@ -114,9 +114,9 @@ rec {
     lm_sensors
     # wechat-uos # 403 error
     microsoft-edge
-    obsidian
     dbeaver-bin
-    google-antigravity
+    llm-agents.antigravity-hub
+    llm-agents.antigravity-ide
     waypipe
     jetbrains.idea
   ];

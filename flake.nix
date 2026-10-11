@@ -5,12 +5,8 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
-
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # llm-agents.url = "github:numtide/llm-agents.nix";
+    llm-agents.url = "github:c3n21/llm-agents.nix/feature/antigravity";
 
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
     # https://github.com/hyprwm/Hyprland/issues/5891
@@ -70,7 +66,6 @@
       disko,
       # noctalia,
       nvim-configuration,
-      antigravity-nix,
       llm-agents,
       nirinit,
       ...
@@ -87,18 +82,24 @@
         home-manager.extraSpecialArgs = homeManagerExtraSpecialArgs;
       };
 
-      basePkgs = import nixpkgs {
+      patches = [ ];
+
+      nixpkgsSrc =
+        if patches == [ ] then
+          nixpkgs
+        else
+          let
+            bootstrapPkgs = import nixpkgs {
+              inherit system;
+            };
+          in
+          bootstrapPkgs.applyPatches {
+            src = nixpkgs;
+            inherit patches;
+          };
+
+      pkgs = import nixpkgsSrc {
         inherit system;
-      };
-
-      pkgs-drv = basePkgs.applyPatches {
-        src = basePkgs.path;
-        patches = [
-        ];
-      };
-
-      pkgs = import pkgs-drv {
-        inherit (basePkgs.stdenv) system;
 
         overlays = [
           llm-agents.overlays.shared-nixpkgs
@@ -107,7 +108,6 @@
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
-          antigravity-nix.overlays.default
           (import ./nixos/overlays.nix)
         ];
 
