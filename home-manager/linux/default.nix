@@ -116,7 +116,6 @@ rec {
     microsoft-edge
     dbeaver-bin
     llm-agents.antigravity-hub
-    llm-agents.antigravity-ide
     waypipe
     jetbrains.idea
   ];
