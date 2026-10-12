@@ -1,7 +1,7 @@
 { inputs }:
 final: prev:
 let
-  contents = final.appimageTools.extractType2 {
+  contents = final.appimageTools.extract {
     pname = "neovide-nightly";
     version = "nightly";
     src = inputs.neovide-nightly;
