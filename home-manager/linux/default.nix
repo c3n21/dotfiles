@@ -117,7 +117,6 @@ rec {
     dbeaver-bin
     llm-agents.antigravity-hub
     waypipe
-    jetbrains.idea
   ];
 
   programs = {
