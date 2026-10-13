@@ -18,6 +18,7 @@
       settings = {
         packages = [
           # "npm:@termdraw/pi"
+          "npm:pi-auto-resume"
           "npm:pi-subagents"
           "npm:pi-web-access"
           # "npm:pi-mcp-adapter"
@@ -27,6 +28,19 @@
         ];
 
         theme = "dark";
+
+        "autoResume" = {
+          "enabled" = true;
+          "maxResumes" = 5;
+          "delayMs" = 1000;
+          "continuePrompt" = "Continue from where you left off. Do not repeat what you've already written.";
+          "rateLimit" = {
+            "enabled" = true;
+            "maxRetries" = 3;
+            "baseDelayMs" = 60000;
+            "maxDelayMs" = 3600000;
+          };
+        };
 
         subagents.agentOverrides = {
           scout = {
