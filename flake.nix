@@ -48,7 +48,7 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "git+https://codeberg.org/bananad3v/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -102,7 +102,7 @@
 
         overlays = [
           llm-agents.overlays.shared-nixpkgs
-          niri.overlays.niri
+          niri.overlays.niri-nix
           # noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
@@ -117,7 +117,7 @@
     in
     {
       nixosModules = [
-        niri.nixosModules.niri
+        niri.nixosModules.default
       ];
 
       nixosConfigurations = {
@@ -214,7 +214,7 @@
             ./home-manager/home.nix
             ./home-manager/linux
             ./home-manager/linux/specialisations.nix
-            inputs.niri.homeModules.niri
+            inputs.niri.homeModules.default
           ];
           extraSpecialArgs = homeManagerExtraSpecialArgs;
         };
