@@ -25,6 +25,12 @@ rec {
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
+        "default-web-browser" = [ "software.Browsers.desktop" ];
+        "text/html" = [ "software.Browsers.desktop" ];
+        "text/xml" = [ "software.Browsers.desktop" ];
+        "application/xhtml+xml" = [ "software.Browsers.desktop" ];
+        "x-scheme-handler/http" = [ "software.Browsers.desktop" ];
+        "x-scheme-handler/https" = [ "software.Browsers.desktop" ];
       };
     };
   };
@@ -117,6 +123,7 @@ rec {
     dbeaver-bin
     llm-agents.antigravity-hub
     waypipe
+    browsers
   ];
 
   programs = {
