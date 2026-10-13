@@ -220,22 +220,10 @@ in
 {
 
   imports = [
-    inputs.nirinit.nixosModules.nirinit
   ];
 
   services = {
     gnome.gnome-keyring.enable = false;
-    nirinit = {
-      enable = true;
-      settings = {
-        # Map app_id to launch command (useful for PWAs, flatpaks, etc.)
-        # launch = {
-        #   "chromium-example.com__-Default" = "example-web-app";
-        # };
-        # Apps to skip during restore
-        skip.apps = [ "steam" ];
-      };
-    };
   };
 
   xdg.portal = {
@@ -282,7 +270,6 @@ in
     programs.niri.package = pkgs.niri;
     home.packages = [
       pkgs.xwayland-satellite
-      inputs.nirinit.packages."${pkgs.stdenv.hostPlatform.system}".nirinit
     ]
     ++ shellSpecificPackages."${selectedShell}";
 

@@ -28,11 +28,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nirinit = {
-      url = "github:amaanq/nirinit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/disko";
@@ -72,7 +67,6 @@
       # noctalia,
       nvim-configuration,
       llm-agents,
-      nirinit,
       ...
     }@inputs:
     let
