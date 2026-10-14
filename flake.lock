@@ -228,11 +228,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791642191,
-        "narHash": "sha256-0bK0A59rVUn1SRZzo4cNi4VSqAe7vR1gL2/MZl53Frw=",
+        "lastModified": 1791940130,
+        "narHash": "sha256-hRCCi4fp5IjLz4cA8+RkUsaYAHzbd7M5FSAjKOq4E+k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c58f54c733a7894d84fa2fdff26cc12088c4b78c",
+        "rev": "92a0ed1be12f1e20093faf8af63bae2c74ad521e",
         "type": "github"
       },
       "original": {
@@ -349,11 +349,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1791830869,
-        "narHash": "sha256-zQdY5KSvNlqxL/ULEJgrzD10LfPeHu76w1nvxCVLZSc=",
+        "lastModified": 1791886032,
+        "narHash": "sha256-+1/79pv05av0o4bLlAnoNVoel3aym3svdO9ruVchKFA=",
         "ref": "refs/heads/main",
-        "rev": "6cc0822e24ad18df62689de80593541a61b49924",
-        "revCount": 7903,
+        "rev": "1bd31aaa579a40680ce876e1547e371b60c45522",
+        "revCount": 7904,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -617,7 +617,7 @@
     "neovide-nightly": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-yCiyYRF1BLv8iAfMt22eLs/GCFcX1oppYZOwtwc/Gdc=",
+        "narHash": "sha256-D7bUX/5bqCE3cHps+poL8QgwwANcOuEVsEc9+UKmbCE=",
         "type": "file",
         "url": "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage"
       },
@@ -633,11 +633,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1791849752,
-        "narHash": "sha256-uajxAKmMXdUrZA8Qk28cPeMHOWQ7oy+r738QW2tMYhI=",
+        "lastModified": 1791936161,
+        "narHash": "sha256-U8RXbOwo4mkJjhj01DuCXrG6TaLhoDXdMcJ5ZsFBv3s=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "2582a095725ee836098b0de4c56c52b8ccdb9a94",
+        "rev": "a28c7f5de3f9aa5d6578392945b0e3a0ad4ea16c",
         "type": "github"
       },
       "original": {
@@ -649,11 +649,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791827478,
-        "narHash": "sha256-dS9FVuhYUwvtGGrdckG2qx2b1Au2vOod5IHKMpIy7bI=",
+        "lastModified": 1791903530,
+        "narHash": "sha256-VuQuFFjBt1rVt+Qzs8yATAC32sjLk1h4e9jhRetds4g=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "e7cd0e4375a48d32eea6776d6d26e92eed9fedbe",
+        "rev": "544d8cd7e6289ca98e9104b55cdb963eeda51755",
         "type": "github"
       },
       "original": {
@@ -876,11 +876,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1791857398,
-        "narHash": "sha256-QTDALxvo+eOTQbZVZICLC9US5ohvPGjidrFkr6GYL30=",
+        "lastModified": 1791943594,
+        "narHash": "sha256-tSfyQRHv3tnjRNLcaz9hYbmWRW/HivOUjWPmlDG2Oxc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "657926691fa18144c4eafa4a0b2613faf9351ceb",
+        "rev": "218414d9075dc7d1bdf7f840e11869319b50e0df",
         "type": "github"
       },
       "original": {
@@ -916,11 +916,11 @@
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
       },
       "locked": {
-        "lastModified": 1791871526,
-        "narHash": "sha256-r5qlToaEcRgl1VIwJxZ50kn+5kOyVQWIM7/dy8tLd70=",
+        "lastModified": 1791960751,
+        "narHash": "sha256-odZAqtNpxraOIUmEqrKetqsDC+v/UnWXV5L68JBjY4Y=",
         "owner": "c3n21",
         "repo": "nvim-configuration",
-        "rev": "18eaee98eaa2f5a9bebfaa6e647357ea15dc957c",
+        "rev": "ea68751426608f974ba6a87c14acdb2328354b28",
         "type": "github"
       },
       "original": {
