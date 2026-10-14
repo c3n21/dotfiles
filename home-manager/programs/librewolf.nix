@@ -2,28 +2,10 @@
   xdg = {
     mimeApps = {
       defaultApplications = {
-        "default-web-browser" = [
-          "librewolf.desktop"
-        ];
         "application/pdf" = [
           "librewolf.desktop"
         ];
-        "text/html" = [
-          "librewolf.desktop"
-        ];
-        "text/xml" = [
-          "librewolf.desktop"
-        ];
-        "application/xhtml+xml" = [
-          "librewolf.desktop"
-        ];
         "application/vnd.mozilla.xul+xml" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/http" = [
-          "librewolf.desktop"
-        ];
-        "x-scheme-handler/https" = [
           "librewolf.desktop"
         ];
       };

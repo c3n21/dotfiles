@@ -1,7 +1,5 @@
 # This file is used to setup a laptop
 {
-  pkgs,
-  lib,
   ...
 }:
 {
@@ -19,7 +17,6 @@
       # When the laptop is plugged to an external monitor
       HandleLidSwitchDocked = "suspend-then-hibernate";
     };
-    thermald.enable = true;
     upower.enable = true;
   };
 

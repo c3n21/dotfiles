@@ -25,6 +25,12 @@ rec {
       defaultApplications = {
         "inode/directory" = [ "kitty-open.desktop" ];
         "text/*" = [ "nvim.desktop" ];
+        "default-web-browser" = [ "software.Browsers.desktop" ];
+        "text/html" = [ "software.Browsers.desktop" ];
+        "text/xml" = [ "software.Browsers.desktop" ];
+        "application/xhtml+xml" = [ "software.Browsers.desktop" ];
+        "x-scheme-handler/http" = [ "software.Browsers.desktop" ];
+        "x-scheme-handler/https" = [ "software.Browsers.desktop" ];
       };
     };
   };
@@ -114,11 +120,10 @@ rec {
     lm_sensors
     # wechat-uos # 403 error
     microsoft-edge
-    obsidian
     dbeaver-bin
-    google-antigravity
+    llm-agents.antigravity-hub
     waypipe
-    jetbrains.idea
+    browsers
   ];
 
   programs = {
@@ -229,6 +234,7 @@ rec {
 
     neovide = {
       enable = true;
+      package = pkgs.dotfiles.neovide-nightly;
       settings = {
         fork = false;
         neovim-bin = "${pkgs.neo}/bin/neo";

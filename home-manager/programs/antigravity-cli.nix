@@ -2,6 +2,6 @@
 {
   programs.antigravity-cli = {
     enable = true;
-    package = pkgs.google-antigravity-cli;
+    package = pkgs.llm-agents.antigravity-cli;
   };
 }

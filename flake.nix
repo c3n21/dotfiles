@@ -5,11 +5,12 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
+    # llm-agents.url = "github:numtide/llm-agents.nix";
+    llm-agents.url = "github:c3n21/llm-agents.nix/feature/antigravity-hub";
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    neovide-nightly = {
+      url = "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage";
+      flake = false;
     };
 
     nvim-configuration.url = "github:c3n21/nvim-configuration/develop";
@@ -47,7 +48,7 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "git+https://codeberg.org/bananad3v/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -65,7 +66,6 @@
       disko,
       # noctalia,
       nvim-configuration,
-      antigravity-nix,
       llm-agents,
       ...
     }@inputs:
@@ -81,28 +81,35 @@
         home-manager.extraSpecialArgs = homeManagerExtraSpecialArgs;
       };
 
-      basePkgs = import nixpkgs {
+      patches = [ ];
+
+      nixpkgsSrc =
+        if patches == [ ] then
+          nixpkgs
+        else
+          let
+            bootstrapPkgs = import nixpkgs {
+              inherit system;
+            };
+          in
+          bootstrapPkgs.applyPatches {
+            src = nixpkgs;
+            inherit patches;
+          };
+
+      pkgs = import nixpkgsSrc {
         inherit system;
-      };
-
-      pkgs-drv = basePkgs.applyPatches {
-        src = basePkgs.path;
-        patches = [
-        ];
-      };
-
-      pkgs = import pkgs-drv {
-        inherit (basePkgs.stdenv) system;
 
         overlays = [
           llm-agents.overlays.shared-nixpkgs
-          niri.overlays.niri
+          niri.overlays.niri-nix
           # noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note
           nvim-configuration.overlays.${system}.neovim-nightly
-          antigravity-nix.overlays.default
-          (import ./nixos/overlays.nix)
+          (import ./nixos/overlays.nix {
+            inherit inputs;
+          })
         ];
 
         config.allowUnfree = true;
@@ -110,7 +117,7 @@
     in
     {
       nixosModules = [
-        niri.nixosModules.niri
+        niri.nixosModules.default
       ];
 
       nixosConfigurations = {
@@ -207,7 +214,7 @@
             ./home-manager/home.nix
             ./home-manager/linux
             ./home-manager/linux/specialisations.nix
-            inputs.niri.homeModules.niri
+            inputs.niri.homeModules.default
           ];
           extraSpecialArgs = homeManagerExtraSpecialArgs;
         };

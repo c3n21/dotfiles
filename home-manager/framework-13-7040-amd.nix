@@ -6,7 +6,7 @@
     ./programs/orca.nix
     ./linux/packages-profiles/gaming.nix
     ./linux
-    inputs.niri.homeModules.niri
+    inputs.niri.homeModules.default
     # inputs.noctalia.homeModules.default
   ];
 
