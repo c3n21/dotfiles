@@ -262,6 +262,7 @@ in
 
       home.packages = [
         pkgs.xwayland-satellite
+        pkgs.dotfiles.niri-autostart
       ]
       ++ shellSpecificPackages."${selectedShell}";
 
@@ -325,6 +326,7 @@ in
 
           spawn-at-startup = [
             [ "xwayland-satellite" ]
+            [ "niri-autostart" ]
           ]
           ++ shellSpecificSpawnAtStartup."${selectedShell}";
 

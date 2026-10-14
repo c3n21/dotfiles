@@ -26,6 +26,7 @@ in
   };
 
   dotfiles = {
+    niri-autostart = final.callPackage ./packages/niri-autostart.nix { };
     neovide-nightly = final.appimageTools.wrapType2 {
       pname = "neovide";
       version = "nightly";
