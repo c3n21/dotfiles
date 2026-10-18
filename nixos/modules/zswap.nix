@@ -1,19 +1,24 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 
 {
-  boot.kernelParams = [
-    "zswap.enabled=1"
-    "zswap.compressor=zstd"
-    "zswap.zpool=zsmalloc"
-    "zswap.max_pool_percent=20"
-  ];
+  boot.zswap = {
+    enable = true;
+
+    compressor = "zstd";
+    zpool = "zsmalloc";
+
+    maxPoolPercent = 25;
+
+    shrinkerEnabled = true;
+
+    acceptThresholdPercent = 90;
+  };
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = lib.mkForce 60;
+    "vm.swappiness" = 120;
+    "vm.vfs_cache_pressure" = 50;
   };
+
 }
