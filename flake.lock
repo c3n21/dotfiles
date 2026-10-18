@@ -568,16 +568,15 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1792234105,
-        "narHash": "sha256-n1c+HszdSNrj/9gFozN+Vciz1xAutgKCUCEnMWtp72g=",
-        "owner": "c3n21",
+        "lastModified": 1792315957,
+        "narHash": "sha256-LzC5I1T+RoNzolKqp2xYk1x/SraHlmYnJzK27PU+ewg=",
+        "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "e8f2a5c3d52fc8f7c1774df8b313ce9f236b30a6",
+        "rev": "14f2728181ecf9f5da168b72799bc9f42ae51803",
         "type": "github"
       },
       "original": {
-        "owner": "c3n21",
-        "ref": "feature/antigravity-hub",
+        "owner": "numtide",
         "repo": "llm-agents.nix",
         "type": "github"
       }
@@ -767,11 +766,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1791966044,
-        "narHash": "sha256-t1hT8UW97rFCWCJO7/pClvu0AhLN5V3uir2M0ic4w/Q=",
+        "lastModified": 1792116957,
+        "narHash": "sha256-EjZqHKObBfIOeHZnMRVV87HB3pPq/WBkmRJWyFxmZu8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "319e4cebef10cbb636c6ea392137b52ad105336a",
+        "rev": "f20cd90e28fe0403873f473b29e42662cd86e8c4",
         "type": "github"
       },
       "original": {
