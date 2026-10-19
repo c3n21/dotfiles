@@ -5,6 +5,7 @@
   ...
 }:
 rec {
+  # TODO: these things shouldn't be there
   boot = {
     supportedFilesystems = {
       nfs = true;
@@ -14,7 +15,6 @@ rec {
       "consoleblank=300"
     ];
     kernel.sysctl = {
-      "vm.swappiness" = 10;
       "fs.inotify.max_queued_events" = 100000;
     };
     loader = {

@@ -5,8 +5,12 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # llm-agents.url = "github:numtide/llm-agents.nix";
-    llm-agents.url = "github:c3n21/llm-agents.nix/feature/antigravity-hub";
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     neovide-nightly = {
       url = "https://github.com/neovide/neovide/releases/download/nightly/neovide.AppImage";

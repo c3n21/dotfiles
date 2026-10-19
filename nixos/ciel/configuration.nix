@@ -2,11 +2,15 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
 {
   imports = [
+    inputs.microvm.nixosModules.host
+    ./microvm/finance
+
     ./disko.nix
 
     # TODO: use this in place of
