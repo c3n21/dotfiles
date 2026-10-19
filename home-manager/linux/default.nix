@@ -153,6 +153,8 @@ rec {
         font-style-italic = "Italic";
         gtk-single-instance = true;
         window-decoration = false;
+        # see https://github.com/ghostty-org/ghostty/discussions/3224#discussioncomment-12282992
+        async-backend = "epoll";
         keybind = [
           "ctrl+enter=unbind"
         ];
