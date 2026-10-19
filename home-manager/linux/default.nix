@@ -10,6 +10,10 @@ let
   shell = "${pkgs.fish}/bin/fish";
 in
 rec {
+  imports = [
+    ./programs/browsers.nix
+  ];
+
   home.sessionVariables = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     EDITOR = "${pkgs.neo}/bin/neo";
@@ -100,7 +104,6 @@ rec {
 
   home.packages = with pkgs; [
     baobab
-    brave
     scrcpy
     remmina
     # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752
@@ -116,14 +119,11 @@ rec {
     pavucontrol
     zbar
     chromium
-    google-chrome
     lm_sensors
     # wechat-uos # 403 error
-    microsoft-edge
     dbeaver-bin
     llm-agents.antigravity-hub
     waypipe
-    browsers
   ];
 
   programs = {
