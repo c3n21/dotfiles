@@ -13,11 +13,6 @@
 
     ./disko.nix
 
-    # TODO: use this in place of
-    # ../common
-
-    # these when secure boot will be enabled
-    # TODO: refactor this
     ../common/distributed-builds.nix
     ../common/fish.nix
     ../common/editor.nix
@@ -134,19 +129,6 @@
     };
   };
 
-  users.users.zhifan = {
-    openssh.authorizedKeys.keys = [
-      # Replace this.
-      "ssh-ed25519 AAAA_REPLACE_WITH_YOUR_PUBLIC_KEY"
-    ];
-  };
-
-  # Also permits initial SSH access as root after installation.
-  users.users.root.openssh.authorizedKeys.keys = [
-    # Replace this with the same public key.
-    "ssh-ed25519 AAAA_REPLACE_WITH_YOUR_PUBLIC_KEY"
-  ];
-
   security.sudo.wheelNeedsPassword = true;
 
   nix = {
@@ -170,9 +152,7 @@
 
   environment.systemPackages = with pkgs; [
     btrfs-progs
-    git
     smartmontools
-    vim
   ];
 
   system.stateVersion = "26.05";
