@@ -13,7 +13,7 @@
 let
   # selectedShell = "noctalia-shell";
   selectedShell = "custom";
-
+  niri = pkgs.niri-unstable;
   noctalia-shell = "${pkgs.noctalia-shell}/bin/noctalia-shell";
 
   noctalia_exec =
@@ -115,7 +115,7 @@ let
   shellSpecificImports =
     let
       lock = "${pkgs.swaylock}/bin/swaylock -fF -i ~/Pictures/wallpaper.jpg";
-      displaysOff = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+      displaysOff = "${niri}/bin/niri msg action power-off-monitors";
     in
     {
       "custom" = [
@@ -231,7 +231,7 @@ in
 
     niri = {
       enable = true;
-      package = pkgs.niri;
+      package = niri;
     };
   };
 
@@ -295,7 +295,7 @@ in
 
       wayland.windowManager.niri = {
         enable = true;
-        package = pkgs.niri;
+        package = niri;
 
         settings = {
 
