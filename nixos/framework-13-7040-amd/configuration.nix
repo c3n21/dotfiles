@@ -20,6 +20,8 @@
 
     ../modules/niri.nix
 
+    ../modules/lan-mouse.nix
+    ../modules/kdeconnect.nix
     # ../services/llama-cpp.nix
   ];
 

@@ -24,7 +24,10 @@
 
     ../modules/niri.nix
     ../modules/zswap.nix
+
+    ../modules/kdeconnect.nix
   ];
+  # TODO: create a nix module to enable this based on the firewall used
   programs.kdeconnect.enable = true;
 
   # Configure the remote builder
