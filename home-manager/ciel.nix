@@ -35,13 +35,6 @@
   #   };
   # };
 
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
-
   # programs.opencode.settings = {
   #   "provider" = {
   #     "llama.cpp" = {
