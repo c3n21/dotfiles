@@ -4,6 +4,7 @@
     ./home.nix
     ./programs/opencode.nix
     ./programs/claude-code.nix
+    ./programs/telegram-desktop.nix
     ./linux/packages-profiles/gaming.nix
     ./linux
     inputs.niri.homeModules.default
@@ -11,7 +12,6 @@
   ];
 
   home.packages = with pkgs; [
-    telegram-desktop
     adbfs-rootless
     localsend
   ];
@@ -19,9 +19,6 @@
   xdg = {
     mimeApps = {
       enable = true;
-      defaultApplications = {
-        "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-      };
     };
   };
 
