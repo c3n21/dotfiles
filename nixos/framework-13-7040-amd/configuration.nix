@@ -20,6 +20,7 @@
 
     ../modules/niri.nix
 
+    ../modules/lan-mouse.nix
     # ../services/llama-cpp.nix
   ];
 
