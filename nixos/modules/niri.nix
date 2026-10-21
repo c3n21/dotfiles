@@ -453,13 +453,6 @@ in
             }
           ];
 
-          output = [
-            {
-              _args = [ "eDP-1" ];
-              scale = 2.0;
-            }
-          ];
-
           binds = {
             "Print".screenshot = { };
 
@@ -467,7 +460,7 @@ in
             "Shift+Print".screenshot-window = { };
 
             # Window bindings (Mod + W prefix)
-            "Mod+O".maximize-column = { };
+            "Mod+O".maximize-window-to-edges = { };
 
             "Mod+c".toggle-column-tabbed-display = { };
 
