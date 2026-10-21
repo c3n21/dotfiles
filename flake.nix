@@ -107,11 +107,6 @@
         overlays = [
           llm-agents.overlays.shared-nixpkgs
           niri.overlays.niri-nix
-          (final: prev: {
-            niri-unstable = prev.niri-unstable.overrideAttrs (_old: {
-              dontVersionCheck = true;
-            });
-          })
           # noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
           nvim-configuration.overlays.${system}.note

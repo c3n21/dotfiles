@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     adbfs-rootless
     localsend
+    lan-mouse
   ];
 
   xdg = {
