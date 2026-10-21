@@ -453,13 +453,6 @@ in
             }
           ];
 
-          output = [
-            {
-              _args = [ "eDP-1" ];
-              scale = 2.0;
-            }
-          ];
-
           binds = {
             "Print".screenshot = { };
 
