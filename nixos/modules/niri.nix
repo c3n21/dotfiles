@@ -467,7 +467,7 @@ in
             "Shift+Print".screenshot-window = { };
 
             # Window bindings (Mod + W prefix)
-            "Mod+O".maximize-column = { };
+            "Mod+O".maximize-window-to-edges = { };
 
             "Mod+c".toggle-column-tabbed-display = { };
 
