@@ -318,14 +318,11 @@ in
 
           environment = {
             QT_QPA_PLATFORM = "wayland;xcb";
-            # do I really need to hard-code the DISPLAY number?
-            DISPLAY = ":0";
             GTK_IM_MODULE = "fcitx";
             QT_IM_MODULE = "fcitx";
           };
 
           spawn-at-startup = [
-            [ "xwayland-satellite" ]
             [ "niri-autostart" ]
           ]
           ++ shellSpecificSpawnAtStartup."${selectedShell}";
@@ -490,6 +487,7 @@ in
             "Mod+Shift+K".move-window-up-or-to-workspace-up = { };
             "Mod+Shift+W".move-window-to-monitor-next = { };
 
+            "Mod+Shift+F11".toggle-windowed-fullscreen = { };
             "Mod+F11".fullscreen-window = { };
             "Mod+slash" = shellSpecificLauncherAction."${selectedShell}";
             "Mod+Shift+Q".close-window = { };
