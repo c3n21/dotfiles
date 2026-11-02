@@ -13,10 +13,7 @@
 
   home.packages = with pkgs; [
     framework-tool
-    adbfs-rootless
-    localsend
     radeontop
-    distrobox
   ];
 
   xdg = {
