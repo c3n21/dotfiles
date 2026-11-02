@@ -113,10 +113,10 @@ rec {
     mpv
     nwg-look
     kdePackages.okular
-    firefox
     wl-clipboard
     killall
     pavucontrol
+    localsend
     zbar
     chromium
     lm_sensors
@@ -132,6 +132,11 @@ rec {
       nix-direnv = {
         enable = true;
       };
+    };
+
+    codex = {
+      enable = true;
+      package = pkgs.llm-agents.codex;
     };
 
     ghostty = {

@@ -19,7 +19,8 @@
         packages = [
           # "npm:@termdraw/pi"
           "npm:@narumitw/pi-stamp"
-          "npm:pi-auto-resume"
+          # "npm:pi-auto-resume"
+          "npm:@fahrizkyputra/pi-auto-resume"
           "npm:pi-subagents"
           "npm:pi-web-access"
           # "npm:pi-mcp-adapter"

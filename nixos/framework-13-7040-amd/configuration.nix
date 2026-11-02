@@ -25,6 +25,10 @@
     # ../services/llama-cpp.nix
   ];
 
+  hardware.framework.enableKmod = false;
+
+  services.firewalld.zones.home.interfaces = [ "tailscale0" ];
+
   programs.ssh.extraConfig =
     # sshconfig
     ''
