@@ -168,6 +168,7 @@ rec {
 
     opencode = {
       enable = true;
+      package = pkgs.llm-agents.opencode;
       settings = {
         lsp = true;
         formatter = true;
