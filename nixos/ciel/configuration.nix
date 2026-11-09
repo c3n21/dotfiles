@@ -26,6 +26,7 @@
     ../modules/zswap.nix
 
     ../modules/kdeconnect.nix
+    ../modules/lan-mouse.nix
   ];
   # TODO: create a nix module to enable this based on the firewall used
   programs.kdeconnect.enable = true;
