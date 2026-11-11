@@ -5,6 +5,8 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+
     microvm = {
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -105,7 +107,9 @@
         inherit system;
 
         overlays = [
-          llm-agents.overlays.shared-nixpkgs
+          (final: prev: {
+            llm-agents = inputs.llm-agents.packages.${prev.stdenv.hostPlatform.system};
+          })
           niri.overlays.niri-nix
           # noctalia.overlays.default
           nvim-configuration.overlays.${system}.neo
@@ -113,6 +117,22 @@
           nvim-configuration.overlays.${system}.neovim-nightly
           (import ./nixos/overlays.nix {
             inherit inputs;
+          })
+
+          (final: prev: {
+            lan-mouse = prev.lan-mouse.overrideAttrs (old: {
+              buildInputs = (old.buildInputs or [ ]) ++ [
+                final.libgit2
+              ];
+            });
+          })
+
+          (final: prev: {
+            brave =
+              (final.callPackage
+                "${inputs.nixpkgs-master}/pkgs/applications/networking/browsers/brave/default.nix"
+                { }
+              ).brave;
           })
         ];
 

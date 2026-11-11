@@ -75,6 +75,10 @@ rec {
         # backend = "iwd";
       };
     };
+    # needed to let NetworkManager handle DHCP
+    # see https://wiki.nixos.org/wiki/NetworkManager
+    useDHCP = false;
+    dhcpcd.enable = false;
   };
 
   i18n.extraLocaleSettings = {
