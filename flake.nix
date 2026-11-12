@@ -120,19 +120,9 @@
           })
 
           (final: prev: {
-            lan-mouse = prev.lan-mouse.overrideAttrs (old: {
-              buildInputs = (old.buildInputs or [ ]) ++ [
-                final.libgit2
-              ];
-            });
-          })
-
-          (final: prev: {
-            brave =
-              (final.callPackage
-                "${inputs.nixpkgs-master}/pkgs/applications/networking/browsers/brave/default.nix"
-                { }
-              ).brave;
+            lan-mouse = (
+              final.callPackage "${inputs.nixpkgs-master}/pkgs/by-name/la/lan-mouse/package.nix" { }
+            );
           })
         ];
 
