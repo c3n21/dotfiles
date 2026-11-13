@@ -118,12 +118,6 @@
           (import ./nixos/overlays.nix {
             inherit inputs;
           })
-
-          (final: prev: {
-            lan-mouse = (
-              final.callPackage "${inputs.nixpkgs-master}/pkgs/by-name/la/lan-mouse/package.nix" { }
-            );
-          })
         ];
 
         config.allowUnfree = true;
