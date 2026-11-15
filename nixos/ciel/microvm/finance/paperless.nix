@@ -1,9 +1,21 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  upstreamPaperless = pkgs.paperless-ngx;
+
+  relaxTorch =
+    pkg:
+    pkg.overridePythonAttrs (old: {
+      pythonRelaxDeps = (old.pythonRelaxDeps or [ ]) ++ [ "torch" ];
+    });
+in
 {
   services.paperless = {
     enable = true;
     address = "0.0.0.0"; # Raggiungibile solo via forwarding localhost dell'host
     port = 28981;
+    package = (relaxTorch upstreamPaperless) // {
+      override = args: relaxTorch (upstreamPaperless.override args);
+    };
 
     settings = {
       PAPERLESS_URL = "http://127.0.0.1:28981";
