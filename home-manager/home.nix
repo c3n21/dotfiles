@@ -65,6 +65,7 @@
     # llm-agents.bb-app
     # Violates ToS using this outside of supported ACP platform
     # dotfiles.agy-acp-server
+    zmx
   ];
 
   programs = {
