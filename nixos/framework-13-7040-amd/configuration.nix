@@ -90,7 +90,8 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
     supportedFilesystems = {
-      zfs = true;
+      # TODO: until zfs 2.4.5 is released
+      # zfs = true;
     };
     zfs = {
       forceImportRoot = false;
